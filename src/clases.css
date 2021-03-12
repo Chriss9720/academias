@@ -1,0 +1,413 @@
+.font {
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+body {
+    background-image: url("BlueBackground.PNG");
+    background-color: linen;
+}
+
+.title {
+    position: absolute;
+    top: -20%;
+    left: 5%;
+}
+
+.rcorners2 {
+    position: absolute;
+    border-radius: 25px;
+    background: goldenrod;
+    width: 450px;
+    height: 50px;
+    top: 4%;
+    left: 20%;
+}
+
+.rcorners1 {
+    position: absolute;
+    border-radius: 25px;
+    background: white;
+    padding: 20px;
+    width: 750px;
+    height: 580px;
+    top: 8%;
+    left: 25%;
+}
+
+.rcornersEliminar {
+    position: absolute;
+    border-radius: 25px;
+    background: white;
+    padding: 20px;
+    width: 900px;
+    height: 55%;
+    top: 35%;
+    left: 15%;
+}
+
+.rcornersLogin {
+    position: absolute;
+    border-radius: 25px;
+    background: white;
+    padding: 20px;
+    width: 510px;
+    height: 580px;
+    top: 8%;
+    left: 27%;
+}
+
+.subtitle {
+    position: absolute;
+    font-size: 150%;
+    top: 5%;
+}
+
+.subtitleEliminar {
+    position: absolute;
+    font-size: 150%;
+    top: 10%;
+    left: 25%
+}
+
+.subtitleLogin {
+    position: absolute;
+    font-size: 300%;
+    top: 5%;
+    left: 38%;
+}
+
+.BusquedaEliminar {
+    position: absolute;
+    top: 10%;
+    left: 5%
+}
+
+.cuerpo {
+    position: absolute;
+    top: 10%;
+}
+
+.cuerpoEliminar {
+    top: 50%;
+    left: 30%
+}
+
+.cuerpoLogin {
+    position: absolute;
+    top: 57%;
+    right: 25%;
+}
+
+.contenido {
+    width: 145px;
+    height: 30px;
+}
+
+.contenidoEliminar {
+    width: 350px;
+    height: 30px;
+}
+
+.contenidoBusqueda {
+    width: 180px;
+    height: 30px;
+}
+
+.contenidoLogin {
+    width: 245px;
+    height: 30px;
+}
+
+.button {
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    position: absolute;
+    border-radius: 12px;
+}
+
+.button2 {
+    top: 90%;
+    background-color: #08c211;
+    left: 500px;
+}
+
+.button1 {
+    top: 90%;
+    background-color: #cc1010;
+}
+
+.buttonLogin {
+    top: 550px;
+    background-color: #08c211;
+    left: 420px;
+}
+
+.subirImg {
+    background-color: blueviolet;
+    position: absolute;
+    left: 72%;
+    top: 45%;
+}
+
+.imgRedonda {
+    width: 150px;
+    height: 150px;
+    border-radius: 150px;
+    border: 10px solid #666;
+    position: absolute;
+    left: 65%;
+    top: 10%;
+}
+
+.imgLogin {
+    width: 200px;
+    height: 200px;
+    border-radius: 150px;
+    border: 5px solid #666;
+    position: absolute;
+    top: 18%;
+    left: 32%
+}
+
+.file {
+    position: absolute;
+    left: 56%;
+    top: 40%;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.error {
+    font-size: .75em;
+    color: red;
+}
+
+.therror {
+    text-align: center;
+}
+
+.button2Eliminar {
+    background-color: #cc1010;
+    position: initial;
+}
+
+.button1Eliminar {
+    top: 5%;
+    background-color: #08c211;
+    left: 800px;
+}
+
+.buttonRegresar1 {
+    top: -15%;
+    background-color: #08c211;
+    left: 530px;
+}
+
+.buttonRegresar2 {
+    top: 2%;
+    background-color: #08c211;
+    left: 680px;
+}
+
+.buttonBuscar {
+    top: 65%;
+    background-color: #3399ff;
+    left: 500px;
+}
+
+.buttonLimpiar {
+    top: 65%;
+    background-color: #3399ff;
+    left: 300px;
+}
+
+.imgEliminar {
+    width: 150px;
+    height: 150px;
+    border-radius: 150px;
+    border: 10px solid #666;
+}
+
+.tdImgEliminar {
+    width: auto;
+}
+
+.tdContenidoEliminar {
+    width: 100%;
+}
+
+.tdValorEliminar {
+    width: 100%;
+}
+
+.tdbtnEliminar {
+    text-align: right;
+}
+
+.fijadoEliminar {
+    position: absolute;
+    border-radius: 25px;
+    background: white;
+    padding: 20px;
+    width: 900px;
+    height: 125px;
+    top: 8%;
+    left: 15%;
+}
+
+scroll-container {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.tablaElimiar {
+    border-collapse: collapse;
+}
+
+.trContentElimiar {
+    border: black 5px solid;
+}
+
+.fontButMenu {
+    font-size: 20px;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.titleMenu {
+    position: absolute;
+    top: -20%;
+    left: 8%;
+}
+
+.subtitleMenu {
+    top: 5%;
+    left: 3%;
+}
+
+.rcorners1Menu {
+    position: absolute;
+    border-radius: 25px;
+    background: white;
+    padding: 20px;
+    width: 700px;
+    height: 750px;
+    top: 8%;
+    left: 23%;
+}
+
+.rcorners2Menu {
+    position: absolute;
+    border-radius: 25px;
+    background: goldenrod;
+    width: 650px;
+    height: 50px;
+    top: 4%;
+    left: 20%;
+}
+
+.tableInteriorMenu {
+    position: absolute;
+    top: 17%;
+    left: 12%;
+}
+
+.borderRegMenu {
+    border-radius: 150px;
+    border: 5px solid coral;
+    background: coral;
+    cursor: pointer;
+}
+
+.borderModMenu {
+    border-radius: 150px;
+    border: 5px goldenrod;
+    background: goldenrod;
+    cursor: pointer;
+}
+
+.borderEliMenu {
+    border-radius: 150px;
+    border: 5px solid wheat;
+    background: wheat;
+    cursor: pointer;
+}
+
+.borderVisMenu {
+    border-radius: 150px;
+    border: 5px solid tomato;
+    background: tomato;
+    cursor: pointer;
+}
+
+.sizeMenu {
+    height: 200px;
+    width: 200px;
+    text-align: center;
+}
+
+.buttonGreen {
+    top: 82%;
+    left: 87%;
+    background-color: #08c211;
+}
+
+.buttonRed {
+    top: 82%;
+    left: 5%;
+    background-color: #cc1010;
+}
+
+.rcornersIniciada {
+    position: absolute;
+    border-radius: 25px;
+    background: goldenrod;
+    width: 600px;
+    height: 60px;
+    top: 5%;
+    left: 28%;
+}
+
+.rcorners1Inicada {
+    position: absolute;
+    border-radius: 25px;
+    background: white;
+    padding: 20px;
+    width: 600px;
+    height: 400px;
+    top: 8%;
+    left: 30%;
+}
+
+.titleInicada {
+    position: absolute;
+    top: -10%;
+    left: 8%;
+}
+
+.imgLogout {
+    position: absolute;
+    left: 95%;
+    top: -3%;
+    width: 70px;
+    height: 45px;
+    cursor: pointer;
+}
+
+.imgLogout1 {
+    position: absolute;
+    left: 96%;
+    top: -12%;
+    width: 60px;
+    height: 40px;
+    cursor: pointer;
+}

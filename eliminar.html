@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <link rel="stylesheet" href="src/clases.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="src/scripts.js"></script>
+    <title>Administraci&oacute;n de Academias</title>
+</head>
+
+<body>
+    <div class="fijadoEliminar">
+        <table cellspacing="10" cellpadding="3" class="BusquedaEliminar">
+            <tr>
+                <td><label class="contenidoBusqueda">Nombre(s):</label></td>
+                <td><label class="contenidoBusqueda">Carrera:</label></td>
+                <td><label class="contenidoBusqueda">Academia:</label></td>
+                <td><label class="contenidoBusqueda">Nomina:</label></td>
+            </tr>
+            <tr>
+                <td><input name="SearchName" type="text" class="contenidoBusqueda" /></td>
+                <td>
+                    <select name="SearchCarr" class="contenidoBusqueda">
+                        <option value ="">Seleciona una</option>
+                    </select>
+                </td>
+                <td>
+                    <select name="SearchAca" class="contenidoBusqueda">
+                        <option value ="">Seleciona una</option>
+                    </select>
+                </td>
+                <td><input id="sMat" name="SeacrchMat" type="text" class="contenidoBusqueda" />
+                </td>
+            </tr>
+        </table>
+        <input class="button buttonBuscar" type="submit" value="Buscar" />
+        <input class="button buttonLimpiar" type="button" value="Limpiar" />
+        <input class="button button1Eliminar" type="button" value="Regresar" onclick="cambiar('menu.html')" />
+    </div>
+    <div class="rcornersEliminar">
+        <scroll-container>
+            <scroll-page>
+                <table cellspacing="3" cellpadding="3" class="tablaElimiar">
+                    <tr class="trContentElimiar">
+                        <td class="tdImgEliminar">
+                            <img id="fotoPerfil" class="imgEliminar" src="src/perfilazul.png" alt="not found">
+                        </td>
+                        <td class="tdContenidoEliminar">
+                            <table class="tdValorEliminar">
+                                <tr>
+                                    <td>
+                                        <table cellspacing="3" cellpadding="3" class="cuerpoEliminar">
+                                            <tr>
+                                                <td><label class="contenidoEliminar">Nomina:</label></td>
+                                                <td class="tdValorEliminar">
+                                                    <label id="delMat" name="matricula" type="text" class="contenidoEliminar"></label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><label class="contenidoEliminar">Nombre(s):</label></td>
+                                                <td class="tdValorEliminar">
+                                                    <label name="nombres" type="text" class="contenidoEliminar">
+                                                            </label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><label class="contenidoEliminar">Carrera:</label></td>
+                                                <td class="tdValorEliminar">
+                                                    <label name="carrera" type="text" class="contenidoEliminar">
+                                                            </label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><label class="contenidoEliminar">Academia:</label></td>
+                                                <td class="tdValorEliminar">
+                                                    <label name="academia" type="text" class="contenidoEliminar">
+                                                            </label>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tdbtnEliminar">
+                                        <input id="del" class="button button2Eliminar" type="button" value="Eliminar" onclick="eliminar(this.value)" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </scroll-page>
+        </scroll-container>
+    </div>
+
+    <div class="rcorners2">
+        <h1 class="title font">Eliminar Personal</h1>
+    </div>
+</body>
+
+</html>

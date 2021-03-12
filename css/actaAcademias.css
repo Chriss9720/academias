@@ -1,0 +1,67 @@
+.rcornersProcCritico {
+    position: absolute;
+    border-radius: 25px;
+    background: white;
+    padding: 20px;
+    top: 8%;
+    left: 0%;
+}
+
+.tablaProc {
+    text-align: center;
+    margin-left: 25%;
+}
+
+.contenidoProc {
+    width: 180px;
+    height: 30px;
+}
+
+.tdAct {
+    background-color: #cccccc;
+    border: 1px solid;
+    text-align: center;
+}
+
+.contenidoReunion {
+    height: 30px;
+}
+
+.contenidoPresidente {
+    width: 505px;
+    height: 30px;
+    top: 60%;
+    position: absolute;
+}
+
+.scroll-containerProc {
+    position: absolute;
+    overflow-y: auto;
+    width: 100%;
+    height: 440px;
+    top: 0%;
+}
+
+.scroll-containerRes {
+    height: 100px;
+    width: 100%;
+}
+
+.tdResponsable {
+    width: 25%;
+}
+
+textarea {
+    height: 150px;
+}
+
+.buttonRegresar1 {
+    top: 2%;
+    left: 90%;
+}
+
+.crear {
+    background-color: #0bbedd;
+    left: 90%;
+    top: 10%;
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PDF Page</title>
+    <script type="text/javascript">
+        function verPDF() {
+            var id;
+            var pdf = document.getElementById("pdf");
+            pdf.style.width = "100%";
+            pdf.style.height = (window.screen.height - 150) + "px";
+            window.location.search.substr(1).split("&").forEach(item => {
+                id = item.split("=")[1];
+            })
+            pdf.src = "documentos/" + id;
+        }
+    </script>
+</head>
+
+<body onload="verPDF()">
+    <embed id="pdf" type="application/pdf" />
+</body>
+
+</html>

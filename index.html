@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="src/clases.css" />
+    <link rel="stylesheet" href="css/load.css" />
+    <script type="text/javascript" src="js/login.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <title>Login Page</title>
+</head>
+
+<body>
+    <div class="rcornersLogin">
+        <p1 class="subtitleLogin font">Login</p1>
+        <img id="fotoPerfilLogin" class="imgLogin" alt="not found" src="src/perfilazul.png" />
+        <table cellspacing="3" cellpadding="3" class="cuerpoLogin">
+            <tr>
+                <td><label class="contenidoLogin">Ingrese su matricula:</label></td>
+            </tr>
+            <tr>
+                <td><input id="matricula" type="text" class="contenidoLogin" value="" autocomplete="new-names" /></td>
+            </tr>
+            <tr>
+                <td><label class="contenidoLogin">Ingrese su clave:</label></td>
+            </tr>
+            <tr>
+                <td><input id="psw" name="clave" type="password" class="contenidoLogin" autocomplete="new-password" /></td>
+            </tr>
+            <tr>
+                <td> <input type="checkbox" onclick="visible()">ver clave</td>
+            </tr>
+            <tr id="errores" class="therror" hidden="true">
+                <td>
+                    <label id="labelerrores" class="error"></label>
+                </td>
+            </tr>
+        </table>
+        <input class="button buttonLogin" type="submit" value="Ingresar" onclick="accion('matricula', 'psw', 'errores', 'labelerrores')" />
+    </div>
+</body>
+
+</html>
