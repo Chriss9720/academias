@@ -105,23 +105,25 @@
             $arr = filas($comp[6][0], 18);
             $sig = lines($this, $sig, $arr, $h, 2.6, true);
 
+            $act1 = json_decode(json_encode($data['Act1']), true);
+
             $comp = [[],[]];
             $comp[0][0] = "1";
             $comp[0][1] = 1;
             $comp[1][0] = "Mejoras e innovación de procesos de enseñanza y aprendizaje, incluye implementación de casos, semanas académicas, visitas industriales, proyectos de desarrollo comunitario, etc.";
             $comp[1][1] = 25;
-            $comp[2][0] = "Este texto es un ejemplo de que se inserto una actividad cualquiera";
+            $comp[2][0] = $act1['Acciones'];
             $comp[2][1] = 20;
-            $comp[3][0] = "Asig1 Asig2 Asig3";
+            $comp[3][0] = $act1['Asignaturas'];
             $comp[3][1] = 18;
             $comp[4][0] = "Sergio Yañez Hector";
             $comp[4][1] = 20;
-            $comp[5][0] = "22/04/15 15:20";
+            $comp[5][0] = $act1['Fecha'];
             $comp[5][1] = 20;
-            $comp[6][0] = "Fotos Archivos ETC";
+            $comp[6][0] = $act1['Evidencia'];
             $comp[6][1] = 15;
             $h = getH($comp);
- 
+
             //Fila 1
             $this->Ln(.24);
             $this->Cell(1, $h, $comp[0][0], 1, 0, 'C', true);
