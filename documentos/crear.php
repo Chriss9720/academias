@@ -122,6 +122,7 @@
             $comp[6][1] = 15;
             $h = getH($comp);
  
+            //Fila 1
             $this->Ln(.24);
             $this->Cell(1, $h, $comp[0][0], 1, 0, 'C', true);
             $this->SetFont("Arial", '', 10);
@@ -150,37 +151,246 @@
             $arr = filas($comp[6][0], $comp[6][1]);
             $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
 
+            //Fila 2
             $this->Ln(1.7);
             $this->SetFont("Arial", 'B', 10);
             $this->Cell(1, $h, "2", 1, 0, 'C', true);
+            $this->SetFont("Arial", '', 10);
+            $posY = $this->GetY();
+            $this->SetY($posY);
+            $arr = filas($comp[1][0], $comp[1][1]);
+            $sig = lines($this, $this->GetX() + 1, $arr, $h, 4.1, false, 'L');
 
-            $this->Ln($h);
+            $this->SetY($posY);
+            $arr = filas($comp[2][0], $comp[2][1]);
+            $sig = lines($this, 6.1, $arr, $h, 3.30, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[3][0], $comp[3][1]);
+            $sig = lines($this, $sig, $arr, $h, 3.2, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[4][0], $comp[4][1]);
+            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[5][0], $comp[5][1]);
+            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[6][0], $comp[6][1]);
+            $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
+
+            //Fila 3
+            $this->Ln(1.7);
             $this->SetFont("Arial", 'B', 10);
             $this->Cell(1, $h, "3", 1, 0, 'C', true); 
+            $this->SetFont("Arial", '', 10);
+            $posY = $this->GetY();
+            $this->SetY($posY);
+            $arr = filas($comp[1][0], $comp[1][1]);
+            $sig = lines($this, $this->GetX() + 1, $arr, $h, 4.1, false, 'L');
 
-            $this->Ln($h);
-            $this->SetFont("Arial", 'B', 10);
-            $this->Cell(1, $h, "4", 1, 0, 'C', true);
+            $this->SetY($posY);
+            $arr = filas($comp[2][0], $comp[2][1]);
+            $sig = lines($this, 6.1, $arr, $h, 3.30, false, 'L');
 
-            $this->Ln($h);
-            $this->SetFont("Arial", 'B', 10);
-            $this->Cell(1, $h, "5", 1, 0, 'C', true);
+            $this->SetY($posY);
+            $arr = filas($comp[3][0], $comp[3][1]);
+            $sig = lines($this, $sig, $arr, $h, 3.2, false, 'L');
 
-            $this->Ln($h);
-            $this->SetFont("Arial", 'B', 10);
-            $this->Cell(1, $h, "6", 1, 0, 'C', true);
+            $this->SetY($posY);
+            $arr = filas($comp[4][0], $comp[4][1]);
+            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
 
-            $this->Ln($h);
-            $this->SetFont("Arial", 'B', 10);
-            $this->Cell(1, $h, "7", 1, 0, 'C', true);
+            $this->SetY($posY);
+            $arr = filas($comp[5][0], $comp[5][1]);
+            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
 
-            $this->Ln($h);
-            $this->SetFont("Arial", 'B', 10);
-            $this->Cell(1, $h, "8", 1, 0, 'C', true);
+            $this->SetY($posY);
+            $arr = filas($comp[6][0], $comp[6][1]);
+            $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
 
-            $this->Ln($h);
+            //Fila 4
+            $this->Ln(1.7);
             $this->SetFont("Arial", 'B', 10);
-            $this->Cell(1, $h, "9", 1, 0, 'C', true);
+            $this->Cell(1, $h, "4", 1, 0, 'C', true); 
+            $this->SetFont("Arial", '', 10);
+            $posY = $this->GetY();
+            $this->SetY($posY);
+            $arr = filas($comp[1][0], $comp[1][1]);
+            $sig = lines($this, $this->GetX() + 1, $arr, $h, 4.1, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[2][0], $comp[2][1]);
+            $sig = lines($this, 6.1, $arr, $h, 3.30, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[3][0], $comp[3][1]);
+            $sig = lines($this, $sig, $arr, $h, 3.2, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[4][0], $comp[4][1]);
+            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[5][0], $comp[5][1]);
+            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[6][0], $comp[6][1]);
+            $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
+
+
+            //Fila 5
+            $this->Ln(1.7);
+            $this->SetFont("Arial", 'B', 10);
+            $this->Cell(1, $h, "5", 1, 0, 'C', true); 
+            $this->SetFont("Arial", '', 10);
+            $posY = $this->GetY();
+            $this->SetY($posY);
+            $arr = filas($comp[1][0], $comp[1][1]);
+            $sig = lines($this, $this->GetX() + 1, $arr, $h, 4.1, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[2][0], $comp[2][1]);
+            $sig = lines($this, 6.1, $arr, $h, 3.30, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[3][0], $comp[3][1]);
+            $sig = lines($this, $sig, $arr, $h, 3.2, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[4][0], $comp[4][1]);
+            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[5][0], $comp[5][1]);
+            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[6][0], $comp[6][1]);
+            $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
+
+            //Fila 6
+            $this->Ln(1.7);
+            $this->SetFont("Arial", 'B', 10);
+            $this->Cell(1, $h, "6", 1, 0, 'C', true); 
+            $this->SetFont("Arial", '', 10);
+            $posY = $this->GetY();
+            $this->SetY($posY);
+            $arr = filas($comp[1][0], $comp[1][1]);
+            $sig = lines($this, $this->GetX() + 1, $arr, $h, 4.1, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[2][0], $comp[2][1]);
+            $sig = lines($this, 6.1, $arr, $h, 3.30, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[3][0], $comp[3][1]);
+            $sig = lines($this, $sig, $arr, $h, 3.2, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[4][0], $comp[4][1]);
+            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[5][0], $comp[5][1]);
+            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[6][0], $comp[6][1]);
+            $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
+
+            //Fila 7
+            $this->Ln(1.7);
+            $this->SetFont("Arial", 'B', 10);
+            $this->Cell(1, $h, "7", 1, 0, 'C', true); 
+            $this->SetFont("Arial", '', 10);
+            $posY = $this->GetY();
+            $this->SetY($posY);
+            $arr = filas($comp[1][0], $comp[1][1]);
+            $sig = lines($this, $this->GetX() + 1, $arr, $h, 4.1, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[2][0], $comp[2][1]);
+            $sig = lines($this, 6.1, $arr, $h, 3.30, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[3][0], $comp[3][1]);
+            $sig = lines($this, $sig, $arr, $h, 3.2, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[4][0], $comp[4][1]);
+            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[5][0], $comp[5][1]);
+            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[6][0], $comp[6][1]);
+            $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
+
+            //Fila 8
+            $this->Ln(1.7);
+            $this->SetFont("Arial", 'B', 10);
+            $this->Cell(1, $h, "8", 1, 0, 'C', true); 
+            $this->SetFont("Arial", '', 10);
+            $posY = $this->GetY();
+            $this->SetY($posY);
+            $arr = filas($comp[1][0], $comp[1][1]);
+            $sig = lines($this, $this->GetX() + 1, $arr, $h, 4.1, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[2][0], $comp[2][1]);
+            $sig = lines($this, 6.1, $arr, $h, 3.30, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[3][0], $comp[3][1]);
+            $sig = lines($this, $sig, $arr, $h, 3.2, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[4][0], $comp[4][1]);
+            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[5][0], $comp[5][1]);
+            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[6][0], $comp[6][1]);
+            $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
+
+            //Fila 9
+            $this->Ln(1.7);
+            $this->SetFont("Arial", 'B', 10);
+            $this->Cell(1, $h, "9", 1, 0, 'C', true); 
+            $this->SetFont("Arial", '', 10);
+            $posY = $this->GetY();
+            $this->SetY($posY);
+            $arr = filas($comp[1][0], $comp[1][1]);
+            $sig = lines($this, $this->GetX() + 1, $arr, $h, 4.1, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[2][0], $comp[2][1]);
+            $sig = lines($this, 6.1, $arr, $h, 3.30, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[3][0], $comp[3][1]);
+            $sig = lines($this, $sig, $arr, $h, 3.2, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[4][0], $comp[4][1]);
+            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[5][0], $comp[5][1]);
+            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
+
+            $this->SetY($posY);
+            $arr = filas($comp[6][0], $comp[6][1]);
+            $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
         }
     }
 
