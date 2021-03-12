@@ -431,8 +431,6 @@
             $arr = filas("Coordinador de Presidentes de Academias", 30);
             $sig = lines($this, $this->GetX() + 2 + 5.45 + 5.85, $arr, .79, 5.97);
 
-
-
         }
     }
 
