@@ -391,10 +391,52 @@
             $this->SetY($posY);
             $arr = filas($comp[6][0], $comp[6][1]);
             $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
+
+            //firmas
+            $this->Ln(5);
+            $this->SetFont("Arial", "B", 10);
+            $this->CELL(5.85, .55, utf8_decode("Elaboró"), 1, 0, 'C', true);
+
+            $this->SetX($this->GetX() + 1);
+            $this->CELL(5.45, .55, utf8_decode("Validó"), 1, 0, 'C', true);
+
+            $this->SetX($this->GetX() + 1);
+            $this->CELL(5.97, .55, utf8_decode("Supervisó"), 1, 0, 'C', true);
+
+            $this->SetFont("Arial", "", 10);
+            $this->Ln(.55);
+            $posY = $this->GetY();
+            $arr = filas($data['Presidente'], 15);
+            $sig = lines($this, $this->GetX(), $arr, 1.36, 5.85, false);
+
+            $this->SetY($posY);
+            $this->SetX($this->GetX() + 1 + 5.85);
+            $arr = filas('Aquí va el jefe de la academia', 15);
+            $sig = lines($this, $this->GetX(), $arr, 1.36, 5.45, false);
+
+            $this->SetY($posY);
+            $arr = filas('Aquí va el coordinador de la academia', 15);
+            $sig = lines($this, $this->GetX() + 2 + 5.45 + 5.85, $arr, 1.36, 5.97, false);
+
+            $this->Ln(0);
+            $this->SetFont("Arial", "B", 10);
+            $this->Cell(5.85, .79, utf8_decode("Presidente de Academia"), 1, 0, 'C', true);
+
+            $this->SetX($this->GetX() + 1);
+            $posY = $this->GetY();
+            $arr = filas("Jefe de División de Carrera y/o Coordinador de Extensión", 38);
+            $sig = lines($this, $this->GetX(), $arr, .79, 5.45);
+            
+            $this->SetY($posY);
+            $arr = filas("Coordinador de Presidentes de Academias", 30);
+            $sig = lines($this, $this->GetX() + 2 + 5.45 + 5.85, $arr, .79, 5.97);
+
+
+
         }
     }
 
-    function lines($pdf, $x, $arr, $h, $w, $f = true,$t = 'C') {
+    function lines($pdf, $x, $arr, $h, $w, $f = true, $t = 'C') {
         $pdf->SetX($x);
         $pdf->Cell($w, $h, "", 1, 0, "", $f);
         $sep = $h - (count($arr) * .48);
