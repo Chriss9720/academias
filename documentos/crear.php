@@ -255,7 +255,10 @@
 
 
             //Fila 5
-            $this->Ln(1.7);
+            if ($this->GetX() < 1.5 + $h) 
+                $this->Ln(1.9);
+            else 
+                $this->Ln(1.7);
             $this->SetFont("Arial", 'B', 10);
             $this->Cell(1, $h, "5", 1, 0, 'C', true); 
             $this->SetFont("Arial", '', 10);
@@ -285,7 +288,10 @@
             $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
 
             //Fila 6
-            $this->Ln(1.7);
+            if ($this->GetX() < 1.5 + $h) 
+                $this->Ln(1.9);
+            else 
+                $this->Ln(1.7);
             $this->SetFont("Arial", 'B', 10);
             $this->Cell(1, $h, "6", 1, 0, 'C', true); 
             $this->SetFont("Arial", '', 10);
@@ -315,7 +321,10 @@
             $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
 
             //Fila 7
-            $this->Ln(1.7);
+            if ($this->GetX() < 1.5 + $h) 
+                $this->Ln(1.9);
+            else 
+                $this->Ln(1.7);
             $this->SetFont("Arial", 'B', 10);
             $this->Cell(1, $h, "7", 1, 0, 'C', true); 
             $this->SetFont("Arial", '', 10);
@@ -345,7 +354,10 @@
             $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
 
             //Fila 8
-            $this->Ln(1.7);
+            if ($this->GetX() < 1.5 + $h) 
+                $this->Ln(1.9);
+            else 
+                $this->Ln(1.7);
             $this->SetFont("Arial", 'B', 10);
             $this->Cell(1, $h, "8", 1, 0, 'C', true); 
             $this->SetFont("Arial", '', 10);
@@ -375,7 +387,10 @@
             $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
 
             //Fila 9
-            $this->Ln(1.7);
+            if ($this->GetX() < 1.5 + $h) 
+                $this->Ln(1.9);
+            else 
+                $this->Ln(1.7);
             $this->SetFont("Arial", 'B', 10);
             $this->Cell(1, $h, "9", 1, 0, 'C', true); 
             $this->SetFont("Arial", '', 10);
