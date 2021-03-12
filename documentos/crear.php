@@ -119,7 +119,7 @@
             $comp[4][0] = "Sergio Yañez Hector";
             $comp[4][1] = 20;
             $comp[5][0] = $act1['Fecha'];
-            $comp[5][1] = 20;
+            $comp[5][1] = 10;
             $comp[6][0] = $act1['Evidencia'];
             $comp[6][1] = 15;
             $h = getH($comp);
@@ -154,6 +154,10 @@
             $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
 
             //Fila 2
+            if ($this->GetX() < 1.5) 
+                $this->Ln(.2);
+            else 
+                $this->Ln(1.7);
             $this->Ln(1.7);
             $this->SetFont("Arial", 'B', 10);
             $this->Cell(1, $h, "2", 1, 0, 'C', true);
@@ -184,7 +188,10 @@
             $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
 
             //Fila 3
-            $this->Ln(1.7);
+            if ($this->GetX() < 1.5 + $h) 
+                $this->Ln(1.9);
+            else 
+                $this->Ln(1.7);
             $this->SetFont("Arial", 'B', 10);
             $this->Cell(1, $h, "3", 1, 0, 'C', true); 
             $this->SetFont("Arial", '', 10);
@@ -214,7 +221,10 @@
             $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
 
             //Fila 4
-            $this->Ln(1.7);
+            if ($this->GetX() < 1.5 + $h) 
+                $this->Ln(1.9);
+            else 
+                $this->Ln(1.7);
             $this->SetFont("Arial", 'B', 10);
             $this->Cell(1, $h, "4", 1, 0, 'C', true); 
             $this->SetFont("Arial", '', 10);
