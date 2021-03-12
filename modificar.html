@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <link rel="stylesheet" href="src/clases.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="src/scripts.js"></script>
+    <title>Administraci&oacute;n de Academias</title>
+</head>
+
+<body class="body">
+    <div class="rcorners1">
+        <p1 class="subtitle font">Actualize la informaci&oacute;n:</p1>
+        <form class="font" action="Modificar" method="post">
+            <img id="fotoPerfil" class="imgRedonda" src="src/perfilazul.png" alt="not found" />
+            <table cellspacing="3" cellpadding="3" class="cuerpo">
+                <tr>
+                    <td><label class="contenido">Nombre(s):</label></td>
+                    <td><input name="nombres" type="text" class="contenido" required onchange="return validarNombre(this)" /></td>
+                    <td> <label id="errorNombre" class="error"></label>
+                        <script>
+                            function validarNombre(nombre) {
+                                if (nombre.value.length <= 5) {
+                                    document.getElementById("errorNombre").innerHTML = "Ingrese su nombre";
+                                    nombre.focus();
+                                    nombre.select();
+                                    console.log(nombre + " ok");
+                                } else {
+                                    console.log(nombre + " no " + nombre.length);
+                                }
+                            }
+                        </script>
+                </tr>
+                <tr>
+                    <td><label class="contenido">Apellido Paterno:</label></td>
+                    <td><input required name="apellidoP" type="text" class="contenido" /></td>
+                </tr>
+                <tr>
+                    <td><label class="contenido">Apellido Materno:</label></td>
+                    <td><input required name="apellidoM" type="text" class="contenido" /></td>
+                </tr>
+                <tr>
+                    <td><label class="contenido">Correo Institucional:</label></td>
+                    <td><input required name="correo" type="text" class="contenido" /></td>
+                </tr>
+                <tr>
+                    <td><label class="contenido">CIP:</label></td>
+                    <td><input required name="cip" type="text" class="contenido" /></td>
+                </tr>
+                <tr>
+                    <td><label class="contenido">Carrera:</label></td>
+                    <td>
+                        <select name="carrera" class="contenido">
+                                <option value="Selec">Selecione una</option>
+                            </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="contenido">Academia:</label></td>
+                    <td>
+                        <select id="academia" class="contenido">
+                                <option value="Selec">Selecione una</option>
+                            </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="contenido">Puesto en la academia:</label></td>
+                    <td>
+                        <select id="puessto" class="contenido">
+                                <option value="Selec">Selecione una</option>
+                            </select>
+                    </td>
+                </tr>
+            </table>
+            <input class="button button1" type="submit" value="Cancelar" />
+            <input class="button button2" type="submit" value="Actualizar" />
+        </form>
+        <form method="post" enctype="multipart/form-data" action="Actualizar">
+            <input class="file" type="file" name="upfile" size="50" />
+            <input class="button subirImg" type="submit" value="Subir" />
+        </form>
+        <input class="button button1Eliminar" type="button" value="Regresar" onclick="cambiar('buscar')" />
+    </div>
+    <div class="rcorners2">
+        <h1 class="title font">Actualizar Info.</h1>
+    </div>
+</body>
+
+</html>

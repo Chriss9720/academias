@@ -125,10 +125,6 @@ function mensajeErrorLogin(mensaje) {
     }
 }
 
-function cambiar(page) {
-    location.href = page;
-}
-
 function cancelarRegistro() {
     if (confirm("Seguro que desae cancelar el registro?")) {
         location.href = "Registro";
@@ -230,4 +226,9 @@ function crearLoad() {
     s.setAttribute("class", "spin");
     div.appendChild(s);
     document.body.appendChild(div);
+}
+
+
+function cambiar(ruta) {
+    window.location.href = ruta + ".html";
 }
