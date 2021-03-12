@@ -116,7 +116,7 @@
             $comp[2][1] = 20;
             $comp[3][0] = $act1['Asignaturas'];
             $comp[3][1] = 18;
-            $comp[4][0] = "Sergio Yañez Hector";
+            $comp[4][0] = $act1['Responsables'];
             $comp[4][1] = 20;
             $comp[5][0] = $act1['Fecha'];
             $comp[5][1] = 10;
