@@ -478,7 +478,7 @@
             } while ($f);
         } while ($i < count($txt));
         return $arr;
-        }
+    }
 
     $json = json_decode(json_encode($_GET['obj']), true);
 

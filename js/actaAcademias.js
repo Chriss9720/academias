@@ -1,12 +1,13 @@
 function crearPDF() {
+    var fechas = document.getElementsByName("Reunion");
     var obj = {
-        Academia: "ISC - Ingeniería en sistemas computacionales",
-        Semestre: "Ene-Jun 2021",
+        Academia: document.getElementById("academia").value,
+        Semestre: document.getElementById("semestre").value,
         Presidente: "Anabel Gutiérrez Espinoza",
-        f1: "11/03/21 10:45",
-        f2: "12/03/21 10:00",
-        f3: "15/03/21 22:45",
-        f4: "28/03/21 22:45",
+        f1: fechas[0].value,
+        f2: fechas[1].value,
+        f3: fechas[2].value,
+        f4: fechas[3].value
     };
     $.ajax({
         url: 'documentos/crear.php',
