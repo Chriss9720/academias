@@ -4,16 +4,15 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/planTrabajo.js"></script>
     <link rel="stylesheet" href="css/load.css" />
     <link rel="stylesheet" href="src/clases.css" />
     <link rel="stylesheet" href="css/planTrabajo.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/planTrabajo.js"></script>
-    <script type="text/javascript" src="src/scripts.js"></script>
     <title>Acta de academia</title>
 </head>
 
-<body>
+<body onload="cargarUsuarios()">
     <div class="rcornersProcCritico">
         <input class="button buttonRegresar1" type="button" value="Regresar" onclick="cambiar('menu')" />
         <input class="button crear" type="button" value="crear PDF" onclick="crearPDF()" />
@@ -64,30 +63,6 @@
                     <scroll-container class="scroll-containerRes">
                         <scroll-page>
                             <table id="TBAct1L">
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" name="Act1C">
-                                        <label name="Act1L">Hector Francisco Castro Morales</label>
-                                        </input>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" name="Act1C"> <label name="Act1L">Christian Emmanuel Yañez Gonzalez</label></input>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name="Act1C"> <label name="Act1L">Sergio Antonio Guerra Castro</label></input>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name="Act1C"> <label name="Act1L">Persona Desconocida</label></input>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name="Act1C"> <label name="Act1L">Persona 1</label></input>
-                                    </td>
-                                </tr>
                             </table>
                         </scroll-page>
                     </scroll-container>
@@ -102,35 +77,12 @@
                 <td><textarea id="textArea4"></textarea></td>
                 <td><textarea id="textArea5"></textarea></td>
                 <td class="tdResponsable">
+                    <label>Buscar:</label>
+                    <input id="BAct2L" type="text" onkeyup="buscar('BAct2L')" />
                     <scroll-container class="scroll-containerRes">
                         <scroll-page>
-                            <table>
-                                <tr>
-                                    <td><input type="checkbox">Hector Francisco Castro Morales</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Christian Emmanuel Yañez Gonzalez</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Sergio Antonio Guerra Castro</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona Desconocida</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
+                            <table id="TBAct2L">
                             </table>
-
                         </scroll-page>
                     </scroll-container>
                 </td>
@@ -144,35 +96,12 @@
                 <td><textarea id="textArea7"></textarea></td>
                 <td><textarea id="textArea8"></textarea></td>
                 <td class="tdResponsable">
+                    <label>Buscar:</label>
+                    <input id="BAct3L" type="text" onkeyup="buscar('BAct3L')" />
                     <scroll-container class="scroll-containerRes">
                         <scroll-page>
-                            <table>
-                                <tr>
-                                    <td><input type="checkbox">Hector Francisco Castro Morales</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Christian Emmanuel Yañez Gonzalez</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Sergio Antonio Guerra Castro</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona Desconocida</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
+                            <table id="TBAct3L">
                             </table>
-
                         </scroll-page>
                     </scroll-container>
                 </td>
@@ -186,35 +115,12 @@
                 <td><textarea id="textArea10"></textarea></td>
                 <td><textarea id="textArea11"></textarea></td>
                 <td class="tdResponsable">
+                    <label>Buscar:</label>
+                    <input id="BAct4L" type="text" onkeyup="buscar('BAct4L')" />
                     <scroll-container class="scroll-containerRes">
                         <scroll-page>
-                            <table>
-                                <tr>
-                                    <td><input type="checkbox">Hector Francisco Castro Morales</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Christian Emmanuel Yañez Gonzalez</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Sergio Antonio Guerra Castro</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona Desconocida</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
+                            <table id="TBAct4L">
                             </table>
-
                         </scroll-page>
                     </scroll-container>
                 </td>
@@ -228,35 +134,12 @@
                 <td><textarea id="textArea13"></textarea></td>
                 <td><textarea id="textArea14"></textarea></td>
                 <td class="tdResponsable">
+                    <label>Buscar:</label>
+                    <input id="BAct5L" type="text" onkeyup="buscar('BAct5L')" />
                     <scroll-container class="scroll-containerRes">
                         <scroll-page>
-                            <table>
-                                <tr>
-                                    <td><input type="checkbox">Hector Francisco Castro Morales</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Christian Emmanuel Yañez Gonzalez</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Sergio Antonio Guerra Castro</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona Desconocida</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
+                            <table id="TBAct5L">
                             </table>
-
                         </scroll-page>
                     </scroll-container>
                 </td>
@@ -271,35 +154,12 @@
             <td><textarea id="textArea16"></textarea></td>
             <td><textarea id="textArea17"></textarea></td>
             <td class="tdResponsable">
+                <label>Buscar:</label>
+                <input id="BAct6L" type="text" onkeyup="buscar('BAct6L')" />
                 <scroll-container class="scroll-containerRes">
                     <scroll-page>
-                        <table>
-                            <tr>
-                                <td><input type="checkbox">Hector Francisco Castro Morales</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox">Christian Emmanuel Yañez Gonzalez</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox">Sergio Antonio Guerra Castro</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox">Persona Desconocida</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox">Persona 1</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox">Persona 1</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox">Persona 1</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox">Persona 1</td>
-                            </tr>
+                        <table id="TBAct6L">
                         </table>
-
                     </scroll-page>
                 </scroll-container>
             </td>
@@ -312,35 +172,12 @@
                 <td><textarea id="textArea19"></textarea></td>
                 <td><textarea id="textArea20"></textarea></td>
                 <td class="tdResponsable">
+                    <label>Buscar:</label>
+                    <input id="BAct7L" type="text" onkeyup="buscar('BAct7L')" />
                     <scroll-container class="scroll-containerRes">
                         <scroll-page>
-                            <table>
-                                <tr>
-                                    <td><input type="checkbox">Hector Francisco Castro Morales</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Christian Emmanuel Yañez Gonzalez</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Sergio Antonio Guerra Castro</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona Desconocida</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
+                            <table id="TBAct7L">
                             </table>
-
                         </scroll-page>
                     </scroll-container>
                 </td>
@@ -354,39 +191,15 @@
                 <td><textarea id="textArea22"></textarea></td>
                 <td><textarea id="textArea23"></textarea></td>
                 <td class="tdResponsable">
+                    <label>Buscar:</label>
+                    <input id="BAct8L" type="text" onkeyup="buscar('BAct8L')" />
                     <scroll-container class="scroll-containerRes">
                         <scroll-page>
-                            <table>
-                                <tr>
-                                    <td><input type="checkbox">Hector Francisco Castro Morales</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Christian Emmanuel Yañez Gonzalez</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Sergio Antonio Guerra Castro</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona Desconocida</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
+                            <table id="TBAct8L">
                             </table>
-
                         </scroll-page>
                     </scroll-container>
                 </td>
-
                 <td><input name="act" type="datetime-local"></td>
                 <td><textarea id="textArea24"></textarea></td>
             </tr>
@@ -397,38 +210,15 @@
                 <td><textarea id="textArea25"></textarea></td>
                 <td><textarea id="textArea26"></textarea></td>
                 <td class="tdResponsable">
+                    <label>Buscar:</label>
+                    <input id="BAct9L" type="text" onkeyup="buscar('BAct9L')" />
                     <scroll-container class="scroll-containerRes">
                         <scroll-page>
-                            <table>
-                                <tr>
-                                    <td><input type="checkbox">Hector Francisco Castro Morales</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Christian Emmanuel Yañez Gonzalez</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Sergio Antonio Guerra Castro</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona Desconocida</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox">Persona 1</td>
-                                </tr>
+                            <table id="TBAct9L">
                             </table>
-
                         </scroll-page>
                     </scroll-container>
-                </td>
+                </td>>
                 <td><input name="act" type="datetime-local"></td>
                 <td><textarea id="textArea27"></textarea></td>
             </tr>

@@ -53,3 +53,31 @@ function buscar(id) {
         }
     }
 }
+/*
+<tr>
+    <td>
+        <input type="checkbox" name="Act1C"> <label name="Act1L">Hector Francisco Castro Morales</label> </input>
+    </td>
+</tr>
+*/
+function cargarUsuarios() {
+    var arr = ["Hector Francisco Castro Morales", "Christian Emmanuel Yañez Gonzalez", "Sergio Antonio Guerra Castro", "Persona 1", "Persona 2"];
+    for (var k = 1; k < 10; k++) {
+        var t = document.getElementById("TBAct" + k + "L");
+        for (var i = 0; i < arr.length; i++) {
+            var tr = document.createElement("tr");
+            var td = document.createElement("td");
+            var inp = document.createElement("input");
+            var lab = document.createElement("label");
+            inp.type = "checkbox";
+            inp.name = "Act" + k + "C";
+            lab.setAttribute("name", "Act" + k + "L");
+            lab.innerText = arr[i];
+            td.appendChild(inp);
+            td.appendChild(lab);
+            tr.appendChild(td);
+            t.appendChild(tr);
+        }
+    }
+
+}
