@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/load.css" />
     <link rel="stylesheet" href="src/clases.css" />
     <link rel="stylesheet" href="css/actaAcademias.css" />
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/planTrabajo.js"></script>
     <script type="text/javascript" src="src/scripts.js"></script>
     <title>Acta de academia</title>
@@ -17,7 +17,7 @@
     <div class="rcornersProcCritico">
         <input class="button buttonRegresar1" type="button" value="Regresar" onclick="cambiar('menu')" />
         <input class="button crear" type="button" value="crear PDF" onclick="crearPDF()" />
-        <table class="tablaProc" cellspacing="30" cellpadding="3">
+        <table class="tablaProc" cellspacing="10" cellpadding="3">
             <tr>
                 <td><label class="contenidoProc">Academia:</label></td>
                 <td><select id="academia" name="SearchCarr" class="contenidoBusqueda">
@@ -59,6 +59,7 @@
                 <td id="txt1"><textarea name="act1" id="textArea1"></textarea></td>
                 <td><textarea id="textArea2" name="act1"></textarea></td>
                 <td class="tdResponsable">
+                    <input id="BAct1L" type="text" style="margin-left: 25px;" />
                     <scroll-container class="scroll-containerRes">
                         <scroll-page>
                             <table>
