@@ -3,18 +3,11 @@ function crearPDF() {
     var act1 = document.getElementsByName("act1");
     var act1C = document.getElementsByName("act1C");
     var act1L = document.getElementsByName("act1L");
-    var personas = "";
+    var personas1 = "";
     for (var i = 0; i < act1C.length; i++) {
         if (act1C[i].checked)
-            personas += act1L[i].innerText + " ";
+            personas1 += act1L[i].innerText + " ";
     }
-    var obj1 = {
-        Acciones: act1[0].value,
-        Asignaturas: act1[1].value,
-        Responsables: personas,
-        Fecha: act1[2].value.replace("T", " "),
-        Evidencia: act1[3].value
-    };
     var obj = {
         Academia: document.getElementById("academia").value,
         Semestre: document.getElementById("semestre").value,
@@ -23,7 +16,13 @@ function crearPDF() {
         f2: fechas[1].value.replace("T", " "),
         f3: fechas[2].value.replace("T", " "),
         f4: fechas[3].value.replace("T", " "),
-        Act1: obj1
+        Act1: {
+            Acciones: act1[0].value,
+            Asignaturas: act1[1].value,
+            Responsables: personas1,
+            Fecha: act1[2].value.replace("T", " "),
+            Evidencia: act1[3].value
+        }
     };
     $.ajax({
         url: 'documentos/crear.php',
