@@ -40,5 +40,10 @@ function crearPDF() {
 }
 
 function buscar(id) {
-
+    var b = document.getElementById(id);
+    var act1C = document.getElementsByName(id.replace("B", "").replace("L", "C"));
+    var act1L = document.getElementsByName(id.replace("B", ""));
+    for (var i = 0; i < act1C.length; i++) {
+        console.log(act1L[i].innerText);
+    }
 }
