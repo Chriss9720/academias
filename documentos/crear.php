@@ -25,7 +25,6 @@
         }
 
         function TablaP($data) {
-
             $this->SetFont('Arial', 'B', 10);
             $this->SetFillColor(217, 217, 217);
             $this->Cell(4.49, 0.7,'Nombre de la Academia:', 1, 0, 'R', true);
@@ -482,21 +481,37 @@
         return $arr;
     }
 
+    function nodos($key, $value, $nodo, $xml) {
+        $subnodo = $xml->createElement($key, $value);
+        $nodo->appendChild($subnodo);
+    }
+
+    function crearXML($data) {
+
+        $act1 = json_decode(json_encode($data['Act1']), true);
+
+        $xml = new DomDocument('1.0', 'UTF-8');
+        $raiz = $xml->createElement('ActaAcademias');
+        $raiz = $xml->appendChild($raiz);
+    
+        for ($i = 1; i < 10; $i++) {
+            $nodo = $xml->createElement('Activdad'.$i);
+            $raiz->appendChild($nodo);
+            nodos('Acciones', $act1['Acciones'], $nodo, $xml);
+            nodos('Asignarutas', $act1['Asignaturas'], $nodo, $xml);
+            nodos('Responsable', $act1['Responsables'], $nodo, $xml);
+            nodos('Fecha', $act1['Fecha'], $nodo, $xml);
+            nodos('Evidencia', $act1['Evidencia'], $nodo, $xml);
+        }
+
+        $xml->formatOutput = true;
+        $xml->saveXML();
+        $xml->save('archivo.xml');
+    }
+
     $json = json_decode(json_encode($_GET['obj']), true);
-
-    $xml = new DomDocument('1.0', 'UTF-8');
-    $raiz = $xml->createElement('ActaAcademias');
-    $raiz = $xml->appendChild($raiz);
-
-    $nodo = $xml->createElement('libro');
-    $nodo = $raiz->appendChild($nodo);
-
-    $subnodo = $xml->createElement('item','texto dentro del item');
-    $subnodo = $nodo->appendChild($subnodo);
-
-    $xml->formatOutput = true;
-    $xml->saveXML();
-    $xml->save('archivo.xml');
+    
+    crearXML($json);
 
     $pdf = new PDF('P', 'cm', array(21.59, 27.94));
     $pdf->AliasNbPages();

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ActaAcademias>
-  <libro>
-    <item>texto dentro del item</item>
-  </libro>
+  <Activdad1>
+    <Acciones>123456</Acciones>
+    <Asignarutas>1234</Asignarutas>
+    <Responsable>Hector Francisco Castro Morales Christian Emmanuel Yañez Gonzalez </Responsable>
+    <Fecha>2021-04-02 23:08</Fecha>
+    <Evidencia>Hola como estas yo muy bien</Evidencia>
+  </Activdad1>
 </ActaAcademias>
