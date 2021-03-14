@@ -44,6 +44,12 @@ function buscar(id) {
     var act1C = document.getElementsByName(id.replace("B", "").replace("L", "C"));
     var act1L = document.getElementsByName(id.replace("B", ""));
     for (var i = 0; i < act1C.length; i++) {
-        console.log(act1L[i].innerText);
+        if (!act1L[i].innerText.includes(b.value)) {
+            act1C[i].hidden = true;
+            act1L[i].hidden = true;
+        } else {
+            act1C[i].hidden = false;
+            act1L[i].hidden = false;
+        }
     }
 }
