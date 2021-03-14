@@ -484,6 +484,8 @@
 
     $json = json_decode(json_encode($_GET['obj']), true);
 
+    
+
     $pdf = new PDF('P', 'cm', array(21.59, 27.94));
     $pdf->AliasNbPages();
     $pdf->AddPage();
