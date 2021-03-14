@@ -53,13 +53,7 @@ function buscar(id) {
         }
     }
 }
-/*
-<tr>
-    <td>
-        <input type="checkbox" name="Act1C"> <label name="Act1L">Hector Francisco Castro Morales</label> </input>
-    </td>
-</tr>
-*/
+
 function cargarUsuarios() {
     var arr = ["Hector Francisco Castro Morales", "Christian Emmanuel Yañez Gonzalez", "Sergio Antonio Guerra Castro", "Persona 1", "Persona 2"];
     for (var k = 1; k < 10; k++) {
