@@ -484,7 +484,19 @@
 
     $json = json_decode(json_encode($_GET['obj']), true);
 
-    
+    $xml = new DomDocument('1.0', 'UTF-8');
+    $raiz = $xml->createElement('ActaAcademias');
+    $raiz = $xml->appendChild($raiz);
+
+    $nodo = $xml->createElement('libro');
+    $nodo = $raiz->appendChild($nodo);
+
+    $subnodo = $xml->createElement('item','texto dentro del item');
+    $subnodo = $nodo->appendChild($subnodo);
+
+    $xml->formatOutput = true;
+    $xml->saveXML();
+    $xml->save('archivo.xml');
 
     $pdf = new PDF('P', 'cm', array(21.59, 27.94));
     $pdf->AliasNbPages();
