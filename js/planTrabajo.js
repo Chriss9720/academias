@@ -38,3 +38,7 @@ function crearPDF() {
         }
     });
 }
+
+function buscar(id) {
+
+}
