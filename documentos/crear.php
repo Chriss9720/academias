@@ -494,7 +494,7 @@
         $raiz = $xml->createElement('ActaAcademias');
         $raiz = $xml->appendChild($raiz);
     
-        for ($i = 1; i < 10; $i++) {
+        for ($i = 1; $i < 10; $i++) {
             $nodo = $xml->createElement('Activdad'.$i);
             $raiz->appendChild($nodo);
             nodos('Acciones', $act1['Acciones'], $nodo, $xml);
