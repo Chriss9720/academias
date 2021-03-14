@@ -25,7 +25,7 @@ function crearPDF() {
         }
     };
     $.ajax({
-        url: 'documentos/crear.php',
+        url: 'documentos/crearPlanTrabajo.php',
         type: 'GET',
         data: { obj: obj },
         dataType: 'JSON',
