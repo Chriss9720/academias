@@ -486,23 +486,21 @@
         $nodo->appendChild($subnodo);
     }
 
-    function crearXML($data) {
+    function crearXML($data, $key) {
 
-        $act1 = json_decode(json_encode($data['Act1']), true);
+        $act = json_decode(json_encode($data[$key]), true);
 
         $xml = new DomDocument('1.0', 'UTF-8');
         $raiz = $xml->createElement('ActaAcademias');
         $raiz = $xml->appendChild($raiz);
     
-        for ($i = 1; $i < 10; $i++) {
-            $nodo = $xml->createElement('Activdad'.$i);
-            $raiz->appendChild($nodo);
-            nodos('Acciones', $act1['Acciones'], $nodo, $xml);
-            nodos('Asignarutas', $act1['Asignaturas'], $nodo, $xml);
-            nodos('Responsable', $act1['Responsables'], $nodo, $xml);
-            nodos('Fecha', $act1['Fecha'], $nodo, $xml);
-            nodos('Evidencia', $act1['Evidencia'], $nodo, $xml);
-        }
+        $nodo = $xml->createElement($key);
+        $raiz->appendChild($nodo);
+        nodos('Acciones', $act['Acciones'], $nodo, $xml);
+        nodos('Asignarutas', $act['Asignaturas'], $nodo, $xml);
+        nodos('Responsable', $act['Responscbles'], $nodo, $xml);
+        nodos('Fecha', $act['Fecha'], $nodo, $xml);
+        nodos('Evidencia', $act['Evidencia'], $nodo, $xml);
 
         $xml->formatOutput = true;
         $xml->saveXML();
@@ -511,7 +509,7 @@
 
     $json = json_decode(json_encode($_GET['obj']), true);
     
-    crearXML($json);
+    crearXML($json, 'Act1');
 
     $pdf = new PDF('P', 'cm', array(21.59, 27.94));
     $pdf->AliasNbPages();
