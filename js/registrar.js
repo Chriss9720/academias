@@ -202,6 +202,8 @@ function validarRegistro() {
         !document.getElementById("errorSelectCarrera").hidden || !document.getElementById("errorSelectAcademia").hidden ||
         !document.getElementById("errorSelectPuesto").hidden) {
         alert("revise los campos");
+        //} else if () {
+
     } else {
         var msj = "";
         if (document.getElementById("SelectCarrera").value === "0") {
@@ -251,4 +253,5 @@ function cargarSelect() {
         option.innerText = arr[i];
         c.appendChild(option);
     }
+    removerLoad();
 }
