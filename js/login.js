@@ -24,7 +24,7 @@ function accion(mat, psw, cont, err) {
                 if (result > 1)
                     window.location = "menu.html?id=" + result;
                 else {
-                    document.getElementById(err).textContent = "Usuario y/o clave invalida";
+                    document.getElementById(err).textContent = "Usuario y/o clave inválida";
                     document.getElementById(cont).hidden = false;
                     removerLoad();
                 }
