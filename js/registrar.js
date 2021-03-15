@@ -90,7 +90,8 @@ function realizarValidaciones(mat, nombre, app, apm, correo, cip) {
 }
 
 function contieneNumeros(palabra, id, label, pos) {
-    var bol = false;
+    var bol = !(palabra.length > 1);
+    console.log(bol);
     var carac = false;
     for (var i = 0; i < palabra.length && !bol; i++) {
         bol = ((palabra.charAt(i) >= '0' && palabra.charAt(i) <= '9'));
@@ -103,7 +104,10 @@ function contieneNumeros(palabra, id, label, pos) {
         }
     }
     document.getElementById(id).hidden = !bol && !carac;
-    document.getElementById(label).innerHTML = "Por favor, <br/>introduzca solo letras";
+    if (palabra.length > 1)
+        document.getElementById(label).innerHTML = "Por favor, <br/>introduzca solo letras";
+    else
+        document.getElementById(label).innerHTML = "Campo requerido";
     if (extraH[pos] === 0 && !(document.getElementById(id).hidden)) {
         extraH[pos] = document.getElementById(label).getBoundingClientRect().height;
     } else if (document.getElementById(id).hidden) {
@@ -195,6 +199,14 @@ function cancelarRegistro() {
     }
 }
 
+function vacio(id, num) {
+    return value(id).length < num;
+}
+
+function value(id) {
+    return document.getElementById(id).value;
+}
+
 function validarRegistro() {
     if (!document.getElementById("errorMatricula").hidden || !document.getElementById("errorNombre").hidden ||
         !document.getElementById("errorApellidoP").hidden || !document.getElementById("errorApellidoM").hidden ||
@@ -202,8 +214,15 @@ function validarRegistro() {
         !document.getElementById("errorSelectCarrera").hidden || !document.getElementById("errorSelectAcademia").hidden ||
         !document.getElementById("errorSelectPuesto").hidden) {
         alert("revise los campos");
-        //} else if () {
-
+    } else if (vacio("inputMatricula", 8) || vacio('inputNombre', 1) ||
+        vacio('inputApeP', 1) || vacio('inputApM', 1) ||
+        vacio('inputCorreo', 1) || vacio('inputCip', 5)) {
+        validarMatricula(value('inputMatricula'), 'errorMatricula', 'labelErrorerrorMatricula', 0);
+        contieneNumeros(value('inputNombre'), 'errorNombre', 'labelErrorNombre', 1);
+        contieneNumeros(value('inputApeP'), 'errorApellidoP', 'labelErrorApellidoP', 2);
+        contieneNumeros(value('inputApM'), 'errorApellidoM', 'labelErrorApellidoM', 3);
+        validarCorreo(value('inputCorreo'), 'errorCorreo', 'labelErrorCorreo');
+        validarCIP(value('inputCip'), 'errorCIP', 'labelErrorIP')
     } else {
         var msj = "";
         if (document.getElementById("SelectCarrera").value === "0") {

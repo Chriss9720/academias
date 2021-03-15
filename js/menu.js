@@ -6,7 +6,6 @@ $(document).ready(function() {
         id = item.split("=")[1];
     })
     removerLoad();
-    console.log(id);
 })
 
 function crearLoad() {
