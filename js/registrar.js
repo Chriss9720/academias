@@ -12,10 +12,12 @@ $(document).ready(function() {
             processData: false,
             success: function(response) {
                 removerLoad();
-                if (response != 0) {
-                    alert("Imagen subida exitosamente!!!");
-                } else {
-                    alert("Error al subier la imagen");
+                switch (response) {
+                    case "ok":
+                        crear("js/logos/sucess.png", "#08c211", "¡Imagen subida exitosamente!");
+                        break;
+                    default:
+                        crear("js/logos/error.jpg", "#cc1010", "¡Error al subir la imagen!<br/>" + response);
                 }
             },
             error: function(error) {
@@ -24,6 +26,36 @@ $(document).ready(function() {
         });
     });
 });
+
+function crear(logo, color, msj) {
+    var d = document.createElement("DIALOG");
+    d.setAttribute("ID", "d1");
+    var txt = document.createElement("label");
+    var conf = document.createElement("button");
+    var img = document.createElement("img");
+    img.src = logo;
+    img.style.width = "100px";
+    img.style.height = "100px";
+    txt.innerHTML = msj;
+    txt.setAttribute("style", "top: 30%; position: absolute;");
+    conf.setAttribute("style", "top: 50%;position: absolute;left: 80%; background-color:" + color + ";");
+    conf.setAttribute("class", "button");
+    conf.innerHTML = "Cerrar";
+    conf.style.left = "50%";
+    conf.style.top = "60%";
+    conf.innerHTML = "Aceptar";
+    conf.addEventListener('click', function() {
+        document.getElementById("d1").remove();
+    }, false);
+    d.appendChild(img);
+    d.appendChild(txt);
+    d.appendChild(conf);
+
+    d.style.height = "150px";
+    d.style.width = "350px";
+    document.body.append(d);
+    d.showModal();
+}
 
 function mostrar() {
     var archivo = document.getElementById("file").files[0];
