@@ -101,7 +101,7 @@ function visible() {
 }
 
 function validarCorreo(correo, id, label) {
-    var ext = "@e-itesca.edu.mx";
+    var ext = "@itesca.edu.mx";
     var start = correo.length - ext.length;
     var ext0 = (correo.substring(start, (correo.length)));
     document.getElementById(id).hidden = (ext === ext0);
