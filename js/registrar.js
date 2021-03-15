@@ -49,7 +49,7 @@ function crear(logo, color, msj) {
     conf.innerHTML = "Aceptar";
     conf.addEventListener('click', function() {
         document.getElementById("d1").remove();
-        if (color === "#08c211") {
+        if (msj === "¡Registro exitoso!") {
             window.location = "registrar.html";
         }
     }, false);

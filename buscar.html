@@ -2,15 +2,18 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/buscar.css" />
+    <link rel="stylesheet" href="css/load.css" />
+    <script type="text/javascript" src="js/load.js"></script>
+    <script type="text/javascript" src="js/buscar.js"></script>
     <script type="text/javascript" src="js/menu.js"></script>
     <title>Administraci&oacute;n de Academias</title>
 </head>
 
-<body>
+<body onload="cargar()">
     <div class="fijadoEliminar">
         <form class="font" action="BuscarEliminar" method="get">
             <table cellspacing="10" cellpadding="3" class="BusquedaEliminar">
@@ -43,62 +46,9 @@
     </div>
     <div class="rcornersEliminar">
         <scroll-container>
-            <scroll-page>
-                <form class="font" action="Eliminar" method="post">
-                    <table cellspacing="3" cellpadding="3" class="tablaElimiar">
-                        <tr class="trContentElimiar">
-                            <td class="tdImgEliminar">
-                                <img id="fotoPerfil" class="imgEliminar" src="src/perfilazul.png" alt="not found">
-                            </td>
-                            <td class="tdContenidoEliminar">
-                                <table class="tdValorEliminar">
-                                    <tr>
-                                        <td>
-                                            <table cellspacing="3" cellpadding="3" class="cuerpoEliminar">
-                                                <tr>
-                                                    <td><label class="contenidoEliminar">Nómina:</label></td>
-                                                    <td class="tdValorEliminar">
-                                                        <label id="delMat" name="matricula" type="text" class="contenidoEliminar">
-                                                            </label>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label class="contenidoEliminar">Nombre(s):</label></td>
-                                                    <td class="tdValorEliminar">
-                                                        <label name="nombres" type="text" class="contenidoEliminar">
-                                                            </label>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label class="contenidoEliminar">Carrera:</label></td>
-                                                    <td class="tdValorEliminar">
-                                                        <label name="carrera" type="text" class="contenidoEliminar">
-                                                            </label>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label class="contenidoEliminar">Academia:</label></td>
-                                                    <td class="tdValorEliminar">
-                                                        <label name="academia" type="text" class="contenidoEliminar">
-                                                            </label>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="tdbtnEliminar">
-                                            <input id="ver" class="button button2Eliminar" type="button" value="Visualizar" onclick="cambiar('visualizar')" />
-                                        </td>
-                                        <td class="tdbtnEliminar">
-                                            <input id="mod" class="button button2Eliminar" type="button" value="Modificar" onclick="cambiar('modificar')" />
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                    </table>
-                </form>
+            <scroll-page id="page">
+                <table id="tabla" cellspacing="3" cellpadding="3" class="tablaElimiar">
+                </table>
             </scroll-page>
         </scroll-container>
     </div>
