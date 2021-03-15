@@ -2,11 +2,6 @@
     font-family: "Lucida Console", "Courier New", monospace;
 }
 
-body {
-    background-image: url("BlueBackground.PNG");
-    background-color: linen;
-}
-
 .title {
     position: absolute;
     top: -20%;
