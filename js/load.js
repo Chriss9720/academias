@@ -1,7 +1,6 @@
 function crearLoad(cls) {
     var div = document.createElement("DIV");
     var clase = "loading show " + cls;
-    console.log(clase);
     div.setAttribute("class", clase);
     div.setAttribute("id", "divLoad")
     var s = document.createElement("DIV");

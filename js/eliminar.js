@@ -1,31 +1,21 @@
-/**
-  
-   
-    <tr>
-        <td><label class="contenidoEliminar">Carrera:</label></td>
-        <td class="tdValorEliminar">
-            <label name="carrera" type="text" class="contenidoEliminar">
-                    </label>
-        </td>
-    </tr>
-    <tr>
-        <td><label class="contenidoEliminar">Academia:</label></td>
-        <td class="tdValorEliminar">
-            <label name="academia" type="text" class="contenidoEliminar">
-                    </label>
-        </td>
-    </tr>
- **/
 function cargar() {
     crearLoad('rcornersEliminar');
-    var obj = {
+    var obj = [{
         foto: "img/Hector.png",
         nomina: "12345678",
         nombres: "Hector Castro",
         carrera: "ISC",
         academia: "ISC"
+    }, {
+        foto: "img/imagen.png",
+        nomina: "12345679",
+        nombres: "Christian Yañez",
+        carrera: "ISC",
+        academia: "ISC"
+    }];
+    for (var i = 0; i < obj.length; i++) {
+        construir(obj[i]);
     }
-    construir(obj);
     removerLoad();
 }
 
@@ -89,7 +79,7 @@ function construir(obj) {
     del.type = "button";
     del.value = "Eliminar";
     del.addEventListener("click", function() {
-        crear(obj['nombres']);
+        crear(obj['nomina']);
     }, false);
     trD.appendChild(del);
     tabla.appendChild(trD);
@@ -121,7 +111,7 @@ function crear(name) {
     yes.setAttribute("style", "top: 50%;position: absolute;left: 80%; background-color: #08c211;");
     yes.setAttribute("class", "button");
     yes.addEventListener("click", function() {
-        confirmar(d, txt, yes, not, img);
+        confirmar(d, txt, yes, not, img, name);
     }, false);
 
     not.setAttribute("id", "no");
@@ -141,7 +131,7 @@ function crear(name) {
     d.showModal();
 }
 
-function confirmar(d, txt, yes, not, img) {
+function confirmar(d, txt, yes, not, img, name) {
     d.removeChild(yes);
     txt.innerHTML = "Ingrese su contrase&#241;a para continuar";
     var psw = document.createElement("input");
@@ -160,14 +150,48 @@ function confirmar(d, txt, yes, not, img) {
     d.appendChild(cont);
     cont.addEventListener("click", function() {
         if (psw.value.length === 0) {
-            error(d, txt, cont, img, psw);
+            error(d, txt, cont, img, psw, name);
         } else {
+            crearLoad('rcornersEliminar');
+            document.getElementById("tabla").remove();
+            var page = document.getElementById("page");
+            var t = document.createElement("table");
+            t.setAttribute("id", "tabla");
+            t.setAttribute("cellspacing", "3");
+            t.setAttribute("cellpadding", "3");
+            t.setAttribute("class", "tablaElimiar");
+            page.appendChild(t);
+            var obj = [{
+                foto: "img/Hector.png",
+                nomina: "12345678",
+                nombres: "Hector Castro",
+                carrera: "ISC",
+                academia: "ISC"
+            }, {
+                foto: "img/imagen.png",
+                nomina: "12345679",
+                nombres: "Christian Yañez",
+                carrera: "ISC",
+                academia: "ISC"
+            }];
+            var nuevo = [];
+            for (var i = 0; i < obj.length; i++) {
+                console.log(obj[i]['nomina'] + " vs " + name);
+                if (obj[i]['nomina'] !== name) {
+                    nuevo.push(obj[i])
+                }
+            }
+            console.log(nuevo);
+            for (var i = 0; i < nuevo.length; i++) {
+                construir(nuevo[i]);
+            }
+            removerLoad();
             eliminado(d, txt, cont, img, psw, not);
         }
     }, false);
 }
 
-function error(d, txt, cont, img, psw) {
+function error(d, txt, cont, img, psw, name) {
     d.removeChild(psw);
     d.removeChild(cont);
     img.style.width = "100px";
@@ -183,7 +207,7 @@ function error(d, txt, cont, img, psw) {
     d.appendChild(cont);
     cont.addEventListener("click", function() {
         d.remove();
-        crear();
+        crear(name);
     })
 }
 
