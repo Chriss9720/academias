@@ -75,3 +75,10 @@ function cargarUsuarios() {
     }
 
 }
+
+function Todos(num) {
+    var c = document.getElementsByName("Act" + num + "C");
+    for (var i = 0; i < c.length; i++) {
+        c[i].checked = document.getElementById('AAct' + num).checked
+    }
+}
