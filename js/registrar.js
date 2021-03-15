@@ -5,7 +5,7 @@ $(document).ready(function() {
         var files = $('#file')[0].files[0];
         formData.append('file', files);
         $.ajax({
-            url: 'img/subirImg.php',
+            url: 'temp/subirImg.php',
             type: 'POST',
             data: formData,
             contentType: false,
@@ -15,8 +15,10 @@ $(document).ready(function() {
                 switch (response) {
                     case "ok":
                         crear("img/sucess.png", "#08c211", "¡Imagen subida exitosamente!");
+                        document.getElementById('flagFoto').innerHTML = "ok";
                         break;
                     default:
+                        document.getElementById('flagFoto').innerHTML = "no";
                         document.getElementById("fotoPerfil").src = "img/perfilazul.png";
                         crear("img/error.jpg", "#cc1010", "¡Error al subir la imagen!<br/>" + response);
                 }
