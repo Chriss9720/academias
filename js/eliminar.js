@@ -18,7 +18,7 @@ function crear() {
     yes.innerHTML = "&#161;Si&#33;";
     not.innerHTML = "&#161;No&#33;";
 
-    img.src = "img/ad.jpg";
+    img.src = "img/advertencia.jpg";
     img.setAttribute("width", "50px")
     img.setAttribute("height", "50px")
     d.appendChild(img);

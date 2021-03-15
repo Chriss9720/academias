@@ -49,6 +49,9 @@ function crear(logo, color, msj) {
     conf.innerHTML = "Aceptar";
     conf.addEventListener('click', function() {
         document.getElementById("d1").remove();
+        if (color === "#08c211") {
+            window.location = "registrar.html";
+        }
     }, false);
     d.appendChild(img);
     d.appendChild(txt);
@@ -231,7 +234,7 @@ function validarRegistro() {
         if (document.getElementById("fotoPerfil").src.toString().includes("img/perfilazul.png")) {
             confirmar();
         } else {
-            crear("img/sucess.png", "#08c211", "¡Registro exitoso!");
+            guardar();
         }
     }
     removerLoad();
@@ -271,26 +274,25 @@ function confirmar() {
     var yes = document.createElement("button");
     var not = document.createElement("button");
     var img = document.createElement("img");
-    img.src = "img/error.jpg";
+    img.src = "img/advertencia.jpg";
     img.style.width = "100px";
     img.style.height = "100px";
     d.appendChild(img);
 
-    txt.setAttribute("style", "position: absolute; top: 20%")
-
-    txt.innerHTML = '&#191;Seguro que desea eliminar este usuario&#63;';
-    yes.innerHTML = "&#161;Si&#33;";
-    not.innerHTML = "&#161;No&#33;";
+    txt.setAttribute("style", "position: absolute; top: 30%")
+    txt.innerHTML = '¿Desea guardar sin foto?';
+    yes.innerHTML = "¡Si!";
+    not.innerHTML = "¡No!";
 
     yes.setAttribute("id", "si");
-    yes.setAttribute("style", "top: 50%;position: absolute;left: 80%; background-color: #08c211;");
+    yes.setAttribute("style", "top: 70%;position: absolute;left: 80%; background-color: #08c211;");
     yes.setAttribute("class", "button");
     yes.addEventListener("click", function() {
-        cargar(d, txt, yes, not, img);
+        guardar();
     }, false);
 
     not.setAttribute("id", "no");
-    not.setAttribute("style", "top: 50%;position: absolute;left: 5%; background-color: #cc1010;");
+    not.setAttribute("style", "top: 70%;position: absolute;left: 5%; background-color: #cc1010;");
     not.setAttribute("class", "button");
     not.addEventListener("click", function() {
         document.getElementById("d1").remove();
@@ -304,4 +306,8 @@ function confirmar() {
     d.style.width = "350px";
     document.body.append(d);
     d.showModal();
+}
+
+function guardar() {
+    crear("img/sucess.png", "#08c211", "¡Registro exitoso!");
 }
