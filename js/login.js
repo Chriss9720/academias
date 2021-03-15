@@ -21,8 +21,10 @@ function accion(mat, psw, cont, err) {
             success: function(r) {
                 crearLoad();
                 let result = r["res"];
-                if (result > 1)
-                    window.location = "menu.html?id=" + result;
+                if (result > 1) {
+
+                }
+                //window.location = "menu.html?id=" + result;
                 else {
                     document.getElementById(err).textContent = "Usuario y/o clave inválida";
                     document.getElementById(cont).hidden = false;
@@ -43,18 +45,4 @@ function visible() {
     } else {
         x.type = "password";
     }
-}
-
-function crearLoad() {
-    var div = document.createElement("DIV");
-    div.setAttribute("class", "loading show rcorners1");
-    div.setAttribute("id", "divLoad")
-    var s = document.createElement("DIV");
-    s.setAttribute("class", "spin");
-    div.appendChild(s);
-    document.body.appendChild(div);
-}
-
-function removerLoad() {
-    document.getElementById('divLoad').remove();
 }
