@@ -1,8 +1,8 @@
 function crearPDF() {
     var fechas = document.getElementsByName("Reunion");
     var act1 = document.getElementsByName("act1");
-    var act1C = document.getElementsByName("act1C");
-    var act1L = document.getElementsByName("act1L");
+    var act1C = document.getElementsByName("Act1C");
+    var act1L = document.getElementsByName("Act1L");
     var personas1 = "";
     for (var i = 0; i < act1C.length; i++) {
         if (act1C[i].checked)
