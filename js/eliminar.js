@@ -1,9 +1,3 @@
-$(document).ready(function() {
-    $("#del").click(function() {
-        crear();
-    });
-});
-
 function crear() {
     var d = document.createElement("DIALOG");
     d.setAttribute("ID", "d1");

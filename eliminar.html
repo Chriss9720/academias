@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="src/scripts.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
     <script type="text/javascript" src="js/eliminar.js"></script>
     <link rel="stylesheet" href="css/eliminar.css" />
     <title>Administraci&oacute;n de Academias</title>
@@ -44,7 +44,7 @@
     <div class="rcornersEliminar">
         <scroll-container>
             <scroll-page>
-                <table cellspacing="3" cellpadding="3" class="tablaElimiar">
+                <table id="tabla" cellspacing="3" cellpadding="3" class="tablaElimiar">
                     <tr class="trContentElimiar">
                         <td class="tdImgEliminar">
                             <img id="fotoPerfil" class="imgEliminar" src="src/perfilazul.png" alt="not found">
@@ -86,7 +86,7 @@
                                 </tr>
                                 <tr>
                                     <td class="tdbtnEliminar">
-                                        <input id="del" class="button button2Eliminar" type="button" value="Eliminar" />
+                                        <input id="del" class="button button2Eliminar" type="button" value="Eliminar" onclick="crear()" />
                                     </td>
                                 </tr>
                             </table>
