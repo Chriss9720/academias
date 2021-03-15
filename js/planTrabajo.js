@@ -55,7 +55,7 @@ function buscar(id) {
 }
 
 function cargarUsuarios() {
-    var arr = ["Hector Francisco Castro Morales", "Christian Emmanuel Yañez Gonzalez", "Sergio Antonio Guerra Castro", "Persona 1", "Persona 2"];
+    var arr = ["Hector Francisco Castro Morales", "Christian Emmanuel Yañez Gonzalez", "Sergio Antonio Guerra Castro", "Persona 1", "Persona 2", "1", "2", "3"];
     for (var k = 1; k < 10; k++) {
         var t = document.getElementById("TBAct" + k + "L");
         for (var i = 0; i < arr.length; i++) {
