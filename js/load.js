@@ -1,6 +1,6 @@
-function crearLoad() {
+function crearLoad(cls) {
     var div = document.createElement("DIV");
-    div.setAttribute("class", "loading show rcorners1");
+    div.setAttribute("class", "loading show " + cls);
     div.setAttribute("id", "divLoad")
     var s = document.createElement("DIV");
     s.setAttribute("class", "spin");

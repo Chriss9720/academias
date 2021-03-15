@@ -6,7 +6,7 @@ function accion(mat, psw, cont, err) {
         document.getElementById(err).textContent = "Ingrese sus credenciales";
     } else if (mat.length < 1) {
         document.getElementById(cont).hidden = false;
-        document.getElementById(err).textContent = "Ingrese su nomina";
+        document.getElementById(err).textContent = "Ingrese su nómina";
     } else if (psw.length < 1) {
         document.getElementById(cont).hidden = false;
         document.getElementById(err).textContent = "Ingrese su clave";
@@ -19,13 +19,11 @@ function accion(mat, psw, cont, err) {
             data: { obj: obj },
             dataType: 'JSON',
             success: function(r) {
-                crearLoad();
+                crearLoad('rcornersLogin');
                 let result = r["res"];
                 if (result > 1) {
-
-                }
-                //window.location = "menu.html?id=" + result;
-                else {
+                    window.location = "menu.html?id=" + result;
+                } else {
                     document.getElementById(err).textContent = "Usuario y/o clave inválida";
                     document.getElementById(cont).hidden = false;
                     removerLoad();
