@@ -195,18 +195,12 @@ function cancelarRegistro() {
     }
 }
 
-
 function validarRegistro() {
-    if (!document.getElementById("errorMatricula").hidden ||
-        !document.getElementById("errorNombre").hidden ||
-        !document.getElementById("errorApellidoP").hidden ||
-        !document.getElementById("errorApellidoM").hidden ||
-        !document.getElementById("errorCorreo").hidden ||
-        !document.getElementById("errorCIP").hidden ||
-        !document.getElementById("errorSelectCarrera").hidden ||
-        !document.getElementById("errorSelectAcademia").hidden ||
+    if (!document.getElementById("errorMatricula").hidden || !document.getElementById("errorNombre").hidden ||
+        !document.getElementById("errorApellidoP").hidden || !document.getElementById("errorApellidoM").hidden ||
+        !document.getElementById("errorCorreo").hidden || !document.getElementById("errorCIP").hidden ||
+        !document.getElementById("errorSelectCarrera").hidden || !document.getElementById("errorSelectAcademia").hidden ||
         !document.getElementById("errorSelectPuesto").hidden) {
-        document.getElementById("flag").value = "0";
         alert("revise los campos");
     } else {
         var msj = "";
@@ -222,18 +216,39 @@ function validarRegistro() {
         if (msj.length === 0) {
             if (document.getElementById("fotoPerfil").src.toString().includes("src/perfilazul.png")) {
                 if (confirm("Desea guardar sin foto?")) {
-                    document.getElementById("flag").value = "1";
                     alert("Registro exitoso!!");
-                } else {
-                    document.getElementById("flag").value = "0";
                 }
             } else {
-                document.getElementById("flag").value = "1";
                 alert("Registro exitoso!!");
             }
         } else {
-            document.getElementById("flag").value = "0";
             alert(msj);
         }
+    }
+}
+
+function cargarSelect() {
+    crearLoad('rcorners1');
+    var arr = ["isc", "ige"];
+    var c = document.getElementById("SelectCarrera");
+    for (var i = 0; i < arr.length; i++) {
+        var option = document.createElement("option");
+        option.value = arr[i];
+        option.innerText = arr[i];
+        c.appendChild(option);
+    }
+    var c = document.getElementById("academia");
+    for (var i = 0; i < arr.length; i++) {
+        var option = document.createElement("option");
+        option.value = arr[i];
+        option.innerText = arr[i];
+        c.appendChild(option);
+    }
+    var c = document.getElementById("puessto");
+    for (var i = 0; i < arr.length; i++) {
+        var option = document.createElement("option");
+        option.value = arr[i];
+        option.innerText = arr[i];
+        c.appendChild(option);
     }
 }
