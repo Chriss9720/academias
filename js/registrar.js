@@ -36,20 +36,6 @@ function mostrar() {
     }
 }
 
-function crearLoad() {
-    var div = document.createElement("DIV");
-    div.setAttribute("class", "loading show rcorners1");
-    div.setAttribute("id", "divLoad")
-    var s = document.createElement("DIV");
-    s.setAttribute("class", "spin");
-    div.appendChild(s);
-    document.body.appendChild(div);
-}
-
-function removerLoad() {
-    document.getElementById('divLoad').remove();
-}
-
 var extraH = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 function realizarValidaciones(mat, nombre, app, apm, correo, cip) {
@@ -89,15 +75,6 @@ function contieneNumeros(palabra, id, label, pos) {
         extraH[pos] = 0;
     }
     ajustarSize('contenedor');
-}
-
-function visible() {
-    var x = document.getElementById("psw");
-    if (x.type === "password") {
-        x.type = "text";
-    } else {
-        x.type = "password";
-    }
 }
 
 function validarCorreo(correo, id, label) {
@@ -183,10 +160,6 @@ function cancelarRegistro() {
     }
 }
 
-function error() {
-    alert("No se encontro ningun resultado");
-    location.href = "Eliminar";
-}
 
 function validarRegistro() {
     if (!document.getElementById("errorMatricula").hidden ||

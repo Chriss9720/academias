@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/load.js"></script>
     <script type="text/javascript" src="js/registrar.js"></script>
     <script type="text/javascript" src="js/menu.js"></script>
     <link rel="stylesheet" href="css/load.css" />
@@ -145,7 +146,7 @@
         <form method="POST" enctype="multipart/form-data">
             <input name="pasoFoto" id="flagFoto" hidden="true" />
             <input id="file" class="file" name="file" type="file" size="50" accept="image/*" onchange="mostrar()" />
-            <input type="submit" class="button subirImg" onclick="subirImg('upfile')" value="subir" />
+            <input type="button" class="button subirImg" onclick="subirImg('upfile')" value="subir" />
         </form>
     </div>
     <div class="rcorners2">
