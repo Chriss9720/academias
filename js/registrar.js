@@ -91,7 +91,6 @@ function realizarValidaciones(mat, nombre, app, apm, correo, cip) {
 
 function contieneNumeros(palabra, id, label, pos) {
     var bol = !(palabra.length > 1);
-    console.log(bol);
     var carac = false;
     for (var i = 0; i < palabra.length && !bol; i++) {
         bol = ((palabra.charAt(i) >= '0' && palabra.charAt(i) <= '9'));
@@ -208,12 +207,13 @@ function value(id) {
 }
 
 function validarRegistro() {
+    crearLoad('rcorners1');
     if (!document.getElementById("errorMatricula").hidden || !document.getElementById("errorNombre").hidden ||
         !document.getElementById("errorApellidoP").hidden || !document.getElementById("errorApellidoM").hidden ||
         !document.getElementById("errorCorreo").hidden || !document.getElementById("errorCIP").hidden ||
         !document.getElementById("errorSelectCarrera").hidden || !document.getElementById("errorSelectAcademia").hidden ||
         !document.getElementById("errorSelectPuesto").hidden) {
-        alert("revise los campos");
+        crear("img/error.jpg", "#cc1010", "Rellene todos los campos");
     } else if (vacio("inputMatricula", 8) || vacio('inputNombre', 1) ||
         vacio('inputApeP', 1) || vacio('inputApM', 1) ||
         vacio('inputCorreo', 1) || vacio('inputCip', 5)) {
@@ -222,30 +222,19 @@ function validarRegistro() {
         contieneNumeros(value('inputApeP'), 'errorApellidoP', 'labelErrorApellidoP', 2);
         contieneNumeros(value('inputApM'), 'errorApellidoM', 'labelErrorApellidoM', 3);
         validarCorreo(value('inputCorreo'), 'errorCorreo', 'labelErrorCorreo');
-        validarCIP(value('inputCip'), 'errorCIP', 'labelErrorIP')
+        validarCIP(value('inputCip'), 'errorCIP', 'labelErrorIP');
+        validarSelect(value('SelectCarrera'), 'errorSelectCarrera', 'labelErrorSelectCarrera', 6);
+        validarSelect(value('academia'), 'errorSelectAcademia', 'labelErrorAcademia', 7)
+        validarSelect(value('puessto'), 'errorSelectPuesto', 'labelErrorPuesto', 8)
+        crear("img/error.jpg", "#cc1010", "Rellene todos los campos");
     } else {
-        var msj = "";
-        if (document.getElementById("SelectCarrera").value === "0") {
-            msj = "\nElija una carrera";
-        }
-        if (document.getElementById("academia").value === "0") {
-            msj += "\nElija una academia";
-        }
-        if (document.getElementById("puessto").value === "0") {
-            msj += "\nElija un puesto";
-        }
-        if (msj.length === 0) {
-            if (document.getElementById("fotoPerfil").src.toString().includes("src/perfilazul.png")) {
-                if (confirm("Desea guardar sin foto?")) {
-                    alert("Registro exitoso!!");
-                }
-            } else {
-                alert("Registro exitoso!!");
-            }
+        if (document.getElementById("fotoPerfil").src.toString().includes("img/perfilazul.png")) {
+            confirmar();
         } else {
-            alert(msj);
+            crear("img/sucess.png", "#08c211", "¡Registro exitoso!");
         }
     }
+    removerLoad();
 }
 
 function cargarSelect() {
@@ -273,4 +262,46 @@ function cargarSelect() {
         c.appendChild(option);
     }
     removerLoad();
+}
+
+function confirmar() {
+    var d = document.createElement("DIALOG");
+    d.setAttribute("ID", "d1");
+    var txt = document.createElement("label");
+    var yes = document.createElement("button");
+    var not = document.createElement("button");
+    var img = document.createElement("img");
+    img.src = "img/error.jpg";
+    img.style.width = "100px";
+    img.style.height = "100px";
+    d.appendChild(img);
+
+    txt.setAttribute("style", "position: absolute; top: 20%")
+
+    txt.innerHTML = '&#191;Seguro que desea eliminar este usuario&#63;';
+    yes.innerHTML = "&#161;Si&#33;";
+    not.innerHTML = "&#161;No&#33;";
+
+    yes.setAttribute("id", "si");
+    yes.setAttribute("style", "top: 50%;position: absolute;left: 80%; background-color: #08c211;");
+    yes.setAttribute("class", "button");
+    yes.addEventListener("click", function() {
+        cargar(d, txt, yes, not, img);
+    }, false);
+
+    not.setAttribute("id", "no");
+    not.setAttribute("style", "top: 50%;position: absolute;left: 5%; background-color: #cc1010;");
+    not.setAttribute("class", "button");
+    not.addEventListener("click", function() {
+        document.getElementById("d1").remove();
+    }, false);
+
+    d.appendChild(txt);
+    d.appendChild(yes);
+    d.appendChild(not);
+
+    d.style.height = "150px";
+    d.style.width = "350px";
+    document.body.append(d);
+    d.showModal();
 }

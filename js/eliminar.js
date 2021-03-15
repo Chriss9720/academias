@@ -18,7 +18,7 @@ function crear() {
     yes.innerHTML = "&#161;Si&#33;";
     not.innerHTML = "&#161;No&#33;";
 
-    img.src = "js/logos/ad.jpg";
+    img.src = "img/ad.jpg";
     img.setAttribute("width", "50px")
     img.setAttribute("height", "50px")
     d.appendChild(img);
@@ -97,7 +97,7 @@ function eliminado(d, txt, cont, img, psw, not) {
     d.removeChild(psw);
     d.removeChild(cont);
     d.removeChild(not);
-    img.src = "js/logos/sucess.png";
+    img.src = "img/sucess.png";
     img.style.width = "100px";
     img.style.height = "100px";
     txt.innerHTML = "Eliminado";
