@@ -1,10 +1,98 @@
+/**
+  
+    <tr>
+        <td><label class="contenidoEliminar">Nombre(s):</label></td>
+        <td class="tdValorEliminar">
+            <label name="nombres" type="text" class="contenidoEliminar">
+                    </label>
+        </td>
+    </tr>
+    <tr>
+        <td><label class="contenidoEliminar">Carrera:</label></td>
+        <td class="tdValorEliminar">
+            <label name="carrera" type="text" class="contenidoEliminar">
+                    </label>
+        </td>
+    </tr>
+    <tr>
+        <td><label class="contenidoEliminar">Academia:</label></td>
+        <td class="tdValorEliminar">
+            <label name="academia" type="text" class="contenidoEliminar">
+                    </label>
+        </td>
+    </tr>
+ **/
 function cargar() {
     crearLoad('rcornersEliminar');
+    var obj = {
+        foto: "img/Hector.png",
+        nomina: "12345678",
+        nombres: "Hector Castro",
+        carrera: "ISC",
+        academia: "ISC"
+    }
+    var t = document.getElementById("tabla");
+    //tr Principal
+    var tr1 = document.createElement("tr");
+    tr1.setAttribute("class", "trContentElimiar");
+    //Td de la foto
+    var tdF = document.createElement("td");
+    tdF.setAttribute("class", "tdImgEliminar");
+    var img = document.createElement("img");
+    img.setAttribute("class", "imgEliminar");
+    img.src = obj['foto'];
+    tdF.appendChild(img);
+    tr1.appendChild(tdF);
+    //Td de la info
+    var tdI = document.createElement("td");
+    tdI.setAttribute("class", "tdContenidoEliminar");
+    //contenedor de la info
+    var tabla = document.createElement("table");
+    tabla.setAttribute("class", "tdValorEliminar");
+    var trI = document.createElement("tr");
+    var tdI2 = document.createElement("td");
+    //tabla final
+    var tablaF = document.createElement("table");
+    tablaF.setAttribute("class", "cuerpoEliminar");
+    tablaF.setAttribute("cellspacing", "3");
+    tablaF.setAttribute("cellpadding", "3");
 
+    var trNomina = document.createElement("tr");
+    var tdNomina = document.createElement("td");
+
+    tablaF.appendChild(trNomina);
+    /**
+     *   <tr>
+            <td><label class="contenidoEliminar">Nómina:</label></td>
+            <td class="tdValorEliminar">
+                <label id="delMat" name="matricula" type="text" class="contenidoEliminar"></label>
+            </td>
+        </tr>
+    */
+    tdI2.appendChild(tablaF);
+    trI.appendChild(tdI2);
+    tabla.appendChild(trI);
+    //elimiar
+    var trD = document.createElement("tr");
+    var tdD = document.createElement("td");
+    tdD.setAttribute("class", "tdbtnEliminar");
+    //boton borrar
+    var del = document.createElement("input");
+    del.setAttribute("class", "button button2Eliminar");
+    del.type = "button";
+    del.value = "Eliminar";
+    del.addEventListener("click", function() {
+        crear(obj['nombres']);
+    }, false);
+    trD.appendChild(del);
+    tabla.appendChild(trD);
+    tdI.appendChild(tabla);
+    tr1.appendChild(tdI);
+    t.appendChild(tr1);
     removerLoad();
 }
 
-function crear() {
+function crear(name) {
     var d = document.createElement("DIALOG");
     d.setAttribute("ID", "d1");
     var txt = document.createElement("label");
@@ -14,7 +102,7 @@ function crear() {
 
     txt.setAttribute("style", "position: absolute; top: 20%")
 
-    txt.innerHTML = '&#191;Seguro que desea eliminar este usuario&#63;';
+    txt.innerHTML = '¿Seguro que desea eliminar al usuario: ' + name + '?';
     yes.innerHTML = "&#161;Si&#33;";
     not.innerHTML = "&#161;No&#33;";
 
