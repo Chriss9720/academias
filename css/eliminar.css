@@ -1,0 +1,142 @@
+.imgEliminar {
+    width: 150px;
+    height: 150px;
+    border-radius: 150px;
+    border: 10px solid #666;
+}
+
+.tdImgEliminar {
+    width: auto;
+}
+
+.tdContenidoEliminar {
+    width: 100%;
+}
+
+.tdValorEliminar {
+    width: 100%;
+}
+
+.tdbtnEliminar {
+    text-align: right;
+}
+
+.fijadoEliminar {
+    position: absolute;
+    border-radius: 25px;
+    background: white;
+    padding: 20px;
+    width: 900px;
+    height: 125px;
+    top: 8%;
+    left: 15%;
+}
+
+.tablaElimiar {
+    border-collapse: collapse;
+}
+
+.trContentElimiar {
+    border: black 5px solid;
+}
+
+.contenidoEliminar {
+    width: 350px;
+    height: 30px;
+}
+
+.cuerpoEliminar {
+    top: 50%;
+    left: 30%
+}
+
+.BusquedaEliminar {
+    position: absolute;
+    top: 10%;
+    left: 5%
+}
+
+.contenidoBusqueda {
+    width: 180px;
+    height: 30px;
+}
+
+.buttonBuscar {
+    top: 65%;
+    background-color: #3399ff;
+    left: 500px;
+}
+
+.buttonLimpiar {
+    top: 65%;
+    background-color: #3399ff;
+    left: 300px;
+}
+
+.button1Eliminar {
+    top: 5%;
+    background-color: #08c211;
+    left: 85%;
+}
+
+.button {
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    position: absolute;
+    border-radius: 12px;
+}
+
+.button2Eliminar {
+    background-color: #cc1010;
+    position: initial;
+}
+
+.rcorners2 {
+    position: absolute;
+    border-radius: 25px;
+    background: goldenrod;
+    width: 450px;
+    height: 50px;
+    top: 4%;
+    left: 20%;
+}
+
+body {
+    background-image: url("BlueBackground.PNG");
+    background-color: linen;
+}
+
+.font {
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.subtitleEliminar {
+    position: absolute;
+    font-size: 150%;
+    top: 10%;
+    left: 25%
+}
+
+.title {
+    position: absolute;
+    top: -20%;
+    left: 5%;
+}
+
+.rcornersEliminar {
+    position: absolute;
+    border-radius: 25px;
+    background: white;
+    padding: 20px;
+    width: 900px;
+    height: 55%;
+    top: 35%;
+    left: 15%;
+}

@@ -1,0 +1,90 @@
+.fontButMenu {
+    font-size: 20px;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+.font {
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.titleMenu {
+    position: absolute;
+    top: -20%;
+    left: 8%;
+}
+body {
+    background-image: url("BlueBackground.PNG");
+    background-color: linen;
+}
+.subtitleMenu {
+    top: 5%;
+    left: 3%;
+}
+
+.rcorners1Menu {
+    position: absolute;
+    border-radius: 25px;
+    background: white;
+    padding: 20px;
+    width: 700px;
+    height: 750px;
+    top: 8%;
+    left: 23%;
+}
+
+.rcorners2Menu {
+    position: absolute;
+    border-radius: 25px;
+    background: goldenrod;
+    width: 650px;
+    height: 50px;
+    top: 4%;
+    left: 20%;
+}
+
+.tableInteriorMenu {
+    position: absolute;
+    top: 17%;
+    left: 12%;
+}
+
+.borderRegMenu {
+    border-radius: 150px;
+    border: 5px solid coral;
+    background: coral;
+    cursor: pointer;
+}
+
+.borderModMenu {
+    border-radius: 150px;
+    border: 5px goldenrod;
+    background: goldenrod;
+    cursor: pointer;
+}
+
+.borderEliMenu {
+    border-radius: 150px;
+    border: 5px solid wheat;
+    background: wheat;
+    cursor: pointer;
+}
+
+.borderVisMenu {
+    border-radius: 150px;
+    border: 5px solid tomato;
+    background: tomato;
+    cursor: pointer;
+}
+
+.sizeMenu {
+    height: 200px;
+    width: 200px;
+    text-align: center;
+}
+.imgLogout {
+    position: absolute;
+    left: 95%;
+    top: -3%;
+    width: 70px;
+    height: 45px;
+    cursor: pointer;
+}

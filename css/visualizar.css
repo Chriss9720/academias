@@ -1,3 +1,12 @@
+body {
+    background-image: url("BlueBackground.PNG");
+    background-color: linen;
+}
+
+.font {
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
 .rcornersVerificar {
     position: absolute;
     border-radius: 25px;
@@ -142,4 +151,43 @@
 
 .td {
     border: black 1px solid;
+}
+
+.title {
+    position: absolute;
+    top: -20%;
+    left: 5%;
+}
+
+.button {
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    position: absolute;
+    border-radius: 12px;
+}
+
+.buttonRegresar1 {
+    top: -15%;
+    background-color: #08c211;
+    left: 530px;
+}
+
+.subtitle {
+    position: absolute;
+    font-size: 150%;
+    top: 5%;
+}
+
+scroll-container {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
 }
