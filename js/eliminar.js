@@ -1,12 +1,6 @@
 /**
   
-    <tr>
-        <td><label class="contenidoEliminar">Nombre(s):</label></td>
-        <td class="tdValorEliminar">
-            <label name="nombres" type="text" class="contenidoEliminar">
-                    </label>
-        </td>
-    </tr>
+   
     <tr>
         <td><label class="contenidoEliminar">Carrera:</label></td>
         <td class="tdValorEliminar">
@@ -31,6 +25,11 @@ function cargar() {
         carrera: "ISC",
         academia: "ISC"
     }
+    construir(obj);
+    removerLoad();
+}
+
+function construir(obj) {
     var t = document.getElementById("tabla");
     //tr Principal
     var tr1 = document.createElement("tr");
@@ -56,19 +55,27 @@ function cargar() {
     tablaF.setAttribute("class", "cuerpoEliminar");
     tablaF.setAttribute("cellspacing", "3");
     tablaF.setAttribute("cellpadding", "3");
+    var key = ["Nómina:", "Nombre(s):", "Carrera:", "Academia:"];
+    var value = [obj["nomina"], obj["nombres"], obj["carrera"], obj["academia"]];
+    for (var i = 0; i < key.length; i++) {
+        var trNomina = document.createElement("tr");
+        var tdLabel = document.createElement("td");
+        var labelNom = document.createElement("label");
+        labelNom.setAttribute("class", "contenidoEliminar");
+        labelNom.textContent = key[i];
+        tdLabel.appendChild(labelNom);
 
-    var trNomina = document.createElement("tr");
-    var tdNomina = document.createElement("td");
+        var tdInp = document.createElement("td");
+        var inp = document.createElement("input");
+        inp.setAttribute("class", "tdValorEliminar");
+        inp.disabled = true;
+        inp.value = value[i];
+        tdInp.appendChild(inp);
 
-    tablaF.appendChild(trNomina);
-    /**
-     *   <tr>
-            <td><label class="contenidoEliminar">Nómina:</label></td>
-            <td class="tdValorEliminar">
-                <label id="delMat" name="matricula" type="text" class="contenidoEliminar"></label>
-            </td>
-        </tr>
-    */
+        trNomina.appendChild(tdLabel);
+        trNomina.appendChild(tdInp);
+        tablaF.appendChild(trNomina);
+    }
     tdI2.appendChild(tablaF);
     trI.appendChild(tdI2);
     tabla.appendChild(trI);
@@ -89,7 +96,6 @@ function cargar() {
     tdI.appendChild(tabla);
     tr1.appendChild(tdI);
     t.appendChild(tr1);
-    removerLoad();
 }
 
 function crear(name) {
