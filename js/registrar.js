@@ -14,10 +14,11 @@ $(document).ready(function() {
                 removerLoad();
                 switch (response) {
                     case "ok":
-                        crear("js/logos/sucess.png", "#08c211", "¡Imagen subida exitosamente!");
+                        crear("img/sucess.png", "#08c211", "¡Imagen subida exitosamente!");
                         break;
                     default:
-                        crear("js/logos/error.jpg", "#cc1010", "¡Error al subir la imagen!<br/>" + response);
+                        document.getElementById("fotoPerfil").src = "img/perfilazul.png";
+                        crear("img/error.jpg", "#cc1010", "¡Error al subir la imagen!<br/>" + response);
                 }
             },
             error: function(error) {
