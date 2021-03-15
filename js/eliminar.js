@@ -1,5 +1,6 @@
 function cargar() {
     crearLoad('rcornersEliminar');
+
     removerLoad();
 }
 
