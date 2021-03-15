@@ -1,3 +1,7 @@
+function cargar() {
+
+}
+
 function crear() {
     var d = document.createElement("DIALOG");
     d.setAttribute("ID", "d1");
