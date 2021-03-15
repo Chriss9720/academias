@@ -142,7 +142,7 @@
             <input class="button button1" type="button" value="Cancelar" onclick="cancelarRegistro()" />
             <input class="button button2" type="submit" value="Registrar" onclick="validarRegistro()" />
         </form>
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data" action="#">
             <input name="pasoFoto" id="flagFoto" hidden="true" />
             <input id="file" class="file" name="file" type="file" size="50" accept="image/*" onchange="mostrar()" />
             <input type="submit" class="button subirImg" onclick="subirImg('upfile')" value="subir" />

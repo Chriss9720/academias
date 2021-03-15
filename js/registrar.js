@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $(".subirImg").on('click', function() {
-        crearLoad();
+        crearLoad('rcorners1');
         var formData = new FormData();
         var files = $('#file')[0].files[0];
         formData.append('file', files);
