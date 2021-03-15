@@ -1,5 +1,6 @@
 function cargar() {
-
+    crearLoad('rcornersEliminar');
+    removerLoad();
 }
 
 function crear() {
@@ -25,7 +26,7 @@ function crear() {
     yes.setAttribute("style", "top: 50%;position: absolute;left: 80%; background-color: #08c211;");
     yes.setAttribute("class", "button");
     yes.addEventListener("click", function() {
-        cargar(d, txt, yes, not, img);
+        confirmar(d, txt, yes, not, img);
     }, false);
 
     not.setAttribute("id", "no");
@@ -45,7 +46,7 @@ function crear() {
     d.showModal();
 }
 
-function cargar(d, txt, yes, not, img) {
+function confirmar(d, txt, yes, not, img) {
     d.removeChild(yes);
     txt.innerHTML = "Ingrese su contrase&#241;a para continuar";
     var psw = document.createElement("input");
