@@ -14,6 +14,12 @@ function cargarDatos() {
         nombres: "Christian Yañez",
         carrera: "ISC",
         academia: "ISC"
+    }, {
+        foto: "img/perfilazul.png",
+        nomina: "12345670",
+        nombres: "Sergio Guerra",
+        carrera: "ISC",
+        academia: "ISC"
     }];
     cargarCarreras();
     cargarAcademias();
@@ -328,4 +334,8 @@ function recrear() {
     t.setAttribute("cellpadding", "3");
     t.setAttribute("class", "tablaElimiar");
     page.appendChild(t);
+}
+
+function limpiar() {
+    cambiar('eliminar');
 }
