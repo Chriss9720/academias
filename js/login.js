@@ -1,4 +1,4 @@
-function accion(mat, psw, cont, err) {
+function logeo(mat, psw, cont, err) {
     mat = document.getElementById(mat).value;
     psw = document.getElementById(psw).value;
     if (mat.length < 1 && psw.length < 1) {
