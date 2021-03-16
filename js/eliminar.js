@@ -242,68 +242,81 @@ function eliminado(d, txt, cont, img, psw, not) {
     })
 }
 
-function porNombre(valor) {
-    var aux = [];
-    var l = obj.length;
+function buscar() {
     recrear();
+    var aux = [];
+    var nombre = document.getElementById('SearchName').value;
+    var nomina = document.getElementById('sMat').value;
+    var carrera = document.getElementById('carrera').value;
+    var academia = document.getElementById('academia').value;
+    aux = porNombre(nombre, obj, aux);
+    aux = porNomina(nomina, obj, aux);
+    aux = porCarrera(carrera, obj, aux);
+    aux = porAcademia(academia, obj, aux);
+    if (nombre.length < 1 && nomina.length < 1 && carrera.length < 1 && academia.length < 1)
+        aux = obj;
+    else
+        aux = filtro(aux);
+    cargar(aux);
+}
+
+function filtro(obj) {
+    var aux = [];
+    for (var i = 0; i < obj.length; i++) {
+        var f = true;
+        for (var k = 0; k < aux.length && f; k++) {
+            if (obj[i]['nomina'].includes(aux[k]['nomina'])) {
+                f = false;
+            }
+        }
+        if (f)
+            aux.push(obj[i]);
+    }
+    return aux;
+}
+
+function porNombre(valor, obj, aux) {
     if (valor.length > 0) {
-        for (var i = 0; i < l; i++) {
+        for (var i = 0; i < obj.length; i++) {
             if (obj[i]['nombres'].includes(valor)) {
                 aux.push(obj[i]);
             }
         }
-    } else {
-        aux = obj;
     }
-    cargar(aux);
+    return aux;
 }
 
-function porNomina(valor) {
-    var aux = [];
-    var l = obj.length;
-    recrear();
+function porNomina(valor, obj, aux) {
     if (valor.length > 0) {
-        for (var i = 0; i < l; i++) {
+        for (var i = 0; i < obj.length; i++) {
             if (obj[i]['nomina'].includes(valor)) {
                 aux.push(obj[i]);
             }
         }
-    } else {
-        aux = obj;
     }
-    cargar(aux);
+    return aux;
 }
 
-function porCarrera(valor) {
-    var aux = [];
-    var l = obj.length;
-    recrear();
+function porCarrera(valor, obj, aux) {
     if (valor.length > 0) {
-        for (var i = 0; i < l; i++) {
+        for (var i = 0; i < obj.length; i++) {
             if (obj[i]['carrera'].includes(valor)) {
                 aux.push(obj[i]);
             }
         }
-    } else {
-        aux = obj;
     }
-    cargar(aux);
+    return aux;
 }
 
-function porAcademia(valor) {
-    var aux = [];
-    var l = obj.length;
-    recrear();
+function porAcademia(valor, obj, aux) {
     if (valor.length > 0) {
-        for (var i = 0; i < l; i++) {
-            if (obj[i]['carrera'].includes(valor)) {
+        for (var i = 0; i < obj.length; i++) {
+            if (obj[i]['academia'].includes(valor)) {
                 aux.push(obj[i]);
             }
         }
-    } else {
-        aux = obj;
     }
-    cargar(aux);
+    return aux;
 }
 
 function recrear() {

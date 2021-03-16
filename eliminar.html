@@ -24,18 +24,18 @@
                 <td><label class="contenidoBusqueda">Nómina:</label></td>
             </tr>
             <tr>
-                <td><input name="SearchName" type="text" class="contenidoBusqueda" onkeyup="porNombre(this.value)" /></td>
+                <td><input id="SearchName" type="text" class="contenidoBusqueda" onkeyup="buscar()" /></td>
                 <td>
-                    <select id="carrera" name="SearchCarr" class="contenidoBusqueda" onchange="porCarrera(this.value)">
+                    <select id="carrera" name="SearchCarr" class="contenidoBusqueda" onchange="buscar()">
                         <option value ="">Seleciona una</option>
                     </select>
                 </td>
                 <td>
-                    <select id="academia" name="SearchAca" class="contenidoBusqueda">
+                    <select id="academia" name="SearchAca" class="contenidoBusqueda" onchange="buscar()">
                         <option value ="">Seleciona una</option>
                     </select>
                 </td>
-                <td><input id="sMat" name="SeacrchMat" type="text" class="contenidoBusqueda" onkeyup="porNomina(this.value)" />
+                <td><input id="sMat" name="SeacrchMat" type="text" class="contenidoBusqueda" onkeyup="buscar()" />
                 </td>
             </tr>
         </table>
