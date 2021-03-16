@@ -22,7 +22,7 @@ $(document).ready(function() {
                 }
             },
             error: function(error) {
-                alert(error);
+                crear("img/error.jpg", "#cc1010", "¡Error al subir la imagen!<br/>" + error);
             }
         });
     });
@@ -193,6 +193,10 @@ function mensajeErrorLogin(mensaje) {
     }
 }
 
+function regresar() {
+    confirmar('¿Seguro que desea salir?', 3);
+}
+
 function cancelarRegistro() {
     confirmar('¿Seguro que desea cancelar el registro?', 2);
 }
@@ -290,6 +294,9 @@ function confirmar(msj, op) {
                 break;
             case 2:
                 location.href = "registrar.html";
+                break;
+            case 3:
+                location.href = "menu.html";
                 break;
         }
     }, false);
