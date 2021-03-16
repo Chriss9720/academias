@@ -1,6 +1,8 @@
-function cargar() {
+var obj;
+
+function cargarDatos() {
     crearLoad('rcornersEliminar');
-    var obj = [{
+    obj = [{
         foto: "img/Hector.png",
         nomina: "12345678",
         nombres: "Hector Castro",
@@ -13,10 +15,38 @@ function cargar() {
         carrera: "ISC",
         academia: "ISC"
     }];
+    cargarCarreras();
+    cargarAcademias();
+    cargar(obj);
+    removerLoad();
+}
+
+function cargarCarreras() {
+    var c = document.getElementById('carrera');
+    var carr = ['ISC', 'IGE'];
+    for (var i = 0; i < carr.length; i++) {
+        var op = document.createElement('option');
+        op.value = carr[i];
+        op.innerText = carr[i];
+        c.appendChild(op);
+    }
+}
+
+function cargarAcademias() {
+    var c = document.getElementById('academia');
+    var carr = ['ISC', 'LANI'];
+    for (var i = 0; i < carr.length; i++) {
+        var op = document.createElement('option');
+        op.value = carr[i];
+        op.innerText = carr[i];
+        c.appendChild(op);
+    }
+}
+
+function cargar(obj) {
     for (var i = 0; i < obj.length; i++) {
         construir(obj[i]);
     }
-    removerLoad();
 }
 
 function construir(obj) {
@@ -153,27 +183,7 @@ function confirmar(d, txt, yes, not, img, name) {
             error(d, txt, cont, img, psw, name);
         } else {
             crearLoad('rcornersEliminar');
-            document.getElementById("tabla").remove();
-            var page = document.getElementById("page");
-            var t = document.createElement("table");
-            t.setAttribute("id", "tabla");
-            t.setAttribute("cellspacing", "3");
-            t.setAttribute("cellpadding", "3");
-            t.setAttribute("class", "tablaElimiar");
-            page.appendChild(t);
-            var obj = [{
-                foto: "img/Hector.png",
-                nomina: "12345678",
-                nombres: "Hector Castro",
-                carrera: "ISC",
-                academia: "ISC"
-            }, {
-                foto: "img/imagen.png",
-                nomina: "12345679",
-                nombres: "Christian Yañez",
-                carrera: "ISC",
-                academia: "ISC"
-            }];
+            recrear();
             var nuevo = [];
             for (var i = 0; i < obj.length; i++) {
                 console.log(obj[i]['nomina'] + " vs " + name);
@@ -230,4 +240,79 @@ function eliminado(d, txt, cont, img, psw, not) {
     cont.addEventListener("click", function() {
         d.remove();
     })
+}
+
+function porNombre(valor) {
+    var aux = [];
+    var l = obj.length;
+    recrear();
+    if (valor.length > 0) {
+        for (var i = 0; i < l; i++) {
+            if (obj[i]['nombres'].includes(valor)) {
+                aux.push(obj[i]);
+            }
+        }
+    } else {
+        aux = obj;
+    }
+    cargar(aux);
+}
+
+function porNomina(valor) {
+    var aux = [];
+    var l = obj.length;
+    recrear();
+    if (valor.length > 0) {
+        for (var i = 0; i < l; i++) {
+            if (obj[i]['nomina'].includes(valor)) {
+                aux.push(obj[i]);
+            }
+        }
+    } else {
+        aux = obj;
+    }
+    cargar(aux);
+}
+
+function porCarrera(valor) {
+    var aux = [];
+    var l = obj.length;
+    recrear();
+    if (valor.length > 0) {
+        for (var i = 0; i < l; i++) {
+            if (obj[i]['carrera'].includes(valor)) {
+                aux.push(obj[i]);
+            }
+        }
+    } else {
+        aux = obj;
+    }
+    cargar(aux);
+}
+
+function porAcademia(valor) {
+    var aux = [];
+    var l = obj.length;
+    recrear();
+    if (valor.length > 0) {
+        for (var i = 0; i < l; i++) {
+            if (obj[i]['carrera'].includes(valor)) {
+                aux.push(obj[i]);
+            }
+        }
+    } else {
+        aux = obj;
+    }
+    cargar(aux);
+}
+
+function recrear() {
+    document.getElementById("tabla").remove();
+    var page = document.getElementById("page");
+    var t = document.createElement("table");
+    t.setAttribute("id", "tabla");
+    t.setAttribute("cellspacing", "3");
+    t.setAttribute("cellpadding", "3");
+    t.setAttribute("class", "tablaElimiar");
+    page.appendChild(t);
 }

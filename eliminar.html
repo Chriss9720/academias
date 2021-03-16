@@ -14,7 +14,7 @@
     <title>Administraci&oacute;n de Academias</title>
 </head>
 
-<body onload="cargar()">
+<body onload="cargarDatos()">
     <div class="fijadoEliminar">
         <table cellspacing="10" cellpadding="3" class="BusquedaEliminar">
             <tr>
@@ -24,18 +24,18 @@
                 <td><label class="contenidoBusqueda">Nómina:</label></td>
             </tr>
             <tr>
-                <td><input name="SearchName" type="text" class="contenidoBusqueda" /></td>
+                <td><input name="SearchName" type="text" class="contenidoBusqueda" onkeyup="porNombre(this.value)" /></td>
                 <td>
-                    <select name="SearchCarr" class="contenidoBusqueda">
+                    <select id="carrera" name="SearchCarr" class="contenidoBusqueda" onchange="porCarrera(this.value)">
                         <option value ="">Seleciona una</option>
                     </select>
                 </td>
                 <td>
-                    <select name="SearchAca" class="contenidoBusqueda">
+                    <select id="academia" name="SearchAca" class="contenidoBusqueda">
                         <option value ="">Seleciona una</option>
                     </select>
                 </td>
-                <td><input id="sMat" name="SeacrchMat" type="text" class="contenidoBusqueda" />
+                <td><input id="sMat" name="SeacrchMat" type="text" class="contenidoBusqueda" onkeyup="porNomina(this.value)" />
                 </td>
             </tr>
         </table>
