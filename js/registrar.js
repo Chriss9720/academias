@@ -15,10 +15,8 @@ $(document).ready(function() {
                 switch (response) {
                     case "ok":
                         crear("img/sucess.png", "#08c211", "¡Imagen subida exitosamente!");
-                        document.getElementById('flagFoto').innerHTML = "ok";
                         break;
                     default:
-                        document.getElementById('flagFoto').innerHTML = "no";
                         document.getElementById("fotoPerfil").src = "img/perfilazul.png";
                         crear("img/error.jpg", "#cc1010", "¡Error al subir la imagen!<br/>" + response);
                 }
@@ -196,9 +194,7 @@ function mensajeErrorLogin(mensaje) {
 }
 
 function cancelarRegistro() {
-    if (confirm("Seguro que desae cancelar el registro?")) {
-        location.href = "Registro";
-    }
+    confirmar('¿Seguro que desea cancelar el registro?', 2);
 }
 
 function vacio(id, num) {
@@ -232,7 +228,7 @@ function validarRegistro() {
         crear("img/error.jpg", "#cc1010", "Rellene todos los campos");
     } else {
         if (document.getElementById("fotoPerfil").src.toString().includes("img/perfilazul.png")) {
-            confirmar();
+            confirmar('¿Desea guardar sin foto?', 1);
         } else {
             guardar();
         }
@@ -267,7 +263,7 @@ function cargarSelect() {
     removerLoad();
 }
 
-function confirmar() {
+function confirmar(msj, op) {
     var d = document.createElement("DIALOG");
     d.setAttribute("ID", "d1");
     var txt = document.createElement("label");
@@ -280,7 +276,7 @@ function confirmar() {
     d.appendChild(img);
 
     txt.setAttribute("style", "position: absolute; top: 30%")
-    txt.innerHTML = '¿Desea guardar sin foto?';
+    txt.innerHTML = msj;
     yes.innerHTML = "¡Si!";
     not.innerHTML = "¡No!";
 
@@ -288,7 +284,14 @@ function confirmar() {
     yes.setAttribute("style", "top: 70%;position: absolute;left: 80%; background-color: #08c211;");
     yes.setAttribute("class", "button");
     yes.addEventListener("click", function() {
-        guardar();
+        switch (op) {
+            case 1:
+                guardar();
+                break;
+            case 2:
+                location.href = "registrar.html";
+                break;
+        }
     }, false);
 
     not.setAttribute("id", "no");
