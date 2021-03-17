@@ -504,7 +504,7 @@
 
         $xml->formatOutput = true;
         $xml->saveXML();
-        $xml->save('archivo.xml');
+        $xml->save('planTrabajo/archivo.xml');
     }
 
     $json = json_decode(json_encode($_GET['obj']), true);
