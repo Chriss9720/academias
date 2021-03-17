@@ -516,6 +516,6 @@
     $pdf->AddPage();
     $pdf->TablaP($json);
     $pdf->Output("F", "planTrabajo/plantrabajo.pdf", true);
-    $return = array ("archivo" => "PDF.html?nombre=plantrabajo.pdf");
+    $return = array ("archivo" => "PDF.html?nombre=planTrabajo/plantrabajo.pdf");
     echo json_encode($return);
 ?>
