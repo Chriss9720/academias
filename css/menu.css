@@ -52,10 +52,10 @@ body {
     border-radius: 25px;
     background: white;
     padding: 20px;
-    width: 1110px;
+    width: 1465px;
     height: 790px;
     top: 5%;
-    left: 24%;
+    left: 5%;
 }
 
 .cuerpoAdmin {
@@ -71,7 +71,7 @@ body {
 
 .size {
     height: 120px;
-    width: 235px;
+    width: 250px;
 }
 
 .tableInterior {
@@ -185,4 +185,16 @@ body {
     border-radius: 150px;
     border: 5px solid tomato;
     background: tomato;
+}
+
+.btn5 {
+    border-radius: 150px;
+    border: 5px solid aquamarine;
+    background: aquamarine;
+}
+
+.borderbtn5 {
+    border-radius: 150px;
+    border: 5px solid aquamarine;
+    background: aquamarine;
 }

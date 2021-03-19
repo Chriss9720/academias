@@ -25,16 +25,23 @@
                     <table cellspacing="50" class="tableInterior font">
                         <tr>
                             <td class="borderRegistrar size">
-                                <input name="Registrar" class="borderRegistrar size fontBut" type="submit" value="Registrar">
+                                <input name="Registrar" class="borderRegistrar size fontBut" type="button" value="Registrar personal" onclick="cambiar('registrar')">
                             </td>
                             <td class="borderAgregarAcademia size">
-                                <input name="AgregarAcademia" class="borderAgregarAcademia size fontBut" type="submit" value="Agregar Academia">
+                                <input name="Eliminar" class="borderAgregarAcademia size fontBut" type="button" value="Eliminar personal" onclick="cambiar('eliminar')">
                             </td>
                             <td class="borderEliminar size">
-                                <input name="Eliminar" class="borderEliminar size fontBut" type="submit" value="Eliminar">
+                                <button name="AgregarAcademia" class="borderEliminar size fontBut" onclick="cambiar('buscar')">
+                                    <label>
+                                        Modificar ó visualizar personal
+                                    </label>
+                                </button>
                             </td>
                             <td class="borderEliminarAcademia size">
-                                <input name="EliminarAcademia" class="borderEliminarAcademia size fontBut" type="submit" value="Eliminar Academia">
+                                <input name="EliminarAcademia" class="borderEliminarAcademia size fontBut" type="button" value="Eliminar Academia">
+                            </td>
+                            <td class="borderbtn5 size">
+                                <input name="AgregarAcademia" class="btn5 size fontBut" type="button" type="button" value="Agregar Academia">
                             </td>
                         </tr>
                     </table>
@@ -50,13 +57,16 @@
                     <table cellspacing="50" class="tableInterior2 font">
                         <tr>
                             <td class="borderModificar size">
-                                <input name="Modificar" class="borderModificar size fontBut" type="submit" value="Modificar">
+                                <input name="Modificar" class="borderModificar size fontBut" type="button" value="Modificar" onclick="cambiar('modificar')">
                             </td>
                             <td class="borderMiPerfil size">
-                                <input name="MiPerfil" class="borderMiPerfil size fontBut" type="submit" value="Mi Perfil">
+                                <input name="MiPerfil" class="borderMiPerfil size fontBut" type="button" value="Mi Perfil" onclick="cambiar('visualizar')">
                             </td>
                             <td class="borderDocumentosPendientes size">
-                                <input name="DocumentosPendientes" class="borderDocumentosPendientes size fontBut" type="submit" value="Docs. Pendientes">
+                                <input name="DocumentosPendientes" class="borderDocumentosPendientes size fontBut" type="button" value="Docs. Pendientes">
+                            </td>
+                            <td class="borderEliminarAcademia size">
+                                <input name="EliminarAcademia" class="borderEliminarAcademia size fontBut" type="button" value="Ver evaluación">
                             </td>
                         </tr>
                     </table>
@@ -72,13 +82,13 @@
                     <table cellspacing="50" class="tableInterior3 font">
                         <tr>
                             <td class="borderMiembros size">
-                                <input name="Miembros" class="borderMiembros size fontBut" type="submit" value="Miembros">
+                                <input name="Miembros" class="borderMiembros size fontBut" type="button" value="Miembros" onclick="cambiar('buscar')">
                             </td>
                             <td class="borderVerPlanTrabajo size">
-                                <input name="VerPlanTrabajo" class="borderVerPlanTrabajo size fontBut" type="submit" value=" Ver Plan Trabajo">
+                                <input name="VerPlanTrabajo" class="borderVerPlanTrabajo size fontBut" type="button" value=" Ver Plan Trabajo">
                             </td>
                             <td class="borderVerActas size">
-                                <input name="VerActas" class="borderVerActas size fontBut" type="submit" value="Ver Actas">
+                                <input name="VerActas" class="borderVerActas size fontBut" type="button" value="Ver Actas">
                             </td>
                         </tr>
                     </table>
@@ -94,16 +104,16 @@
                     <table cellspacing="50" class="tableInterior4 font">
                         <tr>
                             <td class="borderPlanTrabajo size">
-                                <input name="PlanTrabajo" class="borderPlanTrabajo size fontBut" type="submit" value="Plan de Trabajo">
+                                <input name="PlanTrabajo" class="borderPlanTrabajo size fontBut" type="button" value="Plan de Trabajo" onclick="cambiar('planTrabajo')">
                             </td>
                             <td class="borderAgregarActa size">
-                                <input name="AgregarActa" class="borderAgregarActa size fontBut" type="submit" value="Agregar Acta">
+                                <input name="AgregarActa" class="borderAgregarActa size fontBut" type="button" value="Agregar Acta">
                             </td>
                             <td class="borderEvaluacionProfesor size">
-                                <input name="EvaluacionProfesor" class="borderEvaluacionProfesor size fontBut" type="submit" value="Evaluar Profesor">
+                                <input name="EvaluacionProfesor" class="borderEvaluacionProfesor size fontBut" type="button" value="Evaluar Profesor">
                             </td>
                             <td class="borderEvaluacionPresidente size">
-                                <input name="EvaluarPresidente" class="borderEvaluacionPresidente size fontBut" type="submit" value="Evaluar Presidente">
+                                <input name="EvaluarPresidente" class="borderEvaluacionPresidente size fontBut" type="button" value=" Evaluar Presidente">
                             </td>
                         </tr>
                     </table>
