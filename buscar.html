@@ -13,36 +13,33 @@
     <title>Administraci&oacute;n de Academias</title>
 </head>
 
-<body onload="cargar()">
+<body onload="cargarDatos()">
     <div class="fijadoEliminar">
-        <form class="font" action="BuscarEliminar" method="get">
-            <table cellspacing="10" cellpadding="3" class="BusquedaEliminar">
-                <tr>
-                    <td><label class="contenidoBusqueda">Nombre(s):</label></td>
-                    <td><label class="contenidoBusqueda">Carrera:</label></td>
-                    <td><label class="contenidoBusqueda">Academia:</label></td>
-                    <td><label class="contenidoBusqueda">Nómina:</label></td>
-                </tr>
-                <tr>
-                    <td><input name="SearchName" type="text" class="contenidoBusqueda" value="" /></td>
-                    <td>
-                        <select name="SearchCarr" class="contenidoBusqueda">
-                                <option value ="">Seleciona una</option>
-                            </select>
-                    </td>
-                    <td>
-                        <select name="SearchAca" class="contenidoBusqueda">
-                                <option value ="">Seleciona una</option>
-                            </select>
-                    </td>
-                    <td><input id="sMat" name="SeacrchMat" type="text" class="contenidoBusqueda" value="" />
-                    </td>
-                </tr>
-            </table>
-            <input class="button buttonBuscar" type="submit" value="Buscar" />
-            <input class="button buttonLimpiar" type="button" value="Limpiar" onclick="cambiar('buscar')" />
-            <input class="button button1Eliminar" type="button" value="Regresar" onclick="cambiar('menu')" />
-        </form>
+        <table cellspacing="10" cellpadding="3" class="BusquedaEliminar">
+            <tr>
+                <td><label class="contenidoBusqueda">Nombre(s):</label></td>
+                <td><label class="contenidoBusqueda">Carrera:</label></td>
+                <td><label class="contenidoBusqueda">Academia:</label></td>
+                <td><label class="contenidoBusqueda">Nómina:</label></td>
+            </tr>
+            <tr>
+                <td><input id="SearchName" type="text" class="contenidoBusqueda" onkeyup="buscar()" /></td>
+                <td>
+                    <select id="carrera" name="SearchCarr" class="contenidoBusqueda" onchange="buscar()">
+                        <option value ="">Seleciona una</option>
+                    </select>
+                </td>
+                <td>
+                    <select id="academia" name="SearchAca" class="contenidoBusqueda" onchange="buscar()">
+                        <option value ="">Seleciona una</option>
+                    </select>
+                </td>
+                <td><input id="sMat" name="SeacrchMat" type="text" class="contenidoBusqueda" onkeyup="buscar()" />
+                </td>
+            </tr>
+        </table>
+        <input class="button buttonLimpiar" type="button" value="Limpiar" onclick="cambiar('buscar')" />
+        <input class="button button1Eliminar" type="button" value="Regresar" onclick="cambiar('menu')" />
     </div>
     <div class="rcornersEliminar">
         <scroll-container>
