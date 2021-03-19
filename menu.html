@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <title>MENU</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -9,35 +10,100 @@
     <link rel="stylesheet" href="css/menu.css" />
     <script type="text/javascript" src="js/load.js"></script>
     <script type="text/javascript" src="js/menu.js"></script>
-    <title>Menu de Admin. de Acad.</title>
 </head>
 
-<body onload="cargando()">
-    <div class="rcorners1Menu">
-        <img id="CerrarSesion" class="imgLogout" title="Salir" src="img/BotonSalir.png" alt="not found" onclick="cerrarSesion()" />
+<body>
+    <div class="rcorners1">
         <table>
             <tr>
                 <td>
-                    <h4 class=" subtitleMenu font ">Bienvenido al sistema, por favor, seleccione entre las siguientes opciones:</h4>
+                    <h4 class="subtitleAd font">Administrador:</h4>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <table cellspacing="50 " class="tableInterior font ">
+                    <table cellspacing="50" class="tableInterior font">
                         <tr>
-                            <td class="borderRegMenu sizeMenu ">
-                                <input name="reg " class="borderRegMenu sizeMenu fontButMenu " type="submit " value="registrar" onclick="cambiar(this.value) ">
+                            <td class="borderRegistrar size">
+                                <input name="Registrar" class="borderRegistrar size fontBut" type="submit" value="Registrar">
                             </td>
-                            <td class="borderModMenu sizeMenu ">
-                                <input name="mod " class="borderModMenu sizeMenu fontButMenu " type="submit " value="generar plan" onclick="cambiar('planTrabajo')">
+                            <td class="borderAgregarAcademia size">
+                                <input name="AgregarAcademia" class="borderAgregarAcademia size fontBut" type="submit" value="Agregar Academia">
+                            </td>
+                            <td class="borderEliminar size">
+                                <input name="Eliminar" class="borderEliminar size fontBut" type="submit" value="Eliminar">
+                            </td>
+                            <td class="borderEliminarAcademia size">
+                                <input name="EliminarAcademia" class="borderEliminarAcademia size fontBut" type="submit" value="Eliminar Academia">
                             </td>
                         </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4 class="subtitlePer font">Personal:</h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table cellspacing="50" class="tableInterior2 font">
                         <tr>
-                            <td class="borderEliMenu sizeMenu ">
-                                <input name="eli " class="borderEliMenu sizeMenu fontButMenu " type="submit " value="eliminar" onclick="cambiar(this.value)">
+                            <td class="borderModificar size">
+                                <input name="Modificar" class="borderModificar size fontBut" type="submit" value="Modificar">
                             </td>
-                            <td class="borderVis sizeMenu ">
-                                <input name="vis " class="borderVisMenu sizeMenu fontButMenu " type="submit " value="buscar miembros" onclick="cambiar('buscar')">
+                            <td class="borderMiPerfil size">
+                                <input name="MiPerfil" class="borderMiPerfil size fontBut" type="submit" value="Mi Perfil">
+                            </td>
+                            <td class="borderDocumentosPendientes size">
+                                <input name="DocumentosPendientes" class="borderDocumentosPendientes size fontBut" type="submit" value="Docs. Pendientes">
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4 class="subtitleAc font">Academia:</h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table cellspacing="50" class="tableInterior3 font">
+                        <tr>
+                            <td class="borderMiembros size">
+                                <input name="Miembros" class="borderMiembros size fontBut" type="submit" value="Miembros">
+                            </td>
+                            <td class="borderVerPlanTrabajo size">
+                                <input name="VerPlanTrabajo" class="borderVerPlanTrabajo size fontBut" type="submit" value=" Ver Plan Trabajo">
+                            </td>
+                            <td class="borderVerActas size">
+                                <input name="VerActas" class="borderVerActas size fontBut" type="submit" value="Ver Actas">
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4 class="subtitleGen font">Generar:</h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table cellspacing="50" class="tableInterior4 font">
+                        <tr>
+                            <td class="borderPlanTrabajo size">
+                                <input name="PlanTrabajo" class="borderPlanTrabajo size fontBut" type="submit" value="Plan de Trabajo">
+                            </td>
+                            <td class="borderAgregarActa size">
+                                <input name="AgregarActa" class="borderAgregarActa size fontBut" type="submit" value="Agregar Acta">
+                            </td>
+                            <td class="borderEvaluacionProfesor size">
+                                <input name="EvaluacionProfesor" class="borderEvaluacionProfesor size fontBut" type="submit" value="Evaluar Profesor">
+                            </td>
+                            <td class="borderEvaluacionPresidente size">
+                                <input name="EvaluarPresidente" class="borderEvaluacionPresidente size fontBut" type="submit" value="Evaluar Presidente">
                             </td>
                         </tr>
                     </table>
@@ -45,8 +111,8 @@
             </tr>
         </table>
     </div>
-    <div class="rcorners2Menu ">
-        <h1 class="titleMenu font ">Administraci&oacute;n de Academias</h1>
+    <div class="rcorners2">
+        <h1 class="title font">MENU PRINCIPAL</h1>
     </div>
 </body>
 

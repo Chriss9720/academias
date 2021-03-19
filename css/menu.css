@@ -1,90 +1,188 @@
-.fontButMenu {
-    font-size: 20px;
-    font-family: "Lucida Console", "Courier New", monospace;
+.title {
+    position: absolute;
+    top: -20%;
+    left: 5%;
 }
+
 .font {
     font-family: "Lucida Console", "Courier New", monospace;
 }
 
-.titleMenu {
-    position: absolute;
-    top: -20%;
-    left: 8%;
-}
 body {
     background-image: url("BlueBackground.PNG");
     background-color: linen;
 }
-.subtitleMenu {
-    top: 5%;
-    left: 3%;
+
+.subtitleAd {
+    position: absolute;
+    font-size: 140%;
+    top: 2%;
 }
 
-.rcorners1Menu {
+.subtitlePer {
+    position: absolute;
+    font-size: 140%;
+    top: 26%;
+}
+
+.subtitleAc {
+    position: absolute;
+    font-size: 140%;
+    top: 48.5%;
+}
+
+.subtitleGen {
+    position: absolute;
+    font-size: 140%;
+    top: 71%;
+}
+
+.rcorners2 {
+    position: absolute;
+    border-radius: 25px;
+    background: goldenrod;
+    width: 450px;
+    height: 50px;
+    top: 2%;
+    left: 20%;
+}
+
+.rcorners1 {
     position: absolute;
     border-radius: 25px;
     background: white;
     padding: 20px;
-    width: 700px;
-    height: 750px;
-    top: 8%;
-    left: 23%;
+    width: 1110px;
+    height: 790px;
+    top: 5%;
+    left: 24%;
 }
 
-.rcorners2Menu {
+.cuerpoAdmin {
     position: absolute;
-    border-radius: 25px;
-    background: goldenrod;
-    width: 650px;
-    height: 50px;
-    top: 4%;
-    left: 20%;
+    top: 57%;
+    right: 25%;
 }
 
-.tableInteriorMenu {
+.contenidoAdmin {
+    width: 245px;
+    height: 30px;
+}
+
+.size {
+    height: 120px;
+    width: 235px;
+}
+
+.tableInterior {
     position: absolute;
-    top: 17%;
-    left: 12%;
+    top: 5%;
+    left: -3.2%;
 }
 
-.borderRegMenu {
-    border-radius: 150px;
-    border: 5px solid coral;
-    background: coral;
-    cursor: pointer;
+.tableInterior2 {
+    position: absolute;
+    top: 28%;
+    left: -3.2%;
 }
 
-.borderModMenu {
+.tableInterior3 {
+    position: absolute;
+    top: 50%;
+    left: -3.2%;
+}
+
+.tableInterior4 {
+    position: absolute;
+    top: 73%;
+    left: -3.2%;
+}
+
+.fontBut {
+    font-size: 20px;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.borderAgregarAcademia {
     border-radius: 150px;
     border: 5px goldenrod;
     background: goldenrod;
-    cursor: pointer;
 }
 
-.borderEliMenu {
+.borderEliminar {
     border-radius: 150px;
     border: 5px solid wheat;
     background: wheat;
-    cursor: pointer;
 }
 
-.borderVisMenu {
+.borderEliminarAcademia {
     border-radius: 150px;
     border: 5px solid tomato;
     background: tomato;
-    cursor: pointer;
 }
 
-.sizeMenu {
-    height: 200px;
-    width: 200px;
-    text-align: center;
+.borderRegistrar {
+    border-radius: 150px;
+    border: 5px solid coral;
+    background: coral;
 }
-.imgLogout {
-    position: absolute;
-    left: 95%;
-    top: -3%;
-    width: 70px;
-    height: 45px;
-    cursor: pointer;
+
+.borderModificar {
+    border-radius: 150px;
+    border: 5px solid coral;
+    background: coral;
+}
+
+.borderMiPerfil {
+    border-radius: 150px;
+    border: 5px goldenrod;
+    background: goldenrod;
+}
+
+.borderDocumentosPendientes {
+    border-radius: 150px;
+    border: 5px solid wheat;
+    background: wheat;
+}
+
+.borderMiembros {
+    border-radius: 150px;
+    border: 5px solid coral;
+    background: coral;
+}
+
+.borderVerPlanTrabajo {
+    border-radius: 150px;
+    border: 5px goldenrod;
+    background: goldenrod;
+}
+
+.borderVerActas {
+    border-radius: 150px;
+    border: 5px solid wheat;
+    background: wheat;
+}
+
+.borderPlanTrabajo {
+    border-radius: 150px;
+    border: 5px solid coral;
+    background: coral;
+}
+
+.borderAgregarActa {
+    border-radius: 150px;
+    border: 5px goldenrod;
+    background: goldenrod;
+}
+
+.borderEvaluacionProfesor {
+    border-radius: 150px;
+    border: 5px solid wheat;
+    background: wheat;
+}
+
+.borderEvaluacionPresidente {
+    border-radius: 150px;
+    border: 5px solid tomato;
+    background: tomato;
 }
