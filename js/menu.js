@@ -15,3 +15,7 @@ function cambiar(ruta) {
 function cerrarSesion() {
     window.location.href = "index.html";
 }
+
+function modificar() {
+    window.location.href = "modificar.html?id=" + id + "&mod=" + id;
+}
