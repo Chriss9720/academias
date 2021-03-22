@@ -68,7 +68,6 @@ function construir(obj) {
     tdI.setAttribute("class", "tdContenidoEliminar");
     //contenedor de la info
     var tabla = document.createElement("table");
-    tabla.setAttribute("class", "tdValorEliminar");
     var trI = document.createElement("tr");
     var tdI2 = document.createElement("td");
     //tabla final
