@@ -35,7 +35,7 @@ body {
 .rcorners2 {
     position: absolute;
     border-radius: 25px;
-    background: goldenrod;
+    background: gray;
     width: 450px;
     height: 50px;
     top: 4%;

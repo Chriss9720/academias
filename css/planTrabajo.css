@@ -8,8 +8,7 @@
 }
 
 body {
-    background-image: url("BlueBackground.PNG");
-    background-color: linen;
+    background-color: darkred;
 }
 
 .tablaProc {
@@ -75,7 +74,7 @@ textarea {
 .rcorners2Menu {
     position: absolute;
     border-radius: 25px;
-    background: goldenrod;
+    background: gray;
     width: 650px;
     height: 50px;
     top: 4%;

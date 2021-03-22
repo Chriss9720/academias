@@ -9,8 +9,7 @@
 }
 
 body {
-    background-image: url("BlueBackground.PNG");
-    background-color: linen;
+    background-color: darkred;
 }
 
 .subtitleAd {
@@ -40,7 +39,7 @@ body {
 .rcorners2 {
     position: absolute;
     border-radius: 25px;
-    background: goldenrod;
+    background: gray;
     width: 450px;
     height: 50px;
     top: 2%;
@@ -197,4 +196,24 @@ body {
     border-radius: 150px;
     border: 5px solid aquamarine;
     background: aquamarine;
+}
+.ImgSalir {
+    width: 80px;
+    height: 50px;
+    position: absolute;
+    left: -2%;
+    top: -3%;
+}
+.button {
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    position: absolute;
+    border-radius: 12px;
 }
