@@ -4,14 +4,6 @@
     left: 5%;
 }
 
-.font {
-    font-family: "Lucida Console", "Courier New", monospace;
-}
-
-body {
-    background-color: darkred;
-}
-
 .sub {
     font-size: 140%;
 }

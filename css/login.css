@@ -10,14 +10,6 @@
     text-align: center;
 }
 
-body {
-    background-color: darkred;
-}
-
-.font {
-    font-family: "Lucida Console", "Courier New", monospace;
-}
-
 .subtitleLogin {
     font-size: 300%;
 }
