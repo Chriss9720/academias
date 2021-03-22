@@ -14,17 +14,17 @@
 
 <body onload="cargando()">
     <div class="rcorners1">
-    
+
         <img id="fotoPerfil" class="ImgSalir" src="img/BotonSalir.png" alt="not found" />
         <table>
             <tr>
                 <td>
-                    <h4 class="subtitleAd font">Administrador:</h4>
+                    <h4 class="sub font">Administrador:</h4>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <table cellspacing="50" class="tableInterior font">
+                    <table cellspacing="50" class="font">
                         <tr>
                             <td class="borderRegistrar size">
                                 <input name="Registrar" class="borderRegistrar size fontBut" type="button" value="Registrar personal" onclick="cambiar('registrar')">
@@ -42,8 +42,13 @@
                             <td class="borderEliminarAcademia size">
                                 <input name="EliminarAcademia" class="borderEliminarAcademia size fontBut" type="button" value="Eliminar Academia">
                             </td>
-                            <td class="borderbtn5 size">
-                                <input name="AgregarAcademia" class="btn5 size fontBut" type="button" type="button" value="Agregar Academia">
+                        </tr>
+                        <tr>
+                            <td class="borderRegistrar size">
+                                <input name="AgregarAcademia" class="borderRegistrar size fontBut" type="button" type="button" value="Agregar Academia">
+                            </td>
+                            <td class="borderAgregarAcademia size">
+                                <input name="Eliminar" class="borderAgregarAcademia size fontBut" type="button" value="Modificar Academia" onclick="cambiar('eliminar')">
                             </td>
                         </tr>
                     </table>
@@ -51,12 +56,12 @@
             </tr>
             <tr>
                 <td>
-                    <h4 class="subtitlePer font">Personal:</h4>
+                    <h4 class="sub font">Personal:</h4>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <table cellspacing="50" class="tableInterior2 font">
+                    <table cellspacing="50" class="font">
                         <tr>
                             <td class="borderModificar size">
                                 <input name="Modificar" class="borderModificar size fontBut" type="button" value="Modificar" onclick="modificar('modificar')">
@@ -76,12 +81,12 @@
             </tr>
             <tr>
                 <td>
-                    <h4 class="subtitleAc font">Academia:</h4>
+                    <h4 class="sub font">Academia:</h4>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <table cellspacing="50" class="tableInterior3 font">
+                    <table cellspacing="50" class="font">
                         <tr>
                             <td class="borderMiembros size">
                                 <input name="Miembros" class="borderMiembros size fontBut" type="button" value="Miembros" onclick="cambiar('buscar')">
@@ -98,12 +103,12 @@
             </tr>
             <tr>
                 <td>
-                    <h4 class="subtitleGen font">Generar:</h4>
+                    <h4 class="sub font">Generar:</h4>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <table cellspacing="50" class="tableInterior4 font">
+                    <table cellspacing="50" class="font">
                         <tr>
                             <td class="borderPlanTrabajo size">
                                 <input name="PlanTrabajo" class="borderPlanTrabajo size fontBut" type="button" value="Plan de Trabajo" onclick="cambiar('planTrabajo')">

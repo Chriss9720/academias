@@ -12,10 +12,8 @@ body {
     background-color: darkred;
 }
 
-.subtitleAd {
-    position: absolute;
+.sub {
     font-size: 140%;
-    top: 2%;
 }
 
 .subtitlePer {
@@ -51,8 +49,8 @@ body {
     border-radius: 25px;
     background: white;
     padding: 20px;
-    width: 1465px;
-    height: 790px;
+    width: auto;
+    height: auto;
     top: 5%;
     left: 5%;
 }
@@ -71,30 +69,6 @@ body {
 .size {
     height: 120px;
     width: 250px;
-}
-
-.tableInterior {
-    position: absolute;
-    top: 5%;
-    left: -3.2%;
-}
-
-.tableInterior2 {
-    position: absolute;
-    top: 28%;
-    left: -3.2%;
-}
-
-.tableInterior3 {
-    position: absolute;
-    top: 50%;
-    left: -3.2%;
-}
-
-.tableInterior4 {
-    position: absolute;
-    top: 73%;
-    left: -3.2%;
 }
 
 .fontBut {
@@ -197,6 +171,7 @@ body {
     border: 5px solid aquamarine;
     background: aquamarine;
 }
+
 .ImgSalir {
     width: 80px;
     height: 50px;
@@ -204,6 +179,7 @@ body {
     left: -2%;
     top: -3%;
 }
+
 .button {
     border: none;
     color: white;
