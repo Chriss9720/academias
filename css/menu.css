@@ -68,88 +68,28 @@
     font-family: "Lucida Console", "Courier New", monospace;
 }
 
-.borderAgregarAcademia {
+.btn2 {
     border-radius: 150px;
     border: 5px goldenrod;
     background: goldenrod;
 }
 
-.borderEliminar {
+.btn3 {
     border-radius: 150px;
     border: 5px solid wheat;
     background: wheat;
 }
 
-.borderEliminarAcademia {
+.btn4 {
     border-radius: 150px;
     border: 5px solid tomato;
     background: tomato;
 }
 
-.borderRegistrar {
+.btn1 {
     border-radius: 150px;
     border: 5px solid coral;
     background: coral;
-}
-
-.borderModificar {
-    border-radius: 150px;
-    border: 5px solid coral;
-    background: coral;
-}
-
-.borderMiPerfil {
-    border-radius: 150px;
-    border: 5px goldenrod;
-    background: goldenrod;
-}
-
-.borderDocumentosPendientes {
-    border-radius: 150px;
-    border: 5px solid wheat;
-    background: wheat;
-}
-
-.borderMiembros {
-    border-radius: 150px;
-    border: 5px solid coral;
-    background: coral;
-}
-
-.borderVerPlanTrabajo {
-    border-radius: 150px;
-    border: 5px goldenrod;
-    background: goldenrod;
-}
-
-.borderVerActas {
-    border-radius: 150px;
-    border: 5px solid wheat;
-    background: wheat;
-}
-
-.borderPlanTrabajo {
-    border-radius: 150px;
-    border: 5px solid coral;
-    background: coral;
-}
-
-.borderAgregarActa {
-    border-radius: 150px;
-    border: 5px goldenrod;
-    background: goldenrod;
-}
-
-.borderEvaluacionProfesor {
-    border-radius: 150px;
-    border: 5px solid wheat;
-    background: wheat;
-}
-
-.borderEvaluacionPresidente {
-    border-radius: 150px;
-    border: 5px solid tomato;
-    background: tomato;
 }
 
 .btn5 {

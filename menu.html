@@ -4,7 +4,7 @@
 <head>
     <title>MENU</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/compartidos.css" />
     <link rel="stylesheet" href="css/load.css" />
@@ -27,29 +27,35 @@
                 <td>
                     <table cellspacing="50" class="font">
                         <tr>
-                            <td class="borderRegistrar size">
-                                <input name="Registrar" class="borderRegistrar size fontBut" type="button" value="Registrar personal" onclick="cambiar('registrar')">
+                            <td>
+                                <input class="btn1 size fontBut" type="button" value="Registrar personal" onclick="cambiar('registrar')">
                             </td>
-                            <td class="borderAgregarAcademia size">
-                                <input name="Eliminar" class="borderAgregarAcademia size fontBut" type="button" value="Eliminar personal" onclick="cambiar('eliminar')">
+                            <td>
+                                <input class="btn2 size fontBut" type="button" value="Eliminar personal" onclick="cambiar('eliminar')">
                             </td>
-                            <td class="borderEliminar size">
-                                <button name="AgregarAcademia" class="borderEliminar size fontBut" onclick="cambiar('buscar')">
+                            <td>
+                                <button class="btn3 size fontBut" onclick="cambiar('buscar')">
                                     <label>
                                         Modificar ó visualizar personal
                                     </label>
                                 </button>
                             </td>
-                            <td class="borderEliminarAcademia size">
-                                <input name="EliminarAcademia" class="borderEliminarAcademia size fontBut" type="button" value="Eliminar Academia">
+                            <td>
+                                <input class="btn4 size fontBut" type="button" value="Eliminar Academia">
                             </td>
                         </tr>
                         <tr>
-                            <td class="borderRegistrar size">
-                                <input name="AgregarAcademia" class="borderRegistrar size fontBut" type="button" type="button" value="Agregar Academia">
+                            <td>
+                                <input class="btn1 size fontBut" type="button" type="button" value="Agregar Academia">
                             </td>
-                            <td class="borderAgregarAcademia size">
-                                <input name="Eliminar" class="borderAgregarAcademia size fontBut" type="button" value="Modificar Academia" onclick="cambiar('eliminar')">
+                            <td>
+                                <input class="btn2 size fontBut" type="button" value="Modificar Academia">
+                            </td>
+                            <td>
+                                <input class="btn3 size fontBut" type="button" value="Agregar carrera">
+                            </td>
+                            <td>
+                                <input class="btn4 size fontBut" type="button" value="Modificar carrera">
                             </td>
                         </tr>
                     </table>
@@ -64,17 +70,21 @@
                 <td>
                     <table cellspacing="50" class="font">
                         <tr>
-                            <td class="borderModificar size">
-                                <input name="Modificar" class="borderModificar size fontBut" type="button" value="Modificar" onclick="modificar('modificar')">
+                            <td>
+                                <input class="btn1 size fontBut" type="button" value="Modificar" onclick="modificar('modificar')">
                             </td>
-                            <td class="borderMiPerfil size">
-                                <input name="MiPerfil" class="borderMiPerfil size fontBut" type="button" value="Mi Perfil" onclick="cambiar('visualizar')">
+                            <td>
+                                <input class="btn2 size fontBut" type="button" value="Mi Perfil" onclick="cambiar('visualizar')">
                             </td>
-                            <td class="borderDocumentosPendientes size">
-                                <input name="DocumentosPendientes" class="borderDocumentosPendientes size fontBut" type="button" value="Docs. Pendientes">
+                            <td>
+                                <button class="btn3 size fontBut"> 
+                                    <label>
+                                        Documentos Pendientes
+                                    </label>
+                                </button>
                             </td>
-                            <td class="borderEliminarAcademia size">
-                                <input name="EliminarAcademia" class="borderEliminarAcademia size fontBut" type="button" value="Ver evaluación">
+                            <td>
+                                <input class="btn4 size fontBut" type="button" value="Ver evaluación">
                             </td>
                         </tr>
                     </table>
@@ -89,14 +99,14 @@
                 <td>
                     <table cellspacing="50" class="font">
                         <tr>
-                            <td class="borderMiembros size">
-                                <input name="Miembros" class="borderMiembros size fontBut" type="button" value="Miembros" onclick="cambiar('buscar')">
+                            <td>
+                                <input class="btn1 size fontBut" type="button" value="Miembros" onclick="cambiar('buscar')">
                             </td>
-                            <td class="borderVerPlanTrabajo size">
-                                <input name="VerPlanTrabajo" class="borderVerPlanTrabajo size fontBut" type="button" value=" Ver Plan Trabajo">
+                            <td>
+                                <input class="btn2 size fontBut" type="button" value=" Ver Plan Trabajo">
                             </td>
-                            <td class="borderVerActas size">
-                                <input name="VerActas" class="borderVerActas size fontBut" type="button" value="Ver Actas">
+                            <td>
+                                <input class="btn3 size fontBut" type="button" value="Ver Actas">
                             </td>
                         </tr>
                     </table>
@@ -111,17 +121,17 @@
                 <td>
                     <table cellspacing="50" class="font">
                         <tr>
-                            <td class="borderPlanTrabajo size">
-                                <input name="PlanTrabajo" class="borderPlanTrabajo size fontBut" type="button" value="Plan de Trabajo" onclick="cambiar('planTrabajo')">
+                            <td>
+                                <input class="btn1 size fontBut" type="button" value="Plan de Trabajo" onclick="cambiar('planTrabajo')">
                             </td>
-                            <td class="borderAgregarActa size">
-                                <input name="AgregarActa" class="borderAgregarActa size fontBut" type="button" value="Agregar Acta">
+                            <td>
+                                <input class="btn2 size fontBut" type="button" value="Agregar Acta">
                             </td>
-                            <td class="borderEvaluacionProfesor size">
-                                <input name="EvaluacionProfesor" class="borderEvaluacionProfesor size fontBut" type="button" value="Evaluar Profesor">
+                            <td>
+                                <input class="btn3 size fontBut" type="button" value="Evaluar Profesor">
                             </td>
-                            <td class="borderEvaluacionPresidente size">
-                                <input name="EvaluarPresidente" class="borderEvaluacionPresidente size fontBut" type="button" value=" Evaluar Presidente">
+                            <td>
+                                <input class="btn4 size fontBut" type="button" value=" Evaluar Presidente">
                             </td>
                         </tr>
                     </table>
