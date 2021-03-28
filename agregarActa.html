@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="js/menu.js"></script>
+    <link rel="stylesheet" href="css/compartidos.css" />
+    <link rel="stylesheet" href="css/load.css" />
+    <link rel="stylesheet" href="css/agrActa.css" />
+    <title>Acta de academia</title>
+</head>
+
+<body class="font">
+    <div class="rcornersProcCritico">
+        <input class="button buttonRegresar1" type="button" value="Regresar" onclick="cambiar('menu')" />
+        <label class="labelAct">Act. No.</label>
+
+        <table class="tablaProc" cellspacing="10" cellpadding="3">
+            <tr>
+                <td><label class="contenidoProc">Fecha de Inicio:</label></td>
+                <td><input name="fechaInicio" type="datetime-local" class="contenidoReunion" /></td>
+                <td><label class="contenidoProc">Lugar:</label></td>
+                <td><input name="lugar" type="text" class="contenidoProc" /></td>
+            </tr>
+            <tr>
+                <td><label class="contenidoProc">Academia:</label></td>
+                <td><select id="academia" name="SearchCarr" class="contenidoBusqueda">
+                        <option>ISC</option>
+                    </select></td>
+                <td><label>Presidente:</label></td>
+                <td><select id="presidente" name="SearchPres" class="contenidoBusqueda">
+                        <option>---</option>
+                    </select></td>
+
+            </tr>
+            <tr>
+                <td><label>Secretario:</label></td>
+                <td><select id="secretario" name="SearchSecre" class="contenidoBusqueda">
+                        <option>---</option>
+                    </select></td>
+            </tr>
+
+        </table>
+        <div class="divOrden">
+            <label class="labelOrden">Orden del Día</label>
+            <textarea class="textAreaOrden"></textarea>
+
+        </div>
+
+        <div class="divSeguimiento">
+            <label class="labelSeguimiento">SEGUIMIENTO DE ACUERDOS ANTERIORES</label>
+            <table class="tablaSeguimiento" cellspacing="3" cellpadding="3">
+                <tr class="trCabecera">
+                    <td class="tdSegui">
+                        <label>ACUERDOS</label>
+                    </td>
+                    <td class="tdSegui">
+                        <label>RESPONSABLE</label>
+                    </td>
+                    <td class="tdSegui">
+                        <label>FECHA DE CUMPLIMIENTO</label>
+                    </td>
+                    <td class="tdSegui">
+                        <label>AVANCE</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label><textarea class="txtArea"></textarea></label>
+                    </td>
+                    <td class="tdResponsable">
+                        <label>Buscar:</label>
+                        <input id="BAct2L" type="text" onkeyup="buscar('BAct2L')" />
+                        <input id="AAct2" type="checkbox" onClick="Todos('2')"><label>Todos</label>
+                        <scroll-container>
+                            <scroll-page>
+                                <table id="TBAct2L">
+                                </table>
+                            </scroll-page>
+                        </scroll-container>
+                    </td>
+                    <td>
+                        <label><input name="fechaCump" type="datetime-local" class="contenidoReunion" /></label>
+                    </td>
+                    <td>
+                        <label><textarea class="txtArea"></textarea></label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="divAcuerdos">
+            <label class="labelSeguimiento ">ACUERDOS DE REUNIÓN</label>
+            <input class="button buttonAgregar" type="button" value="Agregar Acuerdo" />
+            <table class="tablaAcuerdos">
+                <tr class="trCabecera">
+                    <td class="tdSegui"><label>ACUERDO</label></td>
+                    <td class="tdSegui"><label>RESPONSABLE</label></td>
+                    <td class="tdSegui"><label>FECHA DE CUMPLIMIENTO</label></td>
+                </tr>
+                <tr>
+                    <td><label><textarea class="txtArea"></textarea></label></td>
+                    <td class="tdResponsable">
+                        <label>Buscar:</label>
+                        <input id="BAct2L" type="text" onkeyup="buscar('BAct2L')" />
+                        <input id="AAct2" type="checkbox" onClick="Todos('2')"><label>Todos</label>
+                        <scroll-container>
+                            <scroll-page>
+                                <table id="TBAct2L">
+                                </table>
+                            </scroll-page>
+                        </scroll-container>
+                    </td>
+                    <td>
+                        <label><input name="fechaCump" type="datetime-local" class="contenidoReunion" /></label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="divFinal">
+            <table cellspacing="10" cellpadding="3">
+                <tr class="trFinal">
+                    <td ><label >HORA FINAL DE REUNIÓN</label></td>
+                    <td><input name="HoraFinal" type="time" class="contenidoProc" /></td>
+                </tr>
+            </table>
+            
+        </div>
+
+        <div class="divConstancia">
+            <label class="labelSeguimiento ">CONSTANCIA DE APROBACIÓN</label>
+            <label class="labelAprobacion">Nombre y firma de los miembros de la academia que asistieron a la reunión 
+                y manifiestan su aprobación para la presente acta.</label>
+            <table class="tablaCons">
+                <tr class="trCabecera">
+                    <td class="tdSegui"><label>PROFESOR</label></td>
+                    <td class="tdSegui"><label>MATERIA QUE IMPARTE</label></td>
+                    <td class="tdSegui"><label>FIRMA</label></td>
+                </tr>
+                <tr>
+                    <td><select id="presidente" name="SearchPres" class="contenidoBusqueda">
+                        <option>---</option>
+                    </select></td>
+                   
+                    <td><select id="presidente" name="SearchPres" class="contenidoBusqueda">
+                        <option>---</option>
+                    </select></td>
+                    
+                    <td><label><textarea class="txtArea"></textarea></label></td>
+                </tr>
+                <label class="labelObs">OBSERVACIONES:</label>
+                <textarea class="txtAreaObs"></textarea>
+            </table>
+        </div>
+
+
+    </div>
+    <div class="rcorners2Menu">
+        <h1 class="titleMenu font">ACTA DE ACADEMIAS</h1>
+    </div>
+</body>
+
+</html>

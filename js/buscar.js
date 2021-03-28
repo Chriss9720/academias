@@ -87,7 +87,6 @@ function construir(obj) {
 
         var tdInp = document.createElement("td");
         var inp = document.createElement("input");
-        inp.setAttribute("class", "tdValorEliminar");
         inp.disabled = true;
         inp.value = value[i];
         tdInp.appendChild(inp);

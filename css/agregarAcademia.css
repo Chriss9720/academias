@@ -1,0 +1,82 @@
+.title {
+    position: absolute;
+    top: -20%;
+    left: 5%;
+}
+
+.cuerpoAgregarAcademia {
+    position: absolute;
+    top: 10%;
+}
+
+.contenido {
+    width: 145px;
+    height: 30px;
+}
+
+.therror {
+    text-align: center;
+}
+
+.error {
+    font-size: .75em;
+    color: red;
+}
+
+.rcorners2 {
+    position: absolute;
+    border-radius: 25px;
+    background: gray;
+    width: 450px;
+    height: 50px;
+    top: 4%;
+    left: 20%;
+}
+
+.rcorners1 {
+    position: absolute;
+    border-radius: 25px;
+    background: white;
+    padding: 20px;
+    width: 750px;
+    height: 580px;
+    top: 8%;
+    left: 25%;
+}
+
+.button {
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    position: absolute;
+    border-radius: 12px;
+}
+
+.buttonRegresar {
+    top: 2%;
+    background-color: #08c211;
+    left: 86%;
+}
+
+.subtitle {
+    position: absolute;
+    font-size: 150%;
+    top: 5%;
+}
+
+.buttonCancelar {
+    top: 90%;
+    background-color: #cc1010;
+}
+
+.buttonRegistrar {
+    top: 90%;
+    background-color: #087ac2;
+    left: 86%;
+}
