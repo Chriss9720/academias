@@ -17,7 +17,7 @@
 
 <body>
     <div class="fijadoEliminar">
-        <table cellspacing="10" cellpadding="3" class="BusquedaEliminar">
+        <table cellspacing="14" cellpadding="2" class="BusquedaEliminar">
             <tr>
                 <td><label class="contenidoBusqueda">Nombre(s):</label></td>
                 <td><label class="contenidoBusqueda">Carrera:</label></td>
@@ -43,6 +43,7 @@
         <input class="button buttonLimpiar" type="button" value="Limpiar" onclick="cambiar('buscar')" />
         <input class="button button1Eliminar" type="button" value="Regresar" onclick="cambiar('menu')" />
     </div>
+
     <div class="rcornersEliminar">
         <scroll-container>
             <scroll-page id="page">
@@ -50,10 +51,12 @@
                     <tr class="trContentElimiar">
                         <td class="tdImgEliminar"><img class="imgEliminar" src="img/Hector.png"></td>
                         <td class="tdContenidoEliminar">
+
                             <table>
                                 <tr>
                                     <td>
                                         <table class="cuerpoEliminar" cellspacing="3" cellpadding="3">
+
                                             <tr>
                                                 <td><label class="contenidoEliminar">Nómina:</label></td>
                                                 <td><input disabled=""></td>
@@ -72,6 +75,74 @@
                                             </tr>
                                         </table>
                                     </td>
+
+                                    <td>
+                                        <table class="cuerpoEliminar" cellspacing="3" cellpadding="3">
+                                            <th>Permisos de Admin:</th>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Crear y modificar el plan de trabajo</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Registrar personal</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Eliminar personal</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Modificar, visualizar, permisos</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Eliminar academia</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Agregar academia</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Modificar academia</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Agregar carrera</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Modificar carrera</label></td>   
+                                            </tr>
+                                        </table>
+                                    </td>
+
+                                    <td>
+                                        <table class="cuerpoEliminar" cellspacing="3" cellpadding="3">
+                                            <th>Permisos Generales:</th>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Agregar Acta</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Modificar Acta</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Evaluar Profesor</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Modificar evaluación profesor</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Evaluar Presidente</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Modificar evaluación precidente</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input class="button buttonAplicarP" type="button" value="Aplicar Permisos">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+
                                 </tr>
                                 <tr>
                                     <td>
@@ -79,6 +150,7 @@
                                         <input class="button button2Eliminar" type="button" value="Visualizar">
                                     </td>
                                 </tr>
+
                             </table>
                         </td>
                     </tr>
@@ -86,9 +158,11 @@
             </scroll-page>
         </scroll-container>
     </div>
+
     <div class="rcorners2">
         <h1 class="title font">Personal en Sistema</h1>
     </div>
+
 </body>
 
 </html>

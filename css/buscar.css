@@ -3,7 +3,7 @@
     border-radius: 25px;
     background: white;
     padding: 20px;
-    width: 900px;
+    width: 1100px;
     height: 125px;
     top: 8%;
     left: 15%;
@@ -33,9 +33,9 @@
 }
 
 .button1Eliminar {
-    top: 5%;
+    top: 8%;
     background-color: #08c211;
-    left: 85%;
+    left: 90%;
 }
 
 .tablaElimiar {
@@ -71,7 +71,7 @@
     border-radius: 25px;
     background: white;
     padding: 20px;
-    width: 900px;
+    width: 1100px;
     height: 55%;
     top: 35%;
     left: 15%;
@@ -92,6 +92,11 @@
 }
 
 .button2Eliminar {
+    background-color: #cc1010;
+    position: initial;
+}
+
+.buttonAplicarP {
     background-color: #cc1010;
     position: initial;
 }
