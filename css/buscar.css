@@ -123,3 +123,11 @@ scroll-container {
     height: 100%;
     overflow-y: scroll;
 }
+
+.colorVis {
+    background-color: black;
+}
+
+.colorMod {
+    background-color: cadetblue;
+}

@@ -1,8 +1,8 @@
 var obj;
 
 function cargarDatos() {
-    crearLoad('rcornersEliminar');
     cargando();
+    crearLoad('rcornersEliminar');
     obj = [{
         foto: "img/Hector.png",
         nomina: "12345678",
@@ -173,14 +173,21 @@ function construir(obj) {
     var tr2 = document.createElement('tr');
     var td22 = document.createElement('td');
     var Mod = document.createElement('input')
-    Mod.setAttribute('class', 'button button2Eliminar');
+    Mod.setAttribute('class', 'button button2Eliminar colorMod');
     Mod.type = 'button';
     Mod.value = 'Modificar';
     var Vis = document.createElement('input')
-    Vis.setAttribute('class', 'button button2Eliminar');
+    Vis.setAttribute('class', 'button button2Eliminar colorVis');
     Vis.type = 'button';
     Vis.value = 'Visualizar';
-
+    var Del = document.createElement('input')
+    Del.setAttribute('class', 'button button2Eliminar');
+    Del.type = 'button';
+    Del.value = 'Eliminar';
+    Del.addEventListener('click', function() {
+        crear(obj['nomina']);
+    }, false)
+    td22.appendChild(Del);
     td22.appendChild(Mod);
     td22.appendChild(Vis);
     tr2.appendChild(td22);
@@ -192,6 +199,129 @@ function construir(obj) {
     t.appendChild(tbody);
 }
 
+function crear(name) {
+    var d = document.createElement("DIALOG");
+    d.setAttribute("ID", "d1");
+    var txt = document.createElement("label");
+    var yes = document.createElement("button");
+    var not = document.createElement("button");
+    var img = document.createElement("img");
+
+    txt.setAttribute("style", "position: absolute; top: 20%")
+
+    txt.innerHTML = '¿Seguro que desea eliminar al usuario: ' + name + '?';
+    yes.innerHTML = "&#161;Si&#33;";
+    not.innerHTML = "&#161;No&#33;";
+
+    img.src = "img/advertencia.jpg";
+    img.setAttribute("width", "50px")
+    img.setAttribute("height", "50px")
+    d.appendChild(img);
+
+    yes.setAttribute("id", "si");
+    yes.setAttribute("style", "top: 50%;position: absolute;left: 80%; background-color: #08c211;");
+    yes.setAttribute("class", "button");
+    yes.addEventListener("click", function() {
+        confirmar(d, txt, yes, not, img, name);
+    }, false);
+
+    not.setAttribute("id", "no");
+    not.setAttribute("style", "top: 50%;position: absolute;left: 5%; background-color: #cc1010;");
+    not.setAttribute("class", "button");
+    not.addEventListener("click", function() {
+        document.getElementById("d1").remove();
+    }, false);
+
+    d.appendChild(txt);
+    d.appendChild(yes);
+    d.appendChild(not);
+
+    d.style.height = "150px";
+    d.style.width = "350px";
+    document.body.append(d);
+    d.showModal();
+}
+
+function confirmar(d, txt, yes, not, img, name) {
+    d.removeChild(yes);
+    txt.innerHTML = "Ingrese su contrase&#241;a para continuar";
+    var psw = document.createElement("input");
+    psw.setAttribute("type", "password");
+    psw.setAttribute("class", "contenidoBusqueda")
+    psw.setAttribute("style", "top: 35%;position: absolute;left: 15%");
+    d.appendChild(psw);
+    not.innerHTML = "Cancelar";
+    var cont = document.createElement("button");
+    cont.setAttribute("style", "top: 50%;position: absolute;left: 80%; background-color: #08c211;");
+    cont.setAttribute("class", "button");
+    cont.innerHTML = "Eliminar";
+    cont.style.left = "50%";
+    cont.style.top = "60%";
+    not.style.top = "60%";
+    d.appendChild(cont);
+    cont.addEventListener("click", function() {
+        if (psw.value.length === 0) {
+            error(d, txt, cont, img, psw, name);
+        } else {
+            crearLoad('rcornersEliminar');
+            recrear();
+            var nuevo = [];
+            for (var i = 0; i < obj.length; i++) {
+                console.log(obj[i]['nomina'] + " vs " + name);
+                if (obj[i]['nomina'] !== name) {
+                    nuevo.push(obj[i])
+                }
+            }
+            console.log(nuevo);
+            for (var i = 0; i < nuevo.length; i++) {
+                construir(nuevo[i]);
+            }
+            removerLoad();
+            eliminado(d, txt, cont, img, psw, not);
+        }
+    }, false);
+}
+
+function error(d, txt, cont, img, psw, name) {
+    d.removeChild(psw);
+    d.removeChild(cont);
+    img.style.width = "100px";
+    img.style.height = "100px";
+    txt.innerHTML = "Contrase&#241;a incorrecta";
+    txt.style.top = "30%";
+    var cont = document.createElement("button");
+    cont.setAttribute("style", "top: 50%;position: absolute;left: 80%; background-color: #08c211;");
+    cont.setAttribute("class", "button");
+    cont.innerHTML = "Reeintentar";
+    cont.style.left = "50%";
+    cont.style.top = "60%";
+    d.appendChild(cont);
+    cont.addEventListener("click", function() {
+        d.remove();
+        crear(name);
+    })
+}
+
+function eliminado(d, txt, cont, img, psw, not) {
+    d.removeChild(psw);
+    d.removeChild(cont);
+    d.removeChild(not);
+    img.src = "img/sucess.png";
+    img.style.width = "100px";
+    img.style.height = "100px";
+    txt.innerHTML = "Eliminado";
+    txt.style.top = "30%";
+    var cont = document.createElement("button");
+    cont.setAttribute("style", "top: 50%;position: absolute;left: 80%; background-color: #08c211;");
+    cont.setAttribute("class", "button");
+    cont.innerHTML = "Cerrar";
+    cont.style.left = "50%";
+    cont.style.top = "60%";
+    d.appendChild(cont);
+    cont.addEventListener("click", function() {
+        d.remove();
+    })
+}
 
 function buscar() {
     recrear();
