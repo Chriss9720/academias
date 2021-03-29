@@ -23,6 +23,7 @@
 
 .tablaElimiarAcademia {
     border-collapse: collapse;
+    width: 100%;
 }
 
 .trContentElimiarAcademia {
@@ -39,7 +40,7 @@
     left: 30%
 }
 
-.BusquedaEliminarAcademia{
+.BusquedaEliminarAcademia {
     position: absolute;
     top: 10%;
     left: 5%
@@ -120,4 +121,14 @@ scroll-container {
     width: 100%;
     height: 100%;
     overflow-y: scroll;
+}
+
+.add {
+    background-color: blueviolet;
+    top: 35%;
+    left: 65%;
+}
+
+.mod {
+    background-color: black;
 }
