@@ -22,7 +22,7 @@
             </tr>
             <tr>
                 <td>
-                    <select id="academia" name="SearchAca" class="contenidoBusquedaAcademia" onchange="buscar()">
+                    <select id="academia" name="SearchAca" class="contenidoBusquedaAcademia">
                         <option value ="">Selecione una</option>
                     </select>
                 </td>
@@ -52,7 +52,7 @@
                                             <tr>
                                                 <td><label class="contenidoEliminarAcademia">Encargado(a) de la Academia:</label></td>
                                                 <td>
-                                                    <select class="contenidoBusquedaEncargado">
+                                                    <select class="contenidoBusquedaEncargado" disabled>
                                                         <option value ="">Seleciona una</option>
                                                     </select>
                                                 </td>
@@ -60,7 +60,7 @@
                                             <tr>
                                                 <td><label class="contenidoEliminarAcademia">Carrera Asociada:</label></td>
                                                 <td>
-                                                    <select class="contenidoBusquedaEncargado">
+                                                    <select class="contenidoBusquedaEncargado" disabled>
                                                         <option value ="">Seleciona una</option>
                                                     </select>
                                                 </td>
@@ -103,7 +103,7 @@
                         <label class="contenido">Nombre de la Academia:</label>
                     </td>
                     <td>
-                        <input class="contenido"/>
+                        <input class="contenido" />
                     </td>
                 </tr>
                 <tr>
@@ -111,7 +111,7 @@
                         <label class="contenido">Encargado(a) de la Academia:</label>
                     </td>
                     <td>
-                        <input class="contenido"/>
+                        <input class="contenido" />
                     </td>
                 </tr>
                 <tr>
@@ -124,8 +124,8 @@
                 </tr>
             </table>
 
-            <input class="button buttonCancelar" type="button" value="Cancelar"/>
-            <input class="button buttonRegistrar" type="button" value="Registrar"/>
+            <input class="button buttonCancelar" type="button" value="Cancelar" />
+            <input class="button buttonRegistrar" type="button" value="Registrar" />
 
         </form>
     </dialog>

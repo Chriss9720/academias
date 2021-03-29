@@ -51,6 +51,11 @@
     height: 30px;
 }
 
+.contenidoBusquedaEncargado {
+    width: 177px;
+    height: 25px;
+}
+
 .buttonBuscar {
     top: 65%;
     background-color: #3399ff;
@@ -131,4 +136,37 @@ scroll-container {
 
 .mod {
     background-color: black;
+}
+
+.cuerpoAgregarAcademia {
+    position: absolute;
+    top: 10%;
+}
+
+.contenido {
+    width: 145px;
+    height: 30px;
+}
+
+.dialogo {
+    top: -20%;
+    width: 28%;
+    height: 30%;
+}
+
+.buttonCancelar {
+    top: 80%;
+    background-color: #cc1010;
+}
+
+.buttonRegistrar {
+    top: 78%;
+    background-color: #087ac2;
+    left: 77%;
+}
+
+.subtitle {
+    position: absolute;
+    font-size: 150%;
+    top: 5%;
 }
