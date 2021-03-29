@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/load.js"></script>
+    <script type="text/javascript" src="js/academia.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
     <link rel="stylesheet" href="css/compartidos.css" />
     <link rel="stylesheet" href="css/load.css" />
     <link rel="stylesheet" href="css/Academia.css" />
@@ -27,7 +29,7 @@
             </tr>
         </table>
         <input class="button buttonRegresar" type="button" value="Regresar" />
-        <input value="Agregar Academia" type="button" class="button add">
+        <input value="Agregar Academia" type="button" class="button add" onclick='add()'>
     </div>
     <div class="rcornersEliminarAcademia">
         <scroll-container>
@@ -82,7 +84,9 @@
     <div class="rcorners2">
         <h1 class="title font">Academias</h1>
     </div>
+    <dialog id="add">
 
+    </dialog>
 </body>
 
 </html>
