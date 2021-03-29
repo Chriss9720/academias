@@ -28,18 +28,18 @@
             </tr>
             <tr>
                 <td><label class="contenidoProc">Academia:</label></td>
-                <td><select id="academia" name="SearchCarr" class="contenidoBusqueda">
+                <td><select name="SearchCarr" class="contenidoBusqueda">
                         <option>ISC</option>
                     </select></td>
                 <td><label>Presidente:</label></td>
-                <td><select id="presidente" name="SearchPres" class="contenidoBusqueda">
+                <td><select name="SearchPres" class="contenidoBusqueda">
                         <option>---</option>
                     </select></td>
 
             </tr>
             <tr>
                 <td><label>Secretario:</label></td>
-                <td><select id="secretario" name="SearchSecre" class="contenidoBusqueda">
+                <td><select name="SearchSecre" class="contenidoBusqueda">
                         <option>---</option>
                     </select></td>
             </tr>
@@ -75,11 +75,11 @@
                         </td>
                         <td class="tdResponsable">
                             <label>Buscar:</label>
-                            <input id="BAct2L" type="text" onkeyup="buscar('BAct2L')" />
-                            <input id="AAct2" type="checkbox" onClick="Todos('2')"><label>Todos</label>
+                            <input type="text" />
+                            <input type="checkbox" onClick="Todos('2')"><label>Todos</label>
                             <scroll-container>
                                 <scroll-page>
-                                    <table id="TBAct2L">
+                                    <table>
                                     </table>
                                 </scroll-page>
                             </scroll-container>
@@ -109,11 +109,11 @@
                         <td class="tdS"><label><textarea class="txtArea"></textarea></label></td>
                         <td class="tdResponsable">
                             <label>Buscar:</label>
-                            <input id="BAct2L" type="text" onkeyup="buscar('BAct2L')" />
-                            <input id="AAct2" type="checkbox" onClick="Todos('2')"><label>Todos</label>
+                            <input type="text" onkeyup="buscar('BAct2L')" />
+                            <input type="checkbox" onClick="Todos('2')"><label>Todos</label>
                             <scroll-container>
                                 <scroll-page>
-                                    <table id="TBAct2L">
+                                    <table>
                                     </table>
                                 </scroll-page>
                             </scroll-container>
@@ -145,16 +145,15 @@
                     <tr class="trCabecera">
                         <td class="tdSegui"><label>PROFESOR</label></td>
                         <td class="tdSegui"><label>MATERIA QUE IMPARTE</label></td>
-                        <td class="tdSegui"><label>FIRMA</label></td>
                     </tr>
                     <tr>
                         <td class="tdResponsable">
                             <label>Buscar:</label>
-                            <input id="BAct2L" type="text" onkeyup="buscar('BAct2L')" />
-                            <input id="AAct2" type="checkbox" onClick="Todos('2')"><label>Todos</label>
+                            <input type="text" onkeyup="buscar('BAct2L')" />
+                            <input type="checkbox" onClick="Todos('2')"><label>Todos</label>
                             <scroll-container>
                                 <scroll-page>
-                                    <table id="TBAct2L">
+                                    <table>
                                     </table>
                                 </scroll-page>
                             </scroll-container>
@@ -162,7 +161,6 @@
 
                         <td class="tdS"><label><textarea class="txtArea"></textarea></label></td>
 
-                        <td class="tdS"><label><textarea class="txtArea"></textarea></label></td>
                     </tr>
                 </tbody>
                 <label class="labelObs">OBSERVACIONES:</label>
