@@ -1,0 +1,203 @@
+.rcornersProcCritico {
+    position: absolute;
+    border-radius: 25px;
+    background: azure;
+    padding: 20px;
+    height: 1900px;
+    width: 100%;
+    top: 8%;
+    left: 0%;
+}
+
+.tablaProc {
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+}
+
+.contenidoProc {
+    width: 180px;
+    height: 30px;
+}
+
+.tdAct {
+    background-color: #cccccc;
+    border: 1px solid;
+    text-align: center;
+}
+
+.contenidoReunion {
+    height: 30px;
+}
+
+.contenidoPresidente {
+    width: 505px;
+    height: 30px;
+    top: 60%;
+    position: absolute;
+}
+
+.scroll-containerProc {
+    position: absolute;
+    overflow-y: auto;
+    width: 100%;
+    height: 440px;
+    top: 0%;
+}
+
+.tdResponsable {
+    width: 30%;
+    border: 1px solid;
+}
+
+.textArea{
+    height: 150px;
+}
+
+.buttonRegresar1 {
+    top: 2%;
+    left: 90%;
+}
+.buttonAgregar {
+    top: -2%;
+    left: 57%;
+    background-color: #0bbedd;
+}
+.buttonCrearActa {
+    top: 86%;
+    left: 84%;
+    background-color: #08c211;
+}
+
+.crear {
+    background-color: #0bbedd;
+    left: 90%;
+    top: 5%;
+}
+
+.titleMenu {
+    position: absolute;
+    top: -20%;
+    left: 13%;
+}
+
+.rcorners2Menu {
+    position: absolute;
+    border-radius: 25px;
+    background: gray;
+    width: 470px;
+    height: 50px;
+    top: 4%;
+    left: 35%;
+}
+
+.button {
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    position: absolute;
+    border-radius: 12px;
+}
+
+.buttonRegresar1 {
+    background-color: #08c211;
+    left: 90%;
+}
+
+.contenidoBusqueda {
+    width: 180px;
+    height: 30px;
+}
+.contenidoBusqPresidente{
+    width: 400px;
+    height: 30px;
+    position: absolute;
+    left: 33%;
+    top: 54%;
+}
+
+scroll-container {
+    display: block;
+    width: 100%;
+    height: 100px;
+    overflow-y: scroll;
+}
+
+.trCabecera{
+    height: 10%;
+}
+
+.trFinal{
+    position: absolute;
+    left: 35%;
+}
+
+.tdCabeza{
+    background-color: rgb(196, 196, 196);
+    text-align: center;
+
+}
+.labelCabeza{
+    background-color: gray;
+    border: 1px solid;
+    text-align: center;
+}
+.tdS{
+    border: 1px solid;
+    height: 10%;
+}
+.tdS2{
+    background-color: white;
+}
+
+.txtArea{
+    width: 98%;
+    height:100px;
+}
+
+.tbody{
+    border: 1px solid;
+}
+
+.tdEval{
+    width: 26%;
+}
+.divDatos{
+    position: absolute;
+    top: 5%;
+    left:4%;
+    width: 90%;
+    height: 10%;
+}
+
+.divEvaluacion{
+    position: absolute;
+    top: 18%;
+    left:4%;
+    width: 90%;
+    height: 10%;
+}
+
+.divCalif{
+    position: absolute;
+    top: 70%;
+    left:4%;
+    width: 90%;
+    height: 10%;
+}
+
+.labelCalif{
+    text-align: right;
+}
+
+.tdRes{
+    width: 30%;
+}
