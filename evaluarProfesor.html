@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="js/menu.js"></script>
+    <link rel="stylesheet" href="css/compartidos.css" />
+    <link rel="stylesheet" href="css/load.css" />
+    <link rel="stylesheet" href="css/evaProfesor.css" />
+    <title>Evaluar Profesor</title>
+
+<body class="font">
+    <div class="rcornersProcCritico">
+        <input class="button buttonRegresar1" type="button" value="Regresar" onclick="cambiar('menu')" />
+        <input class="button buttonCrearActa" type="button" value="Evaluar Profesor " />
+        <div class="divDatos">
+            <table class="tablaProc" cellspacing="10" cellpadding="3">
+                <tr>
+                    <td class="tdS tdCabeza"><label class="contenidoProc">FECHA:</label></td>
+                    <td class="tdS tdS2" colspan="2"><input name="fechaElaboracion" type="date"
+                            class="contenidoReunion" /></td>
+                    <td class="tdS tdCabeza" colspan="3"><label class="contenidoProc">PERIODO EVALUADO:</label></td>
+                    <td class="tdS tdS2" colspan="2"><input name="periodo" type="disable" class="contenidoProc" /></td>
+                </tr>
+                <tr>
+                    <td class="tdS tdCabeza"><label class="contenidoProc">NOMBRE DEL PROFESOR:</label></td>
+                    <td class="tdS tdS2" colspan="6"><select id="profesor" name="SearchProf"
+                            class="contenidoBusqueda">
+                            <option></option>
+                        </select></td>
+                </tr>
+                <tr>
+                    <td class="tdS tdCabeza"><label>JEFATURA A LA QUE PERTENECE:</label></td>
+                    <td class="tdS tdS2" colspan="6"> <select id="jefatura" name="SearchHef" class="contenidoBusqueda">
+                            <option>---</option>
+                        </select></td>
+
+                </tr>
+                <tr>
+                    <td class="tdS tdCabeza"><label class="contenidoProc">INDICADOR:</label></td>
+                    <td class="tdS tdCabeza" colspan="5"><label class="contenidoProc">RESPUESTA:</label></td>
+                    <td class="tdS tdCabeza"><label class="contenidoProc">EVALUACIÓN:</label></td>
+                </tr>
+                <tr>
+                    <td class="tdS tdCabeza"><label>Asistencia en el periodo (%)</label></td>
+                    <td class="tdS tdS2"><input type="radio" value="4"><br> 4 <br>
+                        4 reuniones atendidas
+                    </td>
+                    <td class="tdS tdS2"><input type="radio" value="3"><br> 3 <br>
+                        3 reuniones atendidas</td>
+                    <td class="tdS tdS2"><input type="radio" value="2"><br> 2 <br>
+                        2 reuniones atendidas</td>
+                    <td class="tdS tdS2"><input type="radio" value="1"><br> 1 <br>
+                        1 reunión atendida</td>
+                    <td class="tdS tdS2"><input type="radio" value="0"><br> 0 <br>
+                        0 reuniones atendidas</td>
+                    <td class="tdS tdS2"><textarea class="txtArea"></textarea></td>
+                </tr>
+                <tr>
+                    <td class="tdS tdCabeza"><label>Cumplimiento de acuerdos de Academias</label></td>
+                    <td class="tdS tdS2"><input type="radio" value="4"><br> 4 <br>
+                        100%
+                    </td>
+                    <td class="tdS tdS2"><input type="radio" value="3"><br> 3 <br>
+                        Entre 80% y 100%</td>
+                    <td class="tdS tdS2"><input type="radio" value="2"><br> 2 <br>
+                        Entre 60% y 40%</td>
+                    <td class="tdS tdS2"><input type="radio" value="1"><br> 1 <br>
+                        Entre 40% y 20%</td>
+                    <td class="tdS tdS2"><input type="radio" value="0"><br> 0 <br>
+                        Menos de 20%</td>
+                    <td class="tdS tdS2"><textarea class="txtArea"></textarea></td>
+                </tr>
+                <tr>
+                    <td class="tdS tdCabeza"><label>Participación Proactiva</label></td>
+                    <td class="tdS tdS2"><input type="radio" value="4"><br> 4 <br>
+                        Cuatro o más
+                    </td>
+                    <td class="tdS tdS2"><input type="radio" value="3"><br> 3 <br>
+                        Tres veces</td>
+                    <td class="tdS tdS2"><input type="radio" value="2"><br> 2 <br>
+                        Dos veces</td>
+                    <td class="tdS tdS2"><input type="radio" value="1"><br> 1 <br>
+                        Una vez</td>
+                    <td class="tdS tdS2"><input type="radio" value="0"><br> 0 <br>
+                        Ninguna</td>
+                    <td class="tdS tdS2"><textarea class="txtArea"></textarea></td>
+                </tr>
+                <tr>
+                    <td class="tdS tdCabeza"><label>Entrega oportuna de información de
+                            reprobación y bajas.</label></td>
+                    <td class="tdS tdS2"><input type="radio" value="4"><br> 4 <br>
+                        En tiempo
+                    </td>
+                    <td class="tdS tdS2"><input type="radio" value="3"><br> 3 <br>
+                        4 días de retraso</td>
+                    <td class="tdS tdS2"><input type="radio" value="2"><br> 2 <br>
+                        8 días de retraso</td>
+                    <td class="tdS tdS2"><input type="radio" value="1"><br> 1 <br>
+                        12 días de retraso</td>
+                    <td class="tdS tdS2"><input type="radio" value="0"><br> 0 <br>
+                        Más de 12 días de retraso</td>
+                    <td class="tdS tdS2"><textarea class="txtArea"></textarea></td>
+                </tr>
+                <tr>
+                    <td class="tdS tdCabeza"><label>Entrega de instrumentaciones didácticas</label></td>
+                    <td class="tdS tdS2"><input type="radio" value="4"><br> 4 <br>
+                        En tiempo
+                    </td>
+                    <td class="tdS tdS2"><input type="radio" value="3"><br> 3 <br>
+                        De 1 a 4 días de retraso</td>
+                    <td class="tdS tdS2"><input type="radio" value="2"><br> 2 <br>
+                        De 5 a 8 días de retraso</td>
+                    <td class="tdS tdS2"><input type="radio" value="1"><br> 1 <br>
+                        De 9 a12 días de retraso</td>
+                    <td class="tdS tdS2"><input type="radio" value="0"><br> 0 <br>
+                        Mas de 12 días de retraso</td>
+                    <td class="tdS tdS2"><textarea class="txtArea"></textarea></td>
+                </tr>
+
+            </table>
+        </div>
+        <div class="divCalif">
+            <table class="tablaProc" cellspacing="10" cellpadding="10">
+                <tr>
+                    <td class="tdCabeza tdS" colspan="3"><label class="labelCalif">Calificación final de
+                            Indicadores:</label></td>
+                    <td class="tdS tdS2"><input type="text"></td>
+                </tr>
+                <tr>
+                    <td class="tdS tdS2 tdRes"><label>Con base en el promedio obtenido,
+                            evalúe su recomendación de que
+                            continúe en funciones de presidente de academia</label></td>
+                    <td class="tdS tdS2"><input type="radio" value=""><br> 15 a 20 puntos <br>Sí
+                    </td>
+                    <td class="tdS tdS2"><input type="radio" value=""><br> 9 a 14 puntos <br>
+                        Condicionado a mejora</td>
+                    <td class="tdS tdS2"><input type="radio" value=""><br>
+                        9 o menos<br> No</td>
+                </tr>
+                <tr>
+                    <td class="tdS tdS2 tdRes" colspan="2"><label>Observaciones y
+                            comentarios</label></td>
+                    <td class="tdS tdS2" colspan="2"> <textarea class="txtArea"></textarea></td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+    <div class="rcorners2Menu">
+        <h1 class="titleMenu font">Evaluar Profesor </h1>
+    </div>
+</body>
+
+
+</html>

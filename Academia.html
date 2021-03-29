@@ -51,11 +51,19 @@
                                             </tr>
                                             <tr>
                                                 <td><label class="contenidoEliminarAcademia">Encargado(a) de la Academia:</label></td>
-                                                <td><input disabled=""></td>
+                                                <td>
+                                                    <select class="contenidoBusquedaEncargado">
+                                                        <option value ="">Seleciona una</option>
+                                                    </select>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td><label class="contenidoEliminarAcademia">Carrera Asociada:</label></td>
-                                                <td><input disabled=""></td>
+                                                <td>
+                                                    <select class="contenidoBusquedaEncargado">
+                                                        <option value ="">Seleciona una</option>
+                                                    </select>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td><label class="contenidoEliminarAcademia">Alta Academia:</label></td>
@@ -84,8 +92,42 @@
     <div class="rcorners2">
         <h1 class="title font">Academias</h1>
     </div>
-    <dialog id="add">
+    <dialog id="add" class="dialogo">
 
+        <p1 class="subtitle font">Ingrese info. de la Academia:</p1>
+
+        <form class="font" method="post" enctype="multipart/form-data">
+            <table cellspacing="3" cellpadding="15" class="cuerpoAgregarAcademia">
+                <tr>
+                    <td>
+                        <label class="contenido">Nombre de la Academia:</label>
+                    </td>
+                    <td>
+                        <input class="contenido"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="contenido">Encargado(a) de la Academia:</label>
+                    </td>
+                    <td>
+                        <input class="contenido"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="contenido">Carrera Asociada:</label></td>
+                    <td>
+                        <select class="contenido">
+                                <option value="0">No aplicable</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+
+            <input class="button buttonCancelar" type="button" value="Cancelar"/>
+            <input class="button buttonRegistrar" type="button" value="Registrar"/>
+
+        </form>
     </dialog>
 </body>
 
