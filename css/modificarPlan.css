@@ -1,0 +1,109 @@
+.rcornersProcCritico {
+    position: absolute;
+    border-radius: 25px;
+    background: azure;
+    padding: 20px;
+    top: 8%;
+    left: 0%;
+}
+
+.tablaProc {
+    text-align: center;
+    margin-left: 25%;
+}
+
+.contenidoProc {
+    width: 180px;
+    height: 30px;
+}
+
+.tdAct {
+    background-color: #cccccc;
+    border: 1px solid;
+    text-align: center;
+}
+
+.contenidoReunion {
+    height: 30px;
+}
+
+.contenidoPresidente {
+    width: 505px;
+    height: 30px;
+    top: 60%;
+    position: absolute;
+}
+
+.scroll-containerProc {
+    position: absolute;
+    overflow-y: auto;
+    width: 100%;
+    height: 440px;
+    top: 0%;
+}
+
+.tdResponsable {
+    width: 25%;
+}
+
+textarea {
+    height: 150px;
+}
+
+.buttonRegresar1 {
+    top: 2%;
+    left: 90%;
+}
+
+.crear {
+    background-color: #0bbedd;
+    left: 90%;
+    top: 5%;
+}
+
+.titleMenu {
+    position: absolute;
+    top: -20%;
+    left: 8%;
+}
+
+.rcorners2Menu {
+    position: absolute;
+    border-radius: 25px;
+    background: gray;
+    width: 650px;
+    height: 50px;
+    top: 4%;
+    left: 20%;
+}
+
+.button {
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    position: absolute;
+    border-radius: 12px;
+}
+
+.buttonRegresar1 {
+    background-color: #08c211;
+    left: 90%;
+}
+
+.contenidoBusqueda {
+    width: 180px;
+    height: 30px;
+}
+
+scroll-container {
+    display: block;
+    width: 100%;
+    height: 100px;
+    overflow-y: scroll;
+}

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/planTrabajo.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
+    <link rel="stylesheet" href="css/compartidos.css" />
+    <link rel="stylesheet" href="css/load.css" />
+    <link rel="stylesheet" href="css/modificarPlan.css" />
+    <title>Acta de academia</title>
+</head>
+
+<body onload="cargarUsuarios()">
+    <div class="rcornersProcCritico">
+        <input class="button buttonRegresar1" type="button" value="Regresar" onclick="cambiar('menu')" />
+        <input class="button crear" type="button" value="crear PDF" onclick="crearPDF()" />
+
+        <table class="tablaProc" cellspacing="10" cellpadding="3">
+            <tr>
+                <td><label class="contenidoProc">Academia:</label></td>
+                <td><select id="academia" name="SearchCarr" class="contenidoBusqueda">
+                    <option>ISC</option>
+                </select></td>
+                <td><label class="contenidoProc">Semestre:</label></td>
+                <td><input id="semestre" name="SemestreAcademia" type="text" class="contenidoProc" disabled value="Ene-Jun 2021" /></td>
+            </tr>
+            <tr>
+                <td><label>1ra Reunion:</label></td>
+                <td><input name="Reunion" type="datetime-local" class="contenidoReunion" /></td>
+                <td><label>2da Reunion:</label></td>
+                <td><input name="Reunion" type="datetime-local" class="contenidoReunion" /></td>
+            </tr>
+            <tr>
+                <td><label>3ra Reunion:</label></td>
+                <td><input name="Reunion" type="datetime-local" class="contenidoReunion" /></td>
+                <td><label>4ta Reunion:</label></td>
+                <td><input name="Reunion" type="datetime-local" class="contenidoReunion" /></td>
+            </tr>
+        </table>
+
+        <table cellpadding="10" border="3">
+            <tr>
+                <td class="tdAct"><label>No.</label></td>
+                <td class="tdAct"><label>Actividades</label></td>
+                <td class="tdAct"><label>Acciones específicas para cada actividad</label></td>
+                <td class="tdAct"><label>Asignaturas en las que impacta:</label></td>
+                <td class="tdAct"><label>Responsable</label></td>
+                <td class="tdAct"><label>Fecha de cumplimiento</label></td>
+                <td class="tdAct"><label>Evidencia a entregar</label></td>
+            </tr>
+            <tr>
+                <td class="tdAct"><label class="contenidoReunion">1</label></td>
+                <td><label class="contenidoReunion">Mejoras e innovación de procesos de 
+                                        enseñanza y aprendizaje, incluye implementación de casos, 
+                                        semanas académicas, visitas industriales, proyectos de 
+                                        desarrollo comunitario, etc.</label></td>
+                <td id="txt1"><textarea name="act1" id="textArea1"></textarea></td>
+                <td><textarea id="textArea2" name="act1"></textarea></td>
+                <td class="tdResponsable">
+                    <label>Buscar:</label>
+                    <input id="BAct1L" type="text" onkeyup="buscar('BAct1L')" />
+                    <input id="AAct1" type="checkbox" onClick="Todos('1')"><label>Todos</label>
+                    <scroll-container>
+                        <scroll-page>
+                            <table id="TBAct1L">
+                            </table>
+                        </scroll-page>
+                    </scroll-container>
+                </td>
+                <td><input name="act1" type="datetime-local"></td>
+                <td><textarea id="textArea3" name="act1"></textarea></td>
+            </tr>
+            <tr>
+                <td class="tdAct"><label class="contenidoReunion">2</label></td>
+                <td><label class="contenidoReunion">Uniformizar actividades de formación 
+                                        práctica en asignaturas, talleres y laboratorios.  </label></td>
+                <td><textarea id="textArea4"></textarea></td>
+                <td><textarea id="textArea5"></textarea></td>
+                <td class="tdResponsable">
+                    <label>Buscar:</label>
+                    <input id="BAct2L" type="text" onkeyup="buscar('BAct2L')" />
+                    <input id="AAct2" type="checkbox" onClick="Todos('2')"><label>Todos</label>
+                    <scroll-container>
+                        <scroll-page>
+                            <table id="TBAct2L">
+                            </table>
+                        </scroll-page>
+                    </scroll-container>
+                </td>
+                <td><input name="act" type="datetime-local"></td>
+                <td><textarea id="textArea6"></textarea></td>
+            </tr>
+            <tr>
+                <td class="tdAct"><label class="contenidoReunion">3</label></td>
+                <td><label class="contenidoReunion">Programación de viajes académicos y/o 
+                                        actividades de vinculación.</label></td>
+                <td><textarea id="textArea7"></textarea></td>
+                <td><textarea id="textArea8"></textarea></td>
+                <td class="tdResponsable">
+                    <label>Buscar:</label>
+                    <input id="BAct3L" type="text" onkeyup="buscar('BAct3L')" />
+                    <input id="AAct3" type="checkbox" onClick="Todos('3')"><label>Todos</label>
+                    <scroll-container>
+                        <scroll-page>
+                            <table id="TBAct3L">
+                            </table>
+                        </scroll-page>
+                    </scroll-container>
+                </td>
+                <td><input name="act" type="datetime-local"></td>
+                <td><textarea id="textArea9"></textarea></td>
+            </tr>
+            <tr>
+                <td class="tdAct"><label class="contenidoReunion">4</label></td>
+                <td><label class="contenidoReunion">Programa de seguimiento y solución 
+                                        estratégica de las materias (PSSEM). </label></td>
+                <td><textarea id="textArea10"></textarea></td>
+                <td><textarea id="textArea11"></textarea></td>
+                <td class="tdResponsable">
+                    <label>Buscar:</label>
+                    <input id="BAct4L" type="text" onkeyup="buscar('BAct4L')" />
+                    <input id="AAct4" type="checkbox" onClick="Todos('4')"><label>Todos</label>
+                    <scroll-container>
+                        <scroll-page>
+                            <table id="TBAct4L">
+                            </table>
+                        </scroll-page>
+                    </scroll-container>
+                </td>
+                <td><input name="act" type="datetime-local"></td>
+                <td><textarea id="textArea12"></textarea></td>
+            </tr>
+            <tr>
+                <td class="tdAct"><label class="contenidoReunion">5</label></td>
+                <td><label class="contenidoReunion">Integrar banco de proyectos integradores 
+                                        y de residencias profesionales.</label></td>
+                <td><textarea id="textArea13"></textarea></td>
+                <td><textarea id="textArea14"></textarea></td>
+                <td class="tdResponsable">
+                    <label>Buscar:</label>
+                    <input id="BAct5L" type="text" onkeyup="buscar('BAct5L')" />
+                    <input id="AAct5" type="checkbox" onClick="Todos('5')"><label>Todos</label>
+                    <scroll-container>
+                        <scroll-page>
+                            <table id="TBAct5L">
+                            </table>
+                        </scroll-page>
+                    </scroll-container>
+                </td>
+                <td><input name="act" type="datetime-local"></td>
+                <td><textarea id="textArea15"></textarea></td>
+            </tr>
+            <td class="tdAct">
+                <label class="contenidoReunion">6</label></td>
+            <td>
+                <label class="contenidoReunion">Revisión y actualización de requerimientos de bibliografía 
+                                    básica y de consulta de los programas de curso.</label></td>
+            <td><textarea id="textArea16"></textarea></td>
+            <td><textarea id="textArea17"></textarea></td>
+            <td class="tdResponsable">
+                <label>Buscar:</label>
+                <input id="BAct6L" type="text" onkeyup="buscar('BAct6L')" />
+                <input id="AAct6" type="checkbox" onClick="Todos('6')"><label>Todos</label>
+                <scroll-container>
+                    <scroll-page>
+                        <table id="TBAct6L">
+                        </table>
+                    </scroll-page>
+                </scroll-container>
+            </td>
+            <td><input name="act" type="datetime-local"></td>
+            <td><textarea id="textArea18"></textarea></td>
+            <tr>
+                <td class="tdAct"><label class="contenidoReunion">7</label></td>
+                <td><label class="contenidoReunion">Desarrollar proyectos de investigación. 
+                                        Publicación de artículos académicos.</label></td>
+                <td><textarea id="textArea19"></textarea></td>
+                <td><textarea id="textArea20"></textarea></td>
+                <td class="tdResponsable">
+                    <label>Buscar:</label>
+                    <input id="BAct7L" type="text" onkeyup="buscar('BAct7L')" />
+                    <input id="AAct7" type="checkbox" onClick="Todos('7')"><label>Todos</label>
+                    <scroll-container>
+                        <scroll-page>
+                            <table id="TBAct7L">
+                            </table>
+                        </scroll-page>
+                    </scroll-container>
+                </td>
+                <td><input name="act" type="datetime-local"></td>
+                <td><textarea id="textArea21"></textarea></td>
+            </tr>
+            <tr>
+                <td class="tdAct"><label class="contenidoReunion">8</label></td>
+                <td><label class="contenidoReunion">Diseño, rediseño o actualización 
+                                        y validación de instrumentaciones didácticas.</label></td>
+                <td><textarea id="textArea22"></textarea></td>
+                <td><textarea id="textArea23"></textarea></td>
+                <td class="tdResponsable">
+                    <label>Buscar:</label>
+                    <input id="BAct8L" type="text" onkeyup="buscar('BAct8L')" />
+                    <input id="AAct8" type="checkbox" onClick="Todos('8')"><label>Todos</label>
+                    <scroll-container>
+                        <scroll-page>
+                            <table id="TBAct8L">
+                            </table>
+                        </scroll-page>
+                    </scroll-container>
+                </td>
+                <td><input name="act" type="datetime-local"></td>
+                <td><textarea id="textArea24"></textarea></td>
+            </tr>
+            <tr>
+                <td class="tdAct"><label class="contenidoReunion">9</label></td>
+                <td><label class="contenidoReunion">Generar y validar instrumentos de evaluación 
+                                        (rubricas, listas de cotejo) y pruebas </label></td>
+                <td><textarea id="textArea25"></textarea></td>
+                <td><textarea id="textArea26"></textarea></td>
+                <td class="tdResponsable">
+                    <label>Buscar:</label>
+                    <input id="BAct9L" type="text" onkeyup="buscar('BAct9L')" />
+                    <input id="AAct9" type="checkbox" onClick="Todos('9')"><label>Todos</label>
+                    <scroll-container>
+                        <scroll-page>
+                            <table id="TBAct9L">
+                            </table>
+                        </scroll-page>
+                    </scroll-container>
+                </td>
+                <td><input name="act" type="datetime-local"></td>
+                <td><textarea id="textArea27"></textarea></td>
+            </tr>
+        </table>
+
+
+    </div>
+    <div class="rcorners2Menu">
+        <h1 class="titleMenu font">MODIFICAR PLAN DE TRABAJO</h1>
+    </div>
+</body>
+
+</html>
