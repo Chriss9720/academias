@@ -3,6 +3,7 @@ function crearPDF() {
     var act1 = document.getElementsByName("act1");
     var act1C = document.getElementsByName("Act1C");
     var act1L = document.getElementsByName("Act1L");
+    var act2 = document.getElementsByName('act2')
     var personas1 = "";
     for (var i = 0; i < act1C.length; i++) {
         if (act1C[i].checked)
@@ -22,6 +23,12 @@ function crearPDF() {
             Responsables: personas1,
             Fecha: act1[2].value.replace("T", " "),
             Evidencia: act1[3].value
+        },
+        Act2: {
+            Acciones: act2[0].value,
+            Asignaturas: act2[1].value,
+            Fecha: act2[2].value.replace("T", " "),
+            Evidencia: act2[3].value
         }
     };
     $.ajax({

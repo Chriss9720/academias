@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ActaAcademias>
   <Act1>
-    <Acciones/>
-    <Asignarutas/>
+    <Acciones>10</Acciones>
+    <Asignarutas>12</Asignarutas>
     <Responsable/>
-    <Fecha>2021-03-22 01:33</Fecha>
-    <Evidencia/>
+    <Fecha>2021-03-01 16:13</Fecha>
+    <Evidencia>13</Evidencia>
   </Act1>
 </ActaAcademias>
