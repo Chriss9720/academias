@@ -280,3 +280,7 @@ scroll-container {
     width: 38px;
     height: 30px;
 }
+
+.alin {
+    text-align: initial;
+}

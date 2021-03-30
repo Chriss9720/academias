@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+    <script type="text/javascript" src="js/generarActa.js"></script>
     <script type="text/javascript" src="js/menu.js"></script>
     <link rel="stylesheet" href="css/compartidos.css" />
     <link rel="stylesheet" href="css/load.css" />
@@ -13,7 +13,7 @@
     <title>Agregar Acta</title>
 </head>
 
-<body class="font">
+<body class="font" onload="cargarUsuarios()">
     <div class="rcornersProcCritico">
         <input class="button buttonRegresar1" type="button" value="Regresar" onclick="cambiar('menu')" />
         <label class="labelAct">Act. No.</label>
@@ -35,7 +35,6 @@
                 <td><select name="SearchPres" class="contenidoBusqueda">
                         <option>---</option>
                     </select></td>
-
             </tr>
             <tr>
                 <td><label>Secretario:</label></td>
@@ -43,14 +42,12 @@
                         <option>---</option>
                     </select></td>
             </tr>
-
         </table>
         <div class="divOrden">
             <label class="labelOrden">Orden del Día</label>
             <textarea class="textAreaOrden"></textarea>
 
         </div>
-
         <div class="divSeguimiento">
             <label class="labelSeguimiento">SEGUIMIENTO DE ACUERDOS ANTERIORES</label>
             <table class="tablaSeguimiento" cellspacing="3" cellpadding="3">
@@ -76,10 +73,10 @@
                         <td class="tdResponsable">
                             <label>Buscar:</label>
                             <input type="text" />
-                            <input type="checkbox" onClick="Todos('2')"><label>Todos</label>
+                            <input type="checkbox"><label>Todos</label>
                             <scroll-container>
                                 <scroll-page>
-                                    <table>
+                                    <table id="tablaResponsables" class="alin">
                                     </table>
                                 </scroll-page>
                             </scroll-container>
@@ -109,8 +106,8 @@
                         <td class="tdS"><label><textarea class="txtArea"></textarea></label></td>
                         <td class="tdResponsable">
                             <label>Buscar:</label>
-                            <input type="text" onkeyup="buscar('BAct2L')" />
-                            <input type="checkbox" onClick="Todos('2')"><label>Todos</label>
+                            <input type="text" />
+                            <input type="checkbox"><label>Todos</label>
                             <scroll-container>
                                 <scroll-page>
                                     <table>
