@@ -7,7 +7,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/generarActa.js"></script>
     <script type="text/javascript" src="js/menu.js"></script>
-    <script type="text/javascript" src="js/acta.js"></script>
     <link rel="stylesheet" href="css/compartidos.css" />
     <link rel="stylesheet" href="css/load.css" />
     <link rel="stylesheet" href="css/agrActa.css" />
@@ -82,7 +81,7 @@
                             </scroll-container>
                         </td>
                         <td class="tdS">
-                            <label><input name="fechaCump" type="datetime-local" class="contenidoReunion" /></label>
+                            <input name="fechaCump" type="datetime-local" class="contenidoReunion" />
                         </td>
                         <td class="tdS">
                             <textarea class="txtArea"></textarea>
@@ -103,7 +102,7 @@
                         <td class="tdFechas"><label>FECHA DE CUMPLIMIENTO</label></td>
                     </tr>
                     <tr>
-                        <td class="tdS"><textarea class="txtArea"></textarea></td>
+                        <td class="tdS"><textarea name="textReunion" class="txtArea"></textarea></td>
                         <td class="tdResponsable">
                             <label>Buscar:</label>
                             <input type="text" onkeyup="buscar('nueResp', this.value)" />
