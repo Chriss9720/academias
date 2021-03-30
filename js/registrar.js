@@ -54,7 +54,6 @@ function crear(logo, color, msj) {
     d.appendChild(img);
     d.appendChild(txt);
     d.appendChild(conf);
-
     d.style.height = "150px";
     d.style.width = "350px";
     document.body.append(d);
@@ -73,6 +72,7 @@ function mostrar() {
 }
 
 var extraH = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var au = 0;
 
 function realizarValidaciones(mat, nombre, app, apm, correo, cip) {
     if (mat.length > 0)
@@ -142,7 +142,7 @@ function validarCIP(cip, id, label) {
 }
 
 function validarSelect(select, id, label, pos) {
-    document.getElementById(id).hidden = !(select === "0");
+    document.getElementById(id).hidden = !(select === "0" || select.length === 0);
     document.getElementById(label).innerHTML = "Elija 1";
     if (extraH[pos] === 0 && !(document.getElementById(id).hidden)) {
         extraH[pos] = document.getElementById(label).getBoundingClientRect().height;
@@ -157,7 +157,7 @@ function ajustarSize(id) {
     for (var i = 0; i < extraH.length; i++) {
         aumento += extraH[i];
     }
-    document.getElementById(id).style.height = 580 + aumento + "px";
+    document.getElementById(id).style.height = 580 + aumento + (au * 25) + 50 + "px";
 }
 
 function validarMatricula(palabra, id, label) {
@@ -226,10 +226,17 @@ function validarRegistro() {
         contieneNumeros(value('inputApM'), 'errorApellidoM', 'labelErrorApellidoM', 3);
         validarCorreo(value('inputCorreo'), 'errorCorreo', 'labelErrorCorreo');
         validarCIP(value('inputCip'), 'errorCIP', 'labelErrorIP');
-        validarSelect(value('SelectCarrera'), 'errorSelectCarrera', 'labelErrorSelectCarrera', 6);
-        validarSelect(value('academia'), 'errorSelectAcademia', 'labelErrorAcademia', 7)
-        validarSelect(value('puessto'), 'errorSelectPuesto', 'labelErrorPuesto', 8)
+        if (!validarSeleccion()) {
+            validarSelect(value('SelectCarrera'), 'errorSelectCarrera', 'labelErrorSelectCarrera', 6);
+            validarSelect(document.getElementsByName('academia')[0].value, 'errorSelectAcademia', 'labelErrorAcademia', 7)
+            validarSelect(value('puessto'), 'errorSelectPuesto', 'labelErrorPuesto', 8)
+        }
         crear("img/error.jpg", "#cc1010", "Rellene todos los campos");
+    } else if (!validarSeleccion()) {
+        validarSelect(value('SelectCarrera'), 'errorSelectCarrera', 'labelErrorSelectCarrera', 6);
+        validarSelect(document.getElementsByName('academia')[0].value, 'errorSelectAcademia', 'labelErrorAcademia', 7)
+        validarSelect(value('puessto'), 'errorSelectPuesto', 'labelErrorPuesto', 8)
+        crear("img/error.jpg", "#cc1010", "Rellene todos los campos 2");
     } else {
         if (document.getElementById("fotoPerfil").src.toString().includes("img/perfilazul.png")) {
             confirmar('¿Desea guardar sin foto?', 1);
@@ -238,6 +245,12 @@ function validarRegistro() {
         }
     }
     removerLoad();
+}
+
+function validarSeleccion() {
+    if (value('SelectCarrera') === "0" || value('puessto') === 0)
+        return false;
+    return true;
 }
 
 function cargarSelect() {
@@ -250,13 +263,7 @@ function cargarSelect() {
         option.innerText = arr[i];
         c.appendChild(option);
     }
-    var c = document.getElementById("academia");
-    for (var i = 0; i < arr.length; i++) {
-        var option = document.createElement("option");
-        option.value = arr[i];
-        option.innerText = arr[i];
-        c.appendChild(option);
-    }
+    cargarAcademias();
     var c = document.getElementById("puessto");
     for (var i = 0; i < arr.length; i++) {
         var option = document.createElement("option");
@@ -265,6 +272,20 @@ function cargarSelect() {
         c.appendChild(option);
     }
     removerLoad();
+}
+
+function cargarAcademias() {
+    var arr = ["isc", "ige"];
+    var aca = document.getElementsByName("academia");
+    for (var j = 0; j < aca.length; j++) {
+        var c = aca[j];
+        for (var i = 0; i < arr.length && c.options.length < arr.length + 1; i++) {
+            var option = document.createElement("option");
+            option.value = arr[i];
+            option.innerText = arr[i];
+            c.appendChild(option);
+        }
+    }
 }
 
 function confirmar(msj, op) {
@@ -320,4 +341,27 @@ function confirmar(msj, op) {
 
 function guardar() {
     crear("img/sucess.png", "#08c211", "¡Registro exitoso!");
+}
+
+function addAcademia() {
+    var select = document.createElement('select');
+    select.setAttribute("name", "academia");
+    select.setAttribute("class", "contenido");
+    select.onclick = validarSelect(select.value, 'errorSelectAcademia', 'labelErrorAcademia', 7);
+    var tr = document.createElement('tr');
+    tr.setAttribute("name", "extra");
+    var td = document.createElement('td');
+    td.appendChild(select);
+    tr.appendChild(td);
+    document.getElementById('bodyAcademia').appendChild(tr);
+    cargarAcademias();
+    ++au;
+    ajustarSize('contenedor');
+}
+
+function remAcademia() {
+    var aca = document.getElementsByName('extra');
+    aca[aca.length - 1].remove();
+    --au;
+    ajustarSize('contenedor');
 }

@@ -111,23 +111,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label class="contenido">Academia:</label></td>
-                    <td>
-                        <select id="academia" class="contenido" name="aca" onclick="validarSelect(this.value, 'errorSelectAcademia', 'labelErrorAcademia', 7)">
-                                <option value="0">Selecione una</option>
-                            </select>
-                    </td>
-                    <td>
-                        <button></button>
-                    </td>
-                </tr>
-                <tr id="errorSelectAcademia" class="therror" hidden="true">
-                    <td/>
-                    <td>
-                        <label id="labelErrorAcademia" class="error"></label>
-                    </td>
-                </tr>
-                <tr>
                     <td><label class="contenido">Puesto en la academia:</label></td>
                     <td>
                         <select id="puessto" class="contenido" name="puesto" onclick="validarSelect(this.value, 'errorSelectPuesto', 'labelErrorPuesto', 8)">
@@ -139,6 +122,32 @@
                     <td/>
                     <td>
                         <label id="labelErrorPuesto" class="error"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="contenido">Academia:</label></td>
+                    <td>
+                        <table>
+                            <tbody id="bodyAcademia">
+                                <tr>
+                                    <td>
+                                        <select name="academia" class="contenido" onclick="validarSelect(this.value, 'errorSelectAcademia', 'labelErrorAcademia', 7)">
+                                            <option value="0">Selecione una</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>
+                        <img src="img/add.png" width="20px" title="Agregar" class="add" onclick="addAcademia()">
+                        <img src="img/res.png" width="20px" title="Agregar" class="add" onclick="remAcademia()">
+                    </td>
+                </tr>
+                <tr id="errorSelectAcademia" class="therror" hidden="true">
+                    <td/>
+                    <td>
+                        <label id="labelErrorAcademia" class="error"></label>
                     </td>
                 </tr>
             </table>

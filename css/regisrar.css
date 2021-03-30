@@ -105,3 +105,9 @@
     left: 72%;
     top: 45%;
 }
+
+.add {
+    background: white;
+    border: aliceblue;
+    cursor: pointer;
+}
