@@ -1,4 +1,5 @@
-var acuerdoExtra = 0;
+var acuerdoExtra = 0,
+    acuerdoAnt = 0;
 var arr = ["Hector Francisco Castro Morales", "Christian Emmanuel Yañez Gonzalez", "Sergio Antonio Guerra Castro", "Persona 1", "Persona 2", "1", "2", "3"];
 
 function buscar(name, valor) {
@@ -10,6 +11,66 @@ function buscar(name, valor) {
     }
 }
 
+function acuerdosAnt() {
+    var body = document.getElementById('bodyAnt');
+    for (var i = 0; i < 4; i++) {
+        console.log(i);
+        var tr = document.createElement('tr');
+        tr.setAttribute("name", "ant")
+        var td1 = document.createElement('td');
+        td1.setAttribute('class', 'tdS');
+        var text = document.createElement('textarea');
+        text.setAttribute('class', 'txtArea txtArea2');
+        text.disabled = true;
+        td1.appendChild(text)
+        var td2 = document.createElement('td');
+        td2.setAttribute('class', 'tdResponsable');
+        var label = document.createElement('label');
+        label.innerText = "Buscar: ";
+        td2.appendChild(label);
+        var inp = document.createElement('input');
+        inp.type = 'text';
+        inp.setAttribute('onkeyup', "buscar('acuerdoAnt" + acuerdoAnt + "', this.value)");
+        td2.appendChild(inp);
+        var sc = document.createElement('scroll-container');
+        var sp = document.createElement('scroll-page');
+        var tabla = document.createElement('table');
+        tabla.setAttribute('id', 'tablaResponsablesAnt')
+        tabla.setAttribute('class', 'alin')
+        var tbody = document.createElement('tbody');
+        for (var j = 0; j < arr.length; j++) {
+            var trx = document.createElement('tr');
+            var td = document.createElement('td');
+            var label = document.createElement('label');
+            label.innerText = arr[j];
+            var name = "acuerdoAnt" + acuerdoAnt;
+            label.setAttribute("name", name + "L");
+            var inp = document.createElement('input');
+            inp.type = 'checkbox';
+            inp.name = name + "C";
+            inp.disabled = true;
+            td.appendChild(inp);
+            td.appendChild(label);
+            trx.appendChild(td);
+            tbody.appendChild(trx);
+        }
+        tabla.appendChild(tbody);
+        sp.appendChild(tabla);
+        sc.appendChild(sp);
+        td2.appendChild(sc);
+        var td3 = document.createElement('td');
+
+        var td4 = document.createElement('td');
+
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(td4);
+        body.appendChild(tr);
+        acuerdoAnt++;
+    }
+}
+
 function todos(name) {
     var ckec = document.getElementsByName(name + "C");
     for (var i = 0; i < ckec.length; i++) {
@@ -18,6 +79,9 @@ function todos(name) {
 }
 
 function cargarUsuarios() {
+    acuerdosAnt();
+    var ft = document.getElementById('tablaResponsables') != null;
+    var fta = document.getElementById('tablaNuevos') != null;
     var t = document.getElementById('tablaResponsables');
     var ta = document.getElementById('tablaNuevos');
     var tf = document.getElementById('tablaProfesor');
@@ -25,32 +89,34 @@ function cargarUsuarios() {
     var boda = document.createElement('tbody');
     var bodp = document.createElement('tbody');
     for (var i = 0; i < arr.length; i++) {
-        var tr = document.createElement('tr');
-        var td = document.createElement('td');
-        var label = document.createElement('label');
-        label.innerText = arr[i];
-        label.setAttribute("name", "antRespL");
-        var inp = document.createElement('input');
-        inp.type = 'checkbox';
-        inp.name = "antRespC";
-        td.appendChild(inp);
-        td.appendChild(label);
-        tr.appendChild(td);
-        bod.appendChild(tr);
-
-        var tr = document.createElement('tr');
-        var td = document.createElement('td');
-        var label = document.createElement('label');
-        label.innerText = arr[i];
-        label.setAttribute("name", "nueRespL");
-        var inp = document.createElement('input');
-        inp.type = 'checkbox';
-        inp.name = "nueRespC";
-        td.appendChild(inp);
-        td.appendChild(label);
-        tr.appendChild(td);
-        boda.appendChild(tr);
-
+        if (ft) {
+            var tr = document.createElement('tr');
+            var td = document.createElement('td');
+            var label = document.createElement('label');
+            label.innerText = arr[i];
+            label.setAttribute("name", "antRespL");
+            var inp = document.createElement('input');
+            inp.type = 'checkbox';
+            inp.name = "antRespC";
+            td.appendChild(inp);
+            td.appendChild(label);
+            tr.appendChild(td);
+            bod.appendChild(tr);
+        }
+        if (fta) {
+            var tr = document.createElement('tr');
+            var td = document.createElement('td');
+            var label = document.createElement('label');
+            label.innerText = arr[i];
+            label.setAttribute("name", "nueRespL");
+            var inp = document.createElement('input');
+            inp.type = 'checkbox';
+            inp.name = "nueRespC";
+            td.appendChild(inp);
+            td.appendChild(label);
+            tr.appendChild(td);
+            boda.appendChild(tr);
+        }
         var tr = document.createElement('tr');
         var td = document.createElement('td');
         var label = document.createElement('label');
@@ -65,8 +131,10 @@ function cargarUsuarios() {
         bodp.appendChild(tr);
     }
     tf.appendChild(bodp);
-    ta.appendChild(boda);
-    t.appendChild(bod);
+    if (fta)
+        ta.appendChild(boda);
+    if (ft)
+        t.appendChild(bod);
 }
 
 function addAcuerdo() {

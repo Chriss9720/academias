@@ -15,15 +15,11 @@
 
 <body class="font" onload="cargarUsuarios()">
     <div class="rcornersProcCritico">
-
         <table class="tablaCompleta" cellspacing="10" cellpadding="3">
-
-
             <tbody>
                 <tr>
                     <td>
-                        <input class="button buttonRegresar1" type="button" value="Regresar"
-                            onclick="cambiar('menu')" />
+                        <input class="button buttonRegresar1" type="button" value="Regresar" onclick="cambiar('menu')" />
                         <label class="labelAct">Act. No.</label>
                         <input class="button crear" type="button" value="Crear Acta" />
                         <input name="act" type="text" class="inputAct">
@@ -53,15 +49,11 @@
                         </table>
                     </td>
                 </tr>
-
-
-
                 <tr>
                     <td>
                         <table>
                             <tr>
                                 <label class="labelOrden">Orden del Día</label>
-
                             </tr>
                             <tr>
                                 <textarea class="textAreaOrden "></textarea>
@@ -69,14 +61,11 @@
                         </table>
                     </td>
                 </tr>
-
-
-
                 <tr>
                     <td>
                         <label class="labelSeguimiento">SEGUIMIENTO DE ACUERDOS ANTERIORES</label>
-                        <table class="tablaSeguimiento" cellspacing="3" cellpadding="3">
-                            <tbody class="tbody">
+                        <table class="tablaSeguimiento" cellspacing="3" cellpadding="3" id="tablaAnt">
+                            <tbody class="tbody" id="bodyAnt">
                                 <tr class="trCabecera">
                                     <td class="tdSegui">
                                         <label>ACUERDOS</label>
@@ -98,7 +87,6 @@
                                     <td class="tdResponsable">
                                         <label>Buscar:</label>
                                         <input type="text" onkeyup="buscar('antResp', this.value)" />
-                                        <input type="checkbox" onchange="todos('antResp')"><label>Todos</label>
                                         <scroll-container>
                                             <scroll-page>
                                                 <table id="tablaResponsables" class="alin">
@@ -117,52 +105,24 @@
                         </table>
                     </td>
                 </tr>
-
-
                 <tr>
                     <td class="td">
-
                         <table class="tablaAcuerdos">
                             <tbody class="tbody" id="bodyAcuerdos">
                                 <tr>
                                     <label class="labelAcuerdos ">ACUERDOS DE REUNIÓN</label>
-                                    <input class="button2 buttonAgregar" type="button" value="Agregar Acuerdo"
-                                        onclick="addAcuerdo()" />
-                                    <input class="button2 buttonAgregar remover" type="button" value="Remover Acuerdo"
-                                        onclick="remov()" />
+                                    <input class="button2 buttonAgregar" type="button" value="Agregar Acuerdo" onclick="addAcuerdo()" />
+                                    <input class="button2 buttonAgregar remover" type="button" value="Remover Acuerdo" onclick="remov()" />
                                 </tr>
                                 <tr class="trCabecera">
                                     <td class="tdAcuerdos"><label>ACUERDO</label></td>
                                     <td class="tdResp"><label>RESPONSABLE</label></td>
                                     <td class="tdFechas"><label>FECHA DE CUMPLIMIENTO</label></td>
                                 </tr>
-                                <tr>
-                                    <td class="tdS"><textarea name="textReunion" class="txtArea2 txtArea"></textarea></td>
-                                    <td class="tdResponsable">
-                                        <label>Buscar:</label>
-                                        <input type="text" onkeyup="buscar('nueResp', this.value)" />
-                                        <input type="checkbox" onchange="todos('nueResp')"><label>Todos</label>
-                                        <scroll-container>
-                                            <scroll-page>
-                                                <table id="tablaNuevos" class="alin">
-                                                </table>
-                                            </scroll-page>
-                                        </scroll-container>
-                                    </td>
-                                    <td class="tdS">
-                                        <label><input name="fechaCump" type="datetime-local"
-                                                class="contenidoReunion" /></label>
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
                     </td>
-
                 </tr>
-
-
-
-
                 <tr>
                     <td class="td">
                         <table cellspacing="10" cellpadding="3" class="tablaHrFinal">
@@ -172,13 +132,7 @@
                             </tr>
                         </table>
                     </td>
-
                 </tr>
-
-
-
-
-
                 <tr>
                     <td class="td">
                         <label class="labelConstancia ">CONSTANCIA DE APROBACIÓN</label><br>
@@ -208,7 +162,6 @@
                                     </td>
                                 </tr>
                             </tbody>
-
                         </table>
                         <table>
                             <tr>
@@ -216,17 +169,10 @@
                                 <td><textarea class="txtAreaObs textArea txtArea2"></textarea></td>
                             </tr>
                         </table>
-                        
-                        
                     </td>
                 </tr>
             </tbody>
-
-
         </table>
-
-
-
     </div>
     <div class="rcorners2Menu">
         <h1 class="titleMenu font">AGREGAR ACTA </h1>
