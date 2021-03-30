@@ -136,3 +136,9 @@ function nuevos(body, name) {
         body.appendChild(tr);
     }
 }
+
+function remov() {
+    var ext = document.getElementsByName('acuerdoExtra');
+    if (ext.length > 0)
+        ext[ext.length - 1].remove();
+}

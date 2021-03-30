@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+    <script type="text/javascript" src="js/generarActa.js"></script>
     <script type="text/javascript" src="js/menu.js"></script>
     <link rel="stylesheet" href="css/compartidos.css" />
     <link rel="stylesheet" href="css/load.css" />
@@ -13,159 +13,218 @@
     <title>Modificar Acta</title>
 </head>
 
-<body class="font">
+<body class="font" onload="cargarUsuarios()">
     <div class="rcornersProcCritico">
-        <input class="button buttonRegresar1" type="button" value="Regresar" onclick="cambiar('menu')" />
-        <label class="labelAct">Act. No.</label>
-        <input class="button crear" type="button" value="Modificar Acta" />
-        <input name="act" type="text" class="inputAct">
-        <table class="tablaProc" cellspacing="10" cellpadding="3">
-            <tr>
-                <td><label class="contenidoProc">Fecha de Inicio:</label></td>
-                <td><input name="fechaInicio" type="datetime-local" class="contenidoReunion" /></td>
-                <td><label class="contenidoProc">Lugar:</label></td>
-                <td><input name="lugar" type="text" class="contenidoProc" /></td>
-            </tr>
-            <tr>
-                <td><label class="contenidoProc">Academia:</label></td>
-                <td><select id="academia" name="SearchCarr" class="contenidoBusqueda">
-                        <option>ISC</option>
-                    </select></td>
-                <td><label>Presidente:</label></td>
-                <td><select id="presidente" name="SearchPres" class="contenidoBusqueda">
-                        <option>---</option>
-                    </select></td>
 
-            </tr>
-            <tr>
-                <td><label>Secretario:</label></td>
-                <td><select id="secretario" name="SearchSecre" class="contenidoBusqueda">
-                        <option>---</option>
-                    </select></td>
-            </tr>
+        <table class="tablaCompleta" cellspacing="10" cellpadding="3">
+
+
+            <tbody>
+                <tr>
+                    <td>
+                        <input class="button buttonRegresar1" type="button" value="Regresar"
+                            onclick="cambiar('menu')" />
+                        <label class="labelAct">Act. No.</label>
+                        <input class="button crear" type="button" value="Crear Acta" />
+                        <input name="act" type="text" class="inputAct">
+                        <table class="tablaProc" cellspacing="10" cellpadding="3">
+                            <tr>
+                                <td><label class="contenidoProc">Fecha de Inicio:</label></td>
+                                <td><input name="fechaInicio" type="datetime-local" class="contenidoReunion" /></td>
+                                <td><label class="contenidoProc">Lugar:</label></td>
+                                <td><input name="lugar" type="text" class="contenidoProc" /></td>
+                            </tr>
+                            <tr>
+                                <td><label class="contenidoProc">Academia:</label></td>
+                                <td><select name="SearchCarr" class="contenidoBusqueda">
+                                        <option>ISC</option>
+                                    </select></td>
+                                <td><label>Presidente:</label></td>
+                                <td><select name="SearchPres" class="contenidoBusqueda">
+                                        <option>---</option>
+                                    </select></td>
+                            </tr>
+                            <tr>
+                                <td><label>Secretario:</label></td>
+                                <td><select name="SearchSecre" class="contenidoBusqueda">
+                                        <option>---</option>
+                                    </select></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+
+
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <label class="labelOrden">Orden del Día</label>
+
+                            </tr>
+                            <tr>
+                                <textarea class="textAreaOrden "></textarea>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+
+
+                <tr>
+                    <td>
+                        <label class="labelSeguimiento">SEGUIMIENTO DE ACUERDOS ANTERIORES</label>
+                        <table class="tablaSeguimiento" cellspacing="3" cellpadding="3">
+                            <tbody class="tbody">
+                                <tr class="trCabecera">
+                                    <td class="tdSegui">
+                                        <label>ACUERDOS</label>
+                                    </td>
+                                    <td class="tdSegui">
+                                        <label>RESPONSABLE</label>
+                                    </td>
+                                    <td class="tdFechas">
+                                        <label>FECHA DE CUMPLIMIENTO</label>
+                                    </td>
+                                    <td class="tdSegui">
+                                        <label>AVANCE</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tdS">
+                                        <textarea class="txtArea txtArea2"></textarea>
+                                    </td>
+                                    <td class="tdResponsable">
+                                        <label>Buscar:</label>
+                                        <input type="text" onkeyup="buscar('antResp', this.value)" />
+                                        <input type="checkbox" onchange="todos('antResp')"><label>Todos</label>
+                                        <scroll-container>
+                                            <scroll-page>
+                                                <table id="tablaResponsables" class="alin">
+                                                </table>
+                                            </scroll-page>
+                                        </scroll-container>
+                                    </td>
+                                    <td class="tdS">
+                                        <input name="fechaCump" type="datetime-local" class="contenidoReunion" />
+                                    </td>
+                                    <td class="tdS">
+                                        <textarea class="txtArea txtArea2"></textarea>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="td">
+
+                        <table class="tablaAcuerdos">
+                            <tbody class="tbody" id="bodyAcuerdos">
+                                <tr>
+                                    <label class="labelAcuerdos ">ACUERDOS DE REUNIÓN</label>
+                                    <input class="button2 buttonAgregar" type="button" value="Agregar Acuerdo"
+                                        onclick="addAcuerdo()" />
+                                    <input class="button2 buttonAgregar remover" type="button" value="Remover Acuerdo"
+                                        onclick="remov()" />
+                                </tr>
+                                <tr class="trCabecera">
+                                    <td class="tdAcuerdos"><label>ACUERDO</label></td>
+                                    <td class="tdResp"><label>RESPONSABLE</label></td>
+                                    <td class="tdFechas"><label>FECHA DE CUMPLIMIENTO</label></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdS"><textarea name="textReunion" class="txtArea2 txtArea"></textarea></td>
+                                    <td class="tdResponsable">
+                                        <label>Buscar:</label>
+                                        <input type="text" onkeyup="buscar('nueResp', this.value)" />
+                                        <input type="checkbox" onchange="todos('nueResp')"><label>Todos</label>
+                                        <scroll-container>
+                                            <scroll-page>
+                                                <table id="tablaNuevos" class="alin">
+                                                </table>
+                                            </scroll-page>
+                                        </scroll-container>
+                                    </td>
+                                    <td class="tdS">
+                                        <label><input name="fechaCump" type="datetime-local"
+                                                class="contenidoReunion" /></label>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+
+                </tr>
+
+
+
+
+                <tr>
+                    <td class="td">
+                        <table cellspacing="10" cellpadding="3" class="tablaHrFinal">
+                            <tr class="trFinal">
+                                <td><label>HORA FINAL DE REUNIÓN</label></td>
+                                <td><input name="HoraFinal" type="time" class="contenidoProc" /></td>
+                            </tr>
+                        </table>
+                    </td>
+
+                </tr>
+
+
+
+
+
+                <tr>
+                    <td class="td">
+                        <label class="labelConstancia ">CONSTANCIA DE APROBACIÓN</label><br>
+                        <label class="labelAprobacion">Nombre y firma de los miembros de la academia que asistieron
+                            a la
+                            reunión
+                            y manifiestan su aprobación para la presente acta.</label><br>
+                        <table class="tablaCons">
+                            <tbody class="tbody">
+                                <tr class="trCabecera">
+                                    <td class="tdSegui"><label>PROFESOR</label></td>
+                                    <td class="tdSegui"><label>MATERIA QUE IMPARTE</label></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdResponsable">
+                                        <label>Buscar:</label>
+                                        <input type="text" onkeyup="buscar('profesor', this.value)" />
+                                        <input type="checkbox" onchange="todos('profesor')"><label>Todos</label>
+                                        <scroll-container>
+                                            <scroll-page>
+                                                <table id="tablaProfesor" class="alin">
+                                                </table>
+                                            </scroll-page>
+                                        </scroll-container>
+                                    </td>
+                                    <td class="tdS"><textarea class="txtArea txtArea2"></textarea>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                        <table>
+                            <tr>
+                                <td><label class="labelObs">OBSERVACIONES:</label></td>
+                                <td><textarea class="txtAreaObs textArea txtArea2"></textarea></td>
+                            </tr>
+                        </table>
+                        
+                        
+                    </td>
+                </tr>
+            </tbody>
+
 
         </table>
-        <div class="divOrden">
-            <label class="labelOrden">Orden del Día</label>
-            <textarea class="textAreaOrden"></textarea>
 
-        </div>
-
-        <div class="divSeguimiento">
-            <label class="labelSeguimiento">SEGUIMIENTO DE ACUERDOS ANTERIORES</label>
-            <table class="tablaSeguimiento" cellspacing="3" cellpadding="3">
-                <tbody class="tbody">
-                    <tr class="trCabecera">
-                        <td class="tdSegui">
-                            <label>ACUERDOS</label>
-                        </td>
-                        <td class="tdSegui">
-                            <label>RESPONSABLE</label>
-                        </td>
-                        <td class="tdFechas">
-                            <label>FECHA DE CUMPLIMIENTO</label>
-                        </td>
-                        <td class="tdSegui">
-                            <label>AVANCE</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tdS">
-                            <label><textarea class="txtArea"></textarea></label>
-                        </td>
-                        <td class="tdResponsable">
-                            <label>Buscar:</label>
-                            <input id="BAct2L" type="text" onkeyup="buscar('BAct2L')" />
-                            <input id="AAct2" type="checkbox" onClick="Todos('2')"><label>Todos</label>
-                            <scroll-container>
-                                <scroll-page>
-                                    <table id="TBAct2L">
-                                    </table>
-                                </scroll-page>
-                            </scroll-container>
-                        </td>
-                        <td class="tdS">
-                            <label><input name="fechaCump" type="datetime-local" class="contenidoReunion" /></label>
-                        </td>
-                        <td class="tdS">
-                            <label><textarea class="txtArea"></textarea></label>
-                        </td>
-                    </tr>
-                </tbody>
-
-            </table>
-        </div>
-        <div class="divAcuerdos">
-            <label class="labelSeguimiento ">ACUERDOS DE REUNIÓN</label>
-            <input class="button buttonAgregar" type="button" value="Agregar Acuerdo" />
-            <table class="tablaAcuerdos">
-                <tbody class="tbody">
-                    <tr class="trCabecera">
-                        <td class="tdAcuerdos"><label>ACUERDO</label></td>
-                        <td class="tdResp"><label>RESPONSABLE</label></td>
-                        <td class="tdFechas"><label>FECHA DE CUMPLIMIENTO</label></td>
-                    </tr>
-                    <tr>
-                        <td class="tdS"><label><textarea class="txtArea"></textarea></label></td>
-                        <td class="tdResponsable">
-                            <label>Buscar:</label>
-                            <input id="BAct2L" type="text" onkeyup="buscar('BAct2L')" />
-                            <input id="AAct2" type="checkbox" onClick="Todos('2')"><label>Todos</label>
-                            <scroll-container>
-                                <scroll-page>
-                                    <table id="TBAct2L">
-                                    </table>
-                                </scroll-page>
-                            </scroll-container>
-                        </td>
-                        <td class="tdS">
-                            <label><input name="fechaCump" type="datetime-local" class="contenidoReunion" /></label>
-                        </td>
-                    </tr>
-                </tbody>
-
-            </table>
-        </div>
-        <div class="divFinal">
-            <table cellspacing="10" cellpadding="3">
-                <tr class="trFinal">
-                    <td><label>HORA FINAL DE REUNIÓN</label></td>
-                    <td><input name="HoraFinal" type="time" class="contenidoProc" /></td>
-                </tr>
-            </table>
-
-        </div>
-
-        <div class="divConstancia">
-            <label class="labelSeguimiento ">CONSTANCIA DE APROBACIÓN</label>
-            <label class="labelAprobacion">Nombre y firma de los miembros de la academia que asistieron a la reunión
-                y manifiestan su aprobación para la presente acta.</label>
-            <table class="tablaCons">
-                <tbody class="tbody">
-                    <tr class="trCabecera">
-                        <td class="tdSegui"><label>PROFESOR</label></td>
-                        <td class="tdSegui"><label>MATERIA QUE IMPARTE</label></td>
-                    </tr>
-                    <tr>
-                        <td class="tdResponsable">
-                            <label>Buscar:</label>
-                            <input id="BAct2L" type="text" onkeyup="buscar('BAct2L')" />
-                            <input id="AAct2" type="checkbox" onClick="Todos('2')"><label>Todos</label>
-                            <scroll-container>
-                                <scroll-page>
-                                    <table id="TBAct2L">
-                                    </table>
-                                </scroll-page>
-                            </scroll-container>
-                        </td>
-
-                        <td class="tdS"><label><textarea class="txtArea"></textarea></label></td>
-                    </tr>
-                </tbody>
-                <label class="labelObs">OBSERVACIONES:</label>
-                <textarea class="txtAreaObs textArea"></textarea>
-            </table>
-        </div>
 
 
     </div>
