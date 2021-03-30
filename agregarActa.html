@@ -7,6 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/generarActa.js"></script>
     <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" src="js/acta.js"></script>
     <link rel="stylesheet" href="css/compartidos.css" />
     <link rel="stylesheet" href="css/load.css" />
     <link rel="stylesheet" href="css/agrActa.css" />
@@ -46,7 +47,6 @@
         <div class="divOrden">
             <label class="labelOrden">Orden del Día</label>
             <textarea class="textAreaOrden"></textarea>
-
         </div>
         <div class="divSeguimiento">
             <label class="labelSeguimiento">SEGUIMIENTO DE ACUERDOS ANTERIORES</label>
@@ -68,7 +68,7 @@
                     </tr>
                     <tr>
                         <td class="tdS">
-                            <label><textarea class="txtArea"></textarea></label>
+                            <textarea class="txtArea"></textarea>
                         </td>
                         <td class="tdResponsable">
                             <label>Buscar:</label>
@@ -85,26 +85,25 @@
                             <label><input name="fechaCump" type="datetime-local" class="contenidoReunion" /></label>
                         </td>
                         <td class="tdS">
-                            <label><textarea class="txtArea"></textarea></label>
+                            <textarea class="txtArea"></textarea>
                         </td>
                     </tr>
                 </tbody>
-
             </table>
         </div>
         <div class="divAcuerdos">
             <label class="labelSeguimiento ">ACUERDOS DE REUNIÓN</label>
-            <input class="button buttonAgregar" type="button" value="Agregar Acuerdo" />
+            <input class="button buttonAgregar" type="button" value="Agregar Acuerdo" onclick="addAcuerdo()" />
             <input class="button buttonAgregar remover" type="button" value="Remover Acuerdo" />
             <table class="tablaAcuerdos">
-                <tbody class="tbody">
+                <tbody class="tbody" id="bodyAcuerdos">
                     <tr class="trCabecera">
                         <td class="tdAcuerdos"><label>ACUERDO</label></td>
                         <td class="tdResp"><label>RESPONSABLE</label></td>
                         <td class="tdFechas"><label>FECHA DE CUMPLIMIENTO</label></td>
                     </tr>
                     <tr>
-                        <td class="tdS"><label><textarea class="txtArea"></textarea></label></td>
+                        <td class="tdS"><textarea class="txtArea"></textarea></td>
                         <td class="tdResponsable">
                             <label>Buscar:</label>
                             <input type="text" onkeyup="buscar('nueResp', this.value)" />
@@ -121,7 +120,6 @@
                         </td>
                     </tr>
                 </tbody>
-
             </table>
         </div>
         <div class="divFinal">
@@ -131,9 +129,7 @@
                     <td><input name="HoraFinal" type="time" class="contenidoProc" /></td>
                 </tr>
             </table>
-
         </div>
-
         <div class="divConstancia">
             <label class="labelSeguimiento ">CONSTANCIA DE APROBACIÓN</label>
             <label class="labelAprobacion">Nombre y firma de los miembros de la academia que asistieron a la reunión
@@ -156,17 +152,14 @@
                                 </scroll-page>
                             </scroll-container>
                         </td>
-
-                        <td class="tdS"><label><textarea class="txtArea"></textarea></label></td>
-
+                        <td class="tdS"><textarea class="txtArea"></textarea>
+                        </td>
                     </tr>
                 </tbody>
                 <label class="labelObs">OBSERVACIONES:</label>
                 <textarea class="txtAreaObs textArea"></textarea>
             </table>
         </div>
-
-
     </div>
     <div class="rcorners2Menu">
         <h1 class="titleMenu font">AGREGAR ACTA </h1>

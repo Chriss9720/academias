@@ -66,3 +66,24 @@ function cargarUsuarios() {
     ta.appendChild(boda);
     t.appendChild(bod);
 }
+
+function addAcuerdo() {
+    var bod = document.getElementById('bodyAcuerdos');
+    var tr = document.createElement('tr');
+    tr.setAttribute('name', "acuerdoExtra");
+    var td = document.createElement('td');
+    td.setAttribute("class", 'tdS');
+    var text = document.createElement('textarea');
+    text.setAttribute('class', 'txtArea');
+    td.appendChild(text);
+    tr.appendChild(td);
+    var td2 = document.createElement('td');
+    td2.setAttribute('class', 'tdResponsable');
+    var lab = document.createElement('label');
+    lab.innerText = "Buscar:";
+    td2.appendChild(lab);
+    var inp = document.createElement('input');
+    inp.type = "text";
+    inp.onkeyup = ;
+    bod.appendChild(tr);
+}
