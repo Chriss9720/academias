@@ -13,7 +13,7 @@ function buscar(name, valor) {
 
 function acuerdosAnt() {
     var body = document.getElementById('bodyAnt');
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < 2; i++) {
         console.log(i);
         var tr = document.createElement('tr');
         tr.setAttribute("name", "ant")
@@ -59,9 +59,18 @@ function acuerdosAnt() {
         sc.appendChild(sp);
         td2.appendChild(sc);
         var td3 = document.createElement('td');
-
+        td3.setAttribute('class', 'tdS');
+        var inp = document.createElement('input');
+        inp.setAttribute('name', 'fechaCumpAnt');
+        inp.setAttribute('type', 'datetime-local');
+        inp.setAttribute('class', 'contenidoReunion');
+        inp.disabled = true;
+        td3.appendChild(inp);
         var td4 = document.createElement('td');
-
+        td4.setAttribute('class', 'tdS');
+        var text = document.createElement('textarea');
+        text.setAttribute('class', 'txtArea txtArea2');
+        td4.appendChild(text);
         tr.appendChild(td1);
         tr.appendChild(td2);
         tr.appendChild(td3);
@@ -144,7 +153,7 @@ function addAcuerdo() {
     var td = document.createElement('td');
     td.setAttribute("class", 'tdS');
     var text = document.createElement('textarea');
-    text.setAttribute('class', 'txtArea');
+    text.setAttribute('class', 'txtArea txtArea2');
     text.setAttribute('name', 'textReunion');
     td.appendChild(text);
     tr.appendChild(td);
