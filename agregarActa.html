@@ -72,8 +72,8 @@
                         </td>
                         <td class="tdResponsable">
                             <label>Buscar:</label>
-                            <input type="text" />
-                            <input type="checkbox"><label>Todos</label>
+                            <input type="text" onkeyup="buscar('antResp', this.value)" />
+                            <input type="checkbox" onchange="todos('antResp')"><label>Todos</label>
                             <scroll-container>
                                 <scroll-page>
                                     <table id="tablaResponsables" class="alin">
@@ -95,6 +95,7 @@
         <div class="divAcuerdos">
             <label class="labelSeguimiento ">ACUERDOS DE REUNIÓN</label>
             <input class="button buttonAgregar" type="button" value="Agregar Acuerdo" />
+            <input class="button buttonAgregar remover" type="button" value="Remover Acuerdo" />
             <table class="tablaAcuerdos">
                 <tbody class="tbody">
                     <tr class="trCabecera">
@@ -106,11 +107,11 @@
                         <td class="tdS"><label><textarea class="txtArea"></textarea></label></td>
                         <td class="tdResponsable">
                             <label>Buscar:</label>
-                            <input type="text" />
-                            <input type="checkbox"><label>Todos</label>
+                            <input type="text" onkeyup="buscar('nueResp', this.value)" />
+                            <input type="checkbox" onchange="todos('nueResp')"><label>Todos</label>
                             <scroll-container>
                                 <scroll-page>
-                                    <table>
+                                    <table id="tablaNuevos" class="alin">
                                     </table>
                                 </scroll-page>
                             </scroll-container>
@@ -146,11 +147,11 @@
                     <tr>
                         <td class="tdResponsable">
                             <label>Buscar:</label>
-                            <input type="text" onkeyup="buscar('BAct2L')" />
-                            <input type="checkbox" onClick="Todos('2')"><label>Todos</label>
+                            <input type="text" onkeyup="buscar('profesor', this.value)" />
+                            <input type="checkbox" onchange="todos('profesor')"><label>Todos</label>
                             <scroll-container>
                                 <scroll-page>
-                                    <table>
+                                    <table id="tablaProfesor" class="alin">
                                     </table>
                                 </scroll-page>
                             </scroll-container>
