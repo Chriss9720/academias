@@ -120,6 +120,7 @@ function crearPDF() {
             Evidencia: act9[3].value
         }
     };
+    console.log(obj)
     $.ajax({
         url: 'documentos/crearPlanTrabajo.php',
         type: 'GET',

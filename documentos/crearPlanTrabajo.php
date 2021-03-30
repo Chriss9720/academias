@@ -104,28 +104,62 @@
             $arr = filas($comp[6][0], 18);
             $sig = lines($this, $sig, $arr, $h, 2.6, true);
 
-            $act1 = json_decode(json_encode($data['Act1']), true);
-
-            $comp = [[],[]];
-            $comp[0][0] = "1";
-            $comp[0][1] = 1;
-            $comp[1][0] = "Mejoras e innovación de procesos de enseñanza y aprendizaje, incluye implementación de casos, semanas académicas, visitas industriales, proyectos de desarrollo comunitario, etc.";
-            $comp[1][1] = 25;
-            $comp[2][0] = $act1['Acciones'];
-            $comp[2][1] = 20;
-            $comp[3][0] = $act1['Asignaturas'];
-            $comp[3][1] = 18;
-            $comp[4][0] = $act1['Responsables'];
-            $comp[4][1] = 15;
-            $comp[5][0] = $act1['Fecha'];
-            $comp[5][1] = 10;
-            $comp[6][0] = $act1['Evidencia'];
-            $comp[6][1] = 15;
-            $h = getH($comp);
-
+            for	($i = 0; $i < 9; $i++) {
+                $act1 = json_decode(json_encode($data['Act'.($i+1)]), true);
+                $comp = [[],[]];
+                $comp[0][0] = "1";
+                $comp[0][1] = 1;
+                $comp[1][0] = "Mejoras e innovación de procesos de enseñanza y aprendizaje, incluye implementación de casos, semanas académicas, visitas industriales, proyectos de desarrollo comunitario, etc.";
+                $comp[1][1] = 25;
+                $comp[2][0] = $act1['Acciones'];
+                $comp[2][1] = 20;
+                $comp[3][0] = $act1['Asignaturas'];
+                $comp[3][1] = 18;
+                $comp[4][0] = $act1['Responsables'];
+                $comp[4][1] = 15;
+                $comp[5][0] = $act1['Fecha'];
+                $comp[5][1] = 10;
+                $comp[6][0] = $act1['Evidencia'];
+                $comp[6][1] = 15;
+                $h = getH($comp);
+                if ($i == 0) {
+                    $this->Ln(.24);
+                } else {
+                    $this->SetY($posY + $h);
+                }
+                $this->SetFont("Arial", 'B', 10);
+                $this->Cell(1, $h, "".($i+1), 1, 0, 'C', true);
+                $this->SetFont("Arial", '', 10);
+                $posY = $this->GetY();
+                $this->SetY($posY);
+                $arr = filas($comp[1][0], $comp[1][1]);
+                $sig = lines($this, $this->GetX() + 1, $arr, $h, 4.1, false, 'L');
+    
+                $this->SetY($posY);
+                $arr = filas($comp[2][0], $comp[2][1]);
+                $sig = lines($this, 6.1, $arr, $h, 3.30, false, 'L');
+    
+                $this->SetY($posY);
+                $arr = filas($comp[3][0], $comp[3][1]);
+                $sig = lines($this, $sig, $arr, $h, 3.2, false, 'L');
+    
+                $this->SetY($posY);
+                $arr = filas($comp[4][0], $comp[4][1]);
+                $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
+    
+                $this->SetY($posY);
+                $arr = filas($comp[5][0], $comp[5][1]);
+                $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
+    
+                $this->SetY($posY);
+                $arr = filas($comp[6][0], $comp[6][1]);
+                $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
+            }
+/*
             //Fila 1
-            $this->Ln(.24);
-            $this->Cell(1, $h, $comp[0][0], 1, 0, 'C', true);
+            $this->Ln(.24);            
+
+            $this->Cell(1, $h, "1", 1, 0, 'C', true);
             $this->SetFont("Arial", '', 10);
             $posY = $this->GetY();
             $this->SetY($posY);
@@ -241,7 +275,6 @@
             $this->SetY($posY);
             $arr = filas($comp[6][0], $comp[6][1]);
             $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
-
 
             //Fila 5
             $this->SetY($posY + $h);
@@ -392,7 +425,7 @@
             $this->SetY($posY);
             $arr = filas($comp[6][0], $comp[6][1]);
             $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
-
+*/
             //firmas
             $this->Ln(5);
             $this->SetFont("Arial", "B", 10);
