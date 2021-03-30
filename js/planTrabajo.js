@@ -4,10 +4,49 @@ function crearPDF() {
     var act1C = document.getElementsByName("Act1C");
     var act1L = document.getElementsByName("Act1L");
     var act2 = document.getElementsByName('act2')
-    var personas1 = "";
+    var act2C = document.getElementsByName('Act2C');
+    var act3 = document.getElementsByName('Act3')
+    var act3C = document.getElementsByName('Act3C');
+    var act4 = document.getElementsByName('Act4')
+    var act4C = document.getElementsByName('Act4C');
+    var act5 = document.getElementsByName('Act4')
+    var act5C = document.getElementsByName('Act4C');
+    var act6 = document.getElementsByName('Act4')
+    var act6C = document.getElementsByName('Act4C');
+    var act7 = document.getElementsByName('Act4')
+    var act7C = document.getElementsByName('Act4C');
+    var act8 = document.getElementsByName('Act4')
+    var act8C = document.getElementsByName('Act4C');
+    var act9 = document.getElementsByName('Act4')
+    var act9C = document.getElementsByName('Act4C');
+    var personas1 = "",
+        personas2 = "",
+        personas3 = "",
+        personas4 = "",
+        personas5 = "",
+        personas6 = "",
+        personas7 = "",
+        personas8 = "",
+        personas9 = "";
     for (var i = 0; i < act1C.length; i++) {
         if (act1C[i].checked)
             personas1 += act1L[i].innerText + " ";
+        if (act2C[i].checked)
+            personas2 += act1L[i].innerText + " ";
+        if (act3C[i].checked)
+            personas3 += act1L[i].innerText + " ";
+        if (act4C[i].checked)
+            personas4 += act1L[i].innerText + " ";
+        if (act5C[i].checked)
+            personas5 += act1L[i].innerText + " ";
+        if (act6C[i].checked)
+            personas6 += act1L[i].innerText + " ";
+        if (act7C[i].checked)
+            personas7 += act1L[i].innerText + " ";
+        if (act8C[i].checked)
+            personas8 += act1L[i].innerText + " ";
+        if (act9C[i].checked)
+            personas9 += act1L[i].innerText + " ";
     }
     var obj = {
         Academia: document.getElementById("academia").value,
@@ -27,8 +66,58 @@ function crearPDF() {
         Act2: {
             Acciones: act2[0].value,
             Asignaturas: act2[1].value,
+            Responsables: personas2,
             Fecha: act2[2].value.replace("T", " "),
             Evidencia: act2[3].value
+        },
+        Act3: {
+            Acciones: act3[0].value,
+            Asignaturas: act3[1].value,
+            Responsables: personas3,
+            Fecha: act3[2].value.replace("T", " "),
+            Evidencia: act3[3].value
+        },
+        Act4: {
+            Acciones: act4[0].value,
+            Asignaturas: act4[1].value,
+            Responsables: personas4,
+            Fecha: act4[2].value.replace("T", " "),
+            Evidencia: act4[3].value
+        },
+        Act5: {
+            Acciones: act5[0].value,
+            Asignaturas: act5[1].value,
+            Responsables: personas5,
+            Fecha: act5[2].value.replace("T", " "),
+            Evidencia: act5[3].value
+        },
+        Act6: {
+            Acciones: act6[0].value,
+            Asignaturas: act6[1].value,
+            Responsables: personas6,
+            Fecha: act6[2].value.replace("T", " "),
+            Evidencia: act6[3].value
+        },
+        Act7: {
+            Acciones: act7[0].value,
+            Asignaturas: act7[1].value,
+            Responsables: personas7,
+            Fecha: act7[2].value.replace("T", " "),
+            Evidencia: act7[3].value
+        },
+        Act8: {
+            Acciones: act8[0].value,
+            Asignaturas: act8[1].value,
+            Responsables: personas8,
+            Fecha: act8[2].value.replace("T", " "),
+            Evidencia: act8[3].value
+        },
+        Act9: {
+            Acciones: act9[0].value,
+            Asignaturas: act9[1].value,
+            Responsables: personas9,
+            Fecha: act9[2].value.replace("T", " "),
+            Evidencia: act9[3].value
         }
     };
     $.ajax({
