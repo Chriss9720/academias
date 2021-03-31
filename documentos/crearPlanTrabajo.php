@@ -164,7 +164,7 @@
                 $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
                 $this->SetY($posY + $h);
             }
-/*
+/**
             $act1 = json_decode(json_encode($data['Act1']), true);
             $comp = [[],[]];
             $comp[0][0] = "1";
