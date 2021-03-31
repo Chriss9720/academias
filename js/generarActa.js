@@ -13,8 +13,7 @@ function buscar(name, valor) {
 
 function acuerdosAnt() {
     var body = document.getElementById('bodyAnt');
-    for (var i = 0; i < 2; i++) {
-        console.log(i);
+    for (var i = 0; i < 1; i++) {
         var tr = document.createElement('tr');
         tr.setAttribute("name", "ant")
         var td1 = document.createElement('td');
