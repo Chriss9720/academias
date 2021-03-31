@@ -30,23 +30,23 @@ function crearPDF() {
         personas9 = "";
     for (var i = 0; i < act1C.length; i++) {
         if (act1C[i].checked)
-            personas1 += act1L[i].innerText + " ";
+            personas1 += act1L[i].innerText + "?";
         if (act2C[i].checked)
-            personas2 += act1L[i].innerText + " ";
+            personas2 += act1L[i].innerText + "?";
         if (act3C[i].checked)
-            personas3 += act1L[i].innerText + " ";
+            personas3 += act1L[i].innerText + "?";
         if (act4C[i].checked)
-            personas4 += act1L[i].innerText + " ";
+            personas4 += act1L[i].innerText + "?";
         if (act5C[i].checked)
-            personas5 += act1L[i].innerText + " ";
+            personas5 += act1L[i].innerText + "?";
         if (act6C[i].checked)
-            personas6 += act1L[i].innerText + " ";
+            personas6 += act1L[i].innerText + "?";
         if (act7C[i].checked)
-            personas7 += act1L[i].innerText + " ";
+            personas7 += act1L[i].innerText + "?";
         if (act8C[i].checked)
-            personas8 += act1L[i].innerText + " ";
+            personas8 += act1L[i].innerText + "?";
         if (act9C[i].checked)
-            personas9 += act1L[i].innerText + " ";
+            personas9 += act1L[i].innerText + "?";
     }
     var obj = {
         Academia: document.getElementById("academia").value,

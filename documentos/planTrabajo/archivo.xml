@@ -1,10 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ActaAcademias>
+  <Cabecera>
+    <Academia>ISC</Academia>
+    <Semestre>Ene-Jun 2021</Semestre>
+    <Presidente>Anabel Gutiérrez Espinoza</Presidente>
+    <Primera/>
+    <Segunda/>
+    <Tercera/>
+    <Cuarta/>
+  </Cabecera>
   <Act1>
-    <Acciones>1</Acciones>
-    <Asignarutas>14</Asignarutas>
-    <Responsable>Christian Emmanuel Yañez Gonzalez Sergio Antonio Guerra Castro </Responsable>
-    <Fecha>2021-03-30 19:57</Fecha>
-    <Evidencia>123</Evidencia>
+    <Acciones/>
+    <Asignarutas/>
+    <Responsable>Hector Francisco Castro Morales?Christian Emmanuel Yañez Gonzalez?Sergio Antonio Guerra Castro?Persona 1?Persona 2?1?2?3?</Responsable>
+    <Fecha/>
+    <Evidencia/>
   </Act1>
+  <Act2>
+    <Acciones/>
+    <Asignarutas/>
+    <Responsable/>
+    <Fecha/>
+    <Evidencia/>
+  </Act2>
+  <Act3>
+    <Acciones/>
+    <Asignarutas/>
+    <Responsable/>
+    <Fecha/>
+    <Evidencia/>
+  </Act3>
+  <Act4>
+    <Acciones/>
+    <Asignarutas/>
+    <Responsable/>
+    <Fecha/>
+    <Evidencia/>
+  </Act4>
+  <Act5>
+    <Acciones/>
+    <Asignarutas/>
+    <Responsable/>
+    <Fecha/>
+    <Evidencia/>
+  </Act5>
+  <Act6>
+    <Acciones/>
+    <Asignarutas/>
+    <Responsable/>
+    <Fecha/>
+    <Evidencia/>
+  </Act6>
+  <Act7>
+    <Acciones/>
+    <Asignarutas/>
+    <Responsable/>
+    <Fecha/>
+    <Evidencia/>
+  </Act7>
+  <Act8>
+    <Acciones/>
+    <Asignarutas/>
+    <Responsable/>
+    <Fecha/>
+    <Evidencia/>
+  </Act8>
+  <Act9>
+    <Acciones/>
+    <Asignarutas/>
+    <Responsable/>
+    <Fecha/>
+    <Evidencia/>
+  </Act9>
 </ActaAcademias>

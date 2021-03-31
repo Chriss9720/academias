@@ -25,6 +25,10 @@
         }
 
         function TablaP($data) {
+            $xml = new DomDocument('1.0', 'UTF-8');
+            $raiz = $xml->createElement('ActaAcademias');
+            $raiz = $xml->appendChild($raiz);
+
             $this->SetFont('Arial', 'B', 10);
             $this->SetFillColor(217, 217, 217);
             $this->Cell(4.49, 0.7,'Nombre de la Academia:', 1, 0, 'R', true);
@@ -41,7 +45,6 @@
             $this->Cell(0, 0.7, utf8_decode($data['Presidente']), 1, 0 , 'C');
             $this->Ln(.7);
             $this->SetFont('Arial', 'B', 10);
-
             $this->Cell(0, .7, "Fechas de reuniones", 1, 0, 'C', true);
             $this->Ln(.7);
             $this->Cell(4.48, .7, utf8_decode("1ra reunión:"), 1, 0, 'C', true);
@@ -61,6 +64,16 @@
             $this->SetFont('Arial', '', 10);
             $this->Cell(0, .7, utf8_decode($data['f4']), 1, 0, 'C');
             $this->Ln(.7);
+
+            $nodo = $xml->createElement('Cabecera');
+            $raiz->appendChild($nodo);
+            nodos('Academia', $data['Academia'], $nodo, $xml);
+            nodos('Semestre', $data['Semestre'], $nodo, $xml);
+            nodos('Presidente', $data['Presidente'], $nodo, $xml);
+            nodos('Primera', $data['f1'], $nodo, $xml);
+            nodos('Segunda', utf8_decode($data['f2']), $nodo, $xml);
+            nodos('Tercera', utf8_decode($data['f3']), $nodo, $xml);
+            nodos('Cuarta', utf8_decode($data['f4']), $nodo, $xml);
 
             $comp = [[],[]];
             $comp[0][0] = "No.";
@@ -115,7 +128,12 @@
             "Generar y validar instrumentos de evaluación (rubricas, listas de cotejo) y pruebas departamentales");
 
             for	($i = 0, $j = 1; $i < 9; $i++, $j++) {
+
+                $nodo = $xml->createElement('Act'.$j);
+                $raiz->appendChild($nodo);
+
                 $act = json_decode(json_encode($data['Act'.$j]), true);
+
                 $comp = [[],[]];
                 $comp[0][0] = "".$j;
                 $comp[0][1] = 1;
@@ -125,13 +143,20 @@
                 $comp[2][1] = 20;
                 $comp[3][0] = $act['Asignaturas'];
                 $comp[3][1] = 18;
-                $comp[4][0] = $act['Responsables'];
+                $comp[4][0] = str_replace("?", " ", $act['Responsables']);;
                 $comp[4][1] = 15;
                 $comp[5][0] = $act['Fecha'];
                 $comp[5][1] = 10;
                 $comp[6][0] = $act['Evidencia'];
                 $comp[6][1] = 15;
                 $h = getH($comp);
+
+                nodos('Acciones', $act['Acciones'], $nodo, $xml);
+                nodos('Asignarutas', $act['Asignaturas'], $nodo, $xml);
+                nodos('Responsable', $act['Responsables'], $nodo, $xml);
+                nodos('Fecha', $act['Fecha'], $nodo, $xml);
+                nodos('Evidencia', $act['Evidencia'], $nodo, $xml);
+
                 if ($i == 0) {
                     $this->Ln(.24);
                 }
@@ -164,438 +189,7 @@
                 $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
                 $this->SetY($posY + $h);
             }
-/**
-            $act1 = json_decode(json_encode($data['Act1']), true);
-            $comp = [[],[]];
-            $comp[0][0] = "1";
-            $comp[0][1] = 1;
-            $comp[1][0] = $titulo[0];
-            $comp[1][1] = 25;
-            $comp[2][0] = $act1['Acciones'];
-            $comp[2][1] = 20;
-            $comp[3][0] = $act1['Asignaturas'];
-            $comp[3][1] = 18;
-            $comp[4][0] = $act1['Responsables'];
-            $comp[4][1] = 15;
-            $comp[5][0] = $act1['Fecha'];
-            $comp[5][1] = 10;
-            $comp[6][0] = $act1['Evidencia'];
-            $comp[6][1] = 15;
-            $h = getH($comp);
 
-            //Fila 1
-            $this->Ln(.24);
-            $this->Cell(1, $h, $comp[0][0], 1, 0, 'C', true);
-            $this->SetFont("Arial", '', 10);
-            $posY = $this->GetY();
-            $this->SetY($posY);
-            $arr = filas($comp[1][0], $comp[1][1]);
-            $sig = lines($this, $this->GetX() + 1, $arr, $h, 4.1, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[2][0], $comp[2][1]);
-            $sig = lines($this, 6.1, $arr, $h, 3.30, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[3][0], $comp[3][1]);
-            $sig = lines($this, $sig, $arr, $h, 3.2, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[4][0], $comp[4][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[5][0], $comp[5][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[6][0], $comp[6][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
-            $this->SetY($posY + $h);
-   
-            $act1 = json_decode(json_encode($data['Act2']), true);
-            $comp = [[],[]];
-            $comp[0][0] = "2";
-            $comp[0][1] = 1;
-            $comp[1][0] = $titulo[1];
-            $comp[1][1] = 25;
-            $comp[2][0] = $act1['Acciones'];
-            $comp[2][1] = 20;
-            $comp[3][0] = $act1['Asignaturas'];
-            $comp[3][1] = 18;
-            $comp[4][0] = $act1['Responsables'];
-            $comp[4][1] = 15;
-            $comp[5][0] = $act1['Fecha'];
-            $comp[5][1] = 10;
-            $comp[6][0] = $act1['Evidencia'];
-            $comp[6][1] = 15;
-            $h = getH($comp);
-
-            //Fila 2
-            $this->SetFont("Arial", 'B', 10);
-            $this->Cell(1, $h, $comp[0][0], 1, 0, 'C', true);
-            $this->SetFont("Arial", '', 10);
-            $posY = $this->GetY();
-            $this->SetY($posY);
-            $arr = filas($comp[1][0], $comp[1][1]);
-            $sig = lines($this, $this->GetX() + 1, $arr, $h, 4.1, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[2][0], $comp[2][1]);
-            $sig = lines($this, 6.1, $arr, $h, 3.30, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[3][0], $comp[3][1]);
-            $sig = lines($this, $sig, $arr, $h, 3.2, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[4][0], $comp[4][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[5][0], $comp[5][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[6][0], $comp[6][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
-            $this->SetY($posY + $h);
-   
-            $act1 = json_decode(json_encode($data['Act3']), true);
-            $comp = [[],[]];
-            $comp[0][0] = "3";
-            $comp[0][1] = 1;
-            $comp[1][0] = $titulo[2];
-            $comp[1][1] = 25;
-            $comp[2][0] = $act1['Acciones'];
-            $comp[2][1] = 20;
-            $comp[3][0] = $act1['Asignaturas'];
-            $comp[3][1] = 18;
-            $comp[4][0] = $act1['Responsables'];
-            $comp[4][1] = 15;
-            $comp[5][0] = $act1['Fecha'];
-            $comp[5][1] = 10;
-            $comp[6][0] = $act1['Evidencia'];
-            $comp[6][1] = 15;
-            $h = getH($comp);
-
-            //Fila 3
-            $this->SetFont("Arial", 'B', 10);
-            $this->Cell(1, $h, $comp[0][0], 1, 0, 'C', true); 
-            $this->SetFont("Arial", '', 10);
-            $posY = $this->GetY();
-            $this->SetY($posY);
-            $arr = filas($comp[1][0], $comp[1][1]);
-            $sig = lines($this, $this->GetX() + 1, $arr, $h, 4.1, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[2][0], $comp[2][1]);
-            $sig = lines($this, 6.1, $arr, $h, 3.30, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[3][0], $comp[3][1]);
-            $sig = lines($this, $sig, $arr, $h, 3.2, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[4][0], $comp[4][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[5][0], $comp[5][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[6][0], $comp[6][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
-            $this->SetY($posY + $h);
-
-            $act1 = json_decode(json_encode($data['Act4']), true);
-            $comp = [[],[]];
-            $comp[0][0] = "4";
-            $comp[0][1] = 1;
-            $comp[1][0] = $titulo[3];
-            $comp[1][1] = 25;
-            $comp[2][0] = $act1['Acciones'];
-            $comp[2][1] = 20;
-            $comp[3][0] = $act1['Asignaturas'];
-            $comp[3][1] = 18;
-            $comp[4][0] = $act1['Responsables'];
-            $comp[4][1] = 15;
-            $comp[5][0] = $act1['Fecha'];
-            $comp[5][1] = 10;
-            $comp[6][0] = $act1['Evidencia'];
-            $comp[6][1] = 15;
-            $h = getH($comp);
-
-            //Fila 4
-            $this->SetFont("Arial", 'B', 10);
-            $this->Cell(1, $h, $comp[0][0], 1, 0, 'C', true); 
-            $this->SetFont("Arial", '', 10);
-            $posY = $this->GetY();
-            $this->SetY($posY);
-            $arr = filas($comp[1][0], $comp[1][1]);
-            $sig = lines($this, $this->GetX() + 1, $arr, $h, 4.1, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[2][0], $comp[2][1]);
-            $sig = lines($this, 6.1, $arr, $h, 3.30, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[3][0], $comp[3][1]);
-            $sig = lines($this, $sig, $arr, $h, 3.2, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[4][0], $comp[4][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[5][0], $comp[5][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[6][0], $comp[6][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
-            $this->SetY($posY + $h);
-   
-            $act1 = json_decode(json_encode($data['Act5']), true);
-            $comp = [[],[]];
-            $comp[0][0] = "5";
-            $comp[0][1] = 1;
-            $comp[1][0] = $titulo[4];
-            $comp[1][1] = 25;
-            $comp[2][0] = $act1['Acciones'];
-            $comp[2][1] = 20;
-            $comp[3][0] = $act1['Asignaturas'];
-            $comp[3][1] = 18;
-            $comp[4][0] = $act1['Responsables'];
-            $comp[4][1] = 15;
-            $comp[5][0] = $act1['Fecha'];
-            $comp[5][1] = 10;
-            $comp[6][0] = $act1['Evidencia'];
-            $comp[6][1] = 15;
-            $h = getH($comp);
-
-            //Fila 5
-            $this->SetFont("Arial", 'B', 10);
-            $this->Cell(1, $h, $comp[0][0], 1, 0, 'C', true); 
-            $this->SetFont("Arial", '', 10);
-            $posY = $this->GetY();
-            $this->SetY($posY);
-            $arr = filas($comp[1][0], $comp[1][1]);
-            $sig = lines($this, $this->GetX() + 1, $arr, $h, 4.1, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[2][0], $comp[2][1]);
-            $sig = lines($this, 6.1, $arr, $h, 3.30, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[3][0], $comp[3][1]);
-            $sig = lines($this, $sig, $arr, $h, 3.2, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[4][0], $comp[4][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[5][0], $comp[5][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[6][0], $comp[6][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
-            $this->SetY($posY + $h);
-   
-            $act1 = json_decode(json_encode($data['Act6']), true);
-            $comp = [[],[]];
-            $comp[0][0] = "6";
-            $comp[0][1] = 1;
-            $comp[1][0] = $titulo[5];
-            $comp[1][1] = 25;
-            $comp[2][0] = $act1['Acciones'];
-            $comp[2][1] = 20;
-            $comp[3][0] = $act1['Asignaturas'];
-            $comp[3][1] = 18;
-            $comp[4][0] = $act1['Responsables'];
-            $comp[4][1] = 15;
-            $comp[5][0] = $act1['Fecha'];
-            $comp[5][1] = 10;
-            $comp[6][0] = $act1['Evidencia'];
-            $comp[6][1] = 15;
-            $h = getH($comp);
-
-            //Fila 6
-            $this->SetFont("Arial", 'B', 10);
-            $this->Cell(1, $h, $comp[0][0], 1, 0, 'C', true); 
-            $this->SetFont("Arial", '', 10);
-            $posY = $this->GetY();
-            $this->SetY($posY);
-            $arr = filas($comp[1][0], $comp[1][1]);
-            $sig = lines($this, $this->GetX() + 1, $arr, $h, 4.1, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[2][0], $comp[2][1]);
-            $sig = lines($this, 6.1, $arr, $h, 3.30, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[3][0], $comp[3][1]);
-            $sig = lines($this, $sig, $arr, $h, 3.2, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[4][0], $comp[4][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[5][0], $comp[5][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[6][0], $comp[6][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
-            $this->SetY($posY + $h);
-   
-            $act1 = json_decode(json_encode($data['Act7']), true);
-            $comp = [[],[]];
-            $comp[0][0] = "7";
-            $comp[0][1] = 1;
-            $comp[1][0] = $titulo[6];
-            $comp[1][1] = 25;
-            $comp[2][0] = $act1['Acciones'];
-            $comp[2][1] = 20;
-            $comp[3][0] = $act1['Asignaturas'];
-            $comp[3][1] = 18;
-            $comp[4][0] = $act1['Responsables'];
-            $comp[4][1] = 15;
-            $comp[5][0] = $act1['Fecha'];
-            $comp[5][1] = 10;
-            $comp[6][0] = $act1['Evidencia'];
-            $comp[6][1] = 15;
-            $h = getH($comp);
-
-            //Fila 7
-            $this->SetFont("Arial", 'B', 10);
-            $this->Cell(1, $h, $comp[0][0], 1, 0, 'C', true); 
-            $this->SetFont("Arial", '', 10);
-            $posY = $this->GetY();
-            $this->SetY($posY);
-            $arr = filas($comp[1][0], $comp[1][1]);
-            $sig = lines($this, $this->GetX() + 1, $arr, $h, 4.1, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[2][0], $comp[2][1]);
-            $sig = lines($this, 6.1, $arr, $h, 3.30, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[3][0], $comp[3][1]);
-            $sig = lines($this, $sig, $arr, $h, 3.2, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[4][0], $comp[4][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[5][0], $comp[5][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[6][0], $comp[6][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
-            $this->SetY($posY + $h);
-   
-            $act1 = json_decode(json_encode($data['Act8']), true);
-            $comp = [[],[]];
-            $comp[0][0] = "8";
-            $comp[0][1] = 1;
-            $comp[1][0] = $titulo[7];
-            $comp[1][1] = 25;
-            $comp[2][0] = $act1['Acciones'];
-            $comp[2][1] = 20;
-            $comp[3][0] = $act1['Asignaturas'];
-            $comp[3][1] = 18;
-            $comp[4][0] = $act1['Responsables'];
-            $comp[4][1] = 15;
-            $comp[5][0] = $act1['Fecha'];
-            $comp[5][1] = 10;
-            $comp[6][0] = $act1['Evidencia'];
-            $comp[6][1] = 15;
-            $h = getH($comp);
-
-            //Fila 8
-            $this->SetFont("Arial", 'B', 10);
-            $this->Cell(1, $h, $comp[0][0], 1, 0, 'C', true); 
-            $this->SetFont("Arial", '', 10);
-            $posY = $this->GetY();
-            $this->SetY($posY);
-            $arr = filas($comp[1][0], $comp[1][1]);
-            $sig = lines($this, $this->GetX() + 1, $arr, $h, 4.1, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[2][0], $comp[2][1]);
-            $sig = lines($this, 6.1, $arr, $h, 3.30, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[3][0], $comp[3][1]);
-            $sig = lines($this, $sig, $arr, $h, 3.2, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[4][0], $comp[4][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[5][0], $comp[5][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[6][0], $comp[6][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
-            $this->SetY($posY + $h);
-   
-            $act1 = json_decode(json_encode($data['Act9']), true);
-            $comp = [[],[]];
-            $comp[0][0] = "9";
-            $comp[0][1] = 1;
-            $comp[1][0] = $titulo[8];
-            $comp[1][1] = 25;
-            $comp[2][0] = $act1['Acciones'];
-            $comp[2][1] = 20;
-            $comp[3][0] = $act1['Asignaturas'];
-            $comp[3][1] = 18;
-            $comp[4][0] = $act1['Responsables'];
-            $comp[4][1] = 15;
-            $comp[5][0] = $act1['Fecha'];
-            $comp[5][1] = 10;
-            $comp[6][0] = $act1['Evidencia'];
-            $comp[6][1] = 15;
-            $h = getH($comp);
-
-            //Fila 9
-            $this->SetFont("Arial", 'B', 10);
-            $this->Cell(1, $h, $comp[0][0], 1, 0, 'C', true); 
-            $this->SetFont("Arial", '', 10);
-            $posY = $this->GetY();
-            $this->SetY($posY);
-            $arr = filas($comp[1][0], $comp[1][1]);
-            $sig = lines($this, $this->GetX() + 1, $arr, $h, 4.1, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[2][0], $comp[2][1]);
-            $sig = lines($this, 6.1, $arr, $h, 3.30, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[3][0], $comp[3][1]);
-            $sig = lines($this, $sig, $arr, $h, 3.2, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[4][0], $comp[4][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[5][0], $comp[5][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
-
-            $this->SetY($posY);
-            $arr = filas($comp[6][0], $comp[6][1]);
-            $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
-*/
             //firmas
             $this->Ln(5);
             $this->SetFont("Arial", "B", 10);
@@ -634,6 +228,10 @@
             $this->SetY($posY);
             $arr = filas("Coordinador de Presidentes de Academias", 30);
             $sig = lines($this, $this->GetX() + 2 + 5.45 + 5.85, $arr, .79, 5.97);
+
+            $xml->formatOutput = true;
+            $xml->saveXML();
+            $xml->save('planTrabajo/archivo.xml');
 
         }
     }
@@ -689,30 +287,7 @@
         $nodo->appendChild($subnodo);
     }
 
-    function crearXML($data, $key) {
-
-        $act = json_decode(json_encode($data[$key]), true);
-
-        $xml = new DomDocument('1.0', 'UTF-8');
-        $raiz = $xml->createElement('ActaAcademias');
-        $raiz = $xml->appendChild($raiz);
-    
-        $nodo = $xml->createElement($key);
-        $raiz->appendChild($nodo);
-        nodos('Acciones', $act['Acciones'], $nodo, $xml);
-        nodos('Asignarutas', $act['Asignaturas'], $nodo, $xml);
-        nodos('Responsable', $act['Responsables'], $nodo, $xml);
-        nodos('Fecha', $act['Fecha'], $nodo, $xml);
-        nodos('Evidencia', $act['Evidencia'], $nodo, $xml);
-
-        $xml->formatOutput = true;
-        $xml->saveXML();
-        $xml->save('planTrabajo/archivo.xml');
-    }
-
     $json = json_decode(json_encode($_GET['obj']), true);
-    
-    crearXML($json, 'Act1');
 
     $pdf = new PDF('P', 'cm', array(21.59, 27.94));
     $pdf->AliasNbPages();
