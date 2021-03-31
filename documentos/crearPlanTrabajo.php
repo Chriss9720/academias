@@ -115,21 +115,21 @@
             "Generar y validar instrumentos de evaluación (rubricas, listas de cotejo) y pruebas departamentales");
 
             for	($i = 0, $j = 1; $i < 9; $i++, $j++) {
-                $act1 = json_decode(json_encode($data['Act'.$j]), true);
+                $act = json_decode(json_encode($data['Act'.$j]), true);
                 $comp = [[],[]];
                 $comp[0][0] = "".$j;
                 $comp[0][1] = 1;
                 $comp[1][0] = $titulo[$i];
                 $comp[1][1] = 25;
-                $comp[2][0] = $act1['Acciones'];
+                $comp[2][0] = $act['Acciones'];
                 $comp[2][1] = 20;
-                $comp[3][0] = $act1['Asignaturas'];
+                $comp[3][0] = $act['Asignaturas'];
                 $comp[3][1] = 18;
-                $comp[4][0] = $act1['Responsables'];
+                $comp[4][0] = $act['Responsables'];
                 $comp[4][1] = 15;
-                $comp[5][0] = $act1['Fecha'];
+                $comp[5][0] = $act['Fecha'];
                 $comp[5][1] = 10;
-                $comp[6][0] = $act1['Evidencia'];
+                $comp[6][0] = $act['Evidencia'];
                 $comp[6][1] = 15;
                 $h = getH($comp);
                 if ($i == 0) {
