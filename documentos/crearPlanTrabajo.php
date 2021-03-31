@@ -701,7 +701,7 @@
         $raiz->appendChild($nodo);
         nodos('Acciones', $act['Acciones'], $nodo, $xml);
         nodos('Asignarutas', $act['Asignaturas'], $nodo, $xml);
-        nodos('Responsable', $act['Responscbles'], $nodo, $xml);
+        nodos('Responsable', $act['Responsables'], $nodo, $xml);
         nodos('Fecha', $act['Fecha'], $nodo, $xml);
         nodos('Evidencia', $act['Evidencia'], $nodo, $xml);
 
