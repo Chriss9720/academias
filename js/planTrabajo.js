@@ -9,16 +9,16 @@ function crearPDF() {
     var act3C = document.getElementsByName('Act3C');
     var act4 = document.getElementsByName('Act4')
     var act4C = document.getElementsByName('Act4C');
-    var act5 = document.getElementsByName('Act4')
-    var act5C = document.getElementsByName('Act4C');
-    var act6 = document.getElementsByName('Act4')
-    var act6C = document.getElementsByName('Act4C');
-    var act7 = document.getElementsByName('Act4')
-    var act7C = document.getElementsByName('Act4C');
-    var act8 = document.getElementsByName('Act4')
-    var act8C = document.getElementsByName('Act4C');
-    var act9 = document.getElementsByName('Act4')
-    var act9C = document.getElementsByName('Act4C');
+    var act5 = document.getElementsByName('Act5')
+    var act5C = document.getElementsByName('Act5C');
+    var act6 = document.getElementsByName('Act6')
+    var act6C = document.getElementsByName('Act6C');
+    var act7 = document.getElementsByName('Act7')
+    var act7C = document.getElementsByName('Act7C');
+    var act8 = document.getElementsByName('Act8')
+    var act8C = document.getElementsByName('Act8C');
+    var act9 = document.getElementsByName('Act9')
+    var act9C = document.getElementsByName('Act9C');
     var personas1 = "",
         personas2 = "",
         personas3 = "",
@@ -120,7 +120,6 @@ function crearPDF() {
             Evidencia: act9[3].value
         }
     };
-    console.log(obj)
     $.ajax({
         url: 'documentos/crearPlanTrabajo.php',
         type: 'GET',
