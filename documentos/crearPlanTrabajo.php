@@ -105,15 +105,66 @@
             $sig = lines($this, $sig, $arr, $h, 2.6, true);
 
             $titulo = array("Mejoras e innovación de procesos de enseñanza y aprendizaje, incluye implementación de casos, semanas académicas, visitas industriales, proyectos de desarrollo comunitario, etc.",
-        "Uniformizar actividades de formación práctica en asignaturas, talleres y laboratorios.",
-        "Programación de viajes académicos y/o actividades de vinculación.",
-        "Programa de seguimiento y solución estratégica de las materias (PSSEM).",
-        "Integrar banco de proyectos integradores y de residencias profesionales.",
-        "Revisión y actualización de requerimientos de bibliografía básica y de consulta de los programas de curso.",
-        "Desarrollar proyectos de investigación. Publicación de artículos académicos.",
-        "Diseño, rediseño o actualización y validación de instrumentaciones didácticas.",
-        "Generar y validar instrumentos de evaluación (rubricas, listas de cotejo) y pruebas departamentales");
+            "Uniformizar actividades de formación práctica en asignaturas, talleres y laboratorios.",
+            "Programación de viajes académicos y/o actividades de vinculación.",
+            "Programa de seguimiento y solución estratégica de las materias (PSSEM).",
+            "Integrar banco de proyectos integradores y de residencias profesionales.",
+            "Revisión y actualización de requerimientos de bibliografía básica y de consulta de los programas de curso.",
+            "Desarrollar proyectos de investigación. Publicación de artículos académicos.",
+            "Diseño, rediseño o actualización y validación de instrumentaciones didácticas.",
+            "Generar y validar instrumentos de evaluación (rubricas, listas de cotejo) y pruebas departamentales");
 
+            for	($i = 0, $j = 1; $i < 9; $i++, $j++) {
+                $act1 = json_decode(json_encode($data['Act'.$j]), true);
+                $comp = [[],[]];
+                $comp[0][0] = "".$j;
+                $comp[0][1] = 1;
+                $comp[1][0] = $titulo[$i];
+                $comp[1][1] = 25;
+                $comp[2][0] = $act1['Acciones'];
+                $comp[2][1] = 20;
+                $comp[3][0] = $act1['Asignaturas'];
+                $comp[3][1] = 18;
+                $comp[4][0] = $act1['Responsables'];
+                $comp[4][1] = 15;
+                $comp[5][0] = $act1['Fecha'];
+                $comp[5][1] = 10;
+                $comp[6][0] = $act1['Evidencia'];
+                $comp[6][1] = 15;
+                $h = getH($comp);
+                if ($i == 0) {
+                    $this->Ln(.24);
+                }
+                $this->SetFont("Arial", 'B', 10);
+                $this->Cell(1, $h, $comp[0][0], 1, 0, 'C', true); 
+                $this->SetFont("Arial", '', 10);
+                $posY = $this->GetY();
+                $this->SetY($posY);
+                $arr = filas($comp[1][0], $comp[1][1]);
+                $sig = lines($this, $this->GetX() + 1, $arr, $h, 4.1, false, 'L');
+    
+                $this->SetY($posY);
+                $arr = filas($comp[2][0], $comp[2][1]);
+                $sig = lines($this, 6.1, $arr, $h, 3.30, false, 'L');
+    
+                $this->SetY($posY);
+                $arr = filas($comp[3][0], $comp[3][1]);
+                $sig = lines($this, $sig, $arr, $h, 3.2, false, 'L');
+    
+                $this->SetY($posY);
+                $arr = filas($comp[4][0], $comp[4][1]);
+                $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
+    
+                $this->SetY($posY);
+                $arr = filas($comp[5][0], $comp[5][1]);
+                $sig = lines($this, $sig, $arr, $h, 2.7, false, 'L');
+    
+                $this->SetY($posY);
+                $arr = filas($comp[6][0], $comp[6][1]);
+                $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
+                $this->SetY($posY + $h);
+            }
+/*
             $act1 = json_decode(json_encode($data['Act1']), true);
             $comp = [[],[]];
             $comp[0][0] = "1";
@@ -160,7 +211,7 @@
             $this->SetY($posY);
             $arr = filas($comp[6][0], $comp[6][1]);
             $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
-            $posY = $this->GetY();
+            $this->SetY($posY + $h);
    
             $act1 = json_decode(json_encode($data['Act2']), true);
             $comp = [[],[]];
@@ -181,7 +232,6 @@
             $h = getH($comp);
 
             //Fila 2
-            $this->SetY($posY + $h);
             $this->SetFont("Arial", 'B', 10);
             $this->Cell(1, $h, $comp[0][0], 1, 0, 'C', true);
             $this->SetFont("Arial", '', 10);
@@ -209,6 +259,7 @@
             $this->SetY($posY);
             $arr = filas($comp[6][0], $comp[6][1]);
             $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
+            $this->SetY($posY + $h);
    
             $act1 = json_decode(json_encode($data['Act3']), true);
             $comp = [[],[]];
@@ -229,7 +280,6 @@
             $h = getH($comp);
 
             //Fila 3
-            $this->SetY($posY + $h);
             $this->SetFont("Arial", 'B', 10);
             $this->Cell(1, $h, $comp[0][0], 1, 0, 'C', true); 
             $this->SetFont("Arial", '', 10);
@@ -545,7 +595,7 @@
             $this->SetY($posY);
             $arr = filas($comp[6][0], $comp[6][1]);
             $sig = lines($this, $sig, $arr, $h, 2.6, false, 'L');
-
+*/
             //firmas
             $this->Ln(5);
             $this->SetFont("Arial", "B", 10);
