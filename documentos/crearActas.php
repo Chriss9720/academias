@@ -63,7 +63,8 @@
             $this->Cell(2.5, .8, 'AVANCE', 1, 0, 'C', true);
             $this->Ln(.8);
 
-            for ($i = 0; $i < 10; $i++) {
+            $this->SetFont('Arial','',11);
+            for ($i = 0; $i < 3; $i++) {
                 $comp = [[],[]];
                 $comp[0][0] = "Acuerdo No. Acuerdo No. Acuerdo No.";
                 $comp[0][1] = 35;
@@ -81,19 +82,57 @@
                 $arr = filas($comp[0][0], $comp[0][1]);
                 $sig = lines($this, $this->GetX(), $arr, $h, 7, false , "L");
 
-                $this->SetY($posY);
+                $this->SetY($this->GetY() - $h);
                 $arr = filas($comp[1][0], $comp[1][1]);
                 $sig = lines($this, $sig, $arr, $h, 6.1, false , "L");
                 
-                $this->setY($posY);
+                $this->SetY($this->GetY() - ($h * .75));
                 $arr = filas($comp[2][0], $comp[2][1]);
                 $sig = lines($this, $sig, $arr, $h, 4, false , "L");
 
-                $this->setY($posY);
+                $this->SetY($this->GetY() - ($h * .75));
                 $arr = filas($comp[3][0], $comp[3][1]);
                 $sig = lines($this, $sig, $arr, $h, 2.5, false , "C");
+                $this->SetY($this->GetY() + ($h * .25));
+            } 
 
-                $this->SetY($posY + $h);
+            $this->SetFont('Arial','B',11);
+            $this->Cell(0, 1, utf8_decode("ACUERDOS DE REUNIÓN"), 0, 0, 'C');
+            $this->Ln(1);
+
+            $this->Cell(8.5, 1.06, "ACUERDO", 1, 0, 'C', true);
+            $this->Cell(5.87, 1.06, "RESPONSABLE", 1, 0, 'C', true);
+            $text = "FECHA DE CUMPLIMIENTO";
+            $arr = filas($text, 9);
+            $posY = $this->GetY();
+            $posX = $this->GetX();
+            lines($this, $this->GetX(), $arr, 1.06, 0);
+
+            $this->SetFont('Arial','',11);
+            for ($i = 0; $i < 5; $i++) {
+                $comp = [[],[]];
+                $comp[0][0] = "Acuerdo No. Acuerdo No. Acuerdo No.";
+                $comp[0][1] = 35;
+                $comp[1][0] = "Responsable No. ";
+                $comp[1][1] = 30;
+                $comp[2][0] = "Fecha ";
+                $comp[2][1] = 10;
+                $h = getH($comp);
+
+                $posY = $this->GetY();
+                $this->SetY($posY);
+
+                $arr = filas($comp[0][0], $comp[0][1]);
+                $sig = lines($this, $this->GetX(), $arr, $h, 8.5, false , "L");
+
+                $this->SetY($this->GetY() - $h);
+                $arr = filas($comp[1][0], $comp[1][1]);
+                $sig = lines($this, $sig, $arr, $h, 5.87, false , "L");
+                
+                $this->SetY($this->GetY() - ($h * .75));
+                $arr = filas($comp[2][0], $comp[2][1]);
+                $sig = lines($this, $sig, $arr, $h, 0, false , "L");
+                $this->SetY($this->GetY() + ($h * .25));
             } 
         }
     }
