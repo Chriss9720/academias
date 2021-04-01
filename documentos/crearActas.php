@@ -134,6 +134,44 @@
                 $sig = lines($this, $sig, $arr, $h, 0, false , "L");
                 $this->SetY($this->GetY() + ($h * .25));
             } 
+
+            $this->Ln(.5);
+
+            $text = "El presidente pone a la consideración de los presentes el acta, quienes la aprueban en todas sus partes firman de conformidad al final de la misma.";
+            $arr = filas($text, 113);
+            lines($this, $this->GetX(), $arr, 1.06, 0, false, "L", 0);
+
+            $text = "Sin otro asunto que tratar, el presidente da por terminada la reunión, siendo las 22 horas del mismo día.";
+            $arr = filas($text, 113);
+            lines($this, $this->GetX(), $arr, 1.06, 0, false, "L", 0);
+
+            $this->Ln(.5);
+
+            $posY = $this->GetY();
+            $this->SetFont('Arial','B',11);
+            $this->Cell(8.81, .52, "PRESIDENTE", 1, 0, 'C', true);
+
+            $this->SetY($posY);
+            $this->SetX($this->GetX() + 10);
+            $this->Cell(8.81, .52, "SECRETARIO", 1, 0, 'C', true);
+
+            $this->SetFont('Arial','',11);
+            $this->Ln(.5);
+            $posY = $this->GetY();
+            $this->Cell(8.81, 1.75, "Nombre del presidente", 1, 0, 'C');
+
+            $this->SetY($posY);
+            $this->SetX($this->GetX() + 10);
+            $this->Cell(8.81, 1.75, "Nombre del secretario", 1, 0, 'C');
+
+            $this->SetFont('Arial','B',11);
+            $this->Ln(1.8);
+            $posY = $this->GetY();
+            $this->Cell(8.81, .52, "FIRMA", 1, 0, 'C', true);
+
+            $this->SetY($posY);
+            $this->SetX($this->GetX() + 10);
+            $this->Cell(8.81, .52, "FIRMA", 1, 0, 'C', true);
         }
     }
 
