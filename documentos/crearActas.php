@@ -283,6 +283,9 @@
 
             $this->Ln(2);
             $this->SetX(10);
+            $this->Cell(0, 0, 'Hiram', 0, 0, 'C');
+            $this->Ln(.15);
+            $this->SetX(10);
             $this->Cell(0, 0, '', 1, 0);
             $this->SetX(10);
             $this->Cell(0, 1, utf8_decode('Jefe de División'), 0, 0, "C");
