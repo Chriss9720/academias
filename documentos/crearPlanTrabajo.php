@@ -126,7 +126,7 @@
             "Desarrollar proyectos de investigación. Publicación de artículos académicos.",
             "Diseño, rediseño o actualización y validación de instrumentaciones didácticas.",
             "Generar y validar instrumentos de evaluación (rubricas, listas de cotejo) y pruebas departamentales");
-
+            $this->Ln(.24);
             for	($i = 0, $j = 1; $i < 9; $i++, $j++) {
 
                 $nodo = $xml->createElement('Act'.$j);
@@ -157,9 +157,6 @@
                 nodos('Fecha', $act['Fecha'], $nodo, $xml);
                 nodos('Evidencia', $act['Evidencia'], $nodo, $xml);
 
-                if ($i == 0) {
-                    $this->Ln(.24);
-                }
                 $this->SetFont("Arial", 'B', 10);
                 $this->Cell(1, $h, $comp[0][0], 1, 0, 'C', true); 
                 $this->SetFont("Arial", '', 10);
