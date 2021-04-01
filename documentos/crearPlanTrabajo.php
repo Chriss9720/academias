@@ -26,7 +26,7 @@
 
         function TablaP($data) {
             $xml = new DomDocument('1.0', 'UTF-8');
-            $raiz = $xml->createElement('ActaAcademias');
+            $raiz = $xml->createElement('PlanTrabajo');
             $raiz = $xml->appendChild($raiz);
 
             $this->SetFont('Arial', 'B', 10);
