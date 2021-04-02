@@ -9,7 +9,7 @@ function cargar() {
         type: 'GET',
         dataType: 'JSON',
         success: function(r) {
-            console.log(r);
+            acuerdosAnt(r['Acuerdos']);
         },
         error: function(err) {
             console.log('error ' + err);
@@ -44,9 +44,10 @@ function buscar(name, valor) {
     }
 }
 
-function acuerdosAnt() {
+function acuerdosAnt(data) {
+    console.log(data);
     var body = document.getElementById('bodyAnt');
-    for (var i = 0; i < 1; i++) {
+    for (var i = 0; i < data.length; i++) {
         var tr = document.createElement('tr');
         tr.setAttribute("name", "ant")
         var td1 = document.createElement('td');
