@@ -39,19 +39,17 @@
     margin-top: 1%;
     border-collapse: collapse;
 }
-.tablaCompleta{
+
+.tablaCompleta {
     text-align: center;
     width: 100%;
     top: 0%;
     height: 55%;
 }
 
-.tablaHrFinal{
-
+.tablaHrFinal {
     margin-left: 32%;
 }
-
-
 
 .contenidoProc {
     width: 180px;
@@ -92,11 +90,6 @@
     height: 150px;
 }
 
-.buttonRegresar1 {
-    top: 2%;
-    left: 90%;
-}
-
 .buttonAgregar {
     top: -2%;
     left: 57%;
@@ -106,7 +99,7 @@
 .crear {
     background-color: #0bbedd;
     left: 90%;
-    top: 5%;
+    top: 100px;
 }
 
 .titleMenu {
@@ -138,6 +131,7 @@
     position: absolute;
     border-radius: 12px;
 }
+
 .button2 {
     border: none;
     color: white;
@@ -173,7 +167,7 @@ scroll-container {
     width: 95%;
     height: 300px;
     top: 10%;
-font-size: 18pt;
+    font-size: 18pt;
 }
 
 .labelOrden {
@@ -186,12 +180,13 @@ font-size: 18pt;
     left: 40%;
 }
 
-.labelAcuerdos{
+.labelAcuerdos {
     top: -1%;
     left: 40%;
     margin-left: 20%;
 }
-.labelConstancia{
+
+.labelConstancia {
     top: 21%;
     left: 40%;
 }
@@ -242,7 +237,7 @@ font-size: 18pt;
 }
 
 .txtAreaObs {
-    width:600px;
+    width: 600px;
     left: 15%;
     top: 38%;
     margin-top: 10%;
@@ -254,7 +249,6 @@ font-size: 18pt;
 
 .labelAct {
     left: 79%;
-    top: 3%;
     position: absolute;
 }
 
@@ -263,7 +257,6 @@ font-size: 18pt;
 }
 
 .inputAct {
-    top: 2.5%;
     left: 85%;
     width: 38px;
     height: 30px;
@@ -279,24 +272,25 @@ font-size: 18pt;
     background-color: brown;
 }
 
-.trDivisiones{
+.trDivisiones {
     width: 100%;
     height: auto;
 }
 
-.trSep2{
-    
+.trSep2 {
     width: 100%;
     height: 10%;
 }
-.trSep3{
+
+.trSep3 {
     top: 66%;
 }
-.td { 
+
+.td {
     padding: 5px 10px;
     text-align: center;
 }
 
-.txtArea2{
+.txtArea2 {
     font-size: 14pt;
 }

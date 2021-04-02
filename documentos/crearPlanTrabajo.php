@@ -160,6 +160,7 @@
                 $this->SetFont("Arial", 'B', 10);
                 $this->Cell(1, $h, $comp[0][0], 1, 0, 'C', true); 
                 $this->SetFont("Arial", '', 10);
+                
                 $posY = $this->GetY();
                 $this->SetY($posY);
                 $arr = filas($comp[1][0], $comp[1][1]);

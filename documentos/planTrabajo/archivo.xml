@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ActaAcademias>
+<PlanTrabajo>
   <Cabecera>
     <Academia>ISC</Academia>
     <Semestre>Ene-Jun 2021</Semestre>
@@ -10,11 +10,11 @@
     <Cuarta/>
   </Cabecera>
   <Act1>
-    <Acciones/>
-    <Asignarutas/>
+    <Acciones>1</Acciones>
+    <Asignarutas>1</Asignarutas>
     <Responsable/>
-    <Fecha/>
-    <Evidencia/>
+    <Fecha>2021-04-02 00:19</Fecha>
+    <Evidencia>1</Evidencia>
   </Act1>
   <Act2>
     <Acciones/>
@@ -72,4 +72,4 @@
     <Fecha/>
     <Evidencia/>
   </Act9>
-</ActaAcademias>
+</PlanTrabajo>

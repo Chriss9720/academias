@@ -20,7 +20,7 @@
             $this->Cell(4.34);
             $this->SetFont('Arial','',12);
             $this->Cell(0, 1.35,"F01PSA01.02", 0, 0, 'C');
-            $this->Ln(1.5);
+            $this->Ln(2);
         }
 
         function Cuerpo($data) {
@@ -31,25 +31,25 @@
 
             $nodo = $xml->createElement('Cabecera');
             $raiz->appendChild($nodo);
-            nodos('No', '1', $nodo, $xml);
-            nodos('HoraInicio', '800', $nodo, $xml);
-            nodos('dia', '01', $nodo, $xml);
-            nodos('mes', '01', $nodo, $xml);
-            nodos('year', '2001', $nodo, $xml);
-            nodos('lugar', 'ITESC', $nodo, $xml);
-            nodos('academia', 'ISC', $nodo, $xml);
-            nodos('presidente', 'Anabel', $nodo, $xml);
-            nodos('Secretario', 'Sergio', $nodo, $xml);
-            nodos('horaFinal', '01', $nodo, $xml);
-            nodos('cuerpo', "En Ciudad Obregón, Sonora, siendo las 5:00 horas del día 08 de 03 del año 21 reunidos en Casa del Instituto Tecnológico Superior de Cajeme, los maestros miembros de la academia de ISC, cuya lista se anexa a la presente acta; se inicia la reunión, bajo la presidencia de Anabel, auxiliado en la secretaria por Sergio de acuerdo con el siguiente:", $nodo, $xml);
-            nodos('jefe', 'Hiram', $nodo, $xml);
-            nodos('obs', 'Todas las observaciones', $nodo, $xml);
-
+            nodos('No', $data["no"], $nodo, $xml);
+            nodos('HoraInicio', $data["inicio"], $nodo, $xml);
+            nodos('dia', $data['dia'], $nodo, $xml);
+            nodos('mes', $data['mes'], $nodo, $xml);
+            nodos('year', $data['year'], $nodo, $xml);
+            nodos('lugar', $data['lugar'], $nodo, $xml);
+            nodos('academia', $data['academia'], $nodo, $xml);
+            nodos('presidente', $data['presidente'], $nodo, $xml);
+            nodos('Secretario', $data['secretario'], $nodo, $xml);
+            nodos('horaFinal', $data['horaFinal'], $nodo, $xml);
+            nodos('orden', $data['orden'], $nodo, $xml);
+            nodos('jefe', $data['jefe'], $nodo, $xml);
+            nodos('obs', $data['Obs'], $nodo, $xml);
+//$data['']
             $this->SetFont('Arial','B',11);
-            $this->Cell(0, 1, 'Acta No.', 0, 0, 'R');
+            $this->Cell(0, 1, 'Acta No.'.$data["no"], 0, 0, 'R');
             $this->Ln(1.5);
             $this->SetFont('Arial','',11);
-            $text = "En Ciudad Obregón, Sonora, siendo las 5:00 horas del día 08 de 03 del año 21 reunidos en Casa del Instituto Tecnológico Superior de Cajeme, los maestros miembros de la academia de ISC, cuya lista se anexa a la presente acta; se inicia la reunión, bajo la presidencia de Anabel, auxiliado en la secretaria por Sergio de acuerdo con el siguiente:";
+            $text = "En Ciudad Obregón, Sonora, siendo las ".$data["inicio"]." horas del día ".$data['dia']." de ".$data['mes']." del año ".$data['year']." reunidos en ".$data['lugar']." del Instituto Tecnológico Superior de Cajeme, los maestros miembros de la academia de ".$data['academia'].", cuya lista se anexa a la presente acta; se inicia la reunión, bajo la presidencia de ".$data['presidente'].", auxiliado en la secretaria por ".$data['secretario']." de acuerdo con el siguiente:";
             $arr = filas($text, 111);
             lines($this, $this->GetX(), $arr, count($arr) * .48, 0, false , "L", 0);
 
@@ -58,8 +58,7 @@
             $this->Ln(1);
 
             $this->SetFont('Arial','',11);
-            $text = "En Ciudad Obregón, Sonora, siendo las 5:00 horas del día 08 de 03 del año 21 reunidos en Casa del Instituto Tecnológico Superior de Cajeme, los maestros miembros de la academia de ISC, cuya lista se anexa a la presente acta; se inicia la reunión, bajo la presidencia de Anabel, auxiliado en la secretaria por Sergio de acuerdo con el siguiente: En Ciudad Obregón, Sonora, siendo las 5:00 horas del día 08 de 03 del año 21 reunidos en Casa del Instituto Tecnológico Superior de Cajeme, los maestros miembros de la academia de ISC, cuya lista se anexa a la presente acta; se inicia la reunión, bajo la presidencia de Anabel, auxiliado en la secretaria por Sergio de acuerdo con el siguiente: En Ciudad Obregón, Sonora, siendo las 5:00 horas del día 08 de 03 del año 21 reunidos en Casa del Instituto Tecnológico Superior de Cajeme, los maestros miembros de la academia de ISC, cuya lista se anexa a la presente acta; se inicia la reunión, bajo la presidencia de Anabel, auxiliado en la secretaria por Sergio de acuerdo con el siguiente: En Ciudad Obregón, Sonora, siendo las 5:00 horas del día 08 de 03 del año 21 reunidos en Casa del Instituto Tecnológico Superior de Cajeme, los maestros miembros de la academia de ISC, cuya lista se anexa a la presente acta; se inicia la reunión, bajo la presidencia de Anabel, auxiliado en la secretaria por Sergio de acuerdo con el siguiente: En Ciudad Obregón, Sonora, siendo las 5:00 horas del día 08 de 03 del año 21 reunidos en Casa del Instituto Tecnológico Superior de Cajeme, los maestros miembros de la academia de ISC, cuya lista se anexa a la presente acta; se inicia la reunión, bajo la presidencia de Anabel, auxiliado en la secretaria por Sergio de acuerdo con el siguiente:";
-            $arr = filas($text, 111);
+            $arr = filas($data['orden'], 111);
             lines($this, $this->GetX(), $arr, count($arr) * .48, 0, false , "L");
 
             $text = "Aprobado el Orden del Día, se procede a la revisión de acuerdos de la minuta anterior bajo el siguiente:";
@@ -85,46 +84,53 @@
             $this->Ln(.8);
 
             $this->SetFont('Arial','',11);
-            for ($i = 0; $i < 3; $i++) {
+            if ( $data['anterioes'] != null) {
+                $anteriores = $data['anterioes'];
+                for ($i = 0; $i < count($anteriores); $i++) {
 
-                $nodo = $xml->createElement('Acuerdos');
-                $raiz->appendChild($nodo);
+                    $aux = $anteriores[$i];
 
-                $comp = [[],[]];
-                $comp[0][0] = "Acuerdo No. Acuerdo No. Acuerdo No.";
-                $comp[0][1] = 35;
-                $comp[1][0] = "Responsable No. ";
-                $comp[1][1] = 30;
-                $comp[2][0] = "Fecha ";
-                $comp[2][1] = 10;
-                $comp[3][0] = "0%";
-                $comp[3][1] = 10;
-                $h = getH($comp);
+                    $nodo = $xml->createElement('Acuerdos');
+                    $raiz->appendChild($nodo);
 
-                nodos('Acuerdo', $comp[0][0], $nodo, $xml);
-                nodos('Responsable', $comp[1][0], $nodo, $xml);
-                nodos('Fecha', $comp[2][0], $nodo, $xml);
-                nodos('Avance', $comp[3][0], $nodo, $xml);
+                    $comp = [[],[]];
+                    $comp[0][0] = $aux["Acuerdo"];
+                    $comp[0][1] = 35;
+                    $comp[1][0] = $aux["personasAnt"];
+                    $comp[1][1] = 30;
+                    $comp[2][0] = $aux["Fecha"];
+                    $comp[2][1] = 10;
+                    $comp[3][0] = $aux["Avance"];
+                    $comp[3][1] = 10;
+                    $h = getH($comp);
 
-                $posY = $this->GetY();
-                $this->SetY($posY);
+                    nodos('Acuerdo', $comp[0][0], $nodo, $xml);
+                    nodos('Responsable', $comp[1][0], $nodo, $xml);
+                    nodos('Fecha', $comp[2][0], $nodo, $xml);
+                    nodos('Avance', $comp[3][0], $nodo, $xml);
 
-                $arr = filas($comp[0][0], $comp[0][1]);
-                $sig = lines($this, $this->GetX(), $arr, $h, 7, false , "L");
+                    $this->Cell(0,1, '', 0, 0, '');
 
-                $this->SetY($this->GetY() - $h);
-                $arr = filas($comp[1][0], $comp[1][1]);
-                $sig = lines($this, $sig, $arr, $h, 6.1, false , "L");
-                
-                $this->SetY($this->GetY() - ($h * .75));
-                $arr = filas($comp[2][0], $comp[2][1]);
-                $sig = lines($this, $sig, $arr, $h, 4, false , "L");
+                    $posY = $this->GetY();
+                    $this->SetY($posY);
+                    $arr = filas($comp[0][0], $comp[0][1]);
+                    $sig = lines($this, $this->GetX(), $arr, $h, 7, false , "L");
 
-                $this->SetY($this->GetY() - ($h * .75));
-                $arr = filas($comp[3][0], $comp[3][1]);
-                $sig = lines($this, $sig, $arr, $h, 2.5, false , "C");
-                $this->SetY($this->GetY() + ($h * .25));
-            } 
+                    $this->SetY($posY);
+                    $arr = filas($comp[1][0], $comp[1][1]);
+                    $sig = lines($this, $sig, $arr, $h, 6.1, false , "L");
+                    
+                    $this->SetY($posY);
+                    $arr = filas($comp[2][0], $comp[2][1]);
+                    $sig = lines($this, $sig, $arr, $h, 4, false , "L");
+
+                    $this->SetY($posY);
+                    $arr = filas($comp[3][0], $comp[3][1]);
+                    $sig = lines($this, $sig, $arr, $h, 2.5, false , "C");
+                    $this->SetY($posY + $h);
+                } 
+            }
+            $this->Ln(1);
 
             $this->SetFont('Arial','B',11);
             $this->Cell(0, 1, utf8_decode("ACUERDOS DE REUNIÓN"), 0, 0, 'C');
@@ -134,53 +140,57 @@
             $this->Cell(5.87, 1.06, "RESPONSABLE", 1, 0, 'C', true);
             $text = "FECHA DE CUMPLIMIENTO";
             $arr = filas($text, 9);
-            $posY = $this->GetY();
-            $posX = $this->GetX();
             lines($this, $this->GetX(), $arr, 1.06, 0);
 
             $this->SetFont('Arial','',11);
-            for ($i = 0; $i < 5; $i++) {
 
-                $nodo = $xml->createElement('Acuerdos');
-                $raiz->appendChild($nodo);
+            if ($data['extras'] != null) {
+                $ext = $data['extras'];
+                for ($i = 0; $i < count($ext); $i++) {
 
-                $comp = [[],[]];
-                $comp[0][0] = "Acuerdo No. Acuerdo No. Acuerdo No.";
-                $comp[0][1] = 35;
-                $comp[1][0] = "Responsable No. ";
-                $comp[1][1] = 30;
-                $comp[2][0] = "Fecha ";
-                $comp[2][1] = 10;
-                $h = getH($comp);
+                    $aux = $ext[$i];
 
-                nodos('Acuerdo', $comp[0][0], $nodo, $xml);
-                nodos('Responsable', $comp[1][0], $nodo, $xml);
-                nodos('Fecha', $comp[2][0], $nodo, $xml);
-                nodos('Avance', '0%', $nodo, $xml);
+                    $nodo = $xml->createElement('Acuerdos');
+                    $raiz->appendChild($nodo);
 
-                $posY = $this->GetY();
-                $this->SetY($posY);
+                    $comp = [[],[]];
+                    $comp[0][0] = $aux['Acuerdo'];
+                    $comp[0][1] = 35;
+                    $comp[1][0] = $aux['Responsables'];
+                    $comp[1][1] = 30;
+                    $comp[2][0] = $aux['Fecha'];
+                    $comp[2][1] = 10;
+                    $h = getH($comp);
 
-                $arr = filas($comp[0][0], $comp[0][1]);
-                $sig = lines($this, $this->GetX(), $arr, $h, 8.5, false , "L");
+                    nodos('Acuerdo', $comp[0][0], $nodo, $xml);
+                    nodos('Responsable', $comp[1][0], $nodo, $xml);
+                    nodos('Fecha', $comp[2][0], $nodo, $xml);
+                    nodos('Avance', '0%', $nodo, $xml);
 
-                $this->SetY($this->GetY() - $h);
-                $arr = filas($comp[1][0], $comp[1][1]);
-                $sig = lines($this, $sig, $arr, $h, 5.87, false , "L");
-                
-                $this->SetY($this->GetY() - ($h * .75));
-                $arr = filas($comp[2][0], $comp[2][1]);
-                $sig = lines($this, $sig, $arr, $h, 0, false , "L");
-                $this->SetY($this->GetY() + ($h * .25));
-            } 
+                    $this->Cell(0,1, '', 0, 0, '');
 
-            $this->Ln(.5);
+                    $posY = $this->GetY();
+                    $this->SetY($posY);
+                    $arr = filas($comp[0][0], $comp[0][1]);
+                    $sig = lines($this, $this->GetX(), $arr, $h, 8.5, false , "L");
+
+                    $this->SetY($posY);
+                    $arr = filas($comp[1][0], $comp[1][1]);
+                    $sig = lines($this, $sig, $arr, $h, 5.87, false , "L");
+                    
+                    $this->SetY($posY);
+                    $arr = filas($comp[2][0], $comp[2][1]);
+                    $sig = lines($this, $sig, $arr, $h, 0, false , "L");
+                    $this->SetY($posY + $h);
+                } 
+            }
+            $this->Ln(2);
 
             $text = "El presidente pone a la consideración de los presentes el acta, quienes la aprueban en todas sus partes firman de conformidad al final de la misma.";
             $arr = filas($text, 111);
             lines($this, $this->GetX(), $arr, 1.06, 0, false, "L", 0);
 
-            $text = "Sin otro asunto que tratar, el presidente da por terminada la reunión, siendo las 22 horas del mismo día.";
+            $text = "Sin otro asunto que tratar, el presidente da por terminada la reunión, siendo las ".$data['horaFinal']." horas del mismo día.";
             $arr = filas($text, 111);
             lines($this, $this->GetX(), $arr, 1.06, 0, false, "L", 0);
 
@@ -197,11 +207,11 @@
             $this->SetFont('Arial','',11);
             $this->Ln(.5);
             $posY = $this->GetY();
-            $this->Cell(8.81, 1.75, "Nombre del presidente", 1, 0, 'C');
+            $this->Cell(8.81, 1.75, utf8_decode($data['presidente']), 1, 0, 'C');
 
             $this->SetY($posY);
             $this->SetX($this->GetX() + 10);
-            $this->Cell(8.81, 1.75, "Nombre del secretario", 1, 0, 'C');
+            $this->Cell(8.81, 1.75, utf8_decode($data['secretario']), 1, 0, 'C');
 
             $this->SetFont('Arial','B',11);
             $this->Ln(1.8);
@@ -229,46 +239,55 @@
 
             $this->SetFont('Arial','',11);
             $this->Ln(.85);
-            for ($i = 0; $i < 5; $i++) {
 
-                $nodo = $xml->createElement('Profesor');
-                $raiz->appendChild($nodo);
+            if ($data['docentes'] != null) {
+                $pro = $data['docentes'];
+                for ($i = 0; $i < count($pro); $i++) {
 
-                $comp = [[],[]];
-                $comp[0][0] = "Acuerdo No. Acuerdo No. Acuerdo No.";
-                $comp[0][1] = 35;
-                $comp[1][0] = "Responsable No. ";
-                $comp[1][1] = 30;
-                $comp[2][0] = "Fecha ";
-                $comp[2][1] = 10;
-                $h = getH($comp);
+                    $aux = $pro[$i];
 
-                nodos('Docente', $comp[0][0], $nodo, $xml);
-                nodos('Materias', $comp[1][0], $nodo, $xml);
+                    $nodo = $xml->createElement('Profesor');
+                    $raiz->appendChild($nodo);
 
-                $posY = $this->GetY();
-                $this->SetY($posY);
+                    $comp = [[],[]];
+                    $comp[0][0] = $aux['name'];
+                    $comp[0][1] = 35;
+                    $comp[1][0] = $aux['mat'];
+                    $comp[1][1] = 30;
+                    $comp[2][0] = "";
+                    $comp[2][1] = 10;
+                    $h = getH($comp);
 
-                $arr = filas($comp[0][0], $comp[0][1]);
-                $sig = lines($this, $this->GetX(), $arr, $h, 8, false , "L");
+                    nodos('Docente', $comp[0][0], $nodo, $xml);
+                    nodos('Materias', $comp[1][0], $nodo, $xml);
 
-                $this->SetY($this->GetY() - $h);
-                $arr = filas($comp[1][0], $comp[1][1]);
-                $sig = lines($this, $sig, $arr, $h, 6, false , "L");
-                
-                $this->SetY($this->GetY() - ($h * .75));
-                $arr = filas($comp[2][0], $comp[2][1]);
-                $sig = lines($this, $sig, $arr, $h, 0, false , "L");
-                $this->SetY($this->GetY() + ($h * .25));
-            } 
+                    $this->Cell(0,1, '', 0, 0, '');
 
-            $this->SetFont('Arial','B',11);
+                    $posY = $this->GetY();
+                    $this->SetY($posY);
+
+                    $arr = filas($comp[0][0], $comp[0][1]);
+                    $sig = lines($this, $this->GetX(), $arr, $h, 8, false , "L");
+
+                    $this->SetY($posY);
+                    $arr = filas($comp[1][0], $comp[1][1]);
+                    $sig = lines($this, $sig, $arr, $h, 6, false , "L");
+                    
+                    $this->SetY($posY);
+                    $arr = filas($comp[2][0], $comp[2][1]);
+                    $sig = lines($this, $sig, $arr, $h, 0, false , "L");
+
+                    $this->SetY($posY + $h);
+                } 
+
+            }
+
             $this->Ln(1);
             $this->Cell(0, 1, utf8_decode("Revisión y Aprobación del Jefe de División"), 1, 0, 'C', true);
             $this->Ln(1);
 
-            $text = "En Ciudad Obregón, Sonora, siendo las 5:00 horas del día 08 de 03 del año 21 reunidos en Casa del Instituto Tecnológico Superior de Cajeme, los maestros miembros de la academia de ISC, cuya lista se anexa a la presente acta; se inicia la reunión, bajo la presidencia de Anabel, auxiliado en la secretaria por Sergio de acuerdo con el siguiente: En Ciudad Obregón, Sonora, siendo las 5:00 horas del día 08 de 03 del año 21 reunidos en Casa del Instituto Tecnológico Superior de Cajeme, los maestros miembros de la academia de ISC, cuya lista se anexa a la presente acta; se inicia la reunión, bajo la presidencia de Anabel, auxiliado en la secretaria por Sergio de acuerdo con el siguiente:";
-            $arr = filas($text, 111);
+            $text = $data['Obs'];
+            $arr = filas($text, 100);
 
             $posX = $this->GetX();
 
@@ -283,7 +302,7 @@
 
             $this->Ln(2);
             $this->SetX(10);
-            $this->Cell(0, 0, 'Hiram', 0, 0, 'C');
+            $this->Cell(0, 0, utf8_decode($data['jefe']), 0, 0, 'C');
             $this->Ln(.15);
             $this->SetX(10);
             $this->Cell(0, 0, '', 1, 0);

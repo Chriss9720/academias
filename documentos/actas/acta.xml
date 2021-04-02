@@ -1,86 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Acta>
   <Cabecera>
-    <No>1</No>
-    <HoraInicio>800</HoraInicio>
-    <dia>01</dia>
-    <mes>01</mes>
-    <year>2001</year>
-    <lugar>ITESC</lugar>
+    <No/>
+    <HoraInicio/>
+    <dia/>
+    <mes/>
+    <year/>
+    <lugar/>
     <academia>ISC</academia>
-    <presidente>Anabel</presidente>
-    <Secretario>Sergio</Secretario>
-    <horaFinal>01</horaFinal>
-    <cuerpo>En Ciudad Obregón, Sonora, siendo las 5:00 horas del día 08 de 03 del año 21 reunidos en Casa del Instituto Tecnológico Superior de Cajeme, los maestros miembros de la academia de ISC, cuya lista se anexa a la presente acta; se inicia la reunión, bajo la presidencia de Anabel, auxiliado en la secretaria por Sergio de acuerdo con el siguiente:</cuerpo>
-    <jefe>Hiram</jefe>
-    <obs>Todas las observaciones</obs>
+    <presidente>---</presidente>
+    <Secretario>---</Secretario>
+    <horaFinal/>
+    <orden/>
+    <jefe>de la base de datos</jefe>
+    <obs/>
   </Cabecera>
   <Acuerdos>
-    <Acuerdo>Acuerdo No. Acuerdo No. Acuerdo No.</Acuerdo>
-    <Responsable>Responsable No. </Responsable>
-    <Fecha>Fecha </Fecha>
+    <Acuerdo>Extra1</Acuerdo>
+    <Responsable>Persona 1%</Responsable>
+    <Fecha>2021-04-04 14:43</Fecha>
     <Avance>0%</Avance>
   </Acuerdos>
   <Acuerdos>
-    <Acuerdo>Acuerdo No. Acuerdo No. Acuerdo No.</Acuerdo>
-    <Responsable>Responsable No. </Responsable>
-    <Fecha>Fecha </Fecha>
+    <Acuerdo>Extra2</Acuerdo>
+    <Responsable>Sergio Antonio Guerra Castro%</Responsable>
+    <Fecha>2021-04-24 23:47</Fecha>
     <Avance>0%</Avance>
   </Acuerdos>
   <Acuerdos>
-    <Acuerdo>Acuerdo No. Acuerdo No. Acuerdo No.</Acuerdo>
-    <Responsable>Responsable No. </Responsable>
-    <Fecha>Fecha </Fecha>
+    <Acuerdo>2</Acuerdo>
+    <Responsable>Persona 1%</Responsable>
+    <Fecha>2021-04-09 23:49</Fecha>
     <Avance>0%</Avance>
   </Acuerdos>
   <Acuerdos>
-    <Acuerdo>Acuerdo No. Acuerdo No. Acuerdo No.</Acuerdo>
-    <Responsable>Responsable No. </Responsable>
-    <Fecha>Fecha </Fecha>
+    <Acuerdo>3</Acuerdo>
+    <Responsable>Hector Francisco Castro Morales%</Responsable>
+    <Fecha>2021-05-01 23:53</Fecha>
     <Avance>0%</Avance>
   </Acuerdos>
   <Acuerdos>
-    <Acuerdo>Acuerdo No. Acuerdo No. Acuerdo No.</Acuerdo>
-    <Responsable>Responsable No. </Responsable>
-    <Fecha>Fecha </Fecha>
+    <Acuerdo>4</Acuerdo>
+    <Responsable>Hector Francisco Castro Morales%</Responsable>
+    <Fecha>2021-04-28 23:01</Fecha>
     <Avance>0%</Avance>
   </Acuerdos>
   <Acuerdos>
-    <Acuerdo>Acuerdo No. Acuerdo No. Acuerdo No.</Acuerdo>
-    <Responsable>Responsable No. </Responsable>
-    <Fecha>Fecha </Fecha>
+    <Acuerdo>123213123 2 213 123 123213123 2 213 123 123213123 2 213 123 123213123 2 213 123 123213123 2 213 123 123213123 2 213 123 123213123 2 213 123 123213123 2 213 123 123213123 2 213 123 123213123 2 213 123 123213123 2 213 123 </Acuerdo>
+    <Responsable>Christian Emmanuel Yañez Gonzalez%</Responsable>
+    <Fecha>2021-04-30 00:03</Fecha>
     <Avance>0%</Avance>
   </Acuerdos>
   <Acuerdos>
-    <Acuerdo>Acuerdo No. Acuerdo No. Acuerdo No.</Acuerdo>
-    <Responsable>Responsable No. </Responsable>
-    <Fecha>Fecha </Fecha>
+    <Acuerdo>214</Acuerdo>
+    <Responsable>Persona 1%</Responsable>
+    <Fecha>2021-05-01 04:08</Fecha>
     <Avance>0%</Avance>
   </Acuerdos>
   <Acuerdos>
-    <Acuerdo>Acuerdo No. Acuerdo No. Acuerdo No.</Acuerdo>
-    <Responsable>Responsable No. </Responsable>
-    <Fecha>Fecha </Fecha>
+    <Acuerdo>543534 534</Acuerdo>
+    <Responsable>Sergio Antonio Guerra Castro%</Responsable>
+    <Fecha>2021-05-01 00:09</Fecha>
+    <Avance>0%</Avance>
+  </Acuerdos>
+  <Acuerdos>
+    <Acuerdo>32432432 </Acuerdo>
+    <Responsable>Hector Francisco Castro Morales%</Responsable>
+    <Fecha>2021-04-20 00:23</Fecha>
+    <Avance>0%</Avance>
+  </Acuerdos>
+  <Acuerdos>
+    <Acuerdo>Yañez</Acuerdo>
+    <Responsable>Christian Emmanuel Yañez Gonzalez%</Responsable>
+    <Fecha>2021-04-17 03:27</Fecha>
+    <Avance>0%</Avance>
+  </Acuerdos>
+  <Acuerdos>
+    <Acuerdo>Gonzalewzez</Acuerdo>
+    <Responsable>Persona 1%</Responsable>
+    <Fecha>2021-04-03 00:28</Fecha>
+    <Avance>0%</Avance>
+  </Acuerdos>
+  <Acuerdos>
+    <Acuerdo>entonces que onda xd</Acuerdo>
+    <Responsable>Persona 1%</Responsable>
+    <Fecha>2021-04-29 00:30</Fecha>
+    <Avance>0%</Avance>
+  </Acuerdos>
+  <Acuerdos>
+    <Acuerdo> 4545542  </Acuerdo>
+    <Responsable>Sergio Antonio Guerra Castro%</Responsable>
+    <Fecha>2021-04-13 00:30</Fecha>
+    <Avance>0%</Avance>
+  </Acuerdos>
+  <Acuerdos>
+    <Acuerdo>34 5345 34 5345 34 5</Acuerdo>
+    <Responsable>3%</Responsable>
+    <Fecha>2021-04-02 00:30</Fecha>
     <Avance>0%</Avance>
   </Acuerdos>
   <Profesor>
-    <Docente>Acuerdo No. Acuerdo No. Acuerdo No.</Docente>
-    <Materias>Responsable No. </Materias>
-  </Profesor>
-  <Profesor>
-    <Docente>Acuerdo No. Acuerdo No. Acuerdo No.</Docente>
-    <Materias>Responsable No. </Materias>
-  </Profesor>
-  <Profesor>
-    <Docente>Acuerdo No. Acuerdo No. Acuerdo No.</Docente>
-    <Materias>Responsable No. </Materias>
-  </Profesor>
-  <Profesor>
-    <Docente>Acuerdo No. Acuerdo No. Acuerdo No.</Docente>
-    <Materias>Responsable No. </Materias>
-  </Profesor>
-  <Profesor>
-    <Docente>Acuerdo No. Acuerdo No. Acuerdo No.</Docente>
-    <Materias>Responsable No. </Materias>
+    <Docente>3</Docente>
+    <Materias>123</Materias>
   </Profesor>
 </Acta>

@@ -74,6 +74,7 @@ function crearPDF() {
             profesores.push(obj);
         }
     }
+    console.log(profesores);
     var obj = {
         no: document.getElementById('No').value,
         dia: fecha[2],
@@ -89,9 +90,9 @@ function crearPDF() {
         extras: acuerdosExtras,
         horaFinal: document.getElementById('Final').value,
         Obs: document.getElementById('obs').value,
-        profesores: profesores
+        docentes: profesores,
+        jefe: "de la base de datos"
     };
-    console.log(obj);
     $.ajax({
         url: 'documentos/crearActas.php',
         type: 'GET',
