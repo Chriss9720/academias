@@ -294,6 +294,7 @@
             $this->Cell(0, count($arr) * .48 + 2 + 2 + .4, '', 1);
 
             $this->SetX($posX);
+            $this->SetFont('Arial','B',11);
             $this->Cell(0, 1, utf8_decode("Observaciones: "), 0, 0);
 
             $this->SetFont('Arial','',11);
