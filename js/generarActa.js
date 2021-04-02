@@ -11,10 +11,9 @@ function cargar() {
         success: function(r) {
             acuerdosAnt(r['Acuerdos']);
         },
-        error: function(err) {
-            console.log('error ' + err);
-        }
+        error: function(err) {}
     });
+    cargarUsuarios();
     removerLoad();
 }
 
@@ -45,7 +44,6 @@ function buscar(name, valor) {
 }
 
 function acuerdosAnt(data) {
-    console.log(data);
     var body = document.getElementById('bodyAnt');
     for (var i = 0; i < data.length; i++) {
         var tr = document.createElement('tr');
@@ -55,6 +53,7 @@ function acuerdosAnt(data) {
         var text = document.createElement('textarea');
         text.setAttribute('class', 'txtArea txtArea2');
         text.disabled = true;
+        text.innerText = data[i]['Acuerdo'][0];
         td1.appendChild(text)
         var td2 = document.createElement('td');
         td2.setAttribute('class', 'tdResponsable');
@@ -71,6 +70,7 @@ function acuerdosAnt(data) {
         tabla.setAttribute('id', 'tablaResponsablesAnt')
         tabla.setAttribute('class', 'alin')
         var tbody = document.createElement('tbody');
+        var responsables = data[i]['Responsable'][0].split("%");
         for (var j = 0; j < arr.length; j++) {
             var trx = document.createElement('tr');
             var td = document.createElement('td');
@@ -82,6 +82,10 @@ function acuerdosAnt(data) {
             inp.type = 'checkbox';
             inp.name = name + "C";
             inp.disabled = true;
+            for (var k = 0; k < responsables.length && !inp.checked; k++) {
+                if (arr[j].includes(responsables[k]))
+                    inp.checked = true;
+            }
             td.appendChild(inp);
             td.appendChild(label);
             trx.appendChild(td);
@@ -95,14 +99,15 @@ function acuerdosAnt(data) {
         td3.setAttribute('class', 'tdS');
         var inp = document.createElement('input');
         inp.setAttribute('name', 'fechaCumpAnt');
-        inp.setAttribute('type', 'datetime-local');
         inp.setAttribute('class', 'contenidoReunion');
         inp.disabled = true;
+        inp.value = data[i]['Fecha'][0];
         td3.appendChild(inp);
         var td4 = document.createElement('td');
         td4.setAttribute('class', 'tdS');
         var text = document.createElement('textarea');
         text.setAttribute('class', 'txtArea txtArea2');
+        text.innerText = data[i]['Avance'][0];
         td4.appendChild(text);
         tr.appendChild(td1);
         tr.appendChild(td2);
@@ -121,7 +126,6 @@ function todos(name) {
 }
 
 function cargarUsuarios() {
-    acuerdosAnt();
     var ft = document.getElementById('tablaResponsables') != null;
     var fta = document.getElementById('tablaNuevos') != null;
     var t = document.getElementById('tablaResponsables');

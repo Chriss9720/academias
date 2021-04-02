@@ -12,6 +12,5 @@
     }
 
     $return = array( "Acuerdos" => $acuerdos);
-
     echo json_encode($return);
 ?>
