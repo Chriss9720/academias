@@ -160,10 +160,12 @@ function acuerdosAnt(data) {
                 if (arr[j].includes(responsables[k]))
                     inp.checked = true;
             }
-            td.appendChild(inp);
-            td.appendChild(label);
-            trx.appendChild(td);
-            tbody.appendChild(trx);
+            if (inp.checked) {
+                td.appendChild(inp);
+                td.appendChild(label);
+                trx.appendChild(td);
+                tbody.appendChild(trx);
+            }
         }
         tabla.appendChild(tbody);
         sp.appendChild(tabla);

@@ -109,7 +109,7 @@
                     nodos('Fecha', $comp[2][0], $nodo, $xml);
                     nodos('Avance', $comp[3][0], $nodo, $xml);
 
-                    $this->Cell(0,1, '', 0, 0, '');
+                    $this->Cell(0, $h, '', 0, 0, '');
 
                     $posY = $this->GetY();
                     $this->SetY($posY);
@@ -157,25 +157,24 @@
                     $comp = [[],[]];
                     $comp[0][0] = $aux['Acuerdo'];
                     $comp[0][1] = 35;
-                    $comp[1][0] =$aux['Responsables'];
+                    $comp[1][0] = str_replace("%", ", ", $aux['Responsables']);
                     $comp[1][1] = 30;
                     $comp[2][0] = $aux['Fecha'];
                     $comp[2][1] = 10;
                     $h = getH($comp);
 
-                    nodos('Acuerdo', $comp[0][0], $nodo, $xml);
-                    nodos('Responsable', $comp[1][0], $nodo, $xml);
-                    nodos('Fecha', $comp[2][0], $nodo, $xml);
+                    nodos('Acuerdo', $aux['Acuerdo'], $nodo, $xml);
+                    nodos('Responsable',$aux['Responsables'], $nodo, $xml);
+                    nodos('Fecha', $aux['Fecha'], $nodo, $xml);
                     nodos('Avance', '0%', $nodo, $xml);
 
-                    $this->Cell(0,1, '', 0, 0, '');
+                    $this->Cell(0, $h, '', 0, 0, '');
 
                     $posY = $this->GetY();
                     $this->SetY($posY);
                     $arr = filas($comp[0][0], $comp[0][1]);
                     $sig = lines($this, $this->GetX(), $arr, $h, 8.5, false , "L");
 
-                    $comp[1][0] = str_replace("%", ", ", $comp[1][0]);
                     $this->SetY($posY);
                     $arr = filas($comp[1][0], $comp[1][1]);
                     $sig = lines($this, $sig, $arr, $h, 5.87, false , "L");
@@ -263,7 +262,7 @@
                     nodos('Docente', $comp[0][0], $nodo, $xml);
                     nodos('Materias', $comp[1][0], $nodo, $xml);
 
-                    $this->Cell(0,1, '', 0, 0, '');
+                    $this->Cell(0, $h, '', 0, 0, '');
 
                     $posY = $this->GetY();
                     $this->SetY($posY);
