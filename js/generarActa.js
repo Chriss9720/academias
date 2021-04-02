@@ -18,7 +18,80 @@ function cargar() {
 }
 
 function crearPDF() {
-    var obj = {};
+    var horaInicio = document.getElementById('inicio').value.replace("T", " ").split(" ");
+    var fecha = horaInicio[0].split("-");
+    var anteriores = document.getElementsByName('ant');
+    var acuerdos = [];
+    var textosAnt = document.getElementsByName('txtAnt');
+    var fechasAnt = document.getElementsByName('fechaCumpAnt');
+    var avance = document.getElementsByName('Avance');
+    var personasAnt = [];
+    for (var i = 0; i < anteriores.length; i++) {
+        var inputs = document.getElementsByName('acuerdoAnt' + i + 'C');
+        personasAnt[i] = "";
+        for (var j = 0; j < inputs.length; j++) {
+            if (inputs[j].checked)
+                personasAnt[i] = document.getElementsByName('acuerdoAnt' + i + 'L')[j].innerText + "%";
+        }
+    }
+    for (var i = 0; i < anteriores.length; i++) {
+        var obj = {
+            Acuerdo: textosAnt[i].value,
+            Avance: avance[i].value,
+            personasAnt: personasAnt[i],
+            Fecha: fechasAnt[i].value
+        };
+        acuerdos.push(obj);
+    }
+    var extras = document.getElementsByName('acuerdoExtra');
+    var text = document.getElementsByName('textReunion');
+    var acuerdosExtras = [];
+    var personasExtras = [];
+    for (var i = 0; i < extras.length; i++) {
+        var inputs = document.getElementsByName('nueResp' + i + 'C');
+        personasExtras[i] = "";
+        for (var j = 0; j < inputs.length; j++) {
+            if (inputs[j].checked)
+                personasExtras[i] = document.getElementsByName('nueResp' + i + 'L')[j].innerText + "%";
+        }
+    }
+    for (var i = 0; i < extras.length; i++) {
+        var obj = {
+            Acuerdo: text[i].value,
+            Responsables: personasExtras[i],
+            Fecha: document.getElementsByName('fechaCump')[i].value.replace("T", " ")
+        };
+        acuerdosExtras.push(obj);
+    }
+    var profesoresTotal = document.getElementsByName('profesorC');
+    var profesores = [];
+    for (var i = 0; i < profesoresTotal.length; i++) {
+        if (profesoresTotal[i].checked) {
+            var obj = {
+                name: document.getElementsByName('profesorL')[i].innerText,
+                mat: document.getElementsByName('materias')[i].value
+            };
+            profesores.push(obj);
+        }
+    }
+    var obj = {
+        no: document.getElementById('No').value,
+        dia: fecha[2],
+        mes: fecha[1],
+        year: fecha[0],
+        inicio: horaInicio[1],
+        lugar: document.getElementById('Lugar').value,
+        academia: document.getElementById('Academia').value,
+        presidente: document.getElementById('Presidente').value,
+        secretario: document.getElementById('Secretario').value,
+        orden: document.getElementById('Orden').value,
+        anterioes: acuerdos,
+        extras: acuerdosExtras,
+        horaFinal: document.getElementById('Final').value,
+        Obs: document.getElementById('obs').value,
+        profesores: profesores
+    };
+    console.log(obj);
     $.ajax({
         url: 'documentos/crearActas.php',
         type: 'GET',
@@ -52,6 +125,7 @@ function acuerdosAnt(data) {
         td1.setAttribute('class', 'tdS');
         var text = document.createElement('textarea');
         text.setAttribute('class', 'txtArea txtArea2');
+        text.setAttribute('name', 'txtAnt');
         text.disabled = true;
         text.innerText = data[i]['Acuerdo'][0];
         td1.appendChild(text)
@@ -82,7 +156,7 @@ function acuerdosAnt(data) {
             inp.type = 'checkbox';
             inp.name = name + "C";
             inp.disabled = true;
-            for (var k = 0; k < responsables.length && !inp.checked; k++) {
+            for (var k = 0; k < responsables.length - 1 && !inp.checked; k++) {
                 if (arr[j].includes(responsables[k]))
                     inp.checked = true;
             }
@@ -107,6 +181,7 @@ function acuerdosAnt(data) {
         td4.setAttribute('class', 'tdS');
         var text = document.createElement('textarea');
         text.setAttribute('class', 'txtArea txtArea2');
+        text.setAttribute('name', 'Avance');
         text.innerText = data[i]['Avance'][0];
         td4.appendChild(text);
         tr.appendChild(td1);
@@ -126,16 +201,13 @@ function todos(name) {
 }
 
 function cargarUsuarios() {
-    var ft = document.getElementById('tablaResponsables') != null;
-    var fta = document.getElementById('tablaNuevos') != null;
     var t = document.getElementById('tablaResponsables');
     var ta = document.getElementById('tablaNuevos');
-    var tf = document.getElementById('tablaProfesor');
     var bod = document.createElement('tbody');
     var boda = document.createElement('tbody');
-    var bodp = document.createElement('tbody');
+    var profesor = document.getElementById('bodyProfesor');
     for (var i = 0; i < arr.length; i++) {
-        if (ft) {
+        if (t != null) {
             var tr = document.createElement('tr');
             var td = document.createElement('td');
             var label = document.createElement('label');
@@ -149,7 +221,7 @@ function cargarUsuarios() {
             tr.appendChild(td);
             bod.appendChild(tr);
         }
-        if (fta) {
+        if (ta != null) {
             var tr = document.createElement('tr');
             var td = document.createElement('td');
             var label = document.createElement('label');
@@ -165,6 +237,7 @@ function cargarUsuarios() {
         }
         var tr = document.createElement('tr');
         var td = document.createElement('td');
+        td.setAttribute('class', 'tdResponsable')
         var label = document.createElement('label');
         label.innerText = arr[i];
         label.setAttribute("name", "profesorL");
@@ -174,12 +247,18 @@ function cargarUsuarios() {
         td.appendChild(inp);
         td.appendChild(label);
         tr.appendChild(td);
-        bodp.appendChild(tr);
+        var td4 = document.createElement('td');
+        td4.setAttribute('class', 'tdS');
+        var text = document.createElement('textarea');
+        text.setAttribute('class', 'txtArea txtArea2');
+        text.setAttribute('name', 'materias')
+        td4.appendChild(text);
+        tr.appendChild(td4);
+        profesor.appendChild(tr);
     }
-    tf.appendChild(bodp);
-    if (fta)
+    if (ta != null)
         ta.appendChild(boda);
-    if (ft)
+    if (t != null)
         t.appendChild(bod);
 }
 

@@ -21,29 +21,29 @@
                 <tr>
                     <td>
                         <input class="button buttonRegresar1" type="button" value="Regresar" onclick="cambiar('menu')" />
-                        <label class="labelAct">Act. No.</label>
+                        <label class="labelAct">Acta No.</label>
                         <input class="button crear" type="button" value="Crear Acta" onclick="crearPDF()" />
-                        <input name="act" type="text" class="inputAct">
+                        <input name="act" type="text" class="inputAct" id="No">
                         <table class="tablaProc" cellspacing="10" cellpadding="3">
                             <tr>
                                 <td><label class="contenidoProc">Fecha de Inicio:</label></td>
-                                <td><input name="fechaInicio" type="datetime-local" class="contenidoReunion" /></td>
+                                <td><input name="fechaInicio" type="datetime-local" class="contenidoReunion" id="inicio" /></td>
                                 <td><label class="contenidoProc">Lugar:</label></td>
-                                <td><input name="lugar" type="text" class="contenidoProc" /></td>
+                                <td><input name="lugar" type="text" class="contenidoProc" id="Lugar" /></td>
                             </tr>
                             <tr>
                                 <td><label class="contenidoProc">Academia:</label></td>
-                                <td><select name="SearchCarr" class="contenidoBusqueda">
+                                <td><select name="SearchCarr" class="contenidoBusqueda" id="Academia">
                                         <option>ISC</option>
                                     </select></td>
                                 <td><label>Presidente:</label></td>
-                                <td><select name="SearchPres" class="contenidoBusqueda">
+                                <td><select name="SearchPres" class="contenidoBusqueda" id="Presidente">
                                         <option>---</option>
                                     </select></td>
                             </tr>
                             <tr>
                                 <td><label>Secretario:</label></td>
-                                <td><select name="SearchSecre" class="contenidoBusqueda">
+                                <td><select name="SearchSecre" class="contenidoBusqueda" id="Secretario">
                                         <option>---</option>
                                     </select></td>
                             </tr>
@@ -57,7 +57,7 @@
                                 <label class="labelOrden">Orden del Día</label>
                             </tr>
                             <tr>
-                                <textarea class="textAreaOrden "></textarea>
+                                <textarea class="textAreaOrden " id="Orden"></textarea>
                             </tr>
                         </table>
                     </td>
@@ -108,7 +108,7 @@
                         <table cellspacing="10" cellpadding="3" class="tablaHrFinal">
                             <tr class="trFinal">
                                 <td><label>HORA FINAL DE REUNIÓN</label></td>
-                                <td><input name="HoraFinal" type="time" class="contenidoProc" /></td>
+                                <td><input name="HoraFinal" type="time" class="contenidoProc" id="Final" /></td>
                             </tr>
                         </table>
                     </td>
@@ -121,32 +121,17 @@
                             reunión
                             y manifiestan su aprobación para la presente acta.</label><br>
                         <table class="tablaCons">
-                            <tbody class="tbody">
+                            <tbody class="tbody" id="bodyProfesor">
                                 <tr class="trCabecera">
                                     <td class="tdSegui"><label>PROFESOR</label></td>
                                     <td class="tdSegui"><label>MATERIA QUE IMPARTE</label></td>
-                                </tr>
-                                <tr>
-                                    <td class="tdResponsable">
-                                        <label>Buscar:</label>
-                                        <input type="text" onkeyup="buscar('profesor', this.value)" />
-                                        <input type="checkbox" onchange="todos('profesor')"><label>Todos</label>
-                                        <scroll-container>
-                                            <scroll-page>
-                                                <table id="tablaProfesor" class="alin">
-                                                </table>
-                                            </scroll-page>
-                                        </scroll-container>
-                                    </td>
-                                    <td class="tdS"><textarea class="txtArea txtArea2"></textarea>
-                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                         <table>
                             <tr>
                                 <td><label class="labelObs">OBSERVACIONES:</label></td>
-                                <td><textarea class="txtAreaObs textArea txtArea2"></textarea></td>
+                                <td><textarea class="txtAreaObs textArea txtArea2" id="obs"></textarea></td>
                             </tr>
                         </table>
                     </td>
