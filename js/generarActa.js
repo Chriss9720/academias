@@ -2,6 +2,21 @@ var acuerdoExtra = 0,
     acuerdoAnt = 0;
 var arr = ["Hector Francisco Castro Morales", "Christian Emmanuel Yañez Gonzalez", "Sergio Antonio Guerra Castro", "Persona 1", "Persona 2", "1", "2", "3"];
 
+function cargar() {
+    crearLoad('rcornersProcCritico');
+    $.ajax({
+        url: 'documentos/leerActa.php',
+        type: 'GET',
+        success: function(r) {
+            console.log(r);
+        },
+        error: function(err) {
+            console.log('error ' + err);
+        }
+    });
+    removerLoad();
+}
+
 function crearPDF() {
     var obj = {};
     $.ajax({
