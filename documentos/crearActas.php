@@ -116,6 +116,7 @@
                     $arr = filas($comp[0][0], $comp[0][1]);
                     $sig = lines($this, $this->GetX(), $arr, $h, 7, false , "L");
 
+                    $comp[1][0] = str_replace("%", ", ", $comp[1][0]);
                     $this->SetY($posY);
                     $arr = filas($comp[1][0], $comp[1][1]);
                     $sig = lines($this, $sig, $arr, $h, 6.1, false , "L");
@@ -156,7 +157,7 @@
                     $comp = [[],[]];
                     $comp[0][0] = $aux['Acuerdo'];
                     $comp[0][1] = 35;
-                    $comp[1][0] = $aux['Responsables'];
+                    $comp[1][0] =$aux['Responsables'];
                     $comp[1][1] = 30;
                     $comp[2][0] = $aux['Fecha'];
                     $comp[2][1] = 10;
@@ -174,6 +175,7 @@
                     $arr = filas($comp[0][0], $comp[0][1]);
                     $sig = lines($this, $this->GetX(), $arr, $h, 8.5, false , "L");
 
+                    $comp[1][0] = str_replace("%", ", ", $comp[1][0]);
                     $this->SetY($posY);
                     $arr = filas($comp[1][0], $comp[1][1]);
                     $sig = lines($this, $sig, $arr, $h, 5.87, false , "L");

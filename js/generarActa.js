@@ -52,7 +52,7 @@ function crearPDF() {
         personasExtras[i] = "";
         for (var j = 0; j < inputs.length; j++) {
             if (inputs[j].checked)
-                personasExtras[i] = document.getElementsByName('nueResp' + i + 'L')[j].innerText + "%";
+                personasExtras[i] += document.getElementsByName('nueResp' + i + 'L')[j].innerText + "%";
         }
     }
     for (var i = 0; i < extras.length; i++) {
@@ -74,7 +74,6 @@ function crearPDF() {
             profesores.push(obj);
         }
     }
-    console.log(profesores);
     var obj = {
         no: document.getElementById('No').value,
         dia: fecha[2],
