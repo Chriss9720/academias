@@ -40,7 +40,7 @@
             nodos('academia', 'ISC', $nodo, $xml);
             nodos('presidente', 'Anabel', $nodo, $xml);
             nodos('Secretario', 'Sergio', $nodo, $xml);
-            nodos('dia', '01', $nodo, $xml);
+            nodos('horaFinal', '01', $nodo, $xml);
             nodos('cuerpo', "En Ciudad Obregón, Sonora, siendo las 5:00 horas del día 08 de 03 del año 21 reunidos en Casa del Instituto Tecnológico Superior de Cajeme, los maestros miembros de la academia de ISC, cuya lista se anexa a la presente acta; se inicia la reunión, bajo la presidencia de Anabel, auxiliado en la secretaria por Sergio de acuerdo con el siguiente:", $nodo, $xml);
             nodos('jefe', 'Hiram', $nodo, $xml);
             nodos('obs', 'Todas las observaciones', $nodo, $xml);

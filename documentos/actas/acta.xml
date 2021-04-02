@@ -10,20 +10,20 @@
     <academia>ISC</academia>
     <presidente>Anabel</presidente>
     <Secretario>Sergio</Secretario>
-    <dia>01</dia>
+    <horaFinal>01</horaFinal>
     <cuerpo>En Ciudad Obregón, Sonora, siendo las 5:00 horas del día 08 de 03 del año 21 reunidos en Casa del Instituto Tecnológico Superior de Cajeme, los maestros miembros de la academia de ISC, cuya lista se anexa a la presente acta; se inicia la reunión, bajo la presidencia de Anabel, auxiliado en la secretaria por Sergio de acuerdo con el siguiente:</cuerpo>
     <jefe>Hiram</jefe>
     <obs>Todas las observaciones</obs>
   </Cabecera>
   <Acuerdos>
     <Acuerdo>Acuerdo No. Acuerdo No. Acuerdo No.</Acuerdo>
-    <Responsable>Responsable No. </Responsable>
+    <Responsable>Responsable No. 1</Responsable>
     <Fecha>Fecha </Fecha>
     <Avance>0%</Avance>
   </Acuerdos>
   <Acuerdos>
     <Acuerdo>Acuerdo No. Acuerdo No. Acuerdo No.</Acuerdo>
-    <Responsable>Responsable No. </Responsable>
+    <Responsable>Responsable No. 2</Responsable>
     <Fecha>Fecha </Fecha>
     <Avance>0%</Avance>
   </Acuerdos>

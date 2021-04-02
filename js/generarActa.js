@@ -7,6 +7,7 @@ function cargar() {
     $.ajax({
         url: 'documentos/leerActa.php',
         type: 'GET',
+        dataType: 'JSON',
         success: function(r) {
             console.log(r);
         },
