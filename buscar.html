@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="css/compartidos.css" />
     <link rel="stylesheet" href="css/buscar.css" />
     <link rel="stylesheet" href="css/load.css" />
-    <script type="text/javascript" src="js/menu.js"></script>
     <script type="text/javascript" src="js/load.js"></script>
     <script type="text/javascript" src="js/buscar.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
     <title>Administraci&oacute;n de Academias</title>
 </head>
+<!--onload="cargarDatos()"-->
 
-<body onload="cargarDatos()">
+<body>
     <div class="fijadoEliminar">
         <table cellspacing="14" cellpadding="2" class="BusquedaEliminar">
             <tr>
@@ -47,8 +48,112 @@
         <scroll-container>
             <scroll-page id="page">
                 <table id="tabla" cellspacing="3" cellpadding="3" class="tablaElimiar">
-                    <tbody id="bodytabla">
-                    </tbody>
+                    <tr class="trContentElimiar">
+                        <td class="tdImgEliminar"><img class="imgEliminar" src="img/Hector.png"></td>
+                        <td class="tdContenidoEliminar">
+
+                            <table>
+                                <tr>
+                                    <td>
+                                        <table class="cuerpoEliminar" cellspacing="3" cellpadding="3">
+
+                                            <tr>
+                                                <td><label class="contenidoEliminar">Nómina:</label></td>
+                                                <td><input disabled=""></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label class="contenidoEliminar">Nombre(s):</label></td>
+                                                <td><input disabled=""></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label class="contenidoEliminar">Carrera:</label></td>
+                                                <td><input disabled=""></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label class="contenidoEliminar">Academia:</label></td>
+                                                <td><input disabled=""></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+
+                                    <td>
+                                        <table class="cuerpoEliminar" cellspacing="3" cellpadding="3">
+                                            <th>Permisos de Admin:</th>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Crear y modificar el plan de trabajo</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Registrar personal</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Eliminar personal</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Modificar, visualizar, permisos</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Eliminar academia</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Agregar academia</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Modificar academia</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Agregar carrera</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Modificar carrera</label></td>   
+                                            </tr>
+                                        </table>
+                                    </td>
+
+                                    <td>
+                                        <table class="cuerpoEliminar" cellspacing="3" cellpadding="3">
+                                            <th>Permisos Generales:</th>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Agregar Acta</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Modificar Acta</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Evaluar Profesor</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Modificar evaluación profesor</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Evaluar Presidente</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td><input type="checkbox"><label class="contenidoEliminar">Modificar evaluación precidente</label></td>   
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input class="button buttonAplicarP" type="button" value="Aplicar Permisos">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input class="button button2Eliminar" type="button" value="Modificar">
+                                        <input class="button button2Eliminar" type="button" value="Visualizar">
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </td>
+                    </tr>
                 </table>
             </scroll-page>
         </scroll-container>
