@@ -12,7 +12,7 @@ function logeo(mat, psw, cont, err) {
         document.getElementById(err).textContent = "Ingrese su clave";
     } else {
         document.getElementById(cont).hidden = true;
-        var obj = { nom: mat, pass: psw, funcion: "iniciar" };
+        var obj = { nom: mat, pass: psw };
         $.ajax({
             url: 'php/conectar.php',
             type: 'GET',
@@ -21,10 +21,15 @@ function logeo(mat, psw, cont, err) {
             success: function(r) {
                 crearLoad('rcornersLogin');
                 let result = r["res"];
-                if (result > 1) {
-                    window.location = "menu.html?id=" + result;
-                } else {
+                if (result > 0) {
+                    window.location = "menu.html?id=" + r["nom"];
+                } else
+                if (result == 0) {
                     document.getElementById(err).textContent = "Usuario y/o clave inválida";
+                    document.getElementById(cont).hidden = false;
+                    removerLoad();
+                } else {
+                    document.getElementById(err).textContent = "Sesion ya iniciada";
                     document.getElementById(cont).hidden = false;
                     removerLoad();
                 }

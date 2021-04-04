@@ -167,9 +167,9 @@ function validarMatricula(palabra, id, label) {
     }
     var msj = "";
     if (bol) {
-        if (palabra.length !== 8) {
+        if (palabra.length !== 6) {
             bol = false;
-            msj = "Por favor, <br/>introduzca 8 números";
+            msj = "Por favor, <br/>introduzca 6 números";
         }
     } else {
         msj = "Por favor, <br/>introduzca solo números";

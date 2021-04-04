@@ -2,7 +2,7 @@
     function conectar() {
         try {
             $serverName = "Chriss";
-            $connectionInfo = array( "Database"=>"AdmonAcademias", "UID"=>"Laithg", "PWD"=>"0279");
+            $connectionInfo = array( "Database"=>"Academia", "UID"=>"Laithg", "PWD"=>"9720");
             $conn = sqlsrv_connect( $serverName, $connectionInfo);
             if( $conn ) {
                 return $conn;
@@ -15,30 +15,25 @@
         }
     }
     function inicar($nom, $pas) {
-        $res = -1;
-        $path = '';
+        $res = -4;
+        $nom2 = "";
         $conn = conectar();
-        $call = "{call dbo.sp_iniciar(?,?,?,?)}";
+        $call = "{call dbo.iniciar(?,?,?,?)}";
         $params = array (
             array(&$nom, SQLSRV_PARAM_IN),
             array(&$pas, SQLSRV_PARAM_IN),
             array(&$res, SQLSRV_PARAM_OUT),
-            array(&$path, SQLSRV_PARAM_OUT),
+            array(&$nom2, SQLSRV_PARAM_OUT)
         );
         $stmt = sqlsrv_query($conn, $call, $params);
         if ($stmt === false) {
             die( print_r( sqlsrv_errors(), true));
         }
-        sqlsrv_free_stmt($stmt);
-        $return = array("res" => $res, "path" => $path);
+        $return = array("stmt" => sqlsrv_free_stmt($stmt),"res" => $res, "nom" => $nom2);
         sqlsrv_close($conn);
         echo json_encode($return);
     }
 
     $json = json_decode(json_encode($_GET['obj']), true);
-    switch ($json['funcion']) {
-        case 'iniciar':
-            inicar($json['nom'], $json['pass']);
-            break;
-    }
+    inicar($json['nom'], $json['pass']);
 ?>
