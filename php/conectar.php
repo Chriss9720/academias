@@ -1,4 +1,5 @@
 <?php
+
     function conectar() {
         try {
             $serverName = "Chriss";
@@ -14,6 +15,7 @@
             return null;
         }
     }
+
     function inicar($nom, $pas) {
         $res = -4;
         $nom2 = "";
@@ -26,14 +28,14 @@
             array(&$nom2, SQLSRV_PARAM_OUT)
         );
         $stmt = sqlsrv_query($conn, $call, $params);
+        sqlsrv_free_stmt($stmt);
         if ($stmt === false) {
             die( print_r( sqlsrv_errors(), true));
         }
-        $return = array("stmt" => sqlsrv_free_stmt($stmt),"res" => $res, "nom" => $nom2);
+        $return = array("res" => $res, "nom" => $nom2);
         sqlsrv_close($conn);
         echo json_encode($return);
     }
 
     $json = json_decode(json_encode($_GET['obj']), true);
     inicar($json['nom'], $json['pass']);
-?>

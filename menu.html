@@ -15,28 +15,28 @@
 
 <body onload="cargando()">
     <div class="rcorners1">
-        <img id="fotoPerfil" class="ImgSalir" src="img/BotonSalir.png" alt="not found" />
+        <img id="fotoPerfil" class="ImgSalir" src="img/BotonSalir.png" alt="not found" onclick="cerrarSesion()" />
         <table>
-            <tr>
+            <tr name="permisosAdmin" hidden="true">
                 <td>
                     <h4 class="sub font">Administrador:</h4>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <table cellspacing="50" class="font">
+                    <table cellspacing="50" class="font" name="permisosAdmin" hidden="true">
                         <tr>
-                            <td>
+                            <td name="personal" hidden="true">
                                 <input class="btn1 size fontBut" type="button" value="Registrar personal" onclick="cambiar('registrar')">
                             </td>
-                            <td>
+                            <td name="personal" hidden="true">
                                 <button class="btn2 size fontBut" onclick="cambiar('personal')">
                                     <label>
                                         Acciones al personal
                                     </label>
                                 </button>
                             </td>
-                            <td>
+                            <td id="academia" hidden="true">
                                 <button class="btn3 size fontBut" onclick="cambiar('Academia')">
                                     <label>
                                         Acciones a Academia
@@ -45,10 +45,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td name="carrera" hidden="true">
                                 <input class="btn1 size fontBut" type="button" value="Agregar carrera">
                             </td>
-                            <td>
+                            <td name="carrera" hidden="true">
                                 <input class="btn2 size fontBut" type="button" value="Modificar carrera">
                             </td>
                         </tr>
@@ -106,51 +106,51 @@
                     </table>
                 </td>
             </tr>
-            <tr>
+            <tr name="permisosDoc" hidden="true">
                 <td>
                     <h4 class="sub font">Generar:</h4>
                 </td>
             </tr>
-            <tr>
+            <tr name="permisosDoc" hidden="true">
                 <td>
-                    <table cellspacing="50" class="font">
+                    <table cellspacing="50" class="font" name="permisosDoc" hidden="true">
                         <tr>
-                            <td>
+                            <td name="plan" hidden="true">
                                 <input class="btn1 size fontBut" type="button" value="Plan de Trabajo" onclick="cambiar('planTrabajo')">
                             </td>
-                            <td>
+                            <td name="acta" hidden="true">
                                 <input class="btn2 size fontBut" type="button" value="Agregar Acta" onclick="cambiar('agregarActa')">
                             </td>
-                            <td>
+                            <td name="profesor" hidden="true">
                                 <input class="btn3 size fontBut" type="button" value="Evaluar Profesor" onclick="cambiar('evaluarProfesor')">
                             </td>
-                            <td>
+                            <td name="presidente" hidden="true">
                                 <input class="btn4 size fontBut" type="button" value=" Evaluar Presidente" onclick="cambiar('evaluarPresidente')">
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td name="plan" hidden="true">
                                 <button class="btn1 size fontBut">
                                     <label>
                                         Modificar Plan de Trabajo
                                     </label>
                                 </button>
                             </td>
-                            <td>
+                            <td name="acta" hidden="true">
                                 <button class="btn2 size fontBut">
                                     <label>
                                         Modificar Acta
                                     </label>
                                 </button>
                             </td>
-                            <td>
+                            <td name="profesor" hidden="true">
                                 <button class="btn3 size fontBut">
                                     <label>
                                         Modificar evaluación profesor
                                     </label>
                                 </button>
                             </td>
-                            <td>
+                            <td name="presidente" hidden="true">
                                 <button class="btn4 size fontBut">
                                     <label>
                                         Modificar evaluación Presidente
