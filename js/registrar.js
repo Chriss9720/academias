@@ -214,10 +214,10 @@ function validarRegistro() {
     if (!document.getElementById("errorMatricula").hidden || !document.getElementById("errorNombre").hidden ||
         !document.getElementById("errorApellidoP").hidden || !document.getElementById("errorApellidoM").hidden ||
         !document.getElementById("errorCorreo").hidden || !document.getElementById("errorCIP").hidden ||
-        !document.getElementById("errorSelectCarrera").hidden || !document.getElementById("errorSelectAcademia").hidden ||
-        !document.getElementById("errorSelectPuesto").hidden) {
+        !document.getElementById("errorSelectCarrera").hidden || !document.getElementById("labelErrorAcademia").hidden ||
+        !document.getElementById("labelErrorPuesto").hidden) {
         crear("img/error.jpg", "#cc1010", "Rellene todos los campos");
-    } else if (vacio("inputMatricula", 8) || vacio('inputNombre', 1) ||
+    } else if (vacio("inputMatricula", 6) || vacio('inputNombre', 1) ||
         vacio('inputApeP', 1) || vacio('inputApM', 1) ||
         vacio('inputCorreo', 1) || vacio('inputCip', 5)) {
         validarMatricula(value('inputMatricula'), 'errorMatricula', 'labelErrorerrorMatricula', 0);
@@ -228,14 +228,14 @@ function validarRegistro() {
         validarCIP(value('inputCip'), 'errorCIP', 'labelErrorIP');
         if (!validarSeleccion()) {
             validarSelect(value('SelectCarrera'), 'errorSelectCarrera', 'labelErrorSelectCarrera', 6);
-            validarSelect(document.getElementsByName('academia')[0].value, 'errorSelectAcademia', 'labelErrorAcademia', 7)
-            validarSelect(value('puessto'), 'errorSelectPuesto', 'labelErrorPuesto', 8)
+            validarSelect(value("academia"), 'labelErrorAcademia', 'labelErrorAcademia', 7);
+            validarSelect(value('puessto'), 'labelErrorPuesto', 'labelErrorPuesto', 8);
         }
         crear("img/error.jpg", "#cc1010", "Rellene todos los campos");
     } else if (!validarSeleccion()) {
         validarSelect(value('SelectCarrera'), 'errorSelectCarrera', 'labelErrorSelectCarrera', 6);
-        validarSelect(document.getElementsByName('academia')[0].value, 'errorSelectAcademia', 'labelErrorAcademia', 7)
-        validarSelect(value('puessto'), 'errorSelectPuesto', 'labelErrorPuesto', 8)
+        validarSelect(value("academia"), 'labelErrorAcademia', 'labelErrorAcademia', 7);
+        validarSelect(value('puessto'), 'labelErrorPuesto', 'labelErrorPuesto', 8);
         crear("img/error.jpg", "#cc1010", "Rellene todos los campos 2");
     } else {
         if (document.getElementById("fotoPerfil").src.toString().includes("img/perfilazul.png")) {
@@ -271,6 +271,13 @@ function cargarSelect() {
         option.innerText = arr[i];
         c.appendChild(option);
     }
+    var c = document.getElementById("academia");
+    for (var i = 0; i < arr.length; i++) {
+        var option = document.createElement("option");
+        option.value = arr[i];
+        option.innerText = arr[i];
+        c.appendChild(option);
+    }
     removerLoad();
 }
 
@@ -283,6 +290,16 @@ function cargarAcademias() {
             var option = document.createElement("option");
             option.value = arr[i];
             option.innerText = arr[i];
+            c.appendChild(option);
+        }
+    }
+    var aca = document.getElementsByName("puesto");
+    for (var j = 0; j < aca.length; j++) {
+        var c = aca[j];
+        for (var i = 0; i < arr.length && c.options.length < arr.length + 1; i++) {
+            var option = document.createElement("option");
+            option.value = arr[i] + "p";
+            option.innerText = arr[i] + "p";
             c.appendChild(option);
         }
     }
@@ -344,16 +361,23 @@ function guardar() {
 }
 
 function addAcademia() {
-    var select = document.createElement('select');
-    select.setAttribute("name", "academia");
-    select.setAttribute("class", "contenido");
-    select.onclick = validarSelect(select.value, 'errorSelectAcademia', 'labelErrorAcademia', 7);
+    var body = document.getElementById('tablacuerpo');
     var tr = document.createElement('tr');
-    tr.setAttribute("name", "extra");
+    tr.setAttribute('name', 'extra')
+    tr.setAttribute('class', 'centrar');
     var td = document.createElement('td');
+    var select = document.createElement('select');
+    select.setAttribute('name', 'academia');
+    select.setAttribute('class', 'contenido')
     td.appendChild(select);
     tr.appendChild(td);
-    document.getElementById('bodyAcademia').appendChild(tr);
+    var td = document.createElement('td');
+    var select = document.createElement('select');
+    select.setAttribute('name', 'puesto');
+    select.setAttribute('class', 'contenido')
+    td.appendChild(select);
+    tr.appendChild(td);
+    body.appendChild(tr);
     cargarAcademias();
     ++au;
     ajustarSize('contenedor');

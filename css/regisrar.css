@@ -111,3 +111,7 @@
     border: aliceblue;
     cursor: pointer;
 }
+
+.centrar {
+    text-align: center;
+}
