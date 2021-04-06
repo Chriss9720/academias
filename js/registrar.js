@@ -1,33 +1,3 @@
-$(document).ready(function() {
-    $(".subirImg").on('click', function() {
-        crearLoad('rcorners1');
-        var formData = new FormData();
-        var files = $('#file')[0].files[0];
-        formData.append('file', files);
-        $.ajax({
-            url: 'temp/subirImg.php',
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(response) {
-                removerLoad();
-                switch (response) {
-                    case "ok":
-                        crear("img/sucess.png", "#08c211", "¡Imagen subida exitosamente!");
-                        break;
-                    default:
-                        document.getElementById("fotoPerfil").src = "img/perfilazul.png";
-                        crear("img/error.jpg", "#cc1010", "¡Error al subir la imagen!<br/>" + response);
-                }
-            },
-            error: function(error) {
-                crear("img/error.jpg", "#cc1010", "¡Error al subir la imagen!<br/>" + error);
-            }
-        });
-    });
-});
-
 function crear(logo, color, msj) {
     var d = document.createElement("DIALOG");
     d.setAttribute("ID", "d1");
@@ -255,7 +225,7 @@ function validarSeleccion() {
 
 function cargarSelect() {
     crearLoad('rcorners1');
-    var arr = ["isc", "ige"];
+    var arr = ["carr1", "carr2", "carr3", "carr4"];
     var c = document.getElementById("SelectCarrera");
     for (var i = 0; i < arr.length; i++) {
         var option = document.createElement("option");
@@ -264,6 +234,7 @@ function cargarSelect() {
         c.appendChild(option);
     }
     cargarAcademias();
+    var arr = ["Docente", "Secretario", "Presidente", "Coordinador"];
     var c = document.getElementById("puessto");
     for (var i = 0; i < arr.length; i++) {
         var option = document.createElement("option");
@@ -271,6 +242,7 @@ function cargarSelect() {
         option.innerText = arr[i];
         c.appendChild(option);
     }
+    var arr = ["Academia1", "Academia2", "Academia3", "Academia4"];
     var c = document.getElementById("academia");
     for (var i = 0; i < arr.length; i++) {
         var option = document.createElement("option");
@@ -357,7 +329,66 @@ function confirmar(msj, op) {
 }
 
 function guardar() {
-    crear("img/sucess.png", "#08c211", "¡Registro exitoso!");
+    var files = document.getElementById("file").files[0];
+    var obj = {
+        nom: document.getElementById('inputMatricula').value,
+        name: document.getElementById('inputNombre').value,
+        app: document.getElementById('inputApeP').value,
+        apm: document.getElementById('inputApM').value,
+        corr: document.getElementById('inputCorreo').value,
+        cip: document.getElementById('inputCip').value
+    };
+    if (files != null) {
+        var name = document.getElementById('inputMatricula').value + "." + files["name"].split(".")[files["name"].split(".").length - 1];
+        var file = new File([], name);
+        var formData = new FormData();
+        formData.append('file', files);
+        formData.append('name', file);
+        $.ajax({
+            url: 'img/subirImg.php',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                switch (response) {
+                    case "ok":
+                        foto = "img/" + file["name"];
+                        obj.foto = foto;
+                        break;
+                    default:
+                        document.getElementById("fotoPerfil").src = "img/perfilazul.png";
+                        crear("img/error.jpg", "#cc1010", "¡Error al subir la imagen!<br/>" + response);
+                        obj.foto = "img/perfilazul.png";
+                }
+                registro(obj);
+            },
+            error: function(error) {
+                crear("img/error.jpg", "#cc1010", "¡Error al subir la imagen!<br/>" + error);
+                obj.foto = "img/perfilazul.png";
+                registro(obj);
+            }
+        });
+    }
+}
+
+function registro(obj) {
+    $.ajax({
+        url: 'php/registrar.php',
+        type: 'GET',
+        data: { obj: obj },
+        dataType: 'JSON',
+        success: function(r) {
+            console.log(r["res"]);
+            if (r["res"] === 1)
+                crear("img/sucess.png", "#08c211", "¡Registro exitoso!");
+            else
+                crear("img/error.jpg", "#cc1010", "¡Error al registrar!<br/>La nómina ya esta registrada");
+        },
+        error: function(err) {
+            crear("img/error.jpg", "#cc1010", "¡Error al registrar!<br/>" + err);
+        }
+    });
 }
 
 function addAcademia() {

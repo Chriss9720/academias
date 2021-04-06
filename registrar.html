@@ -18,136 +18,131 @@
     <div class="rcorners1" id="contenedor">
         <p1 class="subtitle font">Ingrese la informaci&oacute;n:</p1>
         <input class="button buttonRegresar2" type="button" value="Regresar" onclick="regresar()" />
-        <form class="font" method="post" enctype="multipart/form-data">
-            <img id="fotoPerfil" class="imgRedonda" src="img/perfilazul.png" alt="not found" />
-            <table id="tablaCont" cellspacing="3" cellpadding="3" class="cuerpo">
-                <tbody id="tablacuerpo">
-                    <tr>
-                        <td>
-                            <label class="contenido">Nómina:</label>
-                        </td>
-                        <td>
-                            <input id="inputMatricula" name="matricula" type="text" minlength="6" maxlength="6" class="contenido" required onkeyup="validarMatricula(this.value, 'errorMatricula', 'labelErrorerrorMatricula', 0)" />
-                        </td>
-                    </tr>
-                    <tr id="errorMatricula" class="therror" hidden="true">
-                        <td/>
-                        <td>
-                            <label id="labelErrorerrorMatricula" class="error"></label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label class="contenido">Nombre(s):</label>
-                        </td>
-                        <td>
-                            <input id="inputNombre" name="nombres" type="text" class="contenido" required onkeyup="contieneNumeros(this.value, 'errorNombre', 'labelErrorNombre', 1)" />
-                        </td>
-                    </tr>
-                    <tr id="errorNombre" class="therror" hidden="true">
-                        <td/>
-                        <td>
-                            <label id="labelErrorNombre" class="error"></label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label class="contenido">Apellido Paterno:</label>
-                        </td>
-                        <td>
-                            <input required id="inputApeP" name="apellidoP" type="text" class="contenido" onkeyup="contieneNumeros(this.value, 'errorApellidoP', 'labelErrorApellidoP', 2)" />
-                        </td>
-                    </tr>
-                    <tr id="errorApellidoP" class="therror" hidden="true">
-                        <td/>
-                        <td>
-                            <label id="labelErrorApellidoP" class="error"></label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label class="contenido">Apellido Materno:</label></td>
-                        <td><input id="inputApM" required name="apellidoM" type="text" class="contenido" onkeyup="contieneNumeros(this.value, 'errorApellidoM', 'labelErrorApellidoM', 3)" />
-                        </td>
-                    </tr>
-                    <tr id="errorApellidoM" class="therror" hidden="true">
-                        <td/>
-                        <td>
-                            <label id="labelErrorApellidoM" class="error"></label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label class="contenido">Correo Institucional:</label></td>
-                        <td>
-                            <input id="inputCorreo" required name="correo" type="text" class="contenido" onkeyup="validarCorreo(this.value, 'errorCorreo', 'labelErrorCorreo')" />
-                        </td>
-                    </tr>
-                    <tr id="errorCorreo" class="therror" hidden="true">
-                        <td/>
-                        <td>
-                            <label id="labelErrorCorreo" class="error"></label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label class="contenido">CIP:</label></td>
-                        <td><input required name="cip" type="text" class="contenido" minlength="5" maxlength="5" id="inputCip" onkeyup="validarCIP(this.value, 'errorCIP', 'labelErrorIP')" /></td>
-                    </tr>
-                    <tr id="errorCIP" class="therror" hidden="true">
-                        <td/>
-                        <td>
-                            <label id="labelErrorIP" class="error"></label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label class="contenido">Carrera:</label></td>
-                        <td>
-                            <select name="carrera" class="contenido" id="SelectCarrera" onclick="validarSelect(this.value, 'errorSelectCarrera', 'labelErrorSelectCarrera', 6)">
+        <img id="fotoPerfil" class="imgRedonda" src="img/perfilazul.png" alt="not found" />
+        <table id="tablaCont" cellspacing="3" cellpadding="3" class="cuerpo">
+            <tbody id="tablacuerpo">
+                <tr>
+                    <td>
+                        <label class="contenido">Nómina:</label>
+                    </td>
+                    <td>
+                        <input id="inputMatricula" name="matricula" type="text" minlength="6" maxlength="6" class="contenido" required onkeyup="validarMatricula(this.value, 'errorMatricula', 'labelErrorerrorMatricula', 0)" />
+                    </td>
+                </tr>
+                <tr id="errorMatricula" class="therror" hidden="true">
+                    <td/>
+                    <td>
+                        <label id="labelErrorerrorMatricula" class="error"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="contenido">Nombre(s):</label>
+                    </td>
+                    <td>
+                        <input id="inputNombre" name="nombres" type="text" class="contenido" required onkeyup="contieneNumeros(this.value, 'errorNombre', 'labelErrorNombre', 1)" />
+                    </td>
+                </tr>
+                <tr id="errorNombre" class="therror" hidden="true">
+                    <td/>
+                    <td>
+                        <label id="labelErrorNombre" class="error"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="contenido">Apellido Paterno:</label>
+                    </td>
+                    <td>
+                        <input required id="inputApeP" name="apellidoP" type="text" class="contenido" onkeyup="contieneNumeros(this.value, 'errorApellidoP', 'labelErrorApellidoP', 2)" />
+                    </td>
+                </tr>
+                <tr id="errorApellidoP" class="therror" hidden="true">
+                    <td/>
+                    <td>
+                        <label id="labelErrorApellidoP" class="error"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="contenido">Apellido Materno:</label></td>
+                    <td><input id="inputApM" required name="apellidoM" type="text" class="contenido" onkeyup="contieneNumeros(this.value, 'errorApellidoM', 'labelErrorApellidoM', 3)" />
+                    </td>
+                </tr>
+                <tr id="errorApellidoM" class="therror" hidden="true">
+                    <td/>
+                    <td>
+                        <label id="labelErrorApellidoM" class="error"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="contenido">Correo Institucional:</label></td>
+                    <td>
+                        <input id="inputCorreo" required name="correo" type="text" class="contenido" onkeyup="validarCorreo(this.value, 'errorCorreo', 'labelErrorCorreo')" />
+                    </td>
+                </tr>
+                <tr id="errorCorreo" class="therror" hidden="true">
+                    <td/>
+                    <td>
+                        <label id="labelErrorCorreo" class="error"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="contenido">CIP:</label></td>
+                    <td><input required name="cip" type="text" class="contenido" minlength="5" maxlength="5" id="inputCip" onkeyup="validarCIP(this.value, 'errorCIP', 'labelErrorIP')" /></td>
+                </tr>
+                <tr id="errorCIP" class="therror" hidden="true">
+                    <td/>
+                    <td>
+                        <label id="labelErrorIP" class="error"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="contenido">Carrera:</label></td>
+                    <td>
+                        <select name="carrera" class="contenido" id="SelectCarrera" onclick="validarSelect(this.value, 'errorSelectCarrera', 'labelErrorSelectCarrera', 6)">
                                 <option value="0">Selecione una</option>
                             </select>
-                        </td>
-                    </tr>
-                    <tr id="errorSelectCarrera" class="therror" hidden="true">
-                        <td/>
-                        <td>
-                            <label id="labelErrorSelectCarrera" class="error"></label>
-                        </td>
-                    </tr>
-                    <tr class="centrar">
-                        <td><label class="contenido">Academia:</label></td>
-                        <td><label class="contenido">Puesto:</label></td>
-                        <td>
-                            <img src="img/add.png" width="20px" title="Agregar" class="add" onclick="addAcademia()">
-                            <img src="img/res.png" width="20px" title="Agregar" class="add" onclick="remAcademia()">
-                        </td>
-                    </tr>
-                    <tr class="centrar">
-                        <td>
-                            <select id="academia" class="contenido" onclick="validarSelect(this.value, 'labelErrorAcademia', 'labelErrorAcademia', 7)">
+                    </td>
+                </tr>
+                <tr id="errorSelectCarrera" class="therror" hidden="true">
+                    <td/>
+                    <td>
+                        <label id="labelErrorSelectCarrera" class="error"></label>
+                    </td>
+                </tr>
+                <tr class="centrar">
+                    <td><label class="contenido">Academia:</label></td>
+                    <td><label class="contenido">Puesto:</label></td>
+                    <td>
+                        <img src="img/add.png" width="20px" title="Agregar" class="add" onclick="addAcademia()">
+                        <img src="img/res.png" width="20px" title="Agregar" class="add" onclick="remAcademia()">
+                    </td>
+                </tr>
+                <tr class="centrar">
+                    <td>
+                        <select id="academia" class="contenido" onclick="validarSelect(this.value, 'labelErrorAcademia', 'labelErrorAcademia', 7)">
                                 <option value="0">Selecione una</option>
                             </select>
-                        </td>
-                        <td>
-                            <select id="puessto" class="contenido" onclick="validarSelect(this.value, 'labelErrorPuesto', 'labelErrorPuesto', 8)">
+                    </td>
+                    <td>
+                        <select id="puessto" class="contenido" onclick="validarSelect(this.value, 'labelErrorPuesto', 'labelErrorPuesto', 8)">
                                 <option value="0">Selecione una</option>
                             </select>
-                        </td>
-                    </tr>
-                    <tr id="erroresExtras" class="therror">
-                        <td>
-                            <label id="labelErrorAcademia" class="error" hidden="true"></label>
-                        </td>
-                        <td>
-                            <label id="labelErrorPuesto" class="error" hidden="true"></label>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <input class="button button1" type="button" value="Cancelar" onclick="cancelarRegistro()" />
-            <input class="button button2" type="button" value="Registrar" onclick="validarRegistro()" />
-        </form>
-        <form method="POST" enctype="multipart/form-data">
-            <input id="file" class="file" name="file" type="file" size="50" accept="image/*" onchange="mostrar()" />
-            <input type="button" class="button subirImg" value="subir" />
-        </form>
+                    </td>
+                </tr>
+                <tr id="erroresExtras" class="therror">
+                    <td>
+                        <label id="labelErrorAcademia" class="error" hidden="true"></label>
+                    </td>
+                    <td>
+                        <label id="labelErrorPuesto" class="error" hidden="true"></label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <input class="button button1" type="button" value="Cancelar" onclick="cancelarRegistro()" />
+        <input class="button button2" type="button" value="Registrar" onclick="validarRegistro()" />
+        <input id="file" class="file" name="file" type="file" size="50" accept="image/*" onchange="mostrar()" />
     </div>
     <div class="rcorners2">
         <h1 class="title font">Registro de Personal</h1>
