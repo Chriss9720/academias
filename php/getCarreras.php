@@ -16,29 +16,25 @@
         }
     }
 
-    $json = json_decode(json_encode($_GET['obj']), true);
-
-
     $conn = conectar();
-    $call = "{call dbo.getPermisos(?)}";
-    $params = array (
-        array(&$json, SQLSRV_PARAM_IN)
-    );
-    $stmt = sqlsrv_query($conn, $call, $params);
+    $call = "{call dbo.getCarreras}";
+    $stmt = sqlsrv_query($conn, $call);
+
     if ($stmt === false) {
-        die( print_r( 'Se peto '.sqlsrv_errors(), true));
+        die( print_r( sqlsrv_errors(), true));
     }
 
     $res = [];
 
     while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-        array_push($res, $row['NombrePermiso']);
+        $resp = array("ID" => $row["IDCarrera"], "carrera" => $row["Nombre"]);
+        array_push($res, $resp);
     }
 
     sqlsrv_free_stmt($stmt);
 
-    $return = array("res" => $res);
     sqlsrv_close($conn);
 
-    echo json_encode($return);
+    echo json_encode($res);
+
 ?>

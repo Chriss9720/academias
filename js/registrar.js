@@ -206,12 +206,28 @@ function validarRegistro() {
         validarSelect(value('SelectCarrera'), 'errorSelectCarrera', 'labelErrorSelectCarrera', 6);
         validarSelect(value("academia"), 'labelErrorAcademia', 'labelErrorAcademia', 7);
         validarSelect(value('puessto'), 'labelErrorPuesto', 'labelErrorPuesto', 8);
-        crear("img/error.jpg", "#cc1010", "Rellene todos los campos 2");
+        crear("img/error.jpg", "#cc1010", "Rellene todos los campos");
     } else {
-        if (document.getElementById("fotoPerfil").src.toString().includes("img/perfilazul.png")) {
-            confirmar('¿Desea guardar sin foto?', 1);
+        var academias = [];
+        academias.push(document.getElementById("academia").value);
+        var aca = document.getElementsByName("academia");
+        for (var i = 0; i < aca.length; i++) {
+            academias.push(aca[i].value);
+        }
+        var f = true;
+        for (var i = 0; i < academias.length && f; i++) {
+            for (var j = (i + 1); j < academias.length && f; j++) {
+                f = !(academias[i] === academias[j]);
+            }
+        }
+        if (f) {
+            if (document.getElementById("fotoPerfil").src.toString().includes("img/perfilazul.png")) {
+                confirmar('¿Desea guardar sin foto?', 1);
+            } else {
+                guardar();
+            }
         } else {
-            guardar();
+            crear("img/error.jpg", "#cc1010", "Academias duplicadas");
         }
     }
     removerLoad();
@@ -225,15 +241,23 @@ function validarSeleccion() {
 
 function cargarSelect() {
     crearLoad('rcorners1');
-    var arr = ["carr1", "carr2", "carr3", "carr4"];
-    var c = document.getElementById("SelectCarrera");
-    for (var i = 0; i < arr.length; i++) {
-        var option = document.createElement("option");
-        option.value = arr[i];
-        option.innerText = arr[i];
-        c.appendChild(option);
-    }
-    cargarAcademias();
+    $.ajax({
+        url: "php/getCarreras.php",
+        type: "POST",
+        dataType: "json",
+        success: function(r) {
+            var c = document.getElementById("SelectCarrera");
+            for (var i = 0; i < r.length; i++) {
+                var option = document.createElement("option");
+                option.value = r[i]["ID"];
+                option.innerText = r[i]["carrera"];
+                c.appendChild(option);
+            }
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
     var arr = ["Docente", "Secretario", "Presidente", "Coordinador"];
     var c = document.getElementById("puessto");
     for (var i = 0; i < arr.length; i++) {
@@ -242,20 +266,29 @@ function cargarSelect() {
         option.innerText = arr[i];
         c.appendChild(option);
     }
-    var arr = ["Academia1", "Academia2", "Academia3", "Academia4"];
-    var c = document.getElementById("academia");
-    for (var i = 0; i < arr.length; i++) {
-        var option = document.createElement("option");
-        option.value = arr[i];
-        option.innerText = arr[i];
-        c.appendChild(option);
-    }
+    $.ajax({
+        url: "php/getAcademias.php",
+        type: "POST",
+        dataType: "json",
+        success: function(r) {
+            var c = document.getElementById("academia");
+            for (var i = 0; i < r.length; i++) {
+                var option = document.createElement("option");
+                option.value = r[i]["ID"];
+                option.innerText = r[i]["Academia"];
+                c.appendChild(option);
+            }
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
     removerLoad();
 }
 
-function cargarAcademias() {
-    var arr = ["isc", "ige"];
-    var aca = document.getElementsByName("academia");
+function cargarPuestos() {
+    var arr = ["Docente", "Secretario", "Presidente", "Coordinador"];
+    var aca = document.getElementsByName("puesto");
     for (var j = 0; j < aca.length; j++) {
         var c = aca[j];
         for (var i = 0; i < arr.length && c.options.length < arr.length + 1; i++) {
@@ -265,16 +298,30 @@ function cargarAcademias() {
             c.appendChild(option);
         }
     }
-    var aca = document.getElementsByName("puesto");
-    for (var j = 0; j < aca.length; j++) {
-        var c = aca[j];
-        for (var i = 0; i < arr.length && c.options.length < arr.length + 1; i++) {
-            var option = document.createElement("option");
-            option.value = arr[i] + "p";
-            option.innerText = arr[i] + "p";
-            c.appendChild(option);
+}
+
+function cargarAcademias() {
+    $.ajax({
+        url: "php/getAcademias.php",
+        type: "POST",
+        dataType: "json",
+        success: function(r) {
+            var aca = document.getElementsByName("academia");
+            for (var j = (au - 1); j < aca.length; j++) {
+                var c = aca[j];
+                for (var i = 0; i < r.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = r[i]["ID"];
+                    option.innerText = r[i]["Academia"];
+                    c.appendChild(option);
+                }
+            }
+        },
+        error: function(err) {
+            console.log(err);
         }
-    }
+    });
+    cargarPuestos();
 }
 
 function confirmar(msj, op) {
@@ -330,13 +377,29 @@ function confirmar(msj, op) {
 
 function guardar() {
     var files = document.getElementById("file").files[0];
+    var academias = [];
+    academias.push(document.getElementById("academia").value);
+    var aca = document.getElementsByName("academia");
+    for (var i = 0; i < aca.length; i++) {
+        academias.push(aca[i].value);
+    }
+    var puesto = [];
+    puesto.push(document.getElementById("puessto").value);
+    var puestos = document.getElementsByName("puesto");
+    for (var i = 0; i < puestos.length; i++) {
+        puesto.push(puestos[i].value);
+    }
     var obj = {
         nom: document.getElementById('inputMatricula').value,
         name: document.getElementById('inputNombre').value,
         app: document.getElementById('inputApeP').value,
         apm: document.getElementById('inputApM').value,
         corr: document.getElementById('inputCorreo').value,
-        cip: document.getElementById('inputCip').value
+        cip: document.getElementById('inputCip').value,
+        carr: document.getElementById('SelectCarrera').value,
+        foto: "img/perfilazul.png",
+        academias: academias,
+        puestos: puesto
     };
     if (files != null) {
         var name = document.getElementById('inputMatricula').value + "." + files["name"].split(".")[files["name"].split(".").length - 1];
@@ -364,11 +427,14 @@ function guardar() {
                 registro(obj);
             },
             error: function(error) {
+                console.log(error);
                 crear("img/error.jpg", "#cc1010", "¡Error al subir la imagen!<br/>" + error);
                 obj.foto = "img/perfilazul.png";
                 registro(obj);
             }
         });
+    } else {
+        registro(obj);
     }
 }
 
@@ -379,7 +445,7 @@ function registro(obj) {
         data: { obj: obj },
         dataType: 'JSON',
         success: function(r) {
-            console.log(r["res"]);
+            console.log(r);
             if (r["res"] === 1)
                 crear("img/sucess.png", "#08c211", "¡Registro exitoso!");
             else

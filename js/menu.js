@@ -12,7 +12,6 @@ function cargando() {
         dataType: 'JSON',
         success: function(r) {
             var arr = r["res"];
-            console.log(arr);
             for (var i = 0; i < arr.length; i++) {
                 if (arr[i].includes("plan") || arr[i].includes("academias") || arr[i].includes("personal") || arr[i].includes("carrera")) {
                     hacerVisible('permisosAdmin', 1);

@@ -39,3 +39,5 @@
 
     $json = json_decode(json_encode($_GET['obj']), true);
     inicar($json['nom'], $json['pass']);
+    
+?>
