@@ -54,11 +54,8 @@ function cerrarSesion() {
     window.location.href = "index.html";
 }
 
-function modificar(mod = -1) {
-    if (mod == -1)
-        window.location.href = "modificar.html?id=" + id + "&mod=" + id;
-    else
-        window.location.href = "modificar.html?id=" + id + "&mod=" + mod;
+function modificar(ant) {
+    window.location.href = "modificar.html?id=" + id + "&mod=" + id + "&ant=" + ant;
 }
 
 function vis(vis = -1) {
