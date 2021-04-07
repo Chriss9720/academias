@@ -2,6 +2,7 @@ var entradas = [];
 var foto = "";
 
 function cargarDatos() {
+    document.getElementById('inputMatricula').disabled = true
     crearLoad('rcorners1');
     window.location.search.substr(1).split("&").forEach(item => {
         entradas.push(item.split("=")[1])
@@ -458,7 +459,6 @@ function guardar() {
         car = document.getElementById('SelectCarrera').value;
     }
     var obj = {
-        ant: entradas[1],
         met: entradas[3],
         nom: document.getElementById('inputMatricula').value,
         name: document.getElementById('inputNombre').value,

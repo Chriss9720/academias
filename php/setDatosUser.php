@@ -22,10 +22,9 @@
 
     if ($json["met"] == 1) {
         $conn = conectar();
-        $call = "{call dbo.updateAdmin(?,?,?,?,?,?,?,?,?)}";
+        $call = "{call dbo.updateAdmin(?,?,?,?,?,?,?,?)}";
         $resp = 1;
         $params = array (
-            array(&$json["ant"], SQLSRV_PARAM_IN),
             array(&$json["nom"], SQLSRV_PARAM_IN),
             array(&$json["name"], SQLSRV_PARAM_IN),
             array(&$json["app"], SQLSRV_PARAM_IN),

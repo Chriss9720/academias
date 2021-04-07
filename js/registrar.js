@@ -1,3 +1,5 @@
+var id = "";
+
 function crear(logo, color, msj) {
     var d = document.createElement("DIALOG");
     d.setAttribute("ID", "d1");
@@ -18,7 +20,7 @@ function crear(logo, color, msj) {
     conf.addEventListener('click', function() {
         document.getElementById("d1").remove();
         if (msj === "¡Registro exitoso!") {
-            window.location = "registrar.html";
+            window.location = "registrar.html?id=" + id;
         }
     }, false);
     d.appendChild(img);
@@ -240,6 +242,9 @@ function validarSeleccion() {
 }
 
 function cargarSelect() {
+    window.location.search.substr(1).split("&").forEach(item => {
+        id = (item.split("=")[1])
+    });
     crearLoad('rcorners1');
     $.ajax({
         url: "php/getCarreras.php",
@@ -350,10 +355,10 @@ function confirmar(msj, op) {
                 guardar();
                 break;
             case 2:
-                location.href = "registrar.html";
+                location.href = "registrar.html?id=" + id;
                 break;
             case 3:
-                location.href = "menu.html";
+                location.href = "menu.html?id=" + id;
                 break;
         }
     }, false);
@@ -376,6 +381,7 @@ function confirmar(msj, op) {
 }
 
 function guardar() {
+    crearLoad('rcorners1');
     var files = document.getElementById("file").files[0];
     var academias = [];
     academias.push(document.getElementById("academia").value);
@@ -436,6 +442,7 @@ function guardar() {
     } else {
         registro(obj);
     }
+    removerLoad();
 }
 
 function registro(obj) {
