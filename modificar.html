@@ -2,88 +2,147 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Type" content="text/html" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/load.css" />
     <link rel="stylesheet" href="css/modificar.css" />
     <link rel="stylesheet" href="css/compartidos.css" />
     <script type="text/javascript" src="js/load.js"></script>
-    <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" src="js/modificar.js"></script>
     <title>Administraci&oacute;n de Academias</title>
 </head>
 
-<body class="body">
-    <div class="rcorners1">
-        <p1 class="subtitle font">Actualice la informaci&oacute;n:</p1>
-        <form class="font" action="Modificar" method="post">
-            <img id="fotoPerfil" class="imgRedonda" src="img/perfilazul.png" alt="not found" />
-            <table cellspacing="3" cellpadding="3" class="cuerpo">
+<body class="body" onload="cargarDatos()">
+    <div class="rcorners1" id="contenedor">
+        <p1 class="subtitle font">Ingrese la informaci&oacute;n:</p1>
+        <input class="button buttonRegresar2" type="button" value="Regresar" onclick="regresar()" />
+        <img id="fotoPerfil" class="imgRedonda" src="img/perfilazul.png" alt="not found" />
+        <table id="tablaCont" cellspacing="3" cellpadding="3" class="cuerpo">
+            <tbody id="tablacuerpo">
                 <tr>
-                    <td><label class="contenido">Nombre(s):</label></td>
-                    <td><input name="nombres" type="text" class="contenido" required onchange="return validarNombre(this)" /></td>
-                    <td> <label id="errorNombre" class="error"></label>
-                        <script>
-                            function validarNombre(nombre) {
-                                if (nombre.value.length <= 5) {
-                                    document.getElementById("errorNombre").innerHTML = "Ingrese su nombre";
-                                    nombre.focus();
-                                    nombre.select();
-                                    console.log(nombre + " ok");
-                                } else {
-                                    console.log(nombre + " no " + nombre.length);
-                                }
-                            }
-                        </script>
+                    <td>
+                        <label class="contenido">Nómina:</label>
+                    </td>
+                    <td>
+                        <input id="inputMatricula" name="matricula" type="text" minlength="6" maxlength="6" class="contenido" required onkeyup="validarMatricula(this.value, 'errorMatricula', 'labelErrorerrorMatricula', 0)" />
+                    </td>
+                </tr>
+                <tr id="errorMatricula" class="therror" hidden="true">
+                    <td/>
+                    <td>
+                        <label id="labelErrorerrorMatricula" class="error"></label>
+                    </td>
                 </tr>
                 <tr>
-                    <td><label class="contenido">Apellido Paterno:</label></td>
-                    <td><input required name="apellidoP" type="text" class="contenido" /></td>
+                    <td>
+                        <label class="contenido">Nombre(s):</label>
+                    </td>
+                    <td>
+                        <input id="inputNombre" name="nombres" type="text" class="contenido" required onkeyup="contieneNumeros(this.value, 'errorNombre', 'labelErrorNombre', 1)" />
+                    </td>
+                </tr>
+                <tr id="errorNombre" class="therror" hidden="true">
+                    <td/>
+                    <td>
+                        <label id="labelErrorNombre" class="error"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="contenido">Apellido Paterno:</label>
+                    </td>
+                    <td>
+                        <input required id="inputApeP" name="apellidoP" type="text" class="contenido" onkeyup="contieneNumeros(this.value, 'errorApellidoP', 'labelErrorApellidoP', 2)" />
+                    </td>
+                </tr>
+                <tr id="errorApellidoP" class="therror" hidden="true">
+                    <td/>
+                    <td>
+                        <label id="labelErrorApellidoP" class="error"></label>
+                    </td>
                 </tr>
                 <tr>
                     <td><label class="contenido">Apellido Materno:</label></td>
-                    <td><input required name="apellidoM" type="text" class="contenido" /></td>
+                    <td><input id="inputApM" required name="apellidoM" type="text" class="contenido" onkeyup="contieneNumeros(this.value, 'errorApellidoM', 'labelErrorApellidoM', 3)" />
+                    </td>
+                </tr>
+                <tr id="errorApellidoM" class="therror" hidden="true">
+                    <td/>
+                    <td>
+                        <label id="labelErrorApellidoM" class="error"></label>
+                    </td>
                 </tr>
                 <tr>
                     <td><label class="contenido">Correo Institucional:</label></td>
-                    <td><input required name="correo" type="text" class="contenido" /></td>
+                    <td>
+                        <input id="inputCorreo" required name="correo" type="text" class="contenido" onkeyup="validarCorreo(this.value, 'errorCorreo', 'labelErrorCorreo')" />
+                    </td>
+                </tr>
+                <tr id="errorCorreo" class="therror" hidden="true">
+                    <td/>
+                    <td>
+                        <label id="labelErrorCorreo" class="error"></label>
+                    </td>
                 </tr>
                 <tr>
                     <td><label class="contenido">CIP:</label></td>
-                    <td><input required name="cip" type="text" class="contenido" /></td>
+                    <td><input required name="cip" type="text" class="contenido" minlength="5" maxlength="5" id="inputCip" onkeyup="validarCIP(this.value, 'errorCIP', 'labelErrorIP')" /></td>
                 </tr>
-                <tr>
+                <tr id="errorCIP" class="therror" hidden="true">
+                    <td/>
+                    <td>
+                        <label id="labelErrorIP" class="error"></label>
+                    </td>
+                </tr>
+                <tr name="trCarreraOriginal">
                     <td><label class="contenido">Carrera:</label></td>
                     <td>
-                        <select name="carrera" class="contenido">
-                                <option value="Selec">Selecione una</option>
+                        <select name="carrera" class="contenido" id="SelectCarrera" onclick="validarSelect(this.value, 'errorSelectCarrera', 'labelErrorSelectCarrera', 6)">
+                                <option id="carreraOriginal" value="0">Selecione una</option>
                             </select>
                     </td>
                 </tr>
-                <tr>
+                <tr id="errorSelectCarrera" class="therror" hidden="true" name="trCarreraOriginal">
+                    <td/>
+                    <td>
+                        <label id="labelErrorSelectCarrera" class="error"></label>
+                    </td>
+                </tr>
+                <tr class="centrar" name="trAcademiaPuesto">
                     <td><label class="contenido">Academia:</label></td>
+                    <td><label class="contenido">Puesto:</label></td>
                     <td>
-                        <select id="academia" class="contenido">
-                                <option value="Selec">Selecione una</option>
+                        <img src="img/add.png" width="20px" title="Agregar" class="add" onclick="addAcademia()">
+                        <img src="img/res.png" width="20px" title="Agregar" class="add" onclick="remAcademia()">
+                    </td>
+                </tr>
+                <tr class="centrar" name="trAcademiaPuesto">
+                    <td>
+                        <select id="academia" class="contenido" onclick="validarSelect(this.value, 'labelErrorAcademia', 'labelErrorAcademia', 7)">
+                                <option value="0">Selecione una</option>
+                            </select>
+                    </td>
+                    <td>
+                        <select id="puessto" class="contenido" onclick="validarSelect(this.value, 'labelErrorPuesto', 'labelErrorPuesto', 8)">
+                                <option value="0">Selecione una</option>
                             </select>
                     </td>
                 </tr>
-                <tr>
-                    <td><label class="contenido">Puesto en la academia:</label></td>
+                <tr id="erroresExtras" class="therror" name="trAcademiaPuesto">
                     <td>
-                        <select id="puessto" class="contenido">
-                                <option value="Selec">Selecione una</option>
-                            </select>
+                        <label id="labelErrorAcademia" class="error" hidden="true"></label>
+                    </td>
+                    <td>
+                        <label id="labelErrorPuesto" class="error" hidden="true"></label>
                     </td>
                 </tr>
-            </table>
-            <input class="button button1" type="submit" value="Cancelar" />
-            <input class="button button2" type="submit" value="Actualizar" />
-        </form>
-        <form method="post" enctype="multipart/form-data" action="Actualizar">
-            <input class="file" type="file" name="upfile" size="50" />
-            <input class="button subirImg" type="submit" value="Subir" />
-        </form>
-        <input class="button button1Eliminar" type="button" value="Regresar" onclick="cambiar('buscar')" />
+            </tbody>
+        </table>
+        <input class="button button1" type="button" value="Cancelar" onclick="cancelarRegistro()" />
+        <input class="button button2" type="button" value="Actualizar" onclick="validarRegistro()" />
+        <input id="file" class="file" name="file" type="file" size="50" accept="image/*" onchange="mostrar()" />
     </div>
     <div class="rcorners2">
         <h1 class="title font">Actualizar Info.</h1>

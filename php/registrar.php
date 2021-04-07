@@ -46,7 +46,7 @@
     $academias = $json["academias"];
     $puesto = $json["puestos"];
 
-    if ($resp === 1) {
+    if ($resp == 1) {
         for ($i = 0; $i < count($academias); $i++) {
             $conn = conectar();
             $call = "{call dbo.setAcademia(?,?,?)}";
