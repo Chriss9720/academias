@@ -418,7 +418,7 @@ function confirmar(msj, op) {
                     window.location = "modificar.html?id=" + entradas[0] + "&mod=" + nom + "&ant=" + entradas[2];
                 break;
             case 3:
-                location.href = "menu.html?id=" + entradas[0];
+                location.href = entradas[2] + ".html?id=" + entradas[0];
                 break;
         }
     }, false);

@@ -19,7 +19,6 @@ function logeo(mat, psw, cont, err) {
             data: { obj: obj },
             dataType: 'JSON',
             success: function(r) {
-                console.log(r);
                 crearLoad('rcornersLogin');
                 let result = r["res"];
                 if (result > 0) {

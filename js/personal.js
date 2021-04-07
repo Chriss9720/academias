@@ -1,47 +1,129 @@
-var obj;
+var obj = [];
+var id;
+
+function cambiar(ruta) {
+    window.location.href = ruta + ".html?id=" + id;
+}
+
+function modificar(ant, idmod) {
+    window.location.href = "modificar.html?id=" + id + "&mod=" + idmod + "&ant=" + ant;
+}
 
 function cargarDatos() {
-    cargando();
     crearLoad('rcornersEliminar');
-    obj = [{
-        foto: "img/Hector.png",
-        nomina: "12345678",
-        nombres: "Hector Castro",
-        carrera: "ISC",
-        academia: "ISC"
-    }, {
-        foto: "img/imagen.png",
-        nomina: "12345679",
-        nombres: "Christian Yañez",
-        carrera: "ISC",
-        academia: "ISC"
-    }];
+    window.location.search.substr(1).split("&").forEach(item => {
+        id = item.split("=")[1];
+    })
+    $.ajax({
+        url: "php/getAllUser.php",
+        type: 'POST',
+        dataType: 'json',
+        success: function(r) {
+            obj.push({
+                nom: r[0]["NOMINA"],
+                nombres: r[0]["NOMBRES"],
+                carrera: {
+                    carr: r[0]["CARRERA"],
+                    idcarr: r[0]["IDCarrera"]
+                },
+                academia: [{
+                    nombre: r[0]["ACADEMIA"],
+                    id: r[0]["IDACADEMIA"],
+                    permiso: [{
+                        nombre: r[0]["NombrePermiso"],
+                        idP: r[0]["IDPer"]
+                    }]
+                }],
+                foto: r[0]["FOTO"]
+            });
+            for (var i = 1; i < r.length; i++) {
+                var lim = obj.length - 1;
+                var limAcademia = obj[lim].academia.length - 1;
+                if (obj[lim].nom === r[i]["NOMINA"] && obj[lim].academia[limAcademia].id === r[i]["IDACADEMIA"]) {
+                    obj[lim].academia[limAcademia].permiso.push({
+                        nombre: r[i]["NombrePermiso"],
+                        idP: r[i]["IDPer"]
+                    });
+                } else if (obj[lim].nom === r[i]["NOMINA"]) {
+                    obj[lim].academia.push({
+                        nombre: r[i]["ACADEMIA"],
+                        id: r[i]["IDACADEMIA"],
+                        permiso: [{
+                            nombre: r[i]["NombrePermiso"],
+                            idP: r[i]["IDPer"]
+                        }],
+
+                    });
+                } else {
+                    obj.push({
+                        nom: r[i]["NOMINA"],
+                        nombres: r[i]["NOMBRES"],
+                        carrera: {
+                            carr: r[i]["CARRERA"],
+                            idcarr: r[i]["IDCarrera"]
+                        },
+                        academia: [{
+                            nombre: r[i]["ACADEMIA"],
+                            id: r[i]["IDACADEMIA"],
+                            permiso: [{
+                                nombre: r[i]["NombrePermiso"],
+                                idP: r[i]["IDPer"]
+                            }]
+                        }],
+                        foto: r[i]["FOTO"]
+                    });
+                }
+            }
+            cargar(obj);
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
     cargarCarreras();
     cargarAcademias();
-    cargar(obj);
     removerLoad();
 }
 
 function cargarCarreras() {
-    var c = document.getElementById('carrera');
-    var carr = ['ISC', 'IGE'];
-    for (var i = 0; i < carr.length; i++) {
-        var op = document.createElement('option');
-        op.value = carr[i];
-        op.innerText = carr[i];
-        c.appendChild(op);
-    }
+    $.ajax({
+        url: "php/getCarreras.php",
+        type: "POST",
+        dataType: "json",
+        success: function(r) {
+            var c = document.getElementById("carrera");
+            for (var i = 0; i < r.length; i++) {
+                var option = document.createElement("option");
+                option.value = r[i]["ID"];
+                option.innerText = r[i]["carrera"];
+                c.appendChild(option);
+            }
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
 }
 
 function cargarAcademias() {
-    var c = document.getElementById('academia');
-    var carr = ['ISC', 'LANI'];
-    for (var i = 0; i < carr.length; i++) {
-        var op = document.createElement('option');
-        op.value = carr[i];
-        op.innerText = carr[i];
-        c.appendChild(op);
-    }
+    $.ajax({
+        url: "php/getAcademias.php",
+        type: "POST",
+        dataType: "json",
+        success: function(r) {
+            var c = document.getElementById('academia');
+            for (var i = 0; i < r.length; i++) {
+                var option = document.createElement("option");
+                option.value = r[i]["ID"];
+                option.innerText = r[i]["Academia"];
+                c.appendChild(option);
+            }
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
+
 }
 
 function cargar(obj) {
@@ -74,8 +156,9 @@ function construir(obj) {
     tablatd31.setAttribute('cellpadding', '3');
     var tbody31 = document.createElement('tbody');
     var key = ["Nómina:", "Nombre(s):", "Carrera:", "Academia:"];
-    var value = [obj["nomina"], obj["nombres"], obj["carrera"], obj["academia"]];
+    var value = [obj["nom"], obj["nombres"], obj["carrera"].carr, obj["academia"]];
     for (var i = 0; i < key.length; i++) {
+
         var trtbody31 = document.createElement('tr');
         var tdtbody31 = document.createElement('td');
         var label = document.createElement('label');
@@ -85,9 +168,24 @@ function construir(obj) {
         trtbody31.appendChild(tdtbody31);
 
         var td2tbody31 = document.createElement('td');
-        var inp = document.createElement('input');
-        inp.disabled = true;
-        inp.value = value[i];
+        if (key[i] !== "Academia:") {
+            var inp = document.createElement('input');
+            inp.disabled = true;
+            inp.value = value[i];
+        } else {
+            var inp = document.createElement('select');
+            for (var j = 0; j < value[i].length; j++) {
+                var op = document.createElement('option');
+                op.value = value[i][j].id;
+                op.innerText = value[i][j].nombre;
+                inp.appendChild(op);
+            }
+            inp.setAttribute('style', 'width:100%;');
+            inp.addEventListener('change', function() {
+                actualizarPermisos(inp.value, obj["academia"], obj["nom"]);
+            }, false)
+        }
+
         td2tbody31.appendChild(inp);
         trtbody31.appendChild(td2tbody31);
         tbody31.appendChild(trtbody31);
@@ -105,6 +203,7 @@ function construir(obj) {
     var permisosAdmin = ['Plan de trabajo (crear, modificar)', 'Acciones al personal(alta, baja, modificar)',
         'Acciones a academias (alta, baja, modificar)', 'Acciones a carrera (alta, modificar)'
     ];
+    var permisos = obj["academia"][0].permiso;
     var trPermisosTitlulo = document.createElement('tr');
     var th = document.createElement('th');
     th.innerText = 'Permisos de Admin:';
@@ -115,6 +214,13 @@ function construir(obj) {
         var tdPermisos = document.createElement('td');
         var inpPermisos = document.createElement('input');
         inpPermisos.setAttribute('type', 'checkbox');
+        inpPermisos.setAttribute('name', 'c' + obj['nom']);
+        inpPermisos.setAttribute('value', i + 1);
+        for (var j = 0; j < permisos.length; j++) {
+            if ((i + 1) === permisos[j].idP)
+                inpPermisos.checked = true;
+        }
+
         var labelPer = document.createElement('label');
         labelPer.setAttribute('class', 'contenidoEliminar');
         labelPer.innerText = permisosAdmin[i];
@@ -137,14 +243,19 @@ function construir(obj) {
     th.innerText = 'Permisos generales:';
     trPermisosTitlulo.appendChild(th);
     tbody33.appendChild(trPermisosTitlulo);
-    var permisosGen = ['Actas (crear y modificar)', 'Evaluar Profesor (crear y modificar)',
-        'Evaluar Presidente(crear y modificar)'
-    ];
+    var permisosGen = ['Actas (crear y modificar)', 'Evaluar Profesor (crear y modificar)', 'Evaluar Presidente(crear y modificar)'];
     for (var i = 0; i < permisosGen.length; i++) {
         var trPermisos = document.createElement('tr');
         var tdPermisos = document.createElement('td');
         var inpPermisos = document.createElement('input');
         inpPermisos.setAttribute('type', 'checkbox');
+        inpPermisos.setAttribute('name', 'c' + obj['nom']);
+        inpPermisos.setAttribute('value', i + 5);
+        for (var j = 0; j < permisos.length; j++) {
+            if ((i + 5) === permisos[j].idP)
+                inpPermisos.checked = true;
+        }
+
         var labelPer = document.createElement('label');
         labelPer.setAttribute('class', 'contenidoEliminar');
         labelPer.innerText = permisosGen[i];
@@ -160,7 +271,7 @@ function construir(obj) {
     AplicarPermisos.type = 'button';
     AplicarPermisos.value = 'Aplicar Permisos';
     AplicarPermisos.addEventListener('click', function() {
-        alert(obj["nomina"]);
+        alert(obj["nom"]);
     }, false)
     tdBtnPermisos.appendChild(AplicarPermisos);
     trBtnPermisos.appendChild(tdBtnPermisos);
@@ -174,6 +285,9 @@ function construir(obj) {
     var td22 = document.createElement('td');
     var Mod = document.createElement('input')
     Mod.setAttribute('class', 'button button2Eliminar colorMod');
+    Mod.addEventListener('click', function() {
+        modificar('personal', obj["nom"]);
+    }, false)
     Mod.type = 'button';
     Mod.value = 'Modificar';
     var Vis = document.createElement('input')
@@ -185,7 +299,7 @@ function construir(obj) {
     Del.type = 'button';
     Del.value = 'Eliminar';
     Del.addEventListener('click', function() {
-        crear(obj['nomina']);
+        crear(obj['nom']);
     }, false)
     td22.appendChild(Del);
     td22.appendChild(Mod);
@@ -267,12 +381,10 @@ function confirmar(d, txt, yes, not, img, name) {
             recrear();
             var nuevo = [];
             for (var i = 0; i < obj.length; i++) {
-                console.log(obj[i]['nomina'] + " vs " + name);
                 if (obj[i]['nomina'] !== name) {
                     nuevo.push(obj[i])
                 }
             }
-            console.log(nuevo);
             for (var i = 0; i < nuevo.length; i++) {
                 construir(nuevo[i]);
             }
@@ -370,7 +482,7 @@ function porNombre(valor, obj, aux) {
 function porNomina(valor, obj, aux) {
     if (valor.length > 0) {
         for (var i = 0; i < obj.length; i++) {
-            if (obj[i]['nomina'].includes(valor)) {
+            if (obj[i].nom.includes(valor)) {
                 aux.push(obj[i]);
             }
         }
@@ -381,7 +493,7 @@ function porNomina(valor, obj, aux) {
 function porCarrera(valor, obj, aux) {
     if (valor.length > 0) {
         for (var i = 0; i < obj.length; i++) {
-            if (obj[i]['carrera'].includes(valor)) {
+            if (obj[i].carrera.idcarr == valor) {
                 aux.push(obj[i]);
             }
         }
@@ -392,8 +504,11 @@ function porCarrera(valor, obj, aux) {
 function porAcademia(valor, obj, aux) {
     if (valor.length > 0) {
         for (var i = 0; i < obj.length; i++) {
-            if (obj[i]['academia'].includes(valor)) {
-                aux.push(obj[i]);
+            var academias = obj[i].academia;
+            for (var j = 0; j < academias.length; j++) {
+                if (academias[j].id == valor) {
+                    aux.push(obj[i]);
+                }
             }
         }
     }
@@ -416,4 +531,25 @@ function recrear() {
 
 function limpiar() {
     cambiar('eliminar');
+}
+
+function actualizarPermisos(valor, obj, nom) {
+    var check = document.getElementsByName('c' + nom);
+    for (var i = 0; i < check.length; i++) {
+        check[i].checked = false;
+    }
+    var pos = -1;
+    for (var i = 0; i < obj.length && pos == -1; i++) {
+        if (obj[i].id == valor) {
+            pos = i;
+        }
+    }
+    var permisos = obj[pos].permiso;
+    for (var i = 0; i < check.length; i++) {
+        for (var j = 0; j < permisos.length && !check[i].checked; j++) {
+            if (check[i].value == permisos[j].idP) {
+                check[i].checked = true;
+            }
+        }
+    }
 }
