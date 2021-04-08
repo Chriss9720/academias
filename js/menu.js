@@ -13,15 +13,15 @@ function cargando() {
         success: function(r) {
             var arr = r["res"];
             for (var i = 0; i < arr.length; i++) {
-                if (arr[i].includes("plan") || arr[i].includes("academias") || arr[i].includes("personal") || arr[i].includes("carrera")) {
+                if (arr[i].includes("academias") || arr[i].includes("personal") || arr[i].includes("carrera")) {
                     hacerVisible('permisosAdmin', 1);
                     if (arr[i].includes("personal")) hacerVisible('personal', 1);
                     if (arr[i].includes("academias")) hacerVisible('academia', 0);
                     if (arr[i].includes("carrera")) hacerVisible('carrera', 1);
-                    if (arr[i].includes("plan")) hacerVisible("plan", 1)
                 }
-                if (arr[i].includes("actas") || arr[i].includes("profesor") || arr[i].includes("presidente")) {
+                if (arr[i].includes("plan") || arr[i].includes("actas") || arr[i].includes("profesor") || arr[i].includes("presidente")) {
                     hacerVisible('permisosDoc', 1);
+                    if (arr[i].includes("plan")) hacerVisible("plan", 1)
                     if (arr[i].includes("actas")) hacerVisible('acta', 1);
                     if (arr[i].includes("profesor")) hacerVisible('profesor', 1);
                     if (arr[i].includes("presidente")) hacerVisible('presidente', 1);

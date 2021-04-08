@@ -292,6 +292,9 @@ function construir(obj) {
     Mod.value = 'Modificar';
     var Vis = document.createElement('input')
     Vis.setAttribute('class', 'button button2Eliminar colorVis');
+    Vis.addEventListener('click', function() {
+        visualizar('personal', obj["nom"]);
+    }, false)
     Vis.type = 'button';
     Vis.value = 'Visualizar';
     var Del = document.createElement('input')
@@ -552,4 +555,8 @@ function actualizarPermisos(valor, obj, nom) {
             }
         }
     }
+}
+
+function visualizar(ant, idvis) {
+    window.location.href = "visualizar.html?id=" + id + "&vis=" + idvis + "&ant=" + ant;
 }
