@@ -19,9 +19,10 @@
     $json = json_decode(json_encode($_GET['obj']), true);
 
     $conn = conectar();
-    $call = "{call dbo.getPermisos(?)}";
+    $call = "{call dbo.validarClave(?,?)}";
     $params = array (
-        array(&$json, SQLSRV_PARAM_IN)
+        array(&$json["nom"], SQLSRV_PARAM_IN),
+        array(&$json["clave"], SQLSRV_PARAM_IN)
     );
     $stmt = sqlsrv_query($conn, $call, $params);
     if ($stmt === false) {
@@ -31,7 +32,7 @@
     $res = [];
 
     while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-        array_push($res, $row['NombrePermiso']);
+        array_push($res, $row);
     }
 
     sqlsrv_free_stmt($stmt);
@@ -40,4 +41,5 @@
     sqlsrv_close($conn);
 
     echo json_encode($return);
+
 ?>

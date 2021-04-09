@@ -18,16 +18,29 @@
     <div class="fijadoEliminarAcademia">
         <table cellspacing="10" cellpadding="3" class="BusquedaEliminarAcademia">
             <tr>
-                <td><label class="contenidoBusqueda font">Buscar:</label></td>
+                <td><label class="contenidoBusqueda font"><b>Buscar:</b></label></td>
+            </tr>
+            <tr>
+                <td><label class="contenido">Nombre de la Academia:</label></td>
+                <td><label class="contenido">Encargado/a:</label></td>
+                
             </tr>
             <tr>
                 <td>
-                    <select id="academia" name="SearchAca" class="contenidoBusquedaAcademia">
-                        <option value ="">Selecione una</option>
-                    </select>
+                    <input class="contenido" />
+                </td>
+                <td>
+                    <input class="contenido" />
+                </td>
+                <td>
+                    <label class="contenido">Dado/a de baja?</label>
+                    <td><input type="checkbox"></td>
                 </td>
             </tr>
         </table>
+
+
+
         <input class="button buttonRegresar" type="button" value="Regresar" onclick="cambiar('menu')" />
         <input value="Agregar Academia" type="button" class="button add" onclick='add()'>
     </div>
@@ -106,12 +119,22 @@
                         <input class="contenido" />
                     </td>
                 </tr>
+                <tr>  
+                    <td>
+                    <label class="contenidoBusqueda font">Por nomina:</label>
+                    </td>
+                    <td>
+                    <input class="contenido" />
+                    </td>
+                </tr>
                 <tr>
                     <td>
                         <label class="contenido">Encargado(a) de la Academia:</label>
                     </td>
                     <td>
-                        <input class="contenido" />
+                        <select class="contenido">
+                                <option value="0">No aplicable</option>
+                        </select>
                     </td>
                 </tr>
                 <tr>

@@ -9,8 +9,9 @@ function modificar(ant, idmod) {
     window.location.href = "modificar.html?id=" + id + "&mod=" + idmod + "&ant=" + ant;
 }
 
-function cargarDatos() {
+function cargarDatos(r = 0) {
     crearLoad('rcornersEliminar');
+    obj = [];
     window.location.search.substr(1).split("&").forEach(item => {
         id = item.split("=")[1];
     })
@@ -29,6 +30,7 @@ function cargarDatos() {
                 academia: [{
                     nombre: r[0]["ACADEMIA"],
                     id: r[0]["IDACADEMIA"],
+                    puesto: r[0]["PUESTO"],
                     permiso: [{
                         nombre: r[0]["NombrePermiso"],
                         idP: r[0]["IDPer"]
@@ -48,6 +50,7 @@ function cargarDatos() {
                     obj[lim].academia.push({
                         nombre: r[i]["ACADEMIA"],
                         id: r[i]["IDACADEMIA"],
+                        puesto: r[i]["PUESTO"],
                         permiso: [{
                             nombre: r[i]["NombrePermiso"],
                             idP: r[i]["IDPer"]
@@ -65,6 +68,7 @@ function cargarDatos() {
                         academia: [{
                             nombre: r[i]["ACADEMIA"],
                             id: r[i]["IDACADEMIA"],
+                            puesto: r[i]["PUESTO"],
                             permiso: [{
                                 nombre: r[i]["NombrePermiso"],
                                 idP: r[i]["IDPer"]
@@ -155,8 +159,8 @@ function construir(obj) {
     tablatd31.setAttribute('cellspacing', '3');
     tablatd31.setAttribute('cellpadding', '3');
     var tbody31 = document.createElement('tbody');
-    var key = ["Nómina:", "Nombre(s):", "Carrera:", "Academia:"];
-    var value = [obj["nom"], obj["nombres"], obj["carrera"].carr, obj["academia"]];
+    var key = ["Nómina:", "Nombre(s):", "Carrera:", "Puesto:", "Academia:"];
+    var value = [obj["nom"], obj["nombres"], obj["carrera"].carr, obj["academia"][0]["puesto"], obj["academia"]];
     for (var i = 0; i < key.length; i++) {
 
         var trtbody31 = document.createElement('tr');
@@ -170,10 +174,13 @@ function construir(obj) {
         var td2tbody31 = document.createElement('td');
         if (key[i] !== "Academia:") {
             var inp = document.createElement('input');
+            if (key[i] == "Puesto:")
+                inp.setAttribute('id', 'Puesto')
             inp.disabled = true;
             inp.value = value[i];
         } else {
             var inp = document.createElement('select');
+            inp.setAttribute("id", "academia" + obj["nom"])
             for (var j = 0; j < value[i].length; j++) {
                 var op = document.createElement('option');
                 op.value = value[i][j].id;
@@ -271,7 +278,7 @@ function construir(obj) {
     AplicarPermisos.type = 'button';
     AplicarPermisos.value = 'Aplicar Permisos';
     AplicarPermisos.addEventListener('click', function() {
-        alert(obj["nom"]);
+        crear(obj['nom'], 0);
     }, false)
     tdBtnPermisos.appendChild(AplicarPermisos);
     trBtnPermisos.appendChild(tdBtnPermisos);
@@ -302,7 +309,7 @@ function construir(obj) {
     Del.type = 'button';
     Del.value = 'Eliminar';
     Del.addEventListener('click', function() {
-        crear(obj['nom']);
+        crear(obj['nom'], 1);
     }, false)
     td22.appendChild(Del);
     td22.appendChild(Mod);
@@ -316,7 +323,7 @@ function construir(obj) {
     t.appendChild(tbody);
 }
 
-function crear(name) {
+function crear(name, tipo) {
     var d = document.createElement("DIALOG");
     d.setAttribute("ID", "d1");
     var txt = document.createElement("label");
@@ -326,7 +333,10 @@ function crear(name) {
 
     txt.setAttribute("style", "position: absolute; top: 20%")
 
-    txt.innerHTML = '¿Seguro que desea eliminar al usuario: ' + name + '?';
+    if (tipo == 1)
+        txt.innerHTML = '¿Seguro que desea eliminar al usuario: ' + name + '?';
+    else
+        txt.innerHTML = '¿Seguro que desea aplicar los nuevos permisos a: ' + name + '?';
     yes.innerHTML = "&#161;Si&#33;";
     not.innerHTML = "&#161;No&#33;";
 
@@ -339,7 +349,7 @@ function crear(name) {
     yes.setAttribute("style", "top: 50%;position: absolute;left: 80%; background-color: #08c211;");
     yes.setAttribute("class", "button");
     yes.addEventListener("click", function() {
-        confirmar(d, txt, yes, not, img, name);
+        confirmar(d, txt, yes, not, img, name, tipo);
     }, false);
 
     not.setAttribute("id", "no");
@@ -359,7 +369,7 @@ function crear(name) {
     d.showModal();
 }
 
-function confirmar(d, txt, yes, not, img, name) {
+function confirmar(d, txt, yes, not, img, name, tipo) {
     d.removeChild(yes);
     txt.innerHTML = "Ingrese su contrase&#241;a para continuar";
     var psw = document.createElement("input");
@@ -371,7 +381,10 @@ function confirmar(d, txt, yes, not, img, name) {
     var cont = document.createElement("button");
     cont.setAttribute("style", "top: 50%;position: absolute;left: 80%; background-color: #08c211;");
     cont.setAttribute("class", "button");
-    cont.innerHTML = "Eliminar";
+    if (tipo == 1)
+        cont.innerHTML = "Eliminar";
+    else
+        cont.innerHTML = "Actualizar";
     cont.style.left = "50%";
     cont.style.top = "60%";
     not.style.top = "60%";
@@ -381,28 +394,75 @@ function confirmar(d, txt, yes, not, img, name) {
             error(d, txt, cont, img, psw, name);
         } else {
             crearLoad('rcornersEliminar');
-            recrear();
-            var nuevo = [];
-            for (var i = 0; i < obj.length; i++) {
-                if (obj[i]['nomina'] !== name) {
-                    nuevo.push(obj[i])
+            var check = document.getElementsByName('c' + name);
+            var permisos = [];
+            for (var i = 0; i < check.length; i++) {
+                if (check[i].checked)
+                    permisos.push(check[i].value);
+            }
+            var obj = {
+                nom: id,
+                clave: psw.value
+            }
+            $.ajax({
+                url: "php/validarClave.php",
+                type: "GET",
+                data: { obj: obj },
+                dataType: "JSON",
+                success: function(r) {
+                    if (r["res"].length > 0) {
+                        if (tipo == 0) {
+                            obj = {
+                                puesto: document.getElementById('Puesto').value,
+                                nomina: name,
+                                permisos: permisos,
+                                academia: document.getElementById('academia' + name).value
+                            };
+                            $.ajax({
+                                url: "php/actualizarPermisos.php",
+                                type: "GET",
+                                data: { obj: obj },
+                                success: function(r) {
+                                    eliminado(d, txt, cont, img, psw, not, tipo);
+                                },
+                                error: function(err) {
+                                    console.log(err);
+                                }
+                            });
+                        } else {
+                            $.ajax({
+                                url: "php/rmUser.php",
+                                type: "GET",
+                                data: { obj: name },
+                                success: function(r) {
+                                    console.log(r);
+                                    eliminado(d, txt, cont, img, psw, not, tipo);
+                                    recrear(1);
+                                },
+                                error: function(err) {
+                                    console.log(err);
+                                }
+                            });
+                        }
+                    } else {
+                        error(d, txt, cont, img, psw, name, tipo);
+                    }
+                    removerLoad();
+                },
+                error: function(err) {
+                    console.log(err);
                 }
-            }
-            for (var i = 0; i < nuevo.length; i++) {
-                construir(nuevo[i]);
-            }
-            removerLoad();
-            eliminado(d, txt, cont, img, psw, not);
+            });
         }
     }, false);
 }
 
-function error(d, txt, cont, img, psw, name) {
+function error(d, txt, cont, img, psw, name, tipo) {
     d.removeChild(psw);
     d.removeChild(cont);
     img.style.width = "100px";
     img.style.height = "100px";
-    txt.innerHTML = "Contrase&#241;a incorrecta";
+    txt.innerHTML = "Contraseña incorrecta";
     txt.style.top = "30%";
     var cont = document.createElement("button");
     cont.setAttribute("style", "top: 50%;position: absolute;left: 80%; background-color: #08c211;");
@@ -413,18 +473,22 @@ function error(d, txt, cont, img, psw, name) {
     d.appendChild(cont);
     cont.addEventListener("click", function() {
         d.remove();
-        crear(name);
+        crear(name, tipo);
     })
 }
 
-function eliminado(d, txt, cont, img, psw, not) {
+function eliminado(d, txt, cont, img, psw, not, tipo) {
     d.removeChild(psw);
     d.removeChild(cont);
     d.removeChild(not);
     img.src = "img/sucess.png";
     img.style.width = "100px";
     img.style.height = "100px";
-    txt.innerHTML = "Eliminado";
+    if (tipo == 0) {
+        txt.innerHTML = "Actualizado";
+    } else {
+        txt.innerHTML = "Eliminado";
+    }
     txt.style.top = "30%";
     var cont = document.createElement("button");
     cont.setAttribute("style", "top: 50%;position: absolute;left: 80%; background-color: #08c211;");
@@ -439,7 +503,7 @@ function eliminado(d, txt, cont, img, psw, not) {
 }
 
 function buscar() {
-    recrear();
+    recrear(0);
     var aux = [];
     var nombre = document.getElementById('SearchName').value;
     var nomina = document.getElementById('sMat').value;
@@ -518,7 +582,7 @@ function porAcademia(valor, obj, aux) {
     return aux;
 }
 
-function recrear() {
+function recrear(op) {
     document.getElementById("tabla").remove();
     var page = document.getElementById("page");
     var t = document.createElement("table");
@@ -530,6 +594,8 @@ function recrear() {
     t.setAttribute("class", "tablaElimiar");
     t.appendChild(tbody);
     page.appendChild(t);
+    if (op == 1)
+        cargarDatos();
 }
 
 function limpiar() {
@@ -547,7 +613,8 @@ function actualizarPermisos(valor, obj, nom) {
             pos = i;
         }
     }
-    var permisos = obj[pos].permiso;
+    var permisos = obj[pos]["permiso"];
+    document.getElementById('Puesto').value = obj[pos]["puesto"];
     for (var i = 0; i < check.length; i++) {
         for (var j = 0; j < permisos.length && !check[i].checked; j++) {
             if (check[i].value == permisos[j].idP) {

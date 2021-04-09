@@ -62,7 +62,6 @@
             }
             sqlsrv_close($conn);
         }
-    } else {
     }
 
     echo json_encode($return);
