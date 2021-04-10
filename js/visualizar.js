@@ -12,6 +12,7 @@ function cargarDatos() {
         dataType: "json",
         success: function(r) {
             var arr = r["res"];
+            console.log(arr);
             document.getElementById('fotoPerfil').src = arr[0]["Foto"];
             document.getElementById('matricula').innerText = arr[0]["nomina"];
             document.getElementById('nombre').innerText = arr[0]["ApellidoP"] + " " + arr[0]["ApellidoM"] + " " + arr[0]["Nombre"];
@@ -32,42 +33,45 @@ function cargarDatos() {
                 b.appendChild(tr);
 
                 //tabla de documentos
-                var td = document.createElement('td');
-                var table = document.createElement('table');
-                table.setAttribute('cellspacing', '3');
-                table.setAttribute('cellpadding', '3');
-                table.setAttribute('class', 'tablaRecientes2');
-                var trimg = document.createElement('tr');
-                var tdimg = document.createElement('td');
-                var img = document.createElement('img');
-                img.setAttribute('class', 'imgDocumento');
-                img.src = "img/imgPDF.png";
-                img.alt = "Imagen no encontrada";
-                tdimg.appendChild(img);
-                trimg.appendChild(tdimg);
-                var trlabel = document.createElement('tr');
-                var tdlabel = document.createElement('td');
-                var label = document.createElement('label');
-                if (arr[i]["fecha"] == null) {
-                    label.innerText = "Plan de trabajo-" + arr[i]["Academia"] + "-" + arr[i]["Semestre"];
-                } else {
-                    label.innerText = "Acuerdo-" + arr[i]["Academia"] + "-" + arr[i]["Semestre"];
-                }
-                tdlabel.appendChild(label);
-                trlabel.appendChild(tdlabel);
-                table.appendChild(trimg);
-                table.appendChild(trlabel);
-                td.appendChild(table);
-                if (arr[i]["fecha"] == null) {
-                    td.addEventListener('click', function() {
-                        abrirDoc(arr[(i - 1)]["PlanTrabajo"]);
-                    }, false);
-                    trp.appendChild(td);
-                } else {
-                    td.addEventListener('click', function() {
-                        abrirDoc(arr[(i - 1)]["rutaResponsables"] + "Responsables");
-                    }, false);
-                    trr.appendChild(td);
+                if (arr[i]["Responsable"] != null && arr[i]["responsable2"] != null &&
+                    (arr[i]["Responsable"].includes(arr[i]["nomina"]) || arr[i]["responsable2"].includes(arr[i]["nomina"]))) {
+                    var td = document.createElement('td');
+                    var table = document.createElement('table');
+                    table.setAttribute('cellspacing', '3');
+                    table.setAttribute('cellpadding', '3');
+                    table.setAttribute('class', 'tablaRecientes2');
+                    var trimg = document.createElement('tr');
+                    var tdimg = document.createElement('td');
+                    var img = document.createElement('img');
+                    img.setAttribute('class', 'imgDocumento');
+                    img.src = "img/imgPDF.png";
+                    img.alt = "Imagen no encontrada";
+                    tdimg.appendChild(img);
+                    trimg.appendChild(tdimg);
+                    var trlabel = document.createElement('tr');
+                    var tdlabel = document.createElement('td');
+                    var label = document.createElement('label');
+                    if (arr[i]["fecha"] == null) {
+                        label.innerText = "Plan de trabajo-" + arr[i]["Academia"] + "-" + arr[i]["Semestre"];
+                    } else {
+                        label.innerText = "Acuerdo-" + arr[i]["Academia"] + "-" + arr[i]["Semestre"];
+                    }
+                    tdlabel.appendChild(label);
+                    trlabel.appendChild(tdlabel);
+                    table.appendChild(trimg);
+                    table.appendChild(trlabel);
+                    td.appendChild(table);
+                    if (arr[i]["fecha"] == null) {
+                        td.addEventListener('click', function() {
+                            abrirDoc(arr[(i - 1)]["PlanTrabajo"]);
+                        }, false);
+                        trp.appendChild(td);
+                    } else {
+                        td.addEventListener('click', function() {
+                            abrirDoc(arr[(i - 1)]["rutaResponsables"] + "Responsables");
+                        }, false);
+                        trr.appendChild(td);
+                    }
                 }
             }
         },

@@ -17,7 +17,7 @@ function cargando() {
                     hacerVisible('permisosAdmin', 1);
                     if (arr[i].includes("personal")) hacerVisible('personal', 1);
                     if (arr[i].includes("academias")) hacerVisible('academia', 0);
-                    if (arr[i].includes("carrera")) hacerVisible('carrera', 1);
+                    if (arr[i].includes("carrera")) hacerVisible('carrera', 0);
                 }
                 if (arr[i].includes("plan") || arr[i].includes("actas") || arr[i].includes("profesor") || arr[i].includes("presidente")) {
                     hacerVisible('permisosDoc', 1);
@@ -58,9 +58,6 @@ function modificar(ant) {
     window.location.href = "modificar.html?id=" + id + "&mod=" + id + "&ant=" + ant;
 }
 
-function vis(vis = -1) {
-    if (vis == -1)
-        window.location.href = "visualizar.html?id=" + id + "&vis=" + id;
-    else
-        window.location.href = "visualizar.html?id=" + id + "&vis=" + vis;
+function vis(ant) {
+    window.location.href = "visualizar.html?id=" + id + "&vis=" + id + "&ant=" + ant;
 }
