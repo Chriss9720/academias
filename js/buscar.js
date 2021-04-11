@@ -1,7 +1,7 @@
 var obj;
+var id;
 
 function cargarDatos() {
-    cargando();
     crearLoad('rcornersEliminar');
     obj = [{
         foto: "img/Hector.png",

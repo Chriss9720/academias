@@ -278,6 +278,7 @@ function getAllCarreraAsociada(selector, obj) {
 }
 
 function add() {
+    cerrar();
     var d = document.getElementById('add');
     d.showModal();
 }
@@ -290,12 +291,36 @@ function modificarAcademia(id) {
     var b = document.getElementsByName(id);
     b[b.length - 1].setAttribute('class', 'button buttonEliminar guardar');
     b[b.length - 1].disabled = false;
+    for (var i = 1; i < 4; i++) {
+        b[i].disabled = false;
+    }
 }
 
 function guardar(id) {
     var b = document.getElementsByName(id);
     b[b.length - 1].setAttribute('class', 'button buttonEliminar desac');
     b[b.length - 1].disabled = true;
+    for (var i = 1; i < 4; i++) {
+        b[i].disabled = true;
+    }
+    var obj = {
+        id: b[0].value,
+        nombre: b[1].value,
+        encargado: b[2].value,
+        carrera: b[3].value
+    };
+    $.ajax({
+        url: "php/updateAcademia.php",
+        type: "GET",
+        data: { obj: obj },
+        success: function(r) {
+            exito(0);
+            recrear(1);
+        },
+        error: function(err) {
+            errorB(0);
+        }
+    });
 }
 
 function crear(name) {
@@ -374,8 +399,19 @@ function confirmar(d, txt, yes, not, img, name) {
                 dataType: "JSON",
                 success: function(r) {
                     if (r["res"].length > 0) {
-                        eliminado(d, txt, cont, img, psw, not);
-                        recrear(1);
+                        $.ajax({
+                            url: "php/bajaAcademia.php",
+                            data: { obj: name },
+                            success: function(r) {
+                                console.log(r);
+                                eliminado(d, txt, cont, img, psw, not);
+                                recrear(1);
+                            },
+                            error: function(err) {
+                                console.log(err);
+                                error(d, txt, cont, img, psw, name);
+                            }
+                        });
                     } else {
                         error(d, txt, cont, img, psw, name);
                     }
@@ -541,90 +577,16 @@ function registrar() {
             success: function(r) {
                 removerLoad();
                 cerrar();
-                var d = document.createElement("DIALOG");
-                d.setAttribute("ID", "d1");
-                var txt = document.createElement("label");
-                var yes = document.createElement("button");
-                var not = document.createElement("button");
-                var img = document.createElement("img");
-
-                txt.setAttribute("style", "position: absolute; top: 20%")
-                txt.innerHTML = '¡Registro Exitoso!';
-                yes.innerHTML = "Continuar";
-
-                img.src = "img/sucess.png";
-                img.style.width = "100px";
-                img.style.height = "100px";
-                d.appendChild(img);
-
-                yes.setAttribute("style", "top: 50%;position: absolute;left: 70%; background-color: #08c211;");
-                yes.setAttribute("class", "button");
-                yes.addEventListener("click", function() {
-                    document.getElementById("d1").remove();
-                    add();
-                }, false);
-
-                not.setAttribute("style", "top: 50%;position: absolute;left: 5%; background-color: #cc1010;");
-                not.setAttribute("class", "button");
-                not.addEventListener("click", function() {
-                    document.getElementById("d1").remove();
-                }, false);
-
-                d.appendChild(txt);
-                d.appendChild(yes);
-                d.appendChild(not);
-
-                d.style.height = "150px";
-                d.style.width = "350px";
-                document.body.append(d);
-                d.showModal();
+                exito(1);
+                recrear(1);
             },
             error: function(err) {
-                console.log(err);
+                errorB(1);
             }
         });
     } else {
         removerLoad();
         cerrar();
-        var d = document.createElement("DIALOG");
-        d.setAttribute("ID", "d1");
-        var txt = document.createElement("label");
-        var yes = document.createElement("button");
-        var not = document.createElement("button");
-        var img = document.createElement("img");
-
-        txt.setAttribute("style", "position: absolute; top: 20%")
-
-        txt.innerHTML = 'Ingrese el nombre';
-        yes.innerHTML = "Reintentar";
-        not.innerHTML = "Cancelar";
-
-        img.src = "img/advertencia.jpg";
-        img.setAttribute("width", "50px")
-        img.setAttribute("height", "50px")
-        d.appendChild(img);
-
-        yes.setAttribute("style", "top: 50%;position: absolute;left: 70%; background-color: #08c211;");
-        yes.setAttribute("class", "button");
-        yes.addEventListener("click", function() {
-            document.getElementById("d1").remove();
-            add();
-        }, false);
-
-        not.setAttribute("style", "top: 50%;position: absolute;left: 5%; background-color: #cc1010;");
-        not.setAttribute("class", "button");
-        not.addEventListener("click", function() {
-            document.getElementById("d1").remove();
-        }, false);
-
-        d.appendChild(txt);
-        d.appendChild(yes);
-        d.appendChild(not);
-
-        d.style.height = "150px";
-        d.style.width = "350px";
-        document.body.append(d);
-        d.showModal();
     }
 }
 
@@ -638,4 +600,92 @@ function cerrar() {
     op[0].value = 0;
     op[0].innerText = "No aplicable";
     document.getElementById('add').open = false;
+}
+
+function exito(tipo) {
+    var d = document.createElement("DIALOG");
+    d.setAttribute("ID", "d1");
+    var txt = document.createElement("label");
+    var yes = document.createElement("button");
+    var img = document.createElement("img");
+
+    txt.setAttribute("style", "position: absolute; top: 20%")
+    if (tipo == 1)
+        txt.innerHTML = '¡Registro Exitoso!';
+    else
+        txt.innerHTML = '¡Actualización Exitosa!';
+    yes.innerHTML = "Continuar";
+
+    img.src = "img/sucess.png";
+    img.style.width = "100px";
+    img.style.height = "100px";
+    d.appendChild(img);
+
+    yes.setAttribute("style", "top: 50%;position: absolute;left: 70%; background-color: #08c211;");
+    yes.setAttribute("class", "button");
+    yes.addEventListener("click", function() {
+        document.getElementById("d1").remove();
+        if (tipo == 1) {
+            add();
+            cerrar();
+        }
+    }, false);
+
+    d.appendChild(txt);
+    d.appendChild(yes);
+
+    d.style.height = "150px";
+    d.style.width = "350px";
+    document.body.append(d);
+    d.showModal();
+}
+
+function errorB(tipo) {
+    var d = document.createElement("DIALOG");
+    d.setAttribute("ID", "d1");
+    var txt = document.createElement("label");
+    var yes = document.createElement("button");
+    var not = document.createElement("button");
+    var img = document.createElement("img");
+
+    txt.setAttribute("style", "position: absolute; top: 20%")
+
+    if (tipo == 1)
+        txt.innerHTML = 'Ingrese el nombre';
+    else
+        txt.innerHTML = 'Ocurrio un error inesperado';
+    yes.innerHTML = "Reintentar";
+    not.innerHTML = "Cancelar";
+
+    img.src = "img/advertencia.jpg";
+    img.setAttribute("width", "50px")
+    img.setAttribute("height", "50px")
+    d.appendChild(img);
+
+    yes.setAttribute("style", "top: 50%;position: absolute;left: 70%; background-color: #08c211;");
+    yes.setAttribute("class", "button");
+    yes.addEventListener("click", function() {
+        document.getElementById("d1").remove();
+        if (tipo == 1) {
+            add();
+            cerrar();
+        }
+    }, false);
+    if (tipo == 1) {
+        not.setAttribute("style", "top: 50%;position: absolute;left: 5%; background-color: #cc1010;");
+        not.setAttribute("class", "button");
+        not.addEventListener("click", function() {
+            document.getElementById("d1").remove();
+        }, false);
+    }
+
+    d.appendChild(txt);
+    d.appendChild(yes);
+    if (tipo == 1)
+        d.appendChild(not);
+
+    d.style.height = "150px";
+    d.style.width = "350px";
+    document.body.append(d);
+    d.showModal();
 }
