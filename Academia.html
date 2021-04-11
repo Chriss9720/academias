@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/load.js"></script>
-    <script type="text/javascript" src="js/academia.js"></script>
+    <script type="text/javascript" src="js/Academia.js"></script>
     <script type="text/javascript" src="js/menu.js"></script>
     <link rel="stylesheet" href="css/compartidos.css" />
     <link rel="stylesheet" href="css/load.css" />
@@ -14,7 +14,7 @@
     <title>Administraci&oacute;n de Academias</title>
 </head>
 
-<body>
+<body onload="cargarDatos()">
     <div class="fijadoEliminarAcademia">
         <table cellspacing="10" cellpadding="3" class="BusquedaEliminarAcademia">
             <tr>
@@ -23,24 +23,20 @@
             <tr>
                 <td><label class="contenido">Nombre de la Academia:</label></td>
                 <td><label class="contenido">Encargado/a:</label></td>
-                
             </tr>
             <tr>
                 <td>
-                    <input class="contenido" />
+                    <input class="contenido" id="BuscarXNombre" onkeyup="buscar()" />
                 </td>
                 <td>
-                    <input class="contenido" />
+                    <input class="contenido" id="BuscarXEncargado" onkeyup="buscar()" />
                 </td>
                 <td>
                     <label class="contenido">Dado/a de baja?</label>
-                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox" id="xBaja" onchange="buscar()"></td>
                 </td>
             </tr>
         </table>
-
-
-
         <input class="button buttonRegresar" type="button" value="Regresar" onclick="cambiar('menu')" />
         <input value="Agregar Academia" type="button" class="button add" onclick='add()'>
     </div>
@@ -48,56 +44,8 @@
         <scroll-container>
             <scroll-page id="page">
                 <table id="tabla" cellspacing="3" cellpadding="3" class="tablaElimiarAcademia">
-                    <tr class="trContentElimiarAcademia">
-                        <td class="tdContenidoEliminarAcademia">
-                            <table>
-                                <tr>
-                                    <td>
-                                        <table class="cuerpoEliminarAcademia" cellspacing="3" cellpadding="3">
-                                            <tr>
-                                                <td><label class="contenidoEliminarAcademia">ID de la Academia:</label></td>
-                                                <td><input disabled=""></td>
-                                            </tr>
-                                            <tr>
-                                                <td><label class="contenidoEliminarAcademia">Nombre de la Academia:</label></td>
-                                                <td><input disabled=""></td>
-                                            </tr>
-                                            <tr>
-                                                <td><label class="contenidoEliminarAcademia">Encargado(a) de la Academia:</label></td>
-                                                <td>
-                                                    <select class="contenidoBusquedaEncargado" disabled>
-                                                        <option value ="">Seleciona una</option>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><label class="contenidoEliminarAcademia">Carrera Asociada:</label></td>
-                                                <td>
-                                                    <select class="contenidoBusquedaEncargado" disabled>
-                                                        <option value ="">Seleciona una</option>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><label class="contenidoEliminarAcademia">Alta Academia:</label></td>
-                                                <td><input disabled=""></td>
-                                            </tr>
-                                            <tr>
-                                                <td><label class="contenidoEliminarAcademia">Baja Academia:</label></td>
-                                                <td><input disabled=""></td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input class="button buttonEliminar" type="button" value="Eliminar">
-                                        <input class="button buttonEliminar mod" type="button" value="Modificar">
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
+                    <tbody id="cuerpo">
+                    </tbody>
                 </table>
             </scroll-page>
         </scroll-container>
@@ -106,51 +54,45 @@
         <h1 class="title font">Academias</h1>
     </div>
     <dialog id="add" class="dialogo">
-
         <p1 class="subtitle font">Ingrese info. de la Academia:</p1>
-
-        <form class="font" method="post" enctype="multipart/form-data">
-            <table cellspacing="3" cellpadding="15" class="cuerpoAgregarAcademia">
-                <tr>
-                    <td>
-                        <label class="contenido">Nombre de la Academia:</label>
-                    </td>
-                    <td>
-                        <input class="contenido" />
-                    </td>
-                </tr>
-                <tr>  
-                    <td>
-                    <label class="contenidoBusqueda font">Por nomina:</label>
-                    </td>
-                    <td>
-                    <input class="contenido" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label class="contenido">Encargado(a) de la Academia:</label>
-                    </td>
-                    <td>
-                        <select class="contenido">
+        <table cellspacing="3" cellpadding="15" class="cuerpoAgregarAcademia">
+            <tr>
+                <td>
+                    <label class="contenido">Nombre de la Academia:</label>
+                </td>
+                <td>
+                    <input class="contenido" id="addAcademia" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="contenidoBusqueda font">Buscar encargado por nomina:</label>
+                </td>
+                <td>
+                    <input class="contenido" onkeyup="buscarEncargado(this.value)" id="buscarEncargado" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="contenido">Encargado(a) de la Academia:</label>
+                </td>
+                <td>
+                    <select class="contenido" id="nuevoEncargado">
                                 <option value="0">No aplicable</option>
                         </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label class="contenido">Carrera Asociada:</label></td>
-                    <td>
-                        <select class="contenido">
+                </td>
+            </tr>
+            <tr>
+                <td><label class="contenido">Carrera Asociada:</label></td>
+                <td>
+                    <select class="contenido" id="nuevaCarrera">
                                 <option value="0">No aplicable</option>
                         </select>
-                    </td>
-                </tr>
-            </table>
-
-            <input class="button buttonCancelar" type="button" value="Cancelar" />
-            <input class="button buttonRegistrar" type="button" value="Registrar" />
-
-        </form>
+                </td>
+            </tr>
+        </table>
+        <input class="button buttonCancelar" type="button" value="Cancelar" onclick="cerrar()" />
+        <input class="button buttonRegistrar" type="button" value="Registrar" onclick="registrar()" />
     </dialog>
 </body>
 

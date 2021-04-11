@@ -9,7 +9,7 @@ function modificar(ant, idmod) {
     window.location.href = "modificar.html?id=" + id + "&mod=" + idmod + "&ant=" + ant;
 }
 
-function cargarDatos(r = 0) {
+function cargarDatos() {
     crearLoad('rcornersEliminar');
     obj = [];
     window.location.search.substr(1).split("&").forEach(item => {
@@ -435,7 +435,6 @@ function confirmar(d, txt, yes, not, img, name, tipo) {
                                 type: "GET",
                                 data: { obj: name },
                                 success: function(r) {
-                                    console.log(r);
                                     eliminado(d, txt, cont, img, psw, not, tipo);
                                     recrear(1);
                                 },
