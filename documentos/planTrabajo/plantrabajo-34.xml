@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PlanTrabajo>
+  <Cabecera>
+    <Academia>Academia 3</Academia>
+    <Semestre>Ene-Jun 2021</Semestre>
+    <Presidente>Gonzalez Christian Yañez</Presidente>
+    <Primera>2021-04-01 12:47</Primera>
+    <Segunda>2021-04-02 12:47</Segunda>
+    <Tercera>2021-04-03 12:45</Tercera>
+    <Cuarta>2021-03-04 16:42</Cuarta>
+  </Cabecera>
+  <Act1>
+    <Acciones>Act1 </Acciones>
+    <Asignarutas>Materia de act1</Asignarutas>
+    <Responsable>Yañez?</Responsable>
+    <Fecha>2021-03-01 19:42</Fecha>
+    <Evidencia>Evidencia de act1</Evidencia>
+  </Act1>
+  <Act2>
+    <Acciones>Act23</Acciones>
+    <Asignarutas>Materia de act2</Asignarutas>
+    <Responsable>wqr?</Responsable>
+    <Fecha>2021-04-02 12:45</Fecha>
+    <Evidencia>Evidencia de act2</Evidencia>
+  </Act2>
+  <Act3>
+    <Acciones>Act4</Acciones>
+    <Asignarutas>Materia de act3</Asignarutas>
+    <Responsable>Yañez?</Responsable>
+    <Fecha>2021-04-03 12:46</Fecha>
+    <Evidencia>Evidencia de act3</Evidencia>
+  </Act3>
+  <Act4>
+    <Acciones>Act5</Acciones>
+    <Asignarutas>Materia de act4</Asignarutas>
+    <Responsable>wqr?</Responsable>
+    <Fecha>2021-04-04 12:46</Fecha>
+    <Evidencia>Evidencia de act4</Evidencia>
+  </Act4>
+  <Act5>
+    <Acciones>Act6</Acciones>
+    <Asignarutas>Materia de act5</Asignarutas>
+    <Responsable>Yañez?</Responsable>
+    <Fecha>2021-04-05 12:46</Fecha>
+    <Evidencia>Evidencia de act5</Evidencia>
+  </Act5>
+  <Act6>
+    <Acciones>Act7</Acciones>
+    <Asignarutas>Materia de act6</Asignarutas>
+    <Responsable>wqr?</Responsable>
+    <Fecha>2021-04-06 12:46</Fecha>
+    <Evidencia>Evidencia de act6</Evidencia>
+  </Act6>
+  <Act7>
+    <Acciones>Act8</Acciones>
+    <Asignarutas>Materia de act7</Asignarutas>
+    <Responsable>Yañez?</Responsable>
+    <Fecha>2021-04-07 12:46</Fecha>
+    <Evidencia>Evidencia de act7</Evidencia>
+  </Act7>
+  <Act8>
+    <Acciones>Act8</Acciones>
+    <Asignarutas>Materia de act8</Asignarutas>
+    <Responsable>wqr?</Responsable>
+    <Fecha>2021-04-08 12:46</Fecha>
+    <Evidencia>Evidencia de act87</Evidencia>
+  </Act8>
+  <Act9>
+    <Acciones>Act9</Acciones>
+    <Asignarutas>Materia de act9</Asignarutas>
+    <Responsable>Yañez?</Responsable>
+    <Fecha>2021-04-09 12:46</Fecha>
+    <Evidencia>Evidencia de act9</Evidencia>
+  </Act9>
+</PlanTrabajo>

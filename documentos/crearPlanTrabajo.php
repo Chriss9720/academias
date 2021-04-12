@@ -403,7 +403,7 @@
     $pdf->AddPage();
     $pdf->TablaP($json, $autor, $name);
     $pdf->Output("F",$path, true);
-    $archivo = "PDF.html?nombre=planTrabajo/".$name;
+    $archivo = "PDF.html?nombre=planTrabajo/".$name.".pdf";
     $return = array ("archivo" => $archivo);
 
     registrarPlan($json["Semestre"], $json["IDAcademia"], $name);

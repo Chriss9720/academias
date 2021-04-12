@@ -11,7 +11,7 @@
             var id;
             var pdf = document.getElementById("pdf");
             pdf.style.width = "100%";
-            pdf.style.height = (window.screen.height - (window.screen.height * .1)) + "px";
+            pdf.style.height = (window.screen.height) + "px";
             window.location.search.substr(1).split("&").forEach(item => {
                 id = item.split("=")[1];
             })

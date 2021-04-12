@@ -14,7 +14,7 @@ function cargarDatos() {
     obj = [];
     window.location.search.substr(1).split("&").forEach(item => {
         id = item.split("=")[1];
-    })
+    });
     $.ajax({
         url: "php/getAllUser.php",
         type: 'POST',

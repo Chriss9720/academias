@@ -5,7 +5,6 @@ function cargarDatos() {
         id = item.split("=")[1];
     });
     cargarAcademias();
-
     var sem = document.getElementById('semestre');
     var mes = new Date();
     if (mes.getMonth() >= 1 && mes.getMonth() <= 6) {

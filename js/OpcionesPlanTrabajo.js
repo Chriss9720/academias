@@ -167,7 +167,7 @@ function construir(data) {
     inp.type = "Button";
     inp.value = "Modificar";
     inp.addEventListener('click', function() {
-        mod(data["IDPlan"])
+        mod(data["IDPlan"], data["IDAcademia"]);
     }, false);
     td.appendChild(inp);
     tr.appendChild(td);
@@ -175,8 +175,8 @@ function construir(data) {
     t.appendChild(tbody);
 }
 
-function mod(mod) {
-    window.location.href = "modificarPlanTrabajo.html?id=" + id + "&mod=" + mod;
+function mod(mod, aca) {
+    window.location.href = "modificarPlanTrabajo.html?id=" + id + "&mod=" + mod + "&aca=" + aca;
 }
 
 function addLabel(node, text, clase) {

@@ -403,7 +403,6 @@ function confirmar(d, txt, yes, not, img, name) {
                             url: "php/bajaAcademia.php",
                             data: { obj: name },
                             success: function(r) {
-                                console.log(r);
                                 eliminado(d, txt, cont, img, psw, not);
                                 recrear(1);
                             },
@@ -587,6 +586,7 @@ function registrar() {
     } else {
         removerLoad();
         cerrar();
+        errorB(1);
     }
 }
 
