@@ -5,25 +5,23 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/planTrabajo.js"></script>
-    <script type="text/javascript" src="js/menu.js"></script>
     <link rel="stylesheet" href="css/compartidos.css" />
     <link rel="stylesheet" href="css/load.css" />
     <link rel="stylesheet" href="css/planTrabajo.css" />
+    <script type="text/javascript" src="js/load.js"></script>
+    <script type="text/javascript" src="js/planTrabajo.js"></script>
     <title>Plan de Trabajo</title>
 </head>
 
-<body onload="cargarUsuarios()">
+<body onload="cargarDatos()">
     <div class="rcornersProcCritico">
-        <input class="button buttonRegresar1" type="button" value="Regresar" onclick="cambiar('menu')" />
+        <input class="button buttonRegresar1" type="button" value="Regresar" onclick="regresar()" />
         <input class="button crear" type="button" value="crear PDF" onclick="crearPDF()" />
 
         <table class="tablaProc" cellspacing="10" cellpadding="3">
             <tr>
                 <td><label class="contenidoProc">Academia:</label></td>
-                <td><select id="academia" name="SearchCarr" class="contenidoBusqueda">
-                    <option>ISC</option>
-                </select></td>
+                <td><select id="academia" name="SearchCarr" class="contenidoBusqueda" onchange="recargarUser()"></select></td>
                 <td><label class="contenidoProc">Semestre:</label></td>
                 <td><input id="semestre" name="SemestreAcademia" type="text" class="contenidoProc" disabled value="Ene-Jun 2021" /></td>
             </tr>
@@ -64,7 +62,7 @@
                     <input id="BAct1L" type="text" onkeyup="buscar('BAct1L')" />
                     <input id="AAct1" type="checkbox" onClick="Todos('1')"><label>Todos</label>
                     <scroll-container>
-                        <scroll-page>
+                        <scroll-page id="1">
                             <table id="TBAct1L">
                             </table>
                         </scroll-page>
@@ -84,7 +82,7 @@
                     <input id="BAct2L" type="text" onkeyup="buscar('BAct2L')" />
                     <input id="AAct2" type="checkbox" onClick="Todos('2')"><label>Todos</label>
                     <scroll-container>
-                        <scroll-page>
+                        <scroll-page id="2">
                             <table id="TBAct2L">
                             </table>
                         </scroll-page>
@@ -104,7 +102,7 @@
                     <input id="BAct3L" type="text" onkeyup="buscar('BAct3L')" />
                     <input id="AAct3" type="checkbox" onClick="Todos('3')"><label>Todos</label>
                     <scroll-container>
-                        <scroll-page>
+                        <scroll-page id="3">
                             <table id="TBAct3L">
                             </table>
                         </scroll-page>
@@ -124,7 +122,7 @@
                     <input id="BAct4L" type="text" onkeyup="buscar('BAct4L')" />
                     <input id="AAct4" type="checkbox" onClick="Todos('4')"><label>Todos</label>
                     <scroll-container>
-                        <scroll-page>
+                        <scroll-page id="4">
                             <table id="TBAct4L">
                             </table>
                         </scroll-page>
@@ -144,7 +142,7 @@
                     <input id="BAct5L" type="text" onkeyup="buscar('BAct5L')" />
                     <input id="AAct5" type="checkbox" onClick="Todos('5')"><label>Todos</label>
                     <scroll-container>
-                        <scroll-page>
+                        <scroll-page id="5">
                             <table id="TBAct5L">
                             </table>
                         </scroll-page>
@@ -166,7 +164,7 @@
                     <input id="BAct6L" type="text" onkeyup="buscar('BAct6L')" />
                     <input id="AAct6" type="checkbox" onClick="Todos('6')"><label>Todos</label>
                     <scroll-container>
-                        <scroll-page>
+                        <scroll-page id="6">
                             <table id="TBAct6L">
                             </table>
                         </scroll-page>
@@ -186,7 +184,7 @@
                     <input id="BAct7L" type="text" onkeyup="buscar('BAct7L')" />
                     <input id="AAct7" type="checkbox" onClick="Todos('7')"><label>Todos</label>
                     <scroll-container>
-                        <scroll-page>
+                        <scroll-page id="7">
                             <table id="TBAct7L">
                             </table>
                         </scroll-page>
@@ -206,7 +204,7 @@
                     <input id="BAct8L" type="text" onkeyup="buscar('BAct8L')" />
                     <input id="AAct8" type="checkbox" onClick="Todos('8')"><label>Todos</label>
                     <scroll-container>
-                        <scroll-page>
+                        <scroll-page id="8">
                             <table id="TBAct8L">
                             </table>
                         </scroll-page>
@@ -226,7 +224,7 @@
                     <input id="BAct9L" type="text" onkeyup="buscar('BAct9L')" />
                     <input id="AAct9" type="checkbox" onClick="Todos('9')"><label>Todos</label>
                     <scroll-container>
-                        <scroll-page>
+                        <scroll-page id="9">
                             <table id="TBAct9L">
                             </table>
                         </scroll-page>

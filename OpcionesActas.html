@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/compartidos.css" />
+    <link rel="stylesheet" href="css/OpActas.css" />
+    <link rel="stylesheet" href="css/load.css" />
+    <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" src="js/load.js"></script>
+    <script type="text/javascript" src="js/buscar.js"></script>
+    <title>Administraci&oacute;n de Academias</title>
+</head>
+
+<body>
+    <div class="fijadoEliminar">
+        <table cellspacing="14" cellpadding="2" class="BusquedaEliminar">
+            <tr>
+                <td><label class="contenidoBusqueda">Nombre(s):</label></td>
+                <td><label class="contenidoBusqueda">Carrera:</label></td>
+                <td><label class="contenidoBusqueda">Academia:</label></td>
+                <td><label class="contenidoBusqueda">Nómina:</label></td>
+                <td><label class="contenidoBusqueda">Semestre:</label></td>
+            </tr>
+            <tr>
+                <td><input id="SearchName" type="text" class="contenidoBusqueda" /></td>
+                <td>
+                    <select id="carrera" name="SearchCarr" class="contenidoBusqueda">
+                        <option value="">Seleciona una</option>
+                    </select>
+                </td>
+                <td>
+                    <select id="academia" name="SearchAca" class="contenidoBusqueda">
+                        <option value="">Seleciona una</option>
+                    </select>
+                </td>
+                <td><input id="sMat" name="SeacrchMat" type="text" class="contenidoBusqueda" />
+                </td>
+                <td><input id="SearchSemestre" type="text" class="contenidoBusqueda" /></td>
+            </tr>
+        </table>
+        <input class="button buttonLimpiar" type="button" value="Limpiar" />
+        <input class="button buttonCrear" type="button" value="Crear" />
+        <input class="button button1Eliminar" type="button" value="Regresar" onclick="cambiar('menu')" />
+    </div>
+
+    <div class="rcornersEliminar">
+        <scroll-container>
+            <scroll-page id="page">
+                <table cellspacing="3" cellpadding="3">
+                    <tbody id="bodytabla">
+                        <tr>
+                            <td>
+                                <table id="tablaPdf" cellspacing="3" cellpadding="3" class="tablaPdf">
+                                    <tr>
+                                        <td><img id="fotoPerfil" class="imgRedonda" src="src/imgWord.png" alt="not found" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Documento:</label></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>
+                                <table id="tablaDatos" cellspacing="3" cellpadding="3">
+                                    <tr>
+                                        <td><label class="contenidoBusqueda">Carrera:</label></td>
+                                        <td><input type="text" class="contenidoBusqueda" /></td>
+                                        <td><label class="contenidoBusqueda">Academia:</label></td>
+                                        <td><input type="text" class="contenidoBusqueda" /></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><label class="contenidoBusqueda">Autor:</label></td>
+                                        <td><input type="text" class="contenidoBusqueda" /></td>
+                                        <td><label class="contenidoBusqueda">Nómina:</label></td>
+                                        <td><input type="text" class="contenidoBusqueda" /></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><label class="contenidoBusqueda">Fecha:</label></td>
+                                        <td><input type="text" class="contenidoBusqueda" /></td>
+                                        <td><label class="contenidoBusqueda">Semestre:</label></td>
+                                        <td><input type="text" class="contenidoBusqueda" /></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input class="button buttonModificar" type="button" value="Modificar" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </scroll-page>
+        </scroll-container>
+    </div>
+
+    <div class="rcorners2">
+        <h1 class="title font">Opciones de Actas</h1>
+    </div>
+
+</body>
+
+</html>

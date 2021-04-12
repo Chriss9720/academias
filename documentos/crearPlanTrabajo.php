@@ -1,11 +1,9 @@
 <?php
     require('fpdf.php');
 
-    class PDF extends FPDF
-    {
+    class PDF extends FPDF {
         // Page header
-        function Header()
-        {
+        function Header() {
             // Logo
             $this->Cell(4.34, 1.35, "", 1);
             $this->Image('logo.png', 1.25, 1);
@@ -24,7 +22,7 @@
             $this->Ln(2);
         }
 
-        function TablaP($data) {
+        function TablaP($data, $autor, $name) {
             $xml = new DomDocument('1.0', 'UTF-8');
             $raiz = $xml->createElement('PlanTrabajo');
             $raiz = $xml->appendChild($raiz);
@@ -42,7 +40,7 @@
             $this->SetFont('Arial', 'B', 10);
             $this->Cell(4.49, 0.7,'Presidente:', 1, 0, 'R', true);
             $this->SetFont('Arial', '', 10);
-            $this->Cell(0, 0.7, utf8_decode($data['Presidente']), 1, 0 , 'C');
+            $this->Cell(0, 0.7, utf8_decode($autor[0]["Autor"]), 1, 0 , 'C');
             $this->Ln(.7);
             $this->SetFont('Arial', 'B', 10);
             $this->Cell(0, .7, "Fechas de reuniones", 1, 0, 'C', true);
@@ -69,7 +67,7 @@
             $raiz->appendChild($nodo);
             nodos('Academia', $data['Academia'], $nodo, $xml);
             nodos('Semestre', $data['Semestre'], $nodo, $xml);
-            nodos('Presidente', $data['Presidente'], $nodo, $xml);
+            nodos('Presidente', $autor[0]["Autor"], $nodo, $xml);
             nodos('Primera', $data['f1'], $nodo, $xml);
             nodos('Segunda', utf8_decode($data['f2']), $nodo, $xml);
             nodos('Tercera', utf8_decode($data['f3']), $nodo, $xml);
@@ -202,16 +200,16 @@
             $this->SetFont("Arial", "", 10);
             $this->Ln(.55);
             $posY = $this->GetY();
-            $arr = filas($data['Presidente'], 15);
+            $arr = filas($autor[0]["Autor"], 15);
             $sig = lines($this, $this->GetX(), $arr, 1.36, 5.85, false);
 
             $this->SetY($posY);
             $this->SetX($this->GetX() + 1 + 5.85);
-            $arr = filas('Aquí va el jefe de la academia', 15);
+            $arr = filas($autor[0]["Jefe"], 15);
             $sig = lines($this, $this->GetX(), $arr, 1.36, 5.45, false);
 
             $this->SetY($posY);
-            $arr = filas('Aquí va el coordinador de la academia', 15);
+            $arr = filas($autor[0]["Coordinador"], 15);
             $sig = lines($this, $this->GetX() + 2 + 5.45 + 5.85, $arr, 1.36, 5.97, false);
 
             $this->Ln(0);
@@ -229,8 +227,24 @@
 
             $xml->formatOutput = true;
             $xml->saveXML();
-            $xml->save('planTrabajo/archivo.xml');
+            $xml->save('planTrabajo/'.$name.'.xml');
 
+        }
+    }
+
+    function conectar() {
+        try {
+            $serverName = "Chriss";
+            $connectionInfo = array( "Database"=>"Academia", "UID"=>"Laithg", "PWD"=>"9720");
+            $conn = sqlsrv_connect( $serverName, $connectionInfo);
+            if( $conn ) {
+                return $conn;
+            }else{
+                return $conn;
+            }
+        } catch (Exception $e) {
+            echo $e;
+            return null;
         }
     }
 
@@ -285,13 +299,122 @@
         $nodo->appendChild($subnodo);
     }
 
-    $json = json_decode(json_encode($_GET['obj']), true);
+    function getAutor($nom, $aca) {
+        $conn = conectar();
+        $call = "{call dbo.getAutor(?,?)}";
+        $params = array (
+            array(&$nom, SQLSRV_PARAM_IN),
+            array(&$aca, SQLSRV_PARAM_IN)
+        );
+        $stmt = sqlsrv_query($conn, $call, $params);
 
+        if ($stmt === false) {
+            die( print_r( 'Se peto '.sqlsrv_errors(), true));
+        }
+
+        $res = [];
+
+        while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+            array_push($res, $row);
+        }
+
+        sqlsrv_free_stmt($stmt);
+
+        sqlsrv_close($conn);
+
+        return $res;
+    }
+
+    function getSig() {
+        $conn = conectar();
+        $call = "{call dbo.getSigPlan}";
+        $stmt = sqlsrv_query($conn, $call);
+
+        if ($stmt === false) {
+            die( print_r( 'Se peto '.sqlsrv_errors(), true));
+        }
+
+        $res = [];
+
+        while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+            array_push($res, $row);
+        }
+
+        sqlsrv_free_stmt($stmt);
+
+        sqlsrv_close($conn);
+
+        return $res[0]["SIG"];
+    }
+
+    function registrarPlan($sem, $aca, $name) {
+        $ruta = "planTrabajo/".$name.".pdf";
+        $rutaXML = "planTrabajo/".$name.".xml";
+        $conn = conectar();
+        $call = "{call dbo.addPlan(?,?,?,?)}";
+        $params = array (
+            array(&$sem, SQLSRV_PARAM_IN),
+            array(&$aca, SQLSRV_PARAM_IN),
+            array(&$ruta, SQLSRV_PARAM_IN),
+            array(&$rutaXML, SQLSRV_PARAM_IN)
+        );
+        $stmt = sqlsrv_query($conn, $call, $params);
+        if ($stmt === false) {
+            die( print_r( 'Se peto '.sqlsrv_errors(), true));
+        }
+        sqlsrv_free_stmt($stmt);
+
+        sqlsrv_close($conn);
+    }
+
+    function ajustarFecha($fecha) {
+        $hora = explode(" ", $fecha)[1];
+        $fecha = explode(" ", $fecha)[0];
+        $fecha = explode("-", $fecha);
+        $fecha = $fecha[0]."-".$fecha[2]."-".$fecha[1]." ".$hora;
+        return $fecha;
+    }
+    
+    function addResponsable($sig, $resp, $fecha){
+        $fecha = ajustarFecha($fecha);
+        $conn = conectar();
+        $call = "{call dbo.addResponsables(?,?,?)}";
+        $params = array (
+            array(&$sig, SQLSRV_PARAM_IN),
+            array(&$resp, SQLSRV_PARAM_IN),
+            array(&$fecha, SQLSRV_PARAM_IN)
+        );
+        $stmt = sqlsrv_query($conn, $call, $params);
+        if ($stmt === false) {
+            die( print_r( 'Se peto '.sqlsrv_errors(), true));
+        }
+        sqlsrv_free_stmt($stmt);
+
+        sqlsrv_close($conn);
+    }
+
+    $json = json_decode(json_encode($_GET['obj']), true);
+    $autor = getAutor($json["autor"], $json["IDAcademia"]);
+    $sig = getSig();
+    $name = "plantrabajo-".$sig;
+    $path =  "planTrabajo/".$name.".pdf";
     $pdf = new PDF('P', 'cm', array(21.59, 27.94));
     $pdf->AliasNbPages();
     $pdf->AddPage();
-    $pdf->TablaP($json);
-    $pdf->Output("F", "planTrabajo/plantrabajo.pdf", true);
-    $return = array ("archivo" => "PDF.html?nombre=planTrabajo/plantrabajo.pdf");
+    $pdf->TablaP($json, $autor, $name);
+    $pdf->Output("F",$path, true);
+    $archivo = "PDF.html?nombre=planTrabajo/".$name;
+    $return = array ("archivo" => $archivo);
+
+    registrarPlan($json["Semestre"], $json["IDAcademia"], $name);
+    for ($i = 1; $i < 10; $i++) {
+        $data = $json["Act".$i];
+        if ($data["resp"] != null) {
+            $arr = $data["resp"];
+            for ($j = 0; $j < count($arr); $j++) {
+                addResponsable($sig, $arr[$j], $data["Fecha"]);
+            } 
+        }
+    }
     echo json_encode($return);
 ?>

@@ -127,7 +127,6 @@ function cargarAcademias() {
             console.log(err);
         }
     });
-
 }
 
 function cargar(obj) {

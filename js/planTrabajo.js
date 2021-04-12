@@ -1,4 +1,52 @@
+var id;
+
+function cargarDatos() {
+    window.location.search.substr(1).split("&").forEach(item => {
+        id = item.split("=")[1];
+    });
+    cargarAcademias();
+
+    var sem = document.getElementById('semestre');
+    var mes = new Date();
+    if (mes.getMonth() >= 1 && mes.getMonth() <= 6) {
+        sem.innerText = "Ene-Jun" + mes.getFullYear();
+    } else if (mes.getMonth() > 8 && mes.getMonth() <= 12) {
+        sem.innerText = "Ago-Dic" + mes.getFullYear();
+    }
+}
+
+function cargarAcademias() {
+    $.ajax({
+        url: "php/getAcademiaPlan.php",
+        type: "POST",
+        data: { obj: id },
+        dataType: "json",
+        success: function(r) {
+            var c = document.getElementById('academia');
+            for (var i = 0; i < r.length; i++) {
+                var option = document.createElement("option");
+                option.value = r[i]["IDAcademia"];
+                option.innerText = r[i]["Academia"];
+                c.appendChild(option);
+            }
+            cargarUsuarios();
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
+}
+
 function crearPDF() {
+    var resp1 = [],
+        resp2 = [],
+        resp3 = [],
+        resp4 = [],
+        resp5 = [],
+        resp6 = [],
+        resp7 = [],
+        resp8 = [],
+        resp9 = [];
     var fechas = document.getElementsByName("Reunion");
     var act1 = document.getElementsByName("act1");
     var act1C = document.getElementsByName("Act1C");
@@ -29,29 +77,55 @@ function crearPDF() {
         personas8 = "",
         personas9 = "";
     for (var i = 0; i < act1C.length; i++) {
-        if (act1C[i].checked)
+        if (act1C[i].checked) {
             personas1 += act1L[i].innerText + "?";
-        if (act2C[i].checked)
+            resp1.push(act1C[i].value);
+        }
+        if (act2C[i].checked) {
             personas2 += act1L[i].innerText + "?";
-        if (act3C[i].checked)
+            resp2.push(act2C[i].value);
+        }
+        if (act3C[i].checked) {
             personas3 += act1L[i].innerText + "?";
-        if (act4C[i].checked)
+            resp3.push(act3C[i].value);
+        }
+        if (act4C[i].checked) {
             personas4 += act1L[i].innerText + "?";
-        if (act5C[i].checked)
+            resp4.push(act4C[i].value);
+        }
+        if (act5C[i].checked) {
             personas5 += act1L[i].innerText + "?";
-        if (act6C[i].checked)
+            resp5.push(act5C[i].value);
+        }
+        if (act6C[i].checked) {
             personas6 += act1L[i].innerText + "?";
-        if (act7C[i].checked)
+            resp6.push(act6C[i].value);
+        }
+        if (act7C[i].checked) {
             personas7 += act1L[i].innerText + "?";
-        if (act8C[i].checked)
+            resp7.push(act7C[i].value);
+        }
+        if (act8C[i].checked) {
             personas8 += act1L[i].innerText + "?";
-        if (act9C[i].checked)
+            resp8.push(act8C[i].value);
+        }
+        if (act9C[i].checked) {
             personas9 += act1L[i].innerText + "?";
+            resp9.push(act9C[i].value);
+        }
+    }
+    var IDAcademia = document.getElementById("academia").value;
+    var Academia = document.getElementById("academia").options;
+    var nombreAcademia = "";
+    for (var i = 0; i < Academia.length; i++) {
+        if (Academia[i].value == IDAcademia)
+            nombreAcademia = Academia[i].innerText;
     }
     var obj = {
-        Academia: document.getElementById("academia").value,
+        autor: id,
+        Academia: nombreAcademia,
+        IDAcademia: IDAcademia,
         Semestre: document.getElementById("semestre").value,
-        Presidente: "Anabel Gutiérrez Espinoza",
         f1: fechas[0].value.replace("T", " "),
         f2: fechas[1].value.replace("T", " "),
         f3: fechas[2].value.replace("T", " "),
@@ -61,63 +135,72 @@ function crearPDF() {
             Asignaturas: act1[1].value,
             Responsables: personas1,
             Fecha: act1[2].value.replace("T", " "),
-            Evidencia: act1[3].value
+            Evidencia: act1[3].value,
+            resp: resp1
         },
         Act2: {
             Acciones: act2[0].value,
             Asignaturas: act2[1].value,
             Responsables: personas2,
             Fecha: act2[2].value.replace("T", " "),
-            Evidencia: act2[3].value
+            Evidencia: act2[3].value,
+            resp: resp2
         },
         Act3: {
             Acciones: act3[0].value,
             Asignaturas: act3[1].value,
             Responsables: personas3,
             Fecha: act3[2].value.replace("T", " "),
-            Evidencia: act3[3].value
+            Evidencia: act3[3].value,
+            resp: resp3
         },
         Act4: {
             Acciones: act4[0].value,
             Asignaturas: act4[1].value,
             Responsables: personas4,
             Fecha: act4[2].value.replace("T", " "),
-            Evidencia: act4[3].value
+            Evidencia: act4[3].value,
+            resp: resp4
         },
         Act5: {
             Acciones: act5[0].value,
             Asignaturas: act5[1].value,
             Responsables: personas5,
             Fecha: act5[2].value.replace("T", " "),
-            Evidencia: act5[3].value
+            Evidencia: act5[3].value,
+            resp: resp5
         },
         Act6: {
             Acciones: act6[0].value,
             Asignaturas: act6[1].value,
             Responsables: personas6,
             Fecha: act6[2].value.replace("T", " "),
-            Evidencia: act6[3].value
+            Evidencia: act6[3].value,
+            resp: resp6
         },
         Act7: {
             Acciones: act7[0].value,
             Asignaturas: act7[1].value,
             Responsables: personas7,
             Fecha: act7[2].value.replace("T", " "),
-            Evidencia: act7[3].value
+            Evidencia: act7[3].value,
+            resp: resp7
         },
         Act8: {
             Acciones: act8[0].value,
             Asignaturas: act8[1].value,
             Responsables: personas8,
             Fecha: act8[2].value.replace("T", " "),
-            Evidencia: act8[3].value
+            Evidencia: act8[3].value,
+            resp: resp8
         },
         Act9: {
             Acciones: act9[0].value,
             Asignaturas: act9[1].value,
             Responsables: personas9,
             Fecha: act9[2].value.replace("T", " "),
-            Evidencia: act9[3].value
+            Evidencia: act9[3].value,
+            resp: resp9
         }
     };
     $.ajax({
@@ -127,6 +210,7 @@ function crearPDF() {
         dataType: 'JSON',
         success: function(r) {
             window.open(r['archivo']);
+            regresar();
         },
         error: function(error) {
             console.log("erorr:");
@@ -151,25 +235,40 @@ function buscar(id) {
 }
 
 function cargarUsuarios() {
-    var arr = ["Hector Francisco Castro Morales", "Christian Emmanuel Yañez Gonzalez", "Sergio Antonio Guerra Castro", "Persona 1", "Persona 2", "1", "2", "3"];
-    for (var k = 1; k < 10; k++) {
-        var t = document.getElementById("TBAct" + k + "L");
-        for (var i = 0; i < arr.length; i++) {
-            var tr = document.createElement("tr");
-            var td = document.createElement("td");
-            var inp = document.createElement("input");
-            var lab = document.createElement("label");
-            inp.type = "checkbox";
-            inp.name = "Act" + k + "C";
-            lab.setAttribute("name", "Act" + k + "L");
-            lab.innerText = arr[i];
-            td.appendChild(inp);
-            td.appendChild(lab);
-            tr.appendChild(td);
-            t.appendChild(tr);
-        }
+    var obj = {
+        aca: document.getElementById('academia').value,
+        nom: 0
     }
-
+    $.ajax({
+        url: "php/getAllMiembros.php",
+        type: "GET",
+        data: { obj: obj },
+        dataType: "json",
+        success: function(r) {
+            var arr = r["res"];
+            for (var k = 1; k < 10; k++) {
+                var t = document.getElementById("TBAct" + k + "L");
+                for (var i = 0; i < arr.length; i++) {
+                    var tr = document.createElement("tr");
+                    var td = document.createElement("td");
+                    var inp = document.createElement("input");
+                    var lab = document.createElement("label");
+                    inp.type = "checkbox";
+                    inp.name = "Act" + k + "C";
+                    inp.value = arr[i]["Nomina"];
+                    lab.setAttribute("name", "Act" + k + "L");
+                    lab.innerText = arr[i]["Nombre_s_"];
+                    td.appendChild(inp);
+                    td.appendChild(lab);
+                    tr.appendChild(td);
+                    t.appendChild(tr);
+                }
+            }
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
 }
 
 function Todos(num) {
@@ -177,4 +276,19 @@ function Todos(num) {
     for (var i = 0; i < c.length; i++) {
         c[i].checked = document.getElementById('AAct' + num).checked
     }
+}
+
+function regresar() {
+    window.location = "OpcionesPlanTrabajo.html?id=" + id;
+}
+
+function recargarUser() {
+    for (var i = 1; i < 10; i++) {
+        document.getElementById('TBAct' + i + 'L').remove();
+        var page = document.getElementById(i);
+        var tabla = document.createElement('table');
+        tabla.setAttribute('id', 'TBAct' + i + 'L');
+        page.appendChild(tabla);
+    }
+    cargarUsuarios();
 }

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/compartidos.css" />
+    <link rel="stylesheet" href="css/OpPlanTrabajo.css" />
+    <link rel="stylesheet" href="css/load.css" />
+    <script type="text/javascript" src="js/load.js"></script>
+    <script type="text/javascript" src="js/OpcionesPlanTrabajo.js"></script>
+    <title>Administración de Academias</title>
+</head>
+
+<body onload="cargarDatos()">
+    <div class="fijadoEliminar">
+        <table cellspacing="14" cellpadding="2" class="BusquedaEliminar">
+            <tr>
+                <td><label class="contenidoBusqueda">Nombre(s):</label></td>
+                <td><label class="contenidoBusqueda">Carrera:</label></td>
+                <td><label class="contenidoBusqueda">Academia:</label></td>
+                <td><label class="contenidoBusqueda">Nómina:</label></td>
+                <td><label class="contenidoBusqueda">Semestre:</label></td>
+            </tr>
+            <tr>
+                <td><input id="SearchName" type="text" class="contenidoBusqueda" onkeyup="buscar()" /></td>
+                <td>
+                    <select id="carrera" name="SearchCarr" class="contenidoBusqueda" onchange="buscar()">
+                        <option value="Seleciona una">Seleciona una</option>
+                    </select>
+                </td>
+                <td>
+                    <select id="academia" name="SearchAca" class="contenidoBusqueda" onchange="buscar()">
+                        <option value="Seleciona una">Seleciona una</option>
+                    </select>
+                </td>
+                <td><input id="sMat" name="SeacrchMat" type="text" class="contenidoBusqueda" onkeyup="buscar()" />
+                </td>
+                <td>
+                    <select id="busquedaXsemestre" name="SearchAca" class="contenidoBusqueda" onchange="buscar()">
+                        <option value="Seleciona una">Seleciona una</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <input class="button buttonLimpiar" type="button" value="Limpiar" onclick="limpiar()" />
+        <input class="button buttonCrear" type="button" value="Crear" onclick="crear()" />
+        <input class="button button1Eliminar" type="button" value="Regresar" onclick="regresar()" />
+    </div>
+    <div class="rcornersEliminar">
+        <scroll-container>
+            <scroll-page id="page">
+                <table cellspacing="3" cellpadding="3" id="tabla">
+                    <tbody id="bodytabla">
+                    </tbody>
+                </table>
+            </scroll-page>
+        </scroll-container>
+    </div>
+    <div class="rcorners2">
+        <h1 class="title font">Plan de Trabajo</h1>
+    </div>
+
+</body>
+
+</html>

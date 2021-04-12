@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PlanTrabajo>
   <Cabecera>
-    <Academia>Academia 1x22</Academia>
+    <Academia>Academia 3</Academia>
     <Semestre>Ene-Jun 2021</Semestre>
     <Presidente>Gonzalez Christian Yañez</Presidente>
     <Primera/>
@@ -12,8 +12,8 @@
   <Act1>
     <Acciones/>
     <Asignarutas/>
-    <Responsable/>
-    <Fecha/>
+    <Responsable>wqr?Yañez?</Responsable>
+    <Fecha>2021-04-01 21:46</Fecha>
     <Evidencia/>
   </Act1>
   <Act2>
