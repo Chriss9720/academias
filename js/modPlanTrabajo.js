@@ -97,6 +97,5 @@ function regresar() {
 }
 
 function actualizar() {
-    var r = document.getElementsByName('Reunion');
-    console.log(r[0].value);
+
 }
