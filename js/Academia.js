@@ -666,10 +666,8 @@ function errorB(tipo) {
     yes.setAttribute("class", "button");
     yes.addEventListener("click", function() {
         document.getElementById("d1").remove();
-        if (tipo == 1) {
-            add();
-            cerrar();
-        }
+        cerrar();
+        add();
     }, false);
     if (tipo == 1) {
         not.setAttribute("style", "top: 50%;position: absolute;left: 5%; background-color: #cc1010;");

@@ -17,24 +17,51 @@ function cargarDatos() {
             document.getElementById('matricula').innerText = arr[0]["nomina"];
             document.getElementById('nombre').innerText = arr[0]["ApellidoP"] + " " + arr[0]["ApellidoM"] + " " + arr[0]["Nombre"];
             var b = document.getElementById('academias');
-            var trr = document.getElementById('documentosRecientes');
-            var trp = document.getElementById('documentosPendientes');
-            for (var i = 0; i < arr.length; i++) {
+            var academias = [{
+                id: arr[0]["IDAcademia"],
+                academia: arr[0]["Academia"],
+                puesto: arr[0]["Puesto"]
+            }];
+            for (var i = 1; i < arr.length; i++) {
+                var f = true;
+                for (var j = 0; j < academias.length && f == true; j++) {
+                    f = !(arr[i]["IDAcademia"] == academias[j].id)
+                }
+                if (f) {
+                    academias.push({
+                        id: arr[i]["IDAcademia"],
+                        academia: arr[i]["Academia"],
+                        puesto: arr[i]["Puesto"]
+                    });
+                }
+            }
+            for (var i = 0; i < academias.length; i++) {
                 var tr = document.createElement('tr');
                 tr.setAttribute('class', 'tr');
                 var td = document.createElement('td');
                 td.setAttribute('class', 'td');
-                td.innerText = arr[i]["Academia"];
+                td.innerText = academias[i]["academia"];
                 tr.appendChild(td);
                 var td = document.createElement('td');
                 td.setAttribute('class', 'td');
-                td.innerText = arr[i]["Puesto"];
+                td.innerText = academias[i]["puesto"];
                 tr.appendChild(td);
                 b.appendChild(tr);
+            }
 
+            var trr = document.getElementById('documentosRecientes');
+            var trp = document.getElementById('documentosPendientes');
+            for (var i = 0; i < arr.length; i++) {
                 //tabla de documentos
-                if (arr[i]["Responsable"] != null && arr[i]["responsable2"] != null &&
-                    (arr[i]["Responsable"].includes(arr[i]["nomina"]) || arr[i]["responsable2"].includes(arr[i]["nomina"]))) {
+                var f = 0;
+                if (arr[i]["Responsable"] != null && arr[i]["Responsable"].includes(arr[i]["nomina"])) {
+                    f++;
+                }
+                if (arr[i]["responsable2"] != null && arr[i]["responsable2"].includes(arr[i]["nomina"])) {
+                    f++;
+                }
+
+                if (f > 0) {
                     var td = document.createElement('td');
                     var table = document.createElement('table');
                     table.setAttribute('cellspacing', '3');
@@ -51,6 +78,7 @@ function cargarDatos() {
                     var trlabel = document.createElement('tr');
                     var tdlabel = document.createElement('td');
                     var label = document.createElement('label');
+                    console.log(arr[i]["fecha"])
                     if (arr[i]["fecha"] == null) {
                         label.innerText = "Plan de trabajo-" + arr[i]["Academia"] + "-" + arr[i]["Semestre"];
                     } else {

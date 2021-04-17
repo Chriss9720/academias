@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PlanTrabajo>
+  <Cabecera>
+    <Academia>Academia 2</Academia>
+    <Semestre>Ene-Jun 2021</Semestre>
+    <Presidente>Gutierrez Espinoza Anabel</Presidente>
+    <Primera>2021-04-14 12:29</Primera>
+    <Segunda>2021-04-15 12:29</Segunda>
+    <Tercera>2021-04-16 12:29</Tercera>
+    <Cuarta>2021-04-17 12:29</Cuarta>
+  </Cabecera>
+  <Act1>
+    <Acciones>Acciones act1</Acciones>
+    <Asignarutas>Asignaturas Ac1</Asignarutas>
+    <Responsable>Anabel?Yañez?</Responsable>
+    <Fecha>2021-05-01 12:30</Fecha>
+    <Evidencia>Evidencia 1</Evidencia>
+  </Act1>
+  <Act2>
+    <Acciones>Acciones act2</Acciones>
+    <Asignarutas>Asignaturas Ac2</Asignarutas>
+    <Responsable>Anabel?Yañez?</Responsable>
+    <Fecha>2021-05-02 12:30</Fecha>
+    <Evidencia>Evidencia 2</Evidencia>
+  </Act2>
+  <Act3>
+    <Acciones>Acciones act3</Acciones>
+    <Asignarutas>Asignaturas Ac3</Asignarutas>
+    <Responsable>Anabel?Yañez?</Responsable>
+    <Fecha>2021-05-03 12:30</Fecha>
+    <Evidencia>Evidencia 3</Evidencia>
+  </Act3>
+  <Act4>
+    <Acciones>Acciones act4</Acciones>
+    <Asignarutas>Asignaturas Ac4</Asignarutas>
+    <Responsable>Anabel?Yañez?</Responsable>
+    <Fecha>2021-05-04 12:30</Fecha>
+    <Evidencia>Evidencia 4</Evidencia>
+  </Act4>
+  <Act5>
+    <Acciones>Acciones act5</Acciones>
+    <Asignarutas>Asignaturas Ac5</Asignarutas>
+    <Responsable>Anabel?Yañez?</Responsable>
+    <Fecha>2021-05-05 12:30</Fecha>
+    <Evidencia>Evidencia 5</Evidencia>
+  </Act5>
+  <Act6>
+    <Acciones>Acciones act6</Acciones>
+    <Asignarutas>Asignaturas Ac6</Asignarutas>
+    <Responsable>Anabel?Yañez?</Responsable>
+    <Fecha>2021-05-06 12:30</Fecha>
+    <Evidencia>Evidencia 6</Evidencia>
+  </Act6>
+  <Act7>
+    <Acciones>Acciones act7</Acciones>
+    <Asignarutas>Asignaturas Ac7</Asignarutas>
+    <Responsable>Anabel?Yañez?</Responsable>
+    <Fecha>2021-05-07 12:30</Fecha>
+    <Evidencia>Evidencia 7</Evidencia>
+  </Act7>
+  <Act8>
+    <Acciones>Acciones act8</Acciones>
+    <Asignarutas>Asignaturas Ac8</Asignarutas>
+    <Responsable>Anabel?</Responsable>
+    <Fecha>2021-07-08 12:30</Fecha>
+    <Evidencia>Evidencia 8</Evidencia>
+  </Act8>
+  <Act9>
+    <Acciones>Acciones act9</Acciones>
+    <Asignarutas>Asignaturas Ac9</Asignarutas>
+    <Responsable>Anabel?</Responsable>
+    <Fecha>2021-05-09 12:30</Fecha>
+    <Evidencia>Evidencia 9</Evidencia>
+  </Act9>
+</PlanTrabajo>

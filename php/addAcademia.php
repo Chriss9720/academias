@@ -15,9 +15,6 @@
             return null;
         }
     }
-
-        
-
     $json = json_decode(json_encode($_GET['obj']), true);
   
     $conn = conectar();
@@ -33,6 +30,5 @@
         die( print_r( sqlsrv_errors(), true));
     }
     sqlsrv_close($conn);
-    
     
 ?>

@@ -1,15 +1,4 @@
-.imgEliminar {
-    width: 150px;
-    height: 150px;
-    border-radius: 150px;
-    border: 10px solid #666;
-}
-
-.tdImgEliminar {
-    width: auto;
-}
-
-.tdContenidoEliminar {
+.tdContenidoEliminarCarrera {
     width: 100%;
 }
 
@@ -21,44 +10,50 @@
     text-align: right;
 }
 
-.fijadoEliminar {
+.fijadoEliminarCarrera {
     position: absolute;
     border-radius: 25px;
     background: white;
     padding: 20px;
     width: 900px;
-    height: 125px;
+    height: 110px;
     top: 8%;
     left: 15%;
 }
 
-.tablaElimiar {
+.tablaElimiarCarrera {
     border-collapse: collapse;
+    width: 100%;
 }
 
-.trContentElimiar {
+.trContentElimiarCarrera {
     border: black 5px solid;
 }
 
-.contenidoEliminar {
+.contenidoEliminarCarrera {
     width: 350px;
     height: 30px;
 }
 
-.cuerpoEliminar {
+.cuerpoEliminarCarrera {
     top: 50%;
     left: 30%
 }
 
-.BusquedaEliminar {
+.BusquedaEliminarCarrera {
     position: absolute;
     top: 10%;
     left: 5%
 }
 
-.contenidoBusqueda {
+.contenidoBusquedaAcademia {
     width: 180px;
     height: 30px;
+}
+
+.contenidoBusquedaEncargado {
+    width: 177px;
+    height: 25px;
 }
 
 .buttonBuscar {
@@ -67,14 +62,8 @@
     left: 500px;
 }
 
-.buttonLimpiar {
-    top: 65%;
-    background-color: #3399ff;
-    left: 300px;
-}
-
-.button1Eliminar {
-    top: 5%;
+.buttonRegresar {
+    top: 35%;
     background-color: #08c211;
     left: 85%;
 }
@@ -93,7 +82,7 @@
     border-radius: 12px;
 }
 
-.button2Eliminar {
+.buttonEliminar {
     background-color: #cc1010;
     position: initial;
 }
@@ -105,7 +94,7 @@
     width: 450px;
     height: 50px;
     top: 4%;
-    left: 20%;
+    left: 18%;
 }
 
 .subtitleEliminar {
@@ -121,14 +110,14 @@
     left: 5%;
 }
 
-.rcornersEliminar {
+.rcornersEliminarCarrera {
     position: absolute;
     border-radius: 25px;
     background: white;
     padding: 20px;
     width: 900px;
-    height: 55%;
-    top: 35%;
+    height: 62%;
+    top: 25%;
     left: 15%;
 }
 
@@ -137,4 +126,47 @@ scroll-container {
     width: 100%;
     height: 100%;
     overflow-y: scroll;
+}
+
+.add {
+    background-color: blueviolet;
+    top: 35%;
+    left: 65%;
+}
+
+.mod {
+    background-color: black;
+}
+
+.cuerpoAgregarCarrera {
+    position: absolute;
+    top: 10%;
+}
+
+.contenido {
+    width: 145px;
+    height: 30px;
+}
+
+.dialogo {
+    top: -20%;
+    width: 28%;
+    height: 50%;
+}
+
+.buttonCancelar {
+    top: 80%;
+    background-color: #cc1010;
+}
+
+.buttonRegistrar {
+    top: 78%;
+    background-color: #087ac2;
+    left: 77%;
+}
+
+.subtitle {
+    position: absolute;
+    font-size: 150%;
+    top: 5%;
 }

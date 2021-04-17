@@ -9,6 +9,7 @@ function cargarDatos() {
     });
     $.ajax({
         url: "php/getPlanes.php",
+        data: { obj: id },
         dataType: "JSON",
         success: function(r) {
             if (r.length > 0) {
@@ -73,14 +74,15 @@ function cargarCarreras() {
 
 function cargarAcademias() {
     $.ajax({
-        url: "php/getAcademias.php",
+        url: "php/getAcademiaPlan.php",
         type: "POST",
+        data: { obj: id },
         dataType: "json",
         success: function(r) {
             var c = document.getElementById('academia');
             for (var i = 0; i < r.length; i++) {
                 var option = document.createElement("option");
-                option.value = r[i]["Academia"];
+                option.value = r[i]["IDAcademia"];
                 option.innerText = r[i]["Academia"];
                 c.appendChild(option);
             }

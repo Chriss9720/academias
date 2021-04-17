@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/load.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
+    <link rel="stylesheet" href="css/compartidos.css" />
+    <link rel="stylesheet" href="css/load.css" />
+    <link rel="stylesheet" href="css/Carrera.css" />
+    <title>Administraci&oacute;n de Academias</title>
+</head>
+
+<body>
+    <div class="fijadoEliminarCarrera">
+        <table cellspacing="10" cellpadding="3" class="BusquedaEliminarCarrera">
+            <tr>
+                <td><label class="contenidoBusqueda font"><b>Buscar por:</b></label></td>
+            </tr>
+            <tr>
+                <td><label class="contenido">Nombre de la Carrera:</label></td>
+                <td><label class="contenido">Clave de la Carrera:</label></td>
+                <td><label class="contenido">Encargado/a:</label></td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="contenido" />
+                </td>
+                <td>
+                    <input class="contenido" />
+                </td>
+                <td>
+                    <input class="contenido" />
+                </td>
+            </tr>
+        </table>
+
+        <input class="button buttonRegresar" type="button" value="Regresar" onclick="cambiar('menu')" />
+        <input value="Agregar Carrera" type="button" class="button add" onclick='add()'>
+    </div>
+    <div class="rcornersEliminarCarrera">
+        <scroll-container>
+            <scroll-page id="page">
+                <table id="tabla" cellspacing="3" cellpadding="3" class="tablaElimiarCarrera">
+                    <tr class="trContentElimiarCarrera">
+                        <td class="tdContenidoEliminarCarrera">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <table class="cuerpoEliminarCarrera" cellspacing="3" cellpadding="3">
+                                            <tr>
+                                                <td><label class="contenidoEliminarCarrera">ID de la Carrera:</label></td>
+                                                <td><input disabled=""></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label class="contenidoEliminarCarrera">Nombre de la Carrera:</label></td>
+                                                <td><input disabled=""></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label class="contenidoEliminarCarrera">Clave de la Carrera:</label></td>
+                                                <td><input disabled=""></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label class="contenidoEliminarCarrera">Encargado(a) de la Carrera:</label></td>
+                                                <td>
+                                                    <select class="contenidoBusquedaEncargado" disabled>
+                                                        <option value ="">Seleciona una</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input class="button buttonEliminar" type="button" value="Eliminar">
+                                        <input class="button buttonEliminar mod" type="button" value="Modificar">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </scroll-page>
+        </scroll-container>
+    </div>
+    <div class="rcorners2">
+        <h1 class="title font">Carreras</h1>
+    </div>
+    <dialog id="add" class="dialogo">
+
+        <p1 class="subtitle font">Ingrese info. de la Carrera:</p1>
+
+        <form class="font" method="post" enctype="multipart/form-data">
+            <table cellspacing="3" cellpadding="15" class="cuerpoAgregarCarrera">
+                <tr>
+                    <td>
+                        <label class="contenido">Nombre de la Carrera:</label>
+                    </td>
+                    <td>
+                        <input class="contenido" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="contenidoBusqueda font">Clave de la Carrera:</label>
+                    </td>
+                    <td>
+                        <input class="contenido" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="contenidoBusqueda font">Por nomina:</label>
+                    </td>
+                    <td>
+                        <input class="contenido" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="contenido">Encargado(a) de la Carrera:</label>
+                    </td>
+                    <td>
+                        <select class="contenido">
+                                <option value="0">No aplicable</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+
+            <input class="button buttonCancelar" type="button" value="Cancelar" />
+            <input class="button buttonRegistrar" type="button" value="Registrar" />
+
+        </form>
+    </dialog>
+</body>
+
+</html>

@@ -27,7 +27,7 @@ function cargarDatos() {
                     carr: r[0]["CARRERA"],
                     idcarr: r[0]["IDCarrera"]
                 },
-                academia: [{
+                academia: {
                     nombre: r[0]["ACADEMIA"],
                     id: r[0]["IDACADEMIA"],
                     puesto: r[0]["PUESTO"],
@@ -35,27 +35,16 @@ function cargarDatos() {
                         nombre: r[0]["NombrePermiso"],
                         idP: r[0]["IDPer"]
                     }]
-                }],
-                foto: r[0]["FOTO"]
+                },
+                foto: r[0]["FOTO"],
+                baja: r[0]["Baja"]
             });
-            for (var i = 1; i < r.length; i++) {
-                var lim = obj.length - 1;
-                var limAcademia = obj[lim].academia.length - 1;
-                if (obj[lim].nom === r[i]["NOMINA"] && obj[lim].academia[limAcademia].id === r[i]["IDACADEMIA"]) {
-                    obj[lim].academia[limAcademia].permiso.push({
+            for (let i = 1; i < r.length; i++) {
+                let e = existe(r[i]["NOMINA"], r[i]["IDACADEMIA"]);
+                if (e > -1) {
+                    obj[e].academia.permiso.push({
                         nombre: r[i]["NombrePermiso"],
                         idP: r[i]["IDPer"]
-                    });
-                } else if (obj[lim].nom === r[i]["NOMINA"]) {
-                    obj[lim].academia.push({
-                        nombre: r[i]["ACADEMIA"],
-                        id: r[i]["IDACADEMIA"],
-                        puesto: r[i]["PUESTO"],
-                        permiso: [{
-                            nombre: r[i]["NombrePermiso"],
-                            idP: r[i]["IDPer"]
-                        }],
-
                     });
                 } else {
                     obj.push({
@@ -65,7 +54,7 @@ function cargarDatos() {
                             carr: r[i]["CARRERA"],
                             idcarr: r[i]["IDCarrera"]
                         },
-                        academia: [{
+                        academia: {
                             nombre: r[i]["ACADEMIA"],
                             id: r[i]["IDACADEMIA"],
                             puesto: r[i]["PUESTO"],
@@ -73,8 +62,9 @@ function cargarDatos() {
                                 nombre: r[i]["NombrePermiso"],
                                 idP: r[i]["IDPer"]
                             }]
-                        }],
-                        foto: r[i]["FOTO"]
+                        },
+                        foto: r[i]["FOTO"],
+                        baja: r[i]["Baja"]
                     });
                 }
             }
@@ -87,6 +77,15 @@ function cargarDatos() {
     cargarCarreras();
     cargarAcademias();
     removerLoad();
+}
+
+function existe(nom, aca) {
+    let r = -1;
+    for (let i = 0; i < obj.length && r == -1; i++) {
+        if (obj[i].nom == nom && obj[i].academia.id == aca)
+            r = i;
+    }
+    return r;
 }
 
 function cargarCarreras() {
@@ -158,8 +157,8 @@ function construir(obj) {
     tablatd31.setAttribute('cellspacing', '3');
     tablatd31.setAttribute('cellpadding', '3');
     var tbody31 = document.createElement('tbody');
-    var key = ["Nómina:", "Nombre(s):", "Carrera:", "Puesto:", "Academia:"];
-    var value = [obj["nom"], obj["nombres"], obj["carrera"].carr, obj["academia"][0]["puesto"], obj["academia"]];
+    var key = ["Nómina:", "Nombre(s):", "Carrera:", "Puesto:", "Academia:", "Baja"];
+    var value = [obj["nom"], obj["nombres"], obj["carrera"].carr, obj["academia"]["puesto"], obj["academia"]["nombre"], obj["baja"]];
     for (var i = 0; i < key.length; i++) {
 
         var trtbody31 = document.createElement('tr');
@@ -171,25 +170,14 @@ function construir(obj) {
         trtbody31.appendChild(tdtbody31);
 
         var td2tbody31 = document.createElement('td');
-        if (key[i] !== "Academia:") {
-            var inp = document.createElement('input');
-            if (key[i] == "Puesto:")
-                inp.setAttribute('id', 'Puesto')
-            inp.disabled = true;
-            inp.value = value[i];
+        var inp = document.createElement('input');
+        inp.disabled = true;
+        if (key[i].includes("Baja")) {
+            inp.type = "checkbox";
+            if (value[i] == 1)
+                inp.checked = true;
         } else {
-            var inp = document.createElement('select');
-            inp.setAttribute("id", "academia" + obj["nom"])
-            for (var j = 0; j < value[i].length; j++) {
-                var op = document.createElement('option');
-                op.value = value[i][j].id;
-                op.innerText = value[i][j].nombre;
-                inp.appendChild(op);
-            }
-            inp.setAttribute('style', 'width:100%;');
-            inp.addEventListener('change', function() {
-                actualizarPermisos(inp.value, obj["academia"], obj["nom"]);
-            }, false)
+            inp.value = value[i];
         }
 
         td2tbody31.appendChild(inp);
@@ -209,7 +197,7 @@ function construir(obj) {
     var permisosAdmin = ['Plan de trabajo (crear, modificar)', 'Acciones al personal(alta, baja, modificar)',
         'Acciones a academias (alta, baja, modificar)', 'Acciones a carrera (alta, modificar)'
     ];
-    var permisos = obj["academia"][0].permiso;
+    var permisos = obj["academia"].permiso;
     var trPermisosTitlulo = document.createElement('tr');
     var th = document.createElement('th');
     th.innerText = 'Permisos de Admin:';
@@ -306,9 +294,12 @@ function construir(obj) {
     var Del = document.createElement('input')
     Del.setAttribute('class', 'button button2Eliminar');
     Del.type = 'button';
-    Del.value = 'Eliminar';
+    if (obj["baja"] == 0)
+        Del.value = 'Dar de baja';
+    else
+        Del.value = 'Dar de alta';
     Del.addEventListener('click', function() {
-        crear(obj['nom'], 1);
+        crear(obj['nom'], 1, obj["baja"], obj["academia"]["id"]);
     }, false)
     td22.appendChild(Del);
     td22.appendChild(Mod);
@@ -322,7 +313,7 @@ function construir(obj) {
     t.appendChild(tbody);
 }
 
-function crear(name, tipo) {
+function crear(name, tipo, baja = undefined, idAcademia = undefined) {
     var d = document.createElement("DIALOG");
     d.setAttribute("ID", "d1");
     var txt = document.createElement("label");
@@ -332,12 +323,15 @@ function crear(name, tipo) {
 
     txt.setAttribute("style", "position: absolute; top: 20%")
 
-    if (tipo == 1)
-        txt.innerHTML = '¿Seguro que desea eliminar al usuario: ' + name + '?';
-    else
+    if (tipo == 1) {
+        if (baja == 0)
+            txt.innerHTML = '¿Seguro que desea eliminar al usuario: ' + name + '?';
+        else
+            txt.innerHTML = '¿Seguro que desea reactivar al usuario: ' + name + '?';
+    } else
         txt.innerHTML = '¿Seguro que desea aplicar los nuevos permisos a: ' + name + '?';
-    yes.innerHTML = "&#161;Si&#33;";
-    not.innerHTML = "&#161;No&#33;";
+    yes.innerHTML = "Si";
+    not.innerHTML = "No";
 
     img.src = "img/advertencia.jpg";
     img.setAttribute("width", "50px")
@@ -348,7 +342,7 @@ function crear(name, tipo) {
     yes.setAttribute("style", "top: 50%;position: absolute;left: 80%; background-color: #08c211;");
     yes.setAttribute("class", "button");
     yes.addEventListener("click", function() {
-        confirmar(d, txt, yes, not, img, name, tipo);
+        confirmar(d, txt, yes, not, img, name, tipo, baja, idAcademia);
     }, false);
 
     not.setAttribute("id", "no");
@@ -368,7 +362,7 @@ function crear(name, tipo) {
     d.showModal();
 }
 
-function confirmar(d, txt, yes, not, img, name, tipo) {
+function confirmar(d, txt, yes, not, img, name, tipo, baja = undefined, idAcademia = undefined) {
     d.removeChild(yes);
     txt.innerHTML = "Ingrese su contrase&#241;a para continuar";
     var psw = document.createElement("input");
@@ -429,21 +423,37 @@ function confirmar(d, txt, yes, not, img, name, tipo) {
                                 }
                             });
                         } else {
-                            $.ajax({
-                                url: "php/rmUser.php",
-                                type: "GET",
-                                data: { obj: name },
-                                success: function(r) {
-                                    eliminado(d, txt, cont, img, psw, not, tipo);
-                                    recrear(1);
-                                },
-                                error: function(err) {
-                                    console.log(err);
-                                }
-                            });
+                            let obj = { name: name, aca: idAcademia };
+                            if (baja == 0) {
+                                $.ajax({
+                                    url: "php/rmUser.php",
+                                    type: "GET",
+                                    data: { obj: obj },
+                                    success: function(r) {
+                                        eliminado(d, txt, cont, img, psw, not, tipo, baja);
+                                        recrear(1);
+                                    },
+                                    error: function(err) {
+                                        console.log(err);
+                                    }
+                                });
+                            } else {
+                                $.ajax({
+                                    url: "php/activar.php",
+                                    type: "GET",
+                                    data: { obj: obj },
+                                    success: function(r) {
+                                        console.log(r);
+                                        recrear(1);
+                                    },
+                                    error: function(e) {
+                                        console.log(e);
+                                    }
+                                })
+                            }
                         }
                     } else {
-                        error(d, txt, cont, img, psw, name, tipo);
+                        error(d, txt, cont, img, psw, name, tipo, baja, idAcademia);
                     }
                     removerLoad();
                 },
@@ -455,7 +465,7 @@ function confirmar(d, txt, yes, not, img, name, tipo) {
     }, false);
 }
 
-function error(d, txt, cont, img, psw, name, tipo) {
+function error(d, txt, cont, img, psw, name, tipo, baja = undefined, idAcademia = undefined) {
     d.removeChild(psw);
     d.removeChild(cont);
     img.style.width = "100px";
@@ -471,11 +481,11 @@ function error(d, txt, cont, img, psw, name, tipo) {
     d.appendChild(cont);
     cont.addEventListener("click", function() {
         d.remove();
-        crear(name, tipo);
+        crear(name, tipo, baja, idAcademia);
     })
 }
 
-function eliminado(d, txt, cont, img, psw, not, tipo) {
+function eliminado(d, txt, cont, img, psw, not, tipo, baja = undefined) {
     d.removeChild(psw);
     d.removeChild(cont);
     d.removeChild(not);
@@ -485,7 +495,10 @@ function eliminado(d, txt, cont, img, psw, not, tipo) {
     if (tipo == 0) {
         txt.innerHTML = "Actualizado";
     } else {
-        txt.innerHTML = "Eliminado";
+        if (baja == 0)
+            txt.innerHTML = "Baja exitosa";
+        else
+            txt.innerHTML = "Activado exitoso";
     }
     txt.style.top = "30%";
     var cont = document.createElement("button");
@@ -598,28 +611,6 @@ function recrear(op) {
 
 function limpiar() {
     cambiar('eliminar');
-}
-
-function actualizarPermisos(valor, obj, nom) {
-    var check = document.getElementsByName('c' + nom);
-    for (var i = 0; i < check.length; i++) {
-        check[i].checked = false;
-    }
-    var pos = -1;
-    for (var i = 0; i < obj.length && pos == -1; i++) {
-        if (obj[i].id == valor) {
-            pos = i;
-        }
-    }
-    var permisos = obj[pos]["permiso"];
-    document.getElementById('Puesto').value = obj[pos]["puesto"];
-    for (var i = 0; i < check.length; i++) {
-        for (var j = 0; j < permisos.length && !check[i].checked; j++) {
-            if (check[i].value == permisos[j].idP) {
-                check[i].checked = true;
-            }
-        }
-    }
 }
 
 function visualizar(ant, idvis) {
