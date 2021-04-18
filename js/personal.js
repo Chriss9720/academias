@@ -536,7 +536,7 @@ function filtro(obj) {
     for (var i = 0; i < obj.length; i++) {
         var f = true;
         for (var k = 0; k < aux.length && f; k++) {
-            if (obj[i]['nomina'].includes(aux[k]['nomina'])) {
+            if (obj[i]['nom'] == (aux[k]['nom']) && obj[i].academia.id == (aux[k].academia.id)) {
                 f = false;
             }
         }
@@ -582,11 +582,8 @@ function porCarrera(valor, obj, aux) {
 function porAcademia(valor, obj, aux) {
     if (valor.length > 0) {
         for (var i = 0; i < obj.length; i++) {
-            var academias = obj[i].academia;
-            for (var j = 0; j < academias.length; j++) {
-                if (academias[j].id == valor) {
-                    aux.push(obj[i]);
-                }
+            if (obj[i].academia.id == valor) {
+                aux.push(obj[i]);
             }
         }
     }
