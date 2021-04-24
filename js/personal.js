@@ -443,7 +443,7 @@ function confirmar(d, txt, yes, not, img, name, tipo, baja = undefined, idAcadem
                                     type: "GET",
                                     data: { obj: obj },
                                     success: function(r) {
-                                        console.log(r);
+                                        eliminado(d, txt, cont, img, psw, not, tipo, baja);
                                         recrear(1);
                                     },
                                     error: function(e) {

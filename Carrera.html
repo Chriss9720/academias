@@ -5,15 +5,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/load.js"></script>
-    <script type="text/javascript" src="js/menu.js"></script>
     <link rel="stylesheet" href="css/compartidos.css" />
     <link rel="stylesheet" href="css/load.css" />
     <link rel="stylesheet" href="css/Carrera.css" />
+    <script type="text/javascript" src="js/load.js"></script>
+    <script type="text/javascript" src="js/carrera.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
     <title>Administraci&oacute;n de Academias</title>
 </head>
 
-<body>
+<body onload="cargarDatos()">
     <div class="fijadoEliminarCarrera">
         <table cellspacing="10" cellpadding="3" class="BusquedaEliminarCarrera">
             <tr>
@@ -43,45 +44,9 @@
     <div class="rcornersEliminarCarrera">
         <scroll-container>
             <scroll-page id="page">
-                <table id="tabla" cellspacing="3" cellpadding="3" class="tablaElimiarCarrera">
-                    <tr class="trContentElimiarCarrera">
-                        <td class="tdContenidoEliminarCarrera">
-                            <table>
-                                <tr>
-                                    <td>
-                                        <table class="cuerpoEliminarCarrera" cellspacing="3" cellpadding="3">
-                                            <tr>
-                                                <td><label class="contenidoEliminarCarrera">ID de la Carrera:</label></td>
-                                                <td><input disabled=""></td>
-                                            </tr>
-                                            <tr>
-                                                <td><label class="contenidoEliminarCarrera">Nombre de la Carrera:</label></td>
-                                                <td><input disabled=""></td>
-                                            </tr>
-                                            <tr>
-                                                <td><label class="contenidoEliminarCarrera">Clave de la Carrera:</label></td>
-                                                <td><input disabled=""></td>
-                                            </tr>
-                                            <tr>
-                                                <td><label class="contenidoEliminarCarrera">Encargado(a) de la Carrera:</label></td>
-                                                <td>
-                                                    <select class="contenidoBusquedaEncargado" disabled>
-                                                        <option value ="">Seleciona una</option>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input class="button buttonEliminar" type="button" value="Eliminar">
-                                        <input class="button buttonEliminar mod" type="button" value="Modificar">
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
+                <table id="table" cellspacing="3" cellpadding="3" class="tablaElimiarCarrera">
+                    <tbody id="cuerpo">
+                    </tbody>
                 </table>
             </scroll-page>
         </scroll-container>
@@ -93,48 +58,46 @@
 
         <p1 class="subtitle font">Ingrese info. de la Carrera:</p1>
 
-        <form class="font" method="post" enctype="multipart/form-data">
-            <table cellspacing="3" cellpadding="15" class="cuerpoAgregarCarrera">
-                <tr>
-                    <td>
-                        <label class="contenido">Nombre de la Carrera:</label>
-                    </td>
-                    <td>
-                        <input class="contenido" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label class="contenidoBusqueda font">Clave de la Carrera:</label>
-                    </td>
-                    <td>
-                        <input class="contenido" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label class="contenidoBusqueda font">Por nomina:</label>
-                    </td>
-                    <td>
-                        <input class="contenido" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label class="contenido">Encargado(a) de la Carrera:</label>
-                    </td>
-                    <td>
-                        <select class="contenido">
+        <table cellspacing="3" cellpadding="15" class="cuerpoAgregarCarrera">
+            <tr>
+                <td>
+                    <label class="contenido">Nombre de la Carrera:</label>
+                </td>
+                <td>
+                    <input class="contenido" id="nombreCarrera" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="contenidoBusqueda font">Clave de la Carrera:</label>
+                </td>
+                <td>
+                    <input class="contenido" id="claveCarrera" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="contenidoBusqueda font">Buscar encargado por nómina:</label>
+                </td>
+                <td>
+                    <input class="contenido" id="buscarEncargado" onkeyup="buscarEncargadoCarrera(this.value)" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="contenido">Encargado(a) de la Carrera:</label>
+                </td>
+                <td>
+                    <select class="contenido" id="addEncargado">
                                 <option value="0">No aplicable</option>
                         </select>
-                    </td>
-                </tr>
-            </table>
+                </td>
+            </tr>
+        </table>
 
-            <input class="button buttonCancelar" type="button" value="Cancelar" />
-            <input class="button buttonRegistrar" type="button" value="Registrar" />
+        <input class="button buttonCancelar" type="button" value="Cancelar" onclick=" cerrar()" />
+        <input class="button buttonRegistrar" type="button" value="Registrar" onclick="addCarrera()" />
 
-        </form>
     </dialog>
 </body>
 

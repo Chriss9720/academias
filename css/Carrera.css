@@ -117,7 +117,7 @@
     padding: 20px;
     width: 900px;
     height: 62%;
-    top: 25%;
+    top: 30%;
     left: 15%;
 }
 
@@ -169,4 +169,16 @@ scroll-container {
     position: absolute;
     font-size: 150%;
     top: 5%;
+}
+
+.guardar {
+    background-color: blueviolet;
+}
+
+.desac {
+    background-color: gray;
+}
+
+.alta {
+    background-color: #10b6cc;
 }
