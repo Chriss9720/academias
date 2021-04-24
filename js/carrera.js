@@ -175,6 +175,7 @@ async function construir(data) {
     inp3.setAttribute('class', 'button buttonEliminar desac');
     inp3.type = "Button";
     inp3.value = "Guardar";
+    inp3.disabled = true;
     inp3.setAttribute('name', value[0]);
     inp3.addEventListener('click', function() {
         guardarDatos(value[0]);
@@ -226,12 +227,30 @@ function actualizarCarrera(carrera) {
     datosUp[4].setAttribute('class', 'button buttonEliminar guardar');
 }
 
-function guardarDatos(carrera) {
+async function guardarDatos(carrera) {
+    crearLoad('rcornersEliminarCarrera');
     var datosUp = document.getElementsByName(carrera);
     for (let i = 1; i < datosUp.length; i++) {
         datosUp[i].disabled = true;
     }
-    datosUp[4].setAttribute('class', 'button buttonEliminar desac');
+    let obj = {
+        id: carrera,
+        nombre: datosUp[1].value,
+        clave: datosUp[2].value,
+        encargado: encargado = datosUp[3].value
+    }
+    await $.ajax({
+        url: "php/updateCarrera.php",
+        type: "GET",
+        data: { obj: obj },
+        success: function(r) {
+            datosUp[4].setAttribute('class', 'button buttonEliminar desac');
+        },
+        error: function() {
+
+        }
+    });
+    removerLoad();
 }
 
 function crear(name, baja = undefined) {
