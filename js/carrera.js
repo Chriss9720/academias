@@ -41,7 +41,7 @@ async function cargarDatos(op) {
             cargar(datos);
         },
         error: function(err) {
-            console.log(err);
+            errorB(0);
         }
     });
     if (op == 0) {
@@ -58,7 +58,7 @@ async function cargarDatos(op) {
                 }
             },
             error: function(err) {
-                console.log(err);
+                errorB(0);
             }
         });
     }
@@ -205,7 +205,7 @@ async function cargarUsuarios(select, nom) {
                     usuarios.push(r[i]);
             },
             error: function(err) {
-                console.log(err);
+                errorB(0);
             }
         });
     }
@@ -243,11 +243,12 @@ async function guardarDatos(carrera) {
         url: "php/updateCarrera.php",
         type: "GET",
         data: { obj: obj },
-        success: function(r) {
+        success: function() {
+            exito(0);
             datosUp[4].setAttribute('class', 'button buttonEliminar desac');
         },
         error: function() {
-
+            errorB(0);
         }
     });
     removerLoad();
@@ -346,7 +347,7 @@ async function accionDelBoton(psw, d, txt, cont, img, name, baja, not) {
                                 eliminado(d, txt, cont, img, psw, not, baja);
                             },
                             error: function() {
-                                console.log("error: ");
+                                errorB(0);
                             }
                         });
                     } else {
@@ -359,7 +360,7 @@ async function accionDelBoton(psw, d, txt, cont, img, name, baja, not) {
                                 eliminado(d, txt, cont, img, psw, not, baja);
                             },
                             error: function() {
-                                console.log("error: ");
+                                errorB(0);
                             }
                         });
                     }
@@ -369,7 +370,7 @@ async function accionDelBoton(psw, d, txt, cont, img, name, baja, not) {
                 removerLoad();
             },
             error: function(err) {
-                console.log(err);
+                errorB(0);
             }
         });
     }
