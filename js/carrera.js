@@ -23,13 +23,13 @@ function add() {
     d.showModal();
 }
 
-function cargarDatos() {
+async function cargarDatos(op) {
     crearLoad('rcornersEliminarCarrera');
     window.location.search.substr(1).split("&").forEach(item => {
         id = item.split("=")[1];
     });
     datos = [];
-    $.ajax({
+    await $.ajax({
         url: "php/getInfoCarreras.php",
         type: "GET",
         dataType: "json",
@@ -45,22 +45,24 @@ function cargarDatos() {
             removerLoad();
         }
     });
-    $.ajax({
-        url: "php/paraAcademia.php",
-        dataType: "JSON",
-        success: function(r) {
-            var c = document.getElementById("addEncargado");
-            for (var i = 0; i < r.length; i++) {
-                var option = document.createElement("option");
-                option.value = r[i]["Nomina"];
-                option.innerText = r[i]["Nombre"];
-                c.appendChild(option);
+    if (op == 0) {
+        await $.ajax({
+            url: "php/paraAcademia.php",
+            dataType: "JSON",
+            success: function(r) {
+                var c = document.getElementById("addEncargado");
+                for (var i = 0; i < r.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = r[i]["Nomina"];
+                    option.innerText = r[i]["Nombre"];
+                    c.appendChild(option);
+                }
+            },
+            error: function(err) {
+                console.log(err);
             }
-        },
-        error: function(err) {
-            console.log(err);
-        }
-    });
+        });
+    }
 }
 
 function cargar(obj) {
@@ -228,7 +230,7 @@ function crear(name, baja = undefined) {
     d.showModal();
 }
 
-function confirmar(d, txt, yes, not, img, name, baja = undefined) {
+async function confirmar(d, txt, yes, not, img, name, baja = undefined) {
     d.removeChild(yes);
     txt.innerHTML = "Ingrese su contraseña para continuar";
     var psw = document.createElement("input");
@@ -246,60 +248,65 @@ function confirmar(d, txt, yes, not, img, name, baja = undefined) {
     not.style.top = "60%";
     d.appendChild(cont);
     cont.addEventListener("click", function() {
-        if (psw.value.length === 0) {
-            error(d, txt, cont, img, psw, name);
-        } else {
-            crearLoad('rcornersEliminarCarrera');
-            var obj = {
-                nom: id,
-                clave: psw.value
-            }
-            $.ajax({
-                url: "php/validarClave.php",
-                type: "GET",
-                data: { obj: obj },
-                dataType: "JSON",
-                success: function(r) {
-                    if (r["res"].length > 0) {
-                        if (baja == 0) {
-                            $.ajax({
-                                url: "php/bajaCarrera.php",
-                                type: "GET",
-                                data: { obj: name },
-                                success: function() {
-                                    recrear(1);
-                                    eliminado(d, txt, cont, img, psw, not, baja);
-                                },
-                                error: function() {
-                                    console.log("error: ");
-                                }
-                            });
-                        } else {
-                            $.ajax({
-                                url: "php/reactivarCarrera.php",
-                                type: "GET",
-                                data: { obj: name },
-                                success: function() {
-                                    recrear(1);
-                                    eliminado(d, txt, cont, img, psw, not, baja);
-                                },
-                                error: function() {
-                                    console.log("error: ");
-                                }
-                            });
-                        }
-                    } else {
-                        error(d, txt, cont, img, psw, name, baja);
-                    }
-                    removerLoad();
-                },
-                error: function(err) {
-                    console.log(err);
-                }
-            });
-        }
+        accionDelBoton(psw, d, txt, cont, img, name, baja, not);
     }, false);
 }
+
+async function accionDelBoton(psw, d, txt, cont, img, name, baja, not) {
+    if (psw.value.length === 0) {
+        error(d, txt, cont, img, psw, name);
+    } else {
+        crearLoad('rcornersEliminarCarrera');
+        var obj = {
+            nom: id,
+            clave: psw.value
+        }
+        $.ajax({
+            url: "php/validarClave.php",
+            type: "GET",
+            data: { obj: obj },
+            dataType: "JSON",
+            success: function(r) {
+                if (r["res"].length > 0) {
+                    if (baja == 0) {
+                        $.ajax({
+                            url: "php/bajaCarrera.php",
+                            type: "GET",
+                            data: { obj: name },
+                            success: function() {
+                                recrear(1);
+                                eliminado(d, txt, cont, img, psw, not, baja);
+                            },
+                            error: function() {
+                                console.log("error: ");
+                            }
+                        });
+                    } else {
+                        $.ajax({
+                            url: "php/reactivarCarrera.php",
+                            type: "GET",
+                            data: { obj: name },
+                            success: function() {
+                                recrear(1);
+                                eliminado(d, txt, cont, img, psw, not, baja);
+                            },
+                            error: function() {
+                                console.log("error: ");
+                            }
+                        });
+                    }
+                } else {
+                    error(d, txt, cont, img, psw, name, baja);
+                }
+                removerLoad();
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    }
+}
+
 
 function error(d, txt, cont, img, psw, name, baja = undefined) {
     d.removeChild(psw);
@@ -368,7 +375,7 @@ function recrear(op) {
     t.appendChild(tbody);
     page.appendChild(t);
     if (op == 1)
-        cargarDatos();
+        cargarDatos(1);
 }
 
 async function addCarrera() {
@@ -484,4 +491,41 @@ function exito(tipo) {
     d.style.width = "350px";
     document.body.append(d);
     d.showModal();
+}
+
+function buscar() {
+    recrear(0);
+    var aux = [];
+    let nombre = document.getElementById('BuscarNombre').value;
+    let clave = document.getElementById('BuscarClave').value;
+    let enc = document.getElementById('BuscarEncargado').value;
+    aux = porNombre(nombre, datos, aux);
+    if (nombre.length < 1 && clave.length < 1 && enc.length < 1) {
+        aux = datos;
+    } else {
+        aux = filtro(aux);
+    }
+    cargar(aux);
+}
+
+function filtro(data) {
+    var aux = [];
+    for (let i = 0; i < data.length; i++) {
+        var f = true;
+        for (let k = 0; k < aux.length && f; k++) {
+            if (data[i]["IDCarrera"] == (aux[k]["IDCarrera"])) {
+                f = false;
+            }
+        }
+        if (f)
+            aux.push(data[i]);
+    }
+    return aux;
+}
+
+function porNombre(valor, datos, aux) {
+    if (valor.length > 0) {
+
+    }
+    return aux;
 }

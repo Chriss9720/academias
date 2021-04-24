@@ -1,12 +1,12 @@
 var datos = [];
 var id;
 
-function cargarDatos() {
+async function cargarDatos() {
     crearLoad('rcornersEliminarAcademia');
     window.location.search.substr(1).split("&").forEach(item => {
         id = item.split("=")[1];
     });
-    $.ajax({
+    await $.ajax({
         url: "php/getAllAcademias.php",
         type: "GET",
         dataType: 'json',
@@ -20,7 +20,7 @@ function cargarDatos() {
             console.log(err);
         }
     });
-    $.ajax({
+    await $.ajax({
         url: "php/getCarreras.php",
         type: "POST",
         dataType: "json",
@@ -37,7 +37,7 @@ function cargarDatos() {
             console.log(err);
         }
     });
-    $.ajax({
+    await $.ajax({
         url: "php/paraAcademia.php",
         dataType: "JSON",
         success: function(r) {
@@ -235,8 +235,8 @@ function construir(data) {
     tabla.appendChild(tr);
 }
 
-function getMienbros(selector, obj) {
-    $.ajax({
+async function getMienbros(selector, obj) {
+    await $.ajax({
         url: "php/getAllMiembros.php",
         type: "GET",
         data: { obj: obj },
@@ -256,8 +256,8 @@ function getMienbros(selector, obj) {
     });
 }
 
-function getAllCarreraAsociada(selector, obj) {
-    $.ajax({
+async function getAllCarreraAsociada(selector, obj) {
+    await $.ajax({
         url: "php/getAllCarreraAsociada.php",
         type: "GET",
         data: { obj: obj },
@@ -296,7 +296,7 @@ function modificarAcademia(id) {
     }
 }
 
-function guardar(id) {
+async function guardar(id) {
     var b = document.getElementsByName(id);
     b[b.length - 1].setAttribute('class', 'button buttonEliminar desac');
     b[b.length - 1].disabled = true;
@@ -309,7 +309,7 @@ function guardar(id) {
         encargado: b[2].value,
         carrera: b[3].value
     };
-    $.ajax({
+    await $.ajax({
         url: "php/updateAcademia.php",
         type: "GET",
         data: { obj: obj },
@@ -366,7 +366,7 @@ function crear(name) {
     d.showModal();
 }
 
-function confirmar(d, txt, yes, not, img, name) {
+async function confirmar(d, txt, yes, not, img, name) {
     d.removeChild(yes);
     txt.innerHTML = "Ingrese su contrase&#241;a para continuar";
     var psw = document.createElement("input");
@@ -392,7 +392,7 @@ function confirmar(d, txt, yes, not, img, name) {
                 clave: psw.value
             }
             crearLoad('rcornersEliminarAcademia');
-            $.ajax({
+            await $.ajax({
                 url: "php/validarClave.php",
                 type: "GET",
                 data: { obj: obj },
