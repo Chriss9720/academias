@@ -366,7 +366,7 @@ function crear(name) {
     d.showModal();
 }
 
-async function confirmar(d, txt, yes, not, img, name) {
+function confirmar(d, txt, yes, not, img, name) {
     d.removeChild(yes);
     txt.innerHTML = "Ingrese su contrase&#241;a para continuar";
     var psw = document.createElement("input");
@@ -392,7 +392,7 @@ async function confirmar(d, txt, yes, not, img, name) {
                 clave: psw.value
             }
             crearLoad('rcornersEliminarAcademia');
-            await $.ajax({
+            $.ajax({
                 url: "php/validarClave.php",
                 type: "GET",
                 data: { obj: obj },

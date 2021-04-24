@@ -1,5 +1,6 @@
 var datos = [];
 var id;
+var usuarios = [];
 
 function buscarEncargadoCarrera(value) {
     var op = document.getElementById('addEncargado').options;
@@ -38,11 +39,9 @@ async function cargarDatos(op) {
                 datos.push(r[i]);
             }
             cargar(datos);
-            removerLoad();
         },
         error: function(err) {
             console.log(err);
-            removerLoad();
         }
     });
     if (op == 0) {
@@ -63,15 +62,16 @@ async function cargarDatos(op) {
             }
         });
     }
+    removerLoad();
 }
 
-function cargar(obj) {
+async function cargar(obj) {
     for (var i = 0; i < obj.length; i++) {
-        construir(obj[i]);
+        await construir(obj[i]);
     }
 }
 
-function construir(data) {
+async function construir(data) {
     var tabla = document.getElementById('cuerpo');
     var tr = document.createElement('tr');
     tr.setAttribute('class', 'trContentElimiarCarrera');
@@ -115,7 +115,7 @@ function construir(data) {
     var td32 = document.createElement('td');
     var select = document.createElement('select');
     select.setAttribute('class', 'contenidoBusquedaEncargado')
-    select.setAttribute('name', 'SeleccionEncargados');
+    select.setAttribute('name', value[0]);
     var op = document.createElement('option');
     if (data["jefe"] != null) {
         op.value = data["Nomina"];
@@ -126,6 +126,7 @@ function construir(data) {
     }
     select.appendChild(op);
     select.disabled = true;
+    await cargarUsuarios(select, data["Nomina"]);
     td32.appendChild(select);
     tr31.appendChild(td31);
     tr31.appendChild(td32);
@@ -161,16 +162,23 @@ function construir(data) {
         inp1.value = "Dar de alta";
     }
     inp1.addEventListener('click', function() {
-        crear(data["IDCarrera"], data["baja"]);
+        crear(value[0], data["baja"]);
     }, false);
     var inp2 = document.createElement('input');
     inp2.setAttribute('class', 'button buttonEliminar mod');
     inp2.type = "Button";
     inp2.value = "Modificar";
+    inp2.addEventListener('click', function() {
+        actualizarCarrera(value[0]);
+    }, false);
     var inp3 = document.createElement('input');
     inp3.setAttribute('class', 'button buttonEliminar desac');
     inp3.type = "Button";
     inp3.value = "Guardar";
+    inp3.setAttribute('name', value[0]);
+    inp3.addEventListener('click', function() {
+        guardarDatos(value[0]);
+    }, false);
     td3.appendChild(inp1);
     td3.appendChild(inp2);
     td3.appendChild(inp3);
@@ -183,6 +191,47 @@ function construir(data) {
     td.appendChild(tabla2);
     tr.appendChild(td);
     tabla.appendChild(tr);
+}
+
+async function cargarUsuarios(select, nom) {
+    if (usuarios.length == 0) {
+        await $.ajax({
+            url: "php/getUsuariosParaCarras.php",
+            type: "GET",
+            dataType: "JSON",
+            success: function(r) {
+                for (let i = 0; i < r.length; i++)
+                    usuarios.push(r[i]);
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    }
+    for (var i = 0; i < usuarios.length; i++) {
+        if (nom != usuarios[i]["Nomina"]) {
+            var op = document.createElement('option');
+            op.value = usuarios[i]["Nomina"];
+            op.innerText = usuarios[i]["Usuario"];
+            select.appendChild(op);
+        }
+    }
+}
+
+function actualizarCarrera(carrera) {
+    var datosUp = document.getElementsByName(carrera);
+    for (let i = 1; i < datosUp.length; i++) {
+        datosUp[i].disabled = false;
+    }
+    datosUp[4].setAttribute('class', 'button buttonEliminar guardar');
+}
+
+function guardarDatos(carrera) {
+    var datosUp = document.getElementsByName(carrera);
+    for (let i = 1; i < datosUp.length; i++) {
+        datosUp[i].disabled = true;
+    }
+    datosUp[4].setAttribute('class', 'button buttonEliminar desac');
 }
 
 function crear(name, baja = undefined) {
@@ -306,7 +355,6 @@ async function accionDelBoton(psw, d, txt, cont, img, name, baja, not) {
         });
     }
 }
-
 
 function error(d, txt, cont, img, psw, name, baja = undefined) {
     d.removeChild(psw);
@@ -499,7 +547,10 @@ function buscar() {
     let nombre = document.getElementById('BuscarNombre').value;
     let clave = document.getElementById('BuscarClave').value;
     let enc = document.getElementById('BuscarEncargado').value;
-    aux = porNombre(nombre, datos, aux);
+    aux = porNombre(nombre, datos, aux, 'Carrera');
+    aux = porNombre(clave, datos, aux, 'Clave');
+    aux = porNombre(enc, datos, aux, 'Nombre');
+    aux = porNombre(enc, datos, aux, 'Nomina');
     if (nombre.length < 1 && clave.length < 1 && enc.length < 1) {
         aux = datos;
     } else {
@@ -523,9 +574,14 @@ function filtro(data) {
     return aux;
 }
 
-function porNombre(valor, datos, aux) {
+function porNombre(valor, datos, aux, tipo) {
     if (valor.length > 0) {
-
+        for (let i = 0; i < datos.length; i++) {
+            if (datos[i][tipo] != null) {
+                if (datos[i][tipo].includes(valor))
+                    aux.push(datos[i])
+            }
+        }
     }
     return aux;
 }
