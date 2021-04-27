@@ -56,13 +56,13 @@ async function cargarDatos() {
     removerLoad();
 }
 
-function cargar(obj) {
+async function cargar(obj) {
     for (var i = 0; i < obj.length; i++) {
-        construir(obj[i]);
+        await construir(obj[i]);
     }
 }
 
-function construir(data) {
+async function construir(data) {
     var tabla = document.getElementById("cuerpo");
     var tr = document.createElement('tr');
     tr.setAttribute('class', 'trContentElimiarAcademia');
@@ -121,10 +121,7 @@ function construir(data) {
     var selector = document.createElement('select');
     selector.setAttribute('style', 'width: 100%;');
     selector.setAttribute('name', data["IDAcademia"]);
-    var obj = {
-        aca: data["IDAcademia"],
-        nom: data["Nomina"]
-    };
+    var obj = { aca: data["IDAcademia"], nom: data["Nomina"] };
     var option = document.createElement('option');
     if (data["Nombre_s_"] != null) {
         option.value = obj.nom;
@@ -135,7 +132,7 @@ function construir(data) {
     }
     selector.disabled = true;
     selector.appendChild(option);
-    getMienbros(selector, obj);
+    await getMienbros(selector, obj);
     td131.appendChild(selector);
     tr13.appendChild(td131);
     tbody12.appendChild(tr13);
@@ -565,7 +562,7 @@ function buscarEncargado(value) {
     }
 }
 
-function registrar() {
+async function registrar() {
     crearLoad('rcornersEliminarAcademia');
     var obj = {
         Academia: document.getElementById('addAcademia').value,
@@ -573,7 +570,7 @@ function registrar() {
         carrera: document.getElementById('nuevaCarrera').value
     };
     if (obj.Academia.length > 0) {
-        $.ajax({
+        await $.ajax({
             url: "php/addAcademia.php",
             type: "GET",
             data: { obj: obj },
