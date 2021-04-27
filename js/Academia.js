@@ -313,11 +313,11 @@ async function guardar(id) {
         url: "php/updateAcademia.php",
         type: "GET",
         data: { obj: obj },
-        success: function(r) {
+        success: function() {
             exito(0);
             recrear(1);
         },
-        error: function(err) {
+        error: function() {
             errorB(0);
         }
     });
@@ -334,8 +334,8 @@ function crear(name) {
     txt.setAttribute("style", "position: absolute; top: 20%")
 
     txt.innerHTML = '¿Seguro que desea eliminar la academia: ' + name + '?';
-    yes.innerHTML = "&#161;Si&#33;";
-    not.innerHTML = "&#161;No&#33;";
+    yes.innerHTML = "Si";
+    not.innerHTML = "No";
 
     img.src = "img/advertencia.jpg";
     img.setAttribute("width", "50px")
@@ -368,7 +368,7 @@ function crear(name) {
 
 function confirmar(d, txt, yes, not, img, name) {
     d.removeChild(yes);
-    txt.innerHTML = "Ingrese su contrase&#241;a para continuar";
+    txt.innerHTML = "Ingrese su contraseña para continuar";
     var psw = document.createElement("input");
     psw.setAttribute("type", "password");
     psw.setAttribute("class", "contenidoBusqueda")
@@ -384,44 +384,48 @@ function confirmar(d, txt, yes, not, img, name) {
     not.style.top = "60%";
     d.appendChild(cont);
     cont.addEventListener("click", function() {
-        if (psw.value.length === 0) {
-            error(d, txt, cont, img, psw, name);
-        } else {
-            var obj = {
-                nom: id,
-                clave: psw.value
-            }
-            crearLoad('rcornersEliminarAcademia');
-            $.ajax({
-                url: "php/validarClave.php",
-                type: "GET",
-                data: { obj: obj },
-                dataType: "JSON",
-                success: function(r) {
-                    if (r["res"].length > 0) {
-                        $.ajax({
-                            url: "php/bajaAcademia.php",
-                            data: { obj: name },
-                            success: function(r) {
-                                eliminado(d, txt, cont, img, psw, not);
-                                recrear(1);
-                            },
-                            error: function(err) {
-                                console.log(err);
-                                error(d, txt, cont, img, psw, name);
-                            }
-                        });
-                    } else {
-                        error(d, txt, cont, img, psw, name);
-                    }
-                    removerLoad();
-                },
-                error: function(err) {
-                    console.log(err);
-                }
-            });
-        }
+        accionDelBoton(psw, d, txt, cont, img, name, id, not);
     }, false);
+}
+
+async function accionDelBoton() {
+    if (psw.value.length === 0) {
+        error(d, txt, cont, img, psw, name);
+    } else {
+        var obj = {
+            nom: id,
+            clave: psw.value
+        }
+        crearLoad('rcornersEliminarAcademia');
+        await $.ajax({
+            url: "php/validarClave.php",
+            type: "GET",
+            data: { obj: obj },
+            dataType: "JSON",
+            success: function(r) {
+                if (r["res"].length > 0) {
+                    $.ajax({
+                        url: "php/bajaAcademia.php",
+                        data: { obj: name },
+                        success: function(r) {
+                            eliminado(d, txt, cont, img, psw, not);
+                            recrear(1);
+                        },
+                        error: function(err) {
+                            console.log(err);
+                            error(d, txt, cont, img, psw, name);
+                        }
+                    });
+                } else {
+                    error(d, txt, cont, img, psw, name);
+                }
+                removerLoad();
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    }
 }
 
 function error(d, txt, cont, img, psw, name) {
