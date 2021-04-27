@@ -264,7 +264,7 @@ function validarRegistro() {
         !document.getElementById("errorApellidoP").hidden || !document.getElementById("errorApellidoM").hidden ||
         !document.getElementById("errorCorreo").hidden || !document.getElementById("errorCIP").hidden ||
         datos[0] || datos[1] || datos[2]) {
-        crear("img/error.jpg", "#cc1010", "Rellene todos los campos");
+        crear("img/error.png", "#cc1010", "Rellene todos los campos");
     } else if (vacio("inputMatricula", 6) || vacio('inputNombre', 1) ||
         vacio('inputApeP', 1) || vacio('inputApM', 1) ||
         vacio('inputCorreo', 1) || vacio('inputCip', 5)) {
@@ -279,12 +279,12 @@ function validarRegistro() {
             validarSelect(value("academia"), 'labelErrorAcademia', 'labelErrorAcademia', 7);
             validarSelect(value('puessto'), 'labelErrorPuesto', 'labelErrorPuesto', 8);
         }
-        crear("img/error.jpg", "#cc1010", "Rellene todos los campos 1");
+        crear("img/error.png", "#cc1010", "Rellene todos los campos 1");
     } else if (!validarSeleccion()) {
         validarSelect(value('SelectCarrera'), 'errorSelectCarrera', 'labelErrorSelectCarrera', 6);
         validarSelect(value("academia"), 'labelErrorAcademia', 'labelErrorAcademia', 7);
         validarSelect(value('puessto'), 'labelErrorPuesto', 'labelErrorPuesto', 8);
-        crear("img/error.jpg", "#cc1010", "Rellene todos los campos 2");
+        crear("img/error.png", "#cc1010", "Rellene todos los campos 2");
     } else {
         var f = true;
         if (entradas[3] === 0) {
@@ -307,7 +307,7 @@ function validarRegistro() {
                 guardar();
             }
         } else {
-            crear("img/error.jpg", "#cc1010", "Academias duplicadas");
+            crear("img/error.png", "#cc1010", "Academias duplicadas");
         }
     }
     removerLoad();
@@ -449,7 +449,7 @@ function confirmar(msj, op) {
     var yes = document.createElement("button");
     var not = document.createElement("button");
     var img = document.createElement("img");
-    img.src = "img/advertencia.jpg";
+    img.src = "img/advertencia.png";
     img.style.width = "100px";
     img.style.height = "100px";
     d.appendChild(img);
@@ -546,13 +546,13 @@ function guardar() {
                         obj.foto = foto;
                         break;
                     default:
-                        crear("img/error.jpg", "#cc1010", "¡Error al subir la imagen!<br/>" + response);
+                        crear("img/error.png", "#cc1010", "¡Error al subir la imagen!<br/>" + response);
                 }
                 registro(obj);
             },
             error: function(error) {
                 console.log(error);
-                crear("img/error.jpg", "#cc1010", "¡Error al subir la imagen!<br/>" + error);
+                crear("img/error.png", "#cc1010", "¡Error al subir la imagen!<br/>" + error);
                 registro(obj);
             }
         });
@@ -571,10 +571,10 @@ function registro(obj) {
             if (r["res"] === 1)
                 crear("img/sucess.png", "#08c211", "¡Actualizacón Exitosa!", obj.nom);
             else
-                crear("img/error.jpg", "#cc1010", "¡Error al modificar!<br/>La nómina ya esta registrada");
+                crear("img/error.png", "#cc1010", "¡Error al modificar!<br/>La nómina ya esta registrada");
         },
         error: function(err) {
-            crear("img/error.jpg", "#cc1010", "¡Error al modificar!<br/>" + err);
+            crear("img/error.png", "#cc1010", "¡Error al modificar!<br/>" + err);
         }
     });
 }

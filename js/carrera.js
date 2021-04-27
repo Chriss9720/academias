@@ -270,7 +270,7 @@ function crear(name, baja = undefined) {
     yes.innerHTML = "Si";
     not.innerHTML = "No";
 
-    img.src = "img/advertencia.jpg";
+    img.src = "img/advertencia.png";
     img.setAttribute("width", "50px")
     img.setAttribute("height", "50px")
     d.appendChild(img);
@@ -492,7 +492,7 @@ function errorB(tipo) {
     yes.innerHTML = "Reintentar";
     not.innerHTML = "Cancelar";
 
-    img.src = "img/advertencia.jpg";
+    img.src = "img/advertencia.png";
     img.setAttribute("width", "50px")
     img.setAttribute("height", "50px")
     d.appendChild(img);

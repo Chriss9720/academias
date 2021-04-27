@@ -333,7 +333,7 @@ function crear(name, tipo, baja = undefined, idAcademia = undefined) {
     yes.innerHTML = "Si";
     not.innerHTML = "No";
 
-    img.src = "img/advertencia.jpg";
+    img.src = "img/advertencia.png";
     img.setAttribute("width", "50px")
     img.setAttribute("height", "50px")
     d.appendChild(img);
