@@ -241,12 +241,12 @@ function validarSeleccion() {
     return true;
 }
 
-function cargarSelect() {
+async function cargarSelect() {
     window.location.search.substr(1).split("&").forEach(item => {
         id = (item.split("=")[1])
     });
     crearLoad('rcorners1');
-    $.ajax({
+    await $.ajax({
         url: "php/getCarreras.php",
         type: "POST",
         dataType: "json",
@@ -271,7 +271,7 @@ function cargarSelect() {
         option.innerText = arr[i];
         c.appendChild(option);
     }
-    $.ajax({
+    await $.ajax({
         url: "php/getAcademias.php",
         type: "POST",
         dataType: "json",
@@ -305,8 +305,8 @@ function cargarPuestos() {
     }
 }
 
-function cargarAcademias() {
-    $.ajax({
+async function cargarAcademias() {
+    await $.ajax({
         url: "php/getAcademias.php",
         type: "POST",
         dataType: "json",
@@ -380,7 +380,7 @@ function confirmar(msj, op) {
     d.showModal();
 }
 
-function guardar() {
+async function guardar() {
     crearLoad('rcorners1');
     var files = document.getElementById("file").files[0];
     var academias = [];
@@ -413,7 +413,7 @@ function guardar() {
         var formData = new FormData();
         formData.append('file', files);
         formData.append('name', file);
-        $.ajax({
+        await $.ajax({
             url: 'img/subirImg.php',
             type: 'POST',
             data: formData,
@@ -445,8 +445,8 @@ function guardar() {
     removerLoad();
 }
 
-function registro(obj) {
-    $.ajax({
+async function registro(obj) {
+    await $.ajax({
         url: 'php/registrar.php',
         type: 'GET',
         data: { obj: obj },
