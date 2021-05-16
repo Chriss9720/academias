@@ -1,59 +1,64 @@
 var obj;
 var id;
 
-function cargarDatos() {
+async function cargarDatos() {
     crearLoad('rcornersEliminar');
-    obj = [{
-        foto: "img/Hector.png",
-        nomina: "12345678",
-        nombres: "Hector Castro",
-        carrera: "ISC",
-        academia: "ISC"
-    }, {
-        foto: "img/imagen.png",
-        nomina: "12345679",
-        nombres: "Christian Yañez",
-        carrera: "ISC",
-        academia: "ISC"
-    }, {
-        foto: "img/imagen.png",
-        nomina: "12345679",
-        nombres: "Christian Yañez",
-        carrera: "ISC",
-        academia: "ISC"
-    }, {
-        foto: "img/imagen.png",
-        nomina: "12345679",
-        nombres: "Christian Yañez",
-        carrera: "ISC",
-        academia: "ISC"
-    }];
-    cargarCarreras();
-    cargarAcademias();
+    window.location.search.substr(1).split("&").forEach(item => {
+        id = item.split("=")[1];
+    });
+
+    await $.ajax({
+        url: "php/getMisAcademias.php",
+        type: "POST",
+        data: { obj: id },
+        dataType: "json",
+        success: (r) => {
+            var c = document.getElementById('academia');
+            for (var i = 0; i < r.length; i++) {
+                var op = document.createElement('option');
+                op.value = r[i]["IDAcademia"];
+                op.innerText = r[i]["Academia"];
+                c.appendChild(op);
+            }
+        },
+        error: (er) => {
+            console.log(er);
+        }
+    });
+
+    await $.ajax({
+        url: "php/sp_getCarrerasPorMiembros.php",
+        type: "POST",
+        data: { obj: id },
+        dataType: "json",
+        success: (r) => {
+            var c = document.getElementById('carrera');
+            for (var i = 0; i < r.length; i++) {
+                var op = document.createElement('option');
+                op.value = r[i]["IDCarrera"];
+                op.innerText = r[i]["Carrera"];
+                c.appendChild(op);
+            }
+        },
+        error: (e) => {
+            console.log(e);
+        }
+    });
+
+    await $.ajax({
+        url: "php/sp_getTodosMisMiebrosDeAcademia.php",
+        type: "POST",
+        data: { obj: id },
+        dataType: "json",
+        success: (r) => {
+            obj = r;
+        },
+        error: (r) => {
+            console.log(r);
+        }
+    });
     cargar(obj);
     removerLoad();
-}
-
-function cargarCarreras() {
-    var c = document.getElementById('carrera');
-    var carr = ['ISC', 'IGE'];
-    for (var i = 0; i < carr.length; i++) {
-        var op = document.createElement('option');
-        op.value = carr[i];
-        op.innerText = carr[i];
-        c.appendChild(op);
-    }
-}
-
-function cargarAcademias() {
-    var c = document.getElementById('academia');
-    var carr = ['ISC', 'LANI'];
-    for (var i = 0; i < carr.length; i++) {
-        var op = document.createElement('option');
-        op.value = carr[i];
-        op.innerText = carr[i];
-        c.appendChild(op);
-    }
 }
 
 function cargar(obj) {
@@ -114,6 +119,9 @@ function construir(obj) {
     Vis.setAttribute('class', 'button button2Eliminar colorVis');
     Vis.type = 'button';
     Vis.value = 'Visualizar';
+    Vis.addEventListener('click', () => {
+        visualizar('buscar', obj["nomina"]);
+    }, false)
     td22.appendChild(Vis);
     tr2.appendChild(td22);
     tb.appendChild(tr2);
@@ -122,6 +130,10 @@ function construir(obj) {
     tr1.appendChild(td2);
     tbody.appendChild(tr1);
     t.appendChild(tbody);
+}
+
+function visualizar(ant, idvis) {
+    window.location.href = "visualizar.html?id=" + id + "&vis=" + idvis + "&ant=" + ant;
 }
 
 function buscar() {
@@ -147,7 +159,9 @@ function filtro(obj) {
     for (var i = 0; i < obj.length; i++) {
         var f = true;
         for (var k = 0; k < aux.length && f; k++) {
-            if (obj[i]['nomina'].includes(aux[k]['nomina'])) {
+            if (obj[i]['nomina'].includes(aux[k]['nomina']) &&
+                obj[i]["carrera"] == aux[k]["carrera"] &&
+                obj[i]["academia"] == aux[k]["academia"]) {
                 f = false;
             }
         }
@@ -217,4 +231,8 @@ function recrear() {
 
 function limpiar() {
     cambiar('eliminar');
+}
+
+function cambiar(ruta) {
+    window.location.href = ruta + ".html?id=" + id;
 }

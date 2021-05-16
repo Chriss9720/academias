@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="css/Buscar.css" />
     <link rel="stylesheet" href="css/compartidos.css" />
     <link rel="stylesheet" href="css/load.css" />
-    <script type="text/javascript" src="js/menu.js"></script>
     <script type="text/javascript" src="js/load.js"></script>
     <script type="text/javascript" src="js/buscar.js"></script>
     <title>Administraci&oacute;n de Academias</title>
@@ -24,7 +23,7 @@
                 <td><label class="contenidoBusqueda">Nomina:</label></td>
             </tr>
             <tr>
-                <td><input name="SearchName" type="text" class="contenidoBusqueda" value="" /></td>
+                <td><input id="SearchName" type="text" class="contenidoBusqueda" onkeyup="buscar()" /></td>
                 <td>
                     <select name="SearchCarr" class="contenidoBusqueda" id='carrera'>
                                 <option value ="">Seleciona una</option>
@@ -44,7 +43,7 @@
     </div>
     <div class="rcornersEliminar">
         <scroll-container>
-            <scroll-page>
+            <scroll-page id="page">
                 <table id="tabla" cellspacing="3" cellpadding="3" class="tablaElimiar">
                     <tbody id="bodytabla">
                     </tbody>

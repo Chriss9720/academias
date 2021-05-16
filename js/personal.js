@@ -21,7 +21,6 @@ function cargarDatos() {
         data: { obj: id },
         dataType: 'json',
         success: function(r) {
-            console.log(r);
             obj.push({
                 nom: r[0]["NOMINA"],
                 nombres: r[0]["NOMBRES"],
@@ -266,7 +265,7 @@ function construir(obj) {
     AplicarPermisos.setAttribute('class', 'button buttonAplicarP');
     AplicarPermisos.type = 'button';
     AplicarPermisos.value = 'Aplicar Permisos';
-    AplicarPermisos.addEventListener('click', function() {
+    AplicarPermisos.addEventListener('click', () => {
         crear(obj['nom'], 0);
     }, false)
     tdBtnPermisos.appendChild(AplicarPermisos);
@@ -281,14 +280,14 @@ function construir(obj) {
     var td22 = document.createElement('td');
     var Mod = document.createElement('input')
     Mod.setAttribute('class', 'button button2Eliminar colorMod');
-    Mod.addEventListener('click', function() {
+    Mod.addEventListener('click', () => {
         modificar('personal', obj["nom"]);
     }, false)
     Mod.type = 'button';
     Mod.value = 'Modificar';
     var Vis = document.createElement('input')
     Vis.setAttribute('class', 'button button2Eliminar colorVis');
-    Vis.addEventListener('click', function() {
+    Vis.addEventListener('click', () => {
         visualizar('personal', obj["nom"]);
     }, false)
     Vis.type = 'button';
@@ -300,7 +299,7 @@ function construir(obj) {
         Del.value = 'Dar de baja';
     else
         Del.value = 'Dar de alta';
-    Del.addEventListener('click', function() {
+    Del.addEventListener('click', () => {
         crear(obj['nom'], 1, obj["baja"], obj["academia"]["id"]);
     }, false)
     td22.appendChild(Del);
@@ -343,14 +342,14 @@ function crear(name, tipo, baja = undefined, idAcademia = undefined) {
     yes.setAttribute("id", "si");
     yes.setAttribute("style", "top: 50%;position: absolute;left: 80%; background-color: #08c211;");
     yes.setAttribute("class", "button");
-    yes.addEventListener("click", function() {
+    yes.addEventListener("click", () => {
         confirmar(d, txt, yes, not, img, name, tipo, baja, idAcademia);
     }, false);
 
     not.setAttribute("id", "no");
     not.setAttribute("style", "top: 50%;position: absolute;left: 5%; background-color: #cc1010;");
     not.setAttribute("class", "button");
-    not.addEventListener("click", function() {
+    not.addEventListener("click", () => {
         document.getElementById("d1").remove();
     }, false);
 
@@ -384,7 +383,7 @@ function confirmar(d, txt, yes, not, img, name, tipo, baja = undefined, idAcadem
     cont.style.top = "60%";
     not.style.top = "60%";
     d.appendChild(cont);
-    cont.addEventListener("click", function() {
+    cont.addEventListener("click", () => {
         if (psw.value.length === 0) {
             error(d, txt, cont, img, psw, name);
         } else {
@@ -481,7 +480,7 @@ function error(d, txt, cont, img, psw, name, tipo, baja = undefined, idAcademia 
     cont.style.left = "50%";
     cont.style.top = "60%";
     d.appendChild(cont);
-    cont.addEventListener("click", function() {
+    cont.addEventListener("click", () => {
         d.remove();
         crear(name, tipo, baja, idAcademia);
     })
@@ -510,7 +509,7 @@ function eliminado(d, txt, cont, img, psw, not, tipo, baja = undefined) {
     cont.style.left = "50%";
     cont.style.top = "60%";
     d.appendChild(cont);
-    cont.addEventListener("click", function() {
+    cont.addEventListener("click", () => {
         d.remove();
     })
 }
