@@ -5,14 +5,14 @@
     $json = json_decode(json_encode($_POST['obj']), true);
 
     $conn = conectar();
-    $call = "{call dbo.getAllUser(?)}";
+    $call = "{call dbo.sp_misRecientes(?)}";
     $params = array (
         array(&$json, SQLSRV_PARAM_IN)
     );
     $stmt = sqlsrv_query($conn, $call, $params);
 
     if ($stmt === false) {
-        die( print_r( sqlsrv_errors(), true));
+        die( print_r( 'Se peto '.sqlsrv_errors(), true));
     }
 
     $res = [];

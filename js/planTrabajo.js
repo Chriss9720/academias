@@ -120,7 +120,10 @@ function crearPDF() {
         if (Academia[i].value == IDAcademia)
             nombreAcademia = Academia[i].innerText;
     }
+    let date = new Date();
+    let d = date.getFullYear() + '-' + date.getMonth() + "-" + date.getDay() + '-' + date.getTime();
     var obj = {
+        doc: d,
         autor: id,
         Academia: nombreAcademia,
         IDAcademia: IDAcademia,

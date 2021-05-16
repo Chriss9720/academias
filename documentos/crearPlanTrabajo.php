@@ -294,7 +294,7 @@
         $stmt = sqlsrv_query($conn, $call, $params);
 
         if ($stmt === false) {
-            die( print_r( 'Se peto '.sqlsrv_errors(), true));
+            die( print_r( 'Se peto en get autor'.sqlsrv_errors(), true));
         }
 
         $res = [];
@@ -310,28 +310,6 @@
         return $res;
     }
 
-    function getSig() {
-        $conn = conectar();
-        $call = "{call dbo.getSigPlan}";
-        $stmt = sqlsrv_query($conn, $call);
-
-        if ($stmt === false) {
-            die( print_r( 'Se peto '.sqlsrv_errors(), true));
-        }
-
-        $res = [];
-
-        while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-            array_push($res, $row);
-        }
-
-        sqlsrv_free_stmt($stmt);
-
-        sqlsrv_close($conn);
-
-        return $res[0]["SIG"];
-    }
-
     function registrarPlan($sem, $aca, $name) {
         $ruta = "planTrabajo/".$name.".pdf";
         $rutaXML = "planTrabajo/".$name.".xml";
@@ -345,7 +323,7 @@
         );
         $stmt = sqlsrv_query($conn, $call, $params);
         if ($stmt === false) {
-            die( print_r( 'Se peto '.sqlsrv_errors(), true));
+            die( print_r( 'Se peto en registrar el plan '.sqlsrv_errors(), true));
         }
         sqlsrv_free_stmt($stmt);
 
@@ -360,8 +338,9 @@
         return $fecha;
     }
     
-    function addResponsable($sig, $resp, $fecha){
-        $fecha = ajustarFecha($fecha);
+    function addResponsable($sig, $resp, $fecha) {
+        if ($fecha != null)
+            $fecha = ajustarFecha($fecha);
         $conn = conectar();
         $call = "{call dbo.addResponsables(?,?,?)}";
         $params = array (
@@ -371,7 +350,7 @@
         );
         $stmt = sqlsrv_query($conn, $call, $params);
         if ($stmt === false) {
-            die( print_r( 'Se peto '.sqlsrv_errors(), true));
+            die( print_r( 'Se peto en addResponsale '.sqlsrv_errors(), true));
         }
         sqlsrv_free_stmt($stmt);
 
@@ -380,8 +359,7 @@
 
     $json = json_decode(json_encode($_GET['obj']), true);
     $autor = getAutor($json["autor"], $json["IDAcademia"]);
-    $sig = getSig();
-    $name = "plantrabajo-".$sig;
+    $name = "plantrabajo-".$json["doc"];
     $path =  "planTrabajo/".$name.".pdf";
     $pdf = new PDF('P', 'cm', array(21.59, 27.94));
     $pdf->AliasNbPages();
@@ -397,7 +375,7 @@
         if ($data["resp"] != null) {
             $arr = $data["resp"];
             for ($j = 0; $j < count($arr); $j++) {
-                addResponsable($sig, $arr[$j], $data["Fecha"]);
+                addResponsable($path, $arr[$j], $data["Fecha"]);
             } 
         }
     }

@@ -18,8 +18,10 @@ function cargarDatos() {
     $.ajax({
         url: "php/getAllUser.php",
         type: 'POST',
+        data: { obj: id },
         dataType: 'json',
         success: function(r) {
+            console.log(r);
             obj.push({
                 nom: r[0]["NOMINA"],
                 nombres: r[0]["NOMBRES"],

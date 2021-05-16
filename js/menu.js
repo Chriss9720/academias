@@ -28,21 +28,22 @@ async function cargando() {
                 } else if (arr[i]["1"] != null) {
                     if (arr[i]["1"].includes("academias") || arr[i]["1"].includes("personal") || arr[i]["1"].includes("carrera")) {
                         hacerVisible('permisosAdmin', 1);
-                        if (arr[i].includes("personal")) hacerVisible('personal', 1);
-                        if (arr[i].includes("academias")) hacerVisible('academia', 0);
-                        if (arr[i].includes("carrera")) hacerVisible('carrera', 0);
+                        if (arr[i]["1"].includes("personal")) hacerVisible('personal', 1);
+                        if (arr[i]["1"].includes("academias")) hacerVisible('academia', 0);
+                        if (arr[i]["1"].includes("carrera")) hacerVisible('carrera', 0);
                     }
                     if (arr[i]["1"].includes("plan") || arr[i]["1"].includes("actas") || arr[i]["1"].includes("profesor") || arr[i]["1"].includes("presidente")) {
                         hacerVisible('permisosDoc', 1);
-                        if (arr[i].includes("plan")) hacerVisible("plan", 1)
-                        if (arr[i].includes("actas")) hacerVisible('acta', 1);
-                        if (arr[i].includes("profesor")) hacerVisible('profesor', 1);
-                        if (arr[i].includes("presidente")) hacerVisible('presidente', 1);
+                        if (arr[i]["1"].includes("plan")) hacerVisible("plan", 1)
+                        if (arr[i]["1"].includes("actas")) hacerVisible('acta', 1);
+                        if (arr[i]["1"].includes("profesor")) hacerVisible('profesor', 1);
+                        if (arr[i]["1"].includes("presidente")) hacerVisible('presidente', 1);
                     }
                 }
             }
         },
         error: function(error) {
+            console.log("error:")
             console.log(error);
         }
     });

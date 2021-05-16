@@ -2,7 +2,7 @@
     function conectar() {
         try {
             $serverName = "Chriss";
-            $connectionInfo = array( "Database"=>"Academia", "UID"=>"Laithg", "PWD"=>"9720");
+            $connectionInfo = array( "Database"=>"Academia", "UID"=>"Laithg", "PWD"=>"0279");
             $conn = sqlsrv_connect( $serverName, $connectionInfo);
             if( $conn ) {
                 return $conn;

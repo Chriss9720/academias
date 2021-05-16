@@ -2,10 +2,10 @@
 
     require("conexcion.php");
 
-    $json = json_decode(json_encode($_GET['obj']), true);
+    $json = json_decode(json_encode($_POST['obj']), true);
 
     $conn = conectar();
-    $call = "{call dbo.getVista(?)}";
+    $call = "{call dbo.sp_getMisAcademias(?)}";
     $params = array (
         array(&$json, SQLSRV_PARAM_IN)
     );
@@ -23,9 +23,8 @@
 
     sqlsrv_free_stmt($stmt);
 
-    $return = array("res" => $res);
     sqlsrv_close($conn);
 
-    echo json_encode($return);
+    echo json_encode($res);
 
 ?>

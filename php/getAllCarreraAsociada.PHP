@@ -6,7 +6,6 @@
     $conn = conectar();
     $call = "{call getAllCarreraAsociada(?)}";
     
-
     $params = array(
         array(&$json, SQLSRV_PARAM_IN)
     );
