@@ -23,18 +23,39 @@ async function cargarDatos() {
             }
             let Acts = [r.Act1, r.Act2, r.Act3, r.Act4, r.Act5, r.Act6, r.Act7, r.Act8, r.Act9];
             let entradas = ["Acciones", "Asignarutas", "Responsable", "Fecha", "Evidencia"];
-            for (let i = 0; i < 1 /*Acts.length*/ ; i++) {
-                let Act = Acts[i];
-                for (let j = 0; j < entradas.length; j++) {
-
-                    console.log(`Act ${i+1} ${entradas[j]} => ${Act[entradas[j]]}`)
-                }
+            for (let i = 1, j = 0; i < 10; i++, j++) {
+                let act = document.getElementsByName(`Act${i}`);
+                act[0].value = Acts[j][entradas[0]];
+                act[1].value = Acts[j][entradas[1]];
+                revisarResp(Acts[j][entradas[2]], i);
+                if (Acts[j][entradas[3]].length > 0)
+                    act[2].value = ajustarFecha(Acts[j][entradas[3]]);
+                act[3].value = Acts[j][entradas[4]];
             }
         },
         error: (err) => {
             console.log(err["responseText"]);
         }
     });
+}
+
+function revisarResp(resp, act) {
+    let check = document.getElementsByName(`Act${act}C`);
+    let label = document.getElementsByName(`Act${act}L`);
+    if (resp == "TODOS") {
+        document.getElementById('AAct1').checked = true;
+        for (let i = 0; i < check.length; i++) {
+            check[i].checked = true;
+        }
+    } else if (resp.length > 0) {
+        resp = resp.split("?");
+        for (let i = 0; i < resp.length - 1; i++) {
+            for (let j = 0; j < label.length; j++) {
+                if (label[j].innerText == resp[i])
+                    check[j].checked = true;
+            }
+        }
+    }
 }
 
 function ajustarFecha(fecha) {

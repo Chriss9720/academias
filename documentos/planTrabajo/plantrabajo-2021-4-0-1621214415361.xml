@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PlanTrabajo>
+  <Cabecera>
+    <Academia>Academia 1</Academia>
+    <Semestre>Ene-Jun 2021</Semestre>
+    <Presidente>Gonzalez Christian Yañez</Presidente>
+    <Primera>2021-05-06 18:15</Primera>
+    <Segunda>2021-05-26 23:16</Segunda>
+    <Tercera>2021-05-19 18:16</Tercera>
+    <Cuarta>2021-05-10 18:16</Cuarta>
+    <Jefe>User Dos User Dos User Dos</Jefe>
+    <Coordinador>Gonzalez Christian Yañez</Coordinador>
+  </Cabecera>
+  <Act1>
+    <Acciones>Act 1</Acciones>
+    <Asignarutas>Act 1.2</Asignarutas>
+    <Responsable>TODOS</Responsable>
+    <Fecha>2021-04-28 18:16</Fecha>
+    <Evidencia>Act 1.3</Evidencia>
+  </Act1>
+  <Act2>
+    <Acciones>Act 2</Acciones>
+    <Asignarutas>Act 2.2</Asignarutas>
+    <Responsable>Gonzalez Christian Yañez?</Responsable>
+    <Fecha/>
+    <Evidencia>Act 2.3</Evidencia>
+  </Act2>
+  <Act3>
+    <Acciones>Act 3</Acciones>
+    <Asignarutas>Act 3.2</Asignarutas>
+    <Responsable>User P uno User P uno User P uno?</Responsable>
+    <Fecha/>
+    <Evidencia>Act 3.3</Evidencia>
+  </Act3>
+  <Act4>
+    <Acciones>Act 4</Acciones>
+    <Asignarutas>Act 4.2</Asignarutas>
+    <Responsable>User Dos User Dos User Dos?</Responsable>
+    <Fecha/>
+    <Evidencia>Act 4.3</Evidencia>
+  </Act4>
+  <Act5>
+    <Acciones>Act 5</Acciones>
+    <Asignarutas>Act 5.2</Asignarutas>
+    <Responsable>TODOS</Responsable>
+    <Fecha/>
+    <Evidencia>Act 5.3</Evidencia>
+  </Act5>
+  <Act6>
+    <Acciones>Act 6</Acciones>
+    <Asignarutas>Act 6.2</Asignarutas>
+    <Responsable/>
+    <Fecha/>
+    <Evidencia>Act 6.3</Evidencia>
+  </Act6>
+  <Act7>
+    <Acciones>Act 7</Acciones>
+    <Asignarutas>Act 7.2</Asignarutas>
+    <Responsable>TODOS</Responsable>
+    <Fecha/>
+    <Evidencia>Act 7.3</Evidencia>
+  </Act7>
+  <Act8>
+    <Acciones>Act 8</Acciones>
+    <Asignarutas>Act 8.2</Asignarutas>
+    <Responsable/>
+    <Fecha/>
+    <Evidencia>Act 8.3</Evidencia>
+  </Act8>
+  <Act9>
+    <Acciones>Act 9</Acciones>
+    <Asignarutas>Act 9.2</Asignarutas>
+    <Responsable>TODOS</Responsable>
+    <Fecha/>
+    <Evidencia>Act 9.3</Evidencia>
+  </Act9>
+</PlanTrabajo>
