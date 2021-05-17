@@ -180,7 +180,6 @@ function construir(obj) {
         } else {
             inp.value = value[i];
         }
-
         td2tbody31.appendChild(inp);
         trtbody31.appendChild(td2tbody31);
         tbody31.appendChild(trtbody31);
@@ -266,7 +265,7 @@ function construir(obj) {
     AplicarPermisos.type = 'button';
     AplicarPermisos.value = 'Aplicar Permisos';
     AplicarPermisos.addEventListener('click', () => {
-        crear(obj['nom'], 0);
+        crear(obj['nom'], 0, undefined, undefined, value[3]);
     }, false)
     tdBtnPermisos.appendChild(AplicarPermisos);
     trBtnPermisos.appendChild(tdBtnPermisos);
@@ -314,7 +313,7 @@ function construir(obj) {
     t.appendChild(tbody);
 }
 
-function crear(name, tipo, baja = undefined, idAcademia = undefined) {
+function crear(name, tipo, baja = undefined, idAcademia = undefined, puesto) {
     var d = document.createElement("DIALOG");
     d.setAttribute("ID", "d1");
     var txt = document.createElement("label");
@@ -343,7 +342,7 @@ function crear(name, tipo, baja = undefined, idAcademia = undefined) {
     yes.setAttribute("style", "top: 50%;position: absolute;left: 80%; background-color: #08c211;");
     yes.setAttribute("class", "button");
     yes.addEventListener("click", () => {
-        confirmar(d, txt, yes, not, img, name, tipo, baja, idAcademia);
+        confirmar(d, txt, yes, not, img, name, tipo, baja, idAcademia, puesto);
     }, false);
 
     not.setAttribute("id", "no");
@@ -363,7 +362,7 @@ function crear(name, tipo, baja = undefined, idAcademia = undefined) {
     d.showModal();
 }
 
-function confirmar(d, txt, yes, not, img, name, tipo, baja = undefined, idAcademia = undefined) {
+async function confirmar(d, txt, yes, not, img, name, tipo, baja = undefined, idAcademia = undefined, puesto) {
     d.removeChild(yes);
     txt.innerHTML = "Ingrese su contrase&#241;a para continuar";
     var psw = document.createElement("input");
@@ -375,15 +374,18 @@ function confirmar(d, txt, yes, not, img, name, tipo, baja = undefined, idAcadem
     var cont = document.createElement("button");
     cont.setAttribute("style", "top: 50%;position: absolute;left: 80%; background-color: #08c211;");
     cont.setAttribute("class", "button");
-    if (tipo == 1)
-        cont.innerHTML = "Eliminar";
-    else
+    if (tipo == 1) {
+        if (baja == 0)
+            cont.innerHTML = "Eliminar";
+        else
+            cont.innerHTML = "Activar";
+    } else
         cont.innerHTML = "Actualizar";
     cont.style.left = "50%";
     cont.style.top = "60%";
     not.style.top = "60%";
     d.appendChild(cont);
-    cont.addEventListener("click", () => {
+    cont.addEventListener("click", async() => {
         if (psw.value.length === 0) {
             error(d, txt, cont, img, psw, name);
         } else {
@@ -398,21 +400,21 @@ function confirmar(d, txt, yes, not, img, name, tipo, baja = undefined, idAcadem
                 nom: id,
                 clave: psw.value
             }
-            $.ajax({
+            await $.ajax({
                 url: "php/validarClave.php",
                 type: "GET",
                 data: { obj: obj },
                 dataType: "JSON",
-                success: function(r) {
+                success: async(r) => {
                     if (r["res"].length > 0) {
                         if (tipo == 0) {
                             obj = {
-                                puesto: document.getElementById('Puesto').value,
+                                puesto: puesto,
                                 nomina: name,
                                 permisos: permisos,
                                 academia: document.getElementById('academia' + name).value
                             };
-                            $.ajax({
+                            await $.ajax({
                                 url: "php/actualizarPermisos.php",
                                 type: "GET",
                                 data: { obj: obj },
@@ -426,7 +428,7 @@ function confirmar(d, txt, yes, not, img, name, tipo, baja = undefined, idAcadem
                         } else {
                             let obj = { name: name, aca: idAcademia };
                             if (baja == 0) {
-                                $.ajax({
+                                await $.ajax({
                                     url: "php/rmUser.php",
                                     type: "GET",
                                     data: { obj: obj },
@@ -458,7 +460,7 @@ function confirmar(d, txt, yes, not, img, name, tipo, baja = undefined, idAcadem
                     }
                     removerLoad();
                 },
-                error: function(err) {
+                error: (err) => {
                     console.log(err);
                 }
             });

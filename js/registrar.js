@@ -343,8 +343,8 @@ function confirmar(msj, op) {
 
     txt.setAttribute("style", "position: absolute; top: 30%")
     txt.innerHTML = msj;
-    yes.innerHTML = "¡Si!";
-    not.innerHTML = "¡No!";
+    yes.innerHTML = "Si";
+    not.innerHTML = "No";
 
     yes.setAttribute("id", "si");
     yes.setAttribute("style", "top: 70%;position: absolute;left: 80%; background-color: #08c211;");

@@ -303,14 +303,3 @@ function Todos(num) {
 function regresar() {
     window.location = "OpcionesPlanTrabajo.html?id=" + id;
 }
-
-function recargarUser() {
-    for (var i = 1; i < 10; i++) {
-        document.getElementById('TBAct' + i + 'L').remove();
-        var page = document.getElementById(i);
-        var tabla = document.createElement('table');
-        tabla.setAttribute('id', 'TBAct' + i + 'L');
-        page.appendChild(tabla);
-    }
-    cargarUsuarios();
-}
