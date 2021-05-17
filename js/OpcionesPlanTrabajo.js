@@ -1,17 +1,17 @@
 var obj;
 var id;
 
-function cargarDatos() {
+async function cargarDatos() {
     crearLoad('rcornersEliminar');
     obj = [];
     window.location.search.substr(1).split("&").forEach(item => {
         id = item.split("=")[1];
     });
-    $.ajax({
+    await $.ajax({
         url: "php/getPlanes.php",
         data: { obj: id },
         dataType: "JSON",
-        success: function(r) {
+        success: (r) => {
             if (r.length > 0) {
                 obj.push(r[0]);
                 for (var i = 1; i < r.length; i++) {
@@ -26,19 +26,20 @@ function cargarDatos() {
             cargar(obj);
             removerLoad();
         },
-        error: function(r) {
+        error: (r) => {
             console.log(r);
             removerLoad();
         }
     });
 }
 
-function cargarSemestres() {
-    $.ajax({
+async function cargarSemestres() {
+    await $.ajax({
         url: "php/getSemestres.php",
         type: "POST",
+        data: { obj: id },
         dataType: "json",
-        success: function(r) {
+        success: (r) => {
             var c = document.getElementById("busquedaXsemestre");
             for (var i = 0; i < r.length; i++) {
                 var option = document.createElement("option");
@@ -46,18 +47,18 @@ function cargarSemestres() {
                 c.appendChild(option);
             }
         },
-        error: function(err) {
-            console.log(err);
+        error: (err) => {
+            console.log(err["responseText"]);
         }
     });
 }
 
-function cargarCarreras() {
-    $.ajax({
+async function cargarCarreras() {
+    await $.ajax({
         url: "php/getCarreras.php",
         type: "POST",
         dataType: "json",
-        success: function(r) {
+        success: (r) => {
             var c = document.getElementById("carrera");
             for (var i = 0; i < r.length; i++) {
                 var option = document.createElement("option");
@@ -66,28 +67,28 @@ function cargarCarreras() {
                 c.appendChild(option);
             }
         },
-        error: function(err) {
+        error: (err) => {
             console.log(err);
         }
     });
 }
 
-function cargarAcademias() {
-    $.ajax({
+async function cargarAcademias() {
+    await $.ajax({
         url: "php/getAcademiaPlan.php",
         type: "POST",
         data: { obj: id },
         dataType: "json",
-        success: function(r) {
+        success: (r) => {
             var c = document.getElementById('academia');
             for (var i = 0; i < r.length; i++) {
                 var option = document.createElement("option");
-                option.value = r[i]["IDAcademia"];
+                option.value = r[i]["Academia"];
                 option.innerText = r[i]["Academia"];
                 c.appendChild(option);
             }
         },
-        error: function(err) {
+        error: (err) => {
             console.log(err);
         }
     });
@@ -231,6 +232,7 @@ function recrear(op) {
     t.setAttribute("cellspacing", "3");
     t.setAttribute("cellpadding", "3");
     t.setAttribute("class", "tablaElimiar");
+    t.setAttribute("class", "tabla");
     t.appendChild(tbody);
     page.appendChild(t);
     if (op == 1)

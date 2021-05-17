@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PlanTrabajo>
+  <Cabecera>
+    <Academia>Academia 1</Academia>
+    <Semestre>Ene-Jun 2021</Semestre>
+    <Presidente>Gonzalez Christian Yañez</Presidente>
+    <Primera>2021-05-08 18:03</Primera>
+    <Segunda>2021-05-12 18:03</Segunda>
+    <Tercera>2021-05-07 18:03</Tercera>
+    <Cuarta>2021-05-06 18:03</Cuarta>
+    <Jefe>User Dos User Dos User Dos</Jefe>
+    <Coordinador>Gonzalez Christian Yañez</Coordinador>
+  </Cabecera>
+  <Act1>
+    <Acciones>ACT 1</Acciones>
+    <Asignarutas/>
+    <Responsable>TODOS</Responsable>
+    <Fecha>2021-05-10 18:03</Fecha>
+    <Evidencia/>
+  </Act1>
+  <Act2>
+    <Acciones/>
+    <Asignarutas>ACT 2</Asignarutas>
+    <Responsable/>
+    <Fecha/>
+    <Evidencia/>
+  </Act2>
+  <Act3>
+    <Acciones/>
+    <Asignarutas/>
+    <Responsable/>
+    <Fecha/>
+    <Evidencia>ACT 3</Evidencia>
+  </Act3>
+  <Act4>
+    <Acciones/>
+    <Asignarutas>ACT 4</Asignarutas>
+    <Responsable>TODOS</Responsable>
+    <Fecha>2021-05-26 18:03</Fecha>
+    <Evidencia/>
+  </Act4>
+  <Act5>
+    <Acciones>ACT 5</Acciones>
+    <Asignarutas/>
+    <Responsable/>
+    <Fecha/>
+    <Evidencia/>
+  </Act5>
+  <Act6>
+    <Acciones/>
+    <Asignarutas>ACT 6</Asignarutas>
+    <Responsable/>
+    <Fecha/>
+    <Evidencia/>
+  </Act6>
+  <Act7>
+    <Acciones/>
+    <Asignarutas/>
+    <Responsable>TODOS</Responsable>
+    <Fecha>2021-05-05 18:03</Fecha>
+    <Evidencia>ACT 7</Evidencia>
+  </Act7>
+  <Act8>
+    <Acciones/>
+    <Asignarutas>ACT 8</Asignarutas>
+    <Responsable/>
+    <Fecha/>
+    <Evidencia/>
+  </Act8>
+  <Act9>
+    <Acciones>ACT 9</Acciones>
+    <Asignarutas/>
+    <Responsable/>
+    <Fecha/>
+    <Evidencia/>
+  </Act9>
+</PlanTrabajo>

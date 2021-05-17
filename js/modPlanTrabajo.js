@@ -1,51 +1,38 @@
 var data;
 
-function cargarDatos() {
+async function cargarDatos() {
     data = [];
     window.location.search.substr(1).split("&").forEach(item => {
         data.push(item.split("=")[1]);
     });
     cargarUsuarios();
-    $.ajax({
+    await $.ajax({
         url: "documentos/leerPlan.php",
         Type: "GET",
         data: { obj: data[1] },
         dataType: "JSON",
-        success: function(r) {
-            var c = r["Cabecera"];
-            document.getElementById('academia').value = (c["Academia"]);
-            document.getElementById('semestre').value = (c["Semestre"]);
-            var reuniones = document.getElementsByName('Reunion');
-            var key = ["Primera", "Segunda", "Tercera", "Cuarta"];
-            for (var i = 0; i < reuniones.length; i++) {
-                reuniones[i].value = ajustarFecha(c[key[i]]);
+        success: (r) => {
+            let cabecera = r.Cabecera;
+            document.getElementById('academia').value = cabecera.Academia;
+            document.getElementById('semestre').value = cabecera.Semestre;
+            let fechas = document.getElementsByName('Reunion');
+            let dates = [cabecera.Primera, cabecera.Segunda, cabecera.Tercera, cabecera.Cuarta];
+            for (let i = 0; i < fechas.length; i++) {
+                if (dates[i].length > 0)
+                    fechas[i].value = ajustarFecha(dates[i]);
             }
-            for (var j = 1; j < 10; j++) {
-                var act1 = document.getElementsByName('Act' + j);
-                var act = r["Act" + j];
-                var responsables = act["Responsable"].split("?");
-                var names = document.getElementsByName('Act' + j + "L");
-                for (var i = 0; i < names.length; i++) {
-                    let band = true;
-                    for (var k = 0; k < (responsables.length - 1) && band; k++) {
-                        if (names[i].innerText.includes(responsables[k])) {
-                            document.getElementsByName('Act' + j + 'C')[i].checked = true;
-                            band = false;
-                        }
-                    }
-                }
-                key = ["Acciones", "Asignarutas", "Fecha", "Evidencia"];
-                for (var i = 0; i < act1.length; i++) {
-                    if (i == 2) {
-                        act1[i].value = ajustarFecha(act[key[i]]);
-                    } else {
-                        act1[i].innerText = act[key[i]];
-                    }
+            let Acts = [r.Act1, r.Act2, r.Act3, r.Act4, r.Act5, r.Act6, r.Act7, r.Act8, r.Act9];
+            let entradas = ["Acciones", "Asignarutas", "Responsable", "Fecha", "Evidencia"];
+            for (let i = 0; i < 1 /*Acts.length*/ ; i++) {
+                let Act = Acts[i];
+                for (let j = 0; j < entradas.length; j++) {
+
+                    console.log(`Act ${i+1} ${entradas[j]} => ${Act[entradas[j]]}`)
                 }
             }
         },
-        error: function(err) {
-            console.log(err)
+        error: (err) => {
+            console.log(err["responseText"]);
         }
     });
 }
@@ -55,17 +42,17 @@ function ajustarFecha(fecha) {
     return fecha;
 }
 
-function cargarUsuarios() {
+async function cargarUsuarios() {
     var obj = {
         aca: data[2],
         nom: 0
     }
-    $.ajax({
+    await $.ajax({
         url: "php/getAllMiembros.php",
         type: "GET",
         data: { obj: obj },
         dataType: "json",
-        success: function(r) {
+        success: (r) => {
             var arr = r["res"];
             for (var k = 1; k < 10; k++) {
                 var t = document.getElementById("TBAct" + k + "L");
@@ -86,8 +73,8 @@ function cargarUsuarios() {
                 }
             }
         },
-        error: function(err) {
-            console.log(err);
+        error: (err) => {
+            console.log(err["responseText"]);
         }
     });
 }

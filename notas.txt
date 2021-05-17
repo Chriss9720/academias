@@ -1,0 +1,30 @@
+TERMINADAS:
+    *- REGISTRO 
+    *- ACCIONES AL PERSONAL
+    *- ACCIONES A ACADEMIAS
+    *- ACCIONES A CARRERAS
+    *- MODIFICAR
+    *- MI PERFIL
+    *- PLAN DE TRABAJO:
+        *- INSERTARLOS
+        *- CREAR
+    
+PENDIENTES:
+    *- DOCUMENTOS PENDIENTES
+    *- VER EVALUACION
+    *- VER PLAN DE TRABAJO
+    *- VER ACTAS
+    *- EVALUAR PROFESOR:
+        *- CREAR    
+        *- MODIFICAR
+        *- INSERTARLOS
+    *- EVALUAR PRESIDENETE:
+        *- CREAR    
+        *- MODIFICAR
+        *- INSERTARLOS
+    *- PLAN DE TRABAJO:
+        *- MODIFICAR
+    *- ACTAS:
+        *- CREAR    
+        *- MODIFICAR
+        *- INSERTARLOS

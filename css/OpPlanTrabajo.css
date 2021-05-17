@@ -77,7 +77,7 @@
     left: 15%;
 }
 
-.tablas{
+.tablas {
     border: 1px solid;
 }
 
@@ -95,19 +95,18 @@
     border-radius: 12px;
 }
 
-.buttonModificar{
+.buttonModificar {
     background-color: cadetblue;
     position: initial;
     margin-left: 250%;
 }
+
 .buttonCrear {
     background-color: blueviolet;
     left: 800px;
     top: 68%;
     width: 110px;
 }
-
-
 
 .title {
     position: absolute;
@@ -139,15 +138,19 @@ scroll-container {
 .colorMod {
     background-color: cadetblue;
 }
+
 .imgRedonda {
     width: 100px;
     height: 100px;
-
 }
 
-.tablaPdf{
+.tablaPdf {
     border: 1px solid;
     width: 150px;
     text-align: center;
 }
 
+.tabla {
+    border-bottom: 5px solid;
+    border-top: 5px solid;
+}

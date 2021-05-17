@@ -66,13 +66,15 @@
 
             $nodo = $xml->createElement('Cabecera');
             $raiz->appendChild($nodo);
-            nodos('Academia', $data['Academia'], $nodo, $xml);
-            nodos('Semestre', $data['Semestre'], $nodo, $xml);
+            nodos('Academia', utf8_decode($data['Academia']), $nodo, $xml);
+            nodos('Semestre', utf8_decode($data['Semestre']), $nodo, $xml);
             nodos('Presidente', $autor[0]["Autor"], $nodo, $xml);
-            nodos('Primera', $data['f1'], $nodo, $xml);
+            nodos('Primera', utf8_decode($data['f1']), $nodo, $xml);
             nodos('Segunda', utf8_decode($data['f2']), $nodo, $xml);
             nodos('Tercera', utf8_decode($data['f3']), $nodo, $xml);
             nodos('Cuarta', utf8_decode($data['f4']), $nodo, $xml);
+            nodos('Jefe', $autor[0]["Jefe"], $nodo, $xml);
+            nodos('Coordinador', $autor[0]["Coordinador"], $nodo, $xml);
 
             $comp = [[],[]];
             $comp[0][0] = "No.";
@@ -310,16 +312,17 @@
         return $res;
     }
 
-    function registrarPlan($sem, $aca, $name) {
+    function registrarPlan($sem, $aca, $name, $autor) {
         $ruta = "planTrabajo/".$name.".pdf";
         $rutaXML = "planTrabajo/".$name.".xml";
         $conn = conectar();
-        $call = "{call dbo.addPlan(?,?,?,?)}";
+        $call = "{call dbo.addPlan(?,?,?,?,?)}";
         $params = array (
             array(&$sem, SQLSRV_PARAM_IN),
             array(&$aca, SQLSRV_PARAM_IN),
             array(&$ruta, SQLSRV_PARAM_IN),
-            array(&$rutaXML, SQLSRV_PARAM_IN)
+            array(&$rutaXML, SQLSRV_PARAM_IN),
+            array(&$autor, SQLSRV_PARAM_IN)
         );
         $stmt = sqlsrv_query($conn, $call, $params);
         if ($stmt === false) {
@@ -369,7 +372,7 @@
     $archivo = "PDF.html?nombre=planTrabajo/".$name.".pdf";
     $return = array ("archivo" => $archivo);
 
-    registrarPlan($json["Semestre"], $json["IDAcademia"], $name);
+    registrarPlan($json["Semestre"], $json["IDAcademia"], $name, $json["autor"]);
     for ($i = 1; $i < 10; $i++) {
         $data = $json["Act".$i];
         if ($data["resp"] != null) {
@@ -380,4 +383,5 @@
         }
     }
     echo json_encode($return);
+    
 ?>

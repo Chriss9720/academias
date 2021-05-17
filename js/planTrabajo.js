@@ -14,13 +14,13 @@ function cargarDatos() {
     }
 }
 
-function cargarAcademias() {
-    $.ajax({
+async function cargarAcademias() {
+    await $.ajax({
         url: "php/getAcademiaPlan.php",
         type: "POST",
         data: { obj: id },
         dataType: "json",
-        success: function(r) {
+        success: (r) => {
             var c = document.getElementById('academia');
             for (var i = 0; i < r.length; i++) {
                 var option = document.createElement("option");
@@ -30,13 +30,13 @@ function cargarAcademias() {
             }
             cargarUsuarios();
         },
-        error: function(err) {
+        error: (err) => {
             console.log(err);
         }
     });
 }
 
-function crearPDF() {
+async function crearPDF() {
     var resp1 = [],
         resp2 = [],
         resp3 = [],
@@ -75,48 +75,68 @@ function crearPDF() {
         personas7 = "",
         personas8 = "",
         personas9 = "";
+    let max = act1C.length;
+    console.log(max);
     for (var i = 0; i < act1C.length; i++) {
         if (act1C[i].checked) {
             personas1 += act1L[i].innerText + "?";
             resp1.push(act1C[i].value);
+            if (resp1.length == max)
+                personas1 = "TODOS";
         }
         if (act2C[i].checked) {
             personas2 += act1L[i].innerText + "?";
             resp2.push(act2C[i].value);
+            if (resp2.length == max)
+                personas2 = "TODOS";
         }
         if (act3C[i].checked) {
             personas3 += act1L[i].innerText + "?";
             resp3.push(act3C[i].value);
+            if (resp3.length == max)
+                personas3 = "TODOS";
         }
         if (act4C[i].checked) {
             personas4 += act1L[i].innerText + "?";
             resp4.push(act4C[i].value);
+            if (resp4.length == max)
+                personas4 = "TODOS";
         }
         if (act5C[i].checked) {
             personas5 += act1L[i].innerText + "?";
             resp5.push(act5C[i].value);
+            if (resp5.length == max)
+                personas5 = "TODOS";
         }
         if (act6C[i].checked) {
             personas6 += act1L[i].innerText + "?";
             resp6.push(act6C[i].value);
+            if (resp6.length == max)
+                personas6 = "TODOS";
         }
         if (act7C[i].checked) {
             personas7 += act1L[i].innerText + "?";
             resp7.push(act7C[i].value);
+            if (resp7.length == max)
+                personas7 = "TODOS";
         }
         if (act8C[i].checked) {
             personas8 += act1L[i].innerText + "?";
             resp8.push(act8C[i].value);
+            if (resp8.length == max)
+                personas8 = "TODOS";
         }
         if (act9C[i].checked) {
             personas9 += act1L[i].innerText + "?";
             resp9.push(act9C[i].value);
+            if (resp9.length == max)
+                personas9 = "TODOS";
         }
     }
     var IDAcademia = document.getElementById("academia").value;
     var Academia = document.getElementById("academia").options;
     var nombreAcademia = "";
-    for (var i = 0; i < Academia.length; i++) {
+    for (let i = 0; i < Academia.length; i++) {
         if (Academia[i].value == IDAcademia)
             nombreAcademia = Academia[i].innerText;
     }
@@ -205,16 +225,16 @@ function crearPDF() {
             resp: resp9
         }
     };
-    $.ajax({
+    await $.ajax({
         url: 'documentos/crearPlanTrabajo.php',
         type: 'GET',
         data: { obj: obj },
         dataType: 'JSON',
-        success: function(r) {
+        success: (r) => {
             window.open(r['archivo']);
             regresar();
         },
-        error: function(error) {
+        error: (error) => {
             console.log("erorr:");
             console.log(error['responseText']);
         }
@@ -236,17 +256,17 @@ function buscar(id) {
     }
 }
 
-function cargarUsuarios() {
+async function cargarUsuarios() {
     var obj = {
         aca: document.getElementById('academia').value,
         nom: 0
     }
-    $.ajax({
+    await $.ajax({
         url: "php/getAllMiembros.php",
         type: "GET",
         data: { obj: obj },
         dataType: "json",
-        success: function(r) {
+        success: (r) => {
             var arr = r["res"];
             for (var k = 1; k < 10; k++) {
                 var t = document.getElementById("TBAct" + k + "L");
@@ -267,7 +287,7 @@ function cargarUsuarios() {
                 }
             }
         },
-        error: function(err) {
+        error: (err) => {
             console.log(err);
         }
     });

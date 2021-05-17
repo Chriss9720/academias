@@ -25,16 +25,16 @@
             <tr>
                 <td><input id="SearchName" type="text" class="contenidoBusqueda" onkeyup="buscar()" /></td>
                 <td>
-                    <select name="SearchCarr" class="contenidoBusqueda" id='carrera'>
+                    <select name="SearchCarr" class="contenidoBusqueda" id='carrera' onChange="buscar()">
                                 <option value ="">Seleciona una</option>
                             </select>
                 </td>
                 <td>
-                    <select name="SearchAca" class="contenidoBusqueda" id="academia">
+                    <select name="SearchAca" class="contenidoBusqueda" id="academia" onchange="buscar()">
                                 <option value ="">Seleciona una</option>
                             </select>
                 </td>
-                <td><input id="sMat" name="SeacrchMat" type="text" class="contenidoBusqueda" value="" />
+                <td><input id="sMat" name="SeacrchMat" type="text" class="contenidoBusqueda" onkeyup="buscar()" />
                 </td>
             </tr>
         </table>

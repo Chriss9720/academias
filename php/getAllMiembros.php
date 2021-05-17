@@ -15,7 +15,9 @@
     $stmt = sqlsrv_query($conn, $call, $params);
 
     if ($stmt === false) {
-        die( print_r( 'Se peto '.sqlsrv_errors(), true));
+        print_r(sqlsrv_errors());
+        print_r($json);
+        die( print_r( 'Se peto de getAllMiembros.php', true) );
     }
 
     $res = [];

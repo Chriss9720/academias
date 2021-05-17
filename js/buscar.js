@@ -16,7 +16,7 @@ async function cargarDatos() {
             var c = document.getElementById('academia');
             for (var i = 0; i < r.length; i++) {
                 var op = document.createElement('option');
-                op.value = r[i]["IDAcademia"];
+                op.value = r[i]["Academia"];
                 op.innerText = r[i]["Academia"];
                 c.appendChild(op);
             }
@@ -35,7 +35,7 @@ async function cargarDatos() {
             var c = document.getElementById('carrera');
             for (var i = 0; i < r.length; i++) {
                 var op = document.createElement('option');
-                op.value = r[i]["IDCarrera"];
+                op.value = r[i]["Carrera"];
                 op.innerText = r[i]["Carrera"];
                 c.appendChild(op);
             }
@@ -194,10 +194,17 @@ function porNomina(valor, obj, aux) {
 }
 
 function porCarrera(valor, obj, aux) {
-    if (valor.length > 0) {
-        for (var i = 0; i < obj.length; i++) {
-            if (obj[i]['carrera'].includes(valor)) {
-                aux.push(obj[i]);
+    valor = valor.split(" ");
+    let vf = valor[2];
+    if (vf) {
+        for (let i = 3; i < valor.length; i++) {
+            vf += ` ${valor[i]}`
+        }
+        if (vf.length > 0) {
+            for (var i = 0; i < obj.length; i++) {
+                if (obj[i]['carrera'].includes(vf)) {
+                    aux.push(obj[i]);
+                }
             }
         }
     }
