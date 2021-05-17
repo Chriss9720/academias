@@ -12,7 +12,7 @@ async function cargarDatos() {
         Type: "GET",
         data: { obj: data[1] },
         dataType: "JSON",
-        success: async(r) => {
+        success: (r) => {
             let cabecera = r.Cabecera;
             datos = cabecera;
             document.getElementById('academia').value = cabecera.Academia;
@@ -27,12 +27,15 @@ async function cargarDatos() {
             let entradas = ["Acciones", "Asignarutas", "Responsable", "Fecha", "Evidencia"];
             for (let i = 1, j = 0; i < 10; i++, j++) {
                 let act = document.getElementsByName(`Act${i}`);
-                act[0].value = Acts[j][entradas[0]];
-                act[1].value = Acts[j][entradas[1]];
-                await revisarResp(Acts[j][entradas[2]], i);
+                if (Acts[j][entradas[0]].length > 0)
+                    act[0].value = Acts[j][entradas[0]];
+                if (Acts[j][entradas[1]].length > 0)
+                    act[1].value = Acts[j][entradas[1]];
+                revisarResp(Acts[j][entradas[2]], i);
                 if (Acts[j][entradas[3]].length > 0)
                     act[2].value = ajustarFecha(Acts[j][entradas[3]]);
-                act[3].value = Acts[j][entradas[4]];
+                if (Acts[j][entradas[4]].length > 0)
+                    act[3].value = Acts[j][entradas[4]];
             }
         },
         error: (err) => {
@@ -210,15 +213,13 @@ function actualizar() {
                 personas9 = "TODOS";
         }
     }
-    let date = new Date();
-    let d = date.getFullYear() + '-' + date.getMonth() + "-" + date.getDay() + '-' + date.getTime();
     var obj = {
         doc: datos.name,
-        presidente: datos.Presidente,
-        jefe: datos.Jefe,
-        coordinador: datos.Coordinador,
+        Presidente: datos.Presidente,
+        Jefe: datos.Jefe,
+        Coordinador: datos.Coordinador,
         autor: data[0],
-        Academia: datos,
+        Academia: datos.Academia,
         IDAcademia: data[2],
         Semestre: document.getElementById("semestre").value,
         f1: fechas[0].value.replace("T", " "),
@@ -310,7 +311,7 @@ function crear(obj) {
     var img = document.createElement("img");
 
     txt.setAttribute("style", "position: absolute; top: 20%")
-    txt.innerHTML = 'Al actualizar se perderán los documentos ligados a esta acta<br>¿Seguro que desea continuar?';
+    txt.innerHTML = 'Al actualizar se perderán los documentos ligados a este Plan de trabajo<br>¿Seguro que desea continuar?';
     yes.innerHTML = "Si";
     not.innerHTML = "No";
 
@@ -343,6 +344,29 @@ function crear(obj) {
     d.showModal();
 }
 
-function aplicarCambios(obj) {
+async function aplicarCambios(obj) {
     document.getElementById("d1").remove();
+    crearLoad('rcornersProcCritico');
+    let obj2 = { id: data[1], path: obj.doc };
+    await $.ajax({
+        url: "documentos/removerPlan.php",
+        type: "POST",
+        data: { obj: obj2 },
+        success: async(r) => {},
+        error: (err) => {}
+    });
+    await $.ajax({
+        url: "documentos/updatePlan.php",
+        type: "POST",
+        data: { obj: obj },
+        dataType: 'JSON',
+        success: (r) => {
+            window.open(r['archivo']);
+            regresar();
+        },
+        error: (error) => {
+            console.log(error['responseText']);
+        }
+    });
+    removerLoad();
 }

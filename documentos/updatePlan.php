@@ -313,27 +313,6 @@
         return $res;
     }
 
-    function registrarPlan($sem, $aca, $name, $autor) {
-        $ruta = "planTrabajo/".$name.".pdf";
-        $rutaXML = "planTrabajo/".$name.".xml";
-        $conn = conectar();
-        $call = "{call dbo.addPlan(?,?,?,?,?)}";
-        $params = array (
-            array(&$sem, SQLSRV_PARAM_IN),
-            array(&$aca, SQLSRV_PARAM_IN),
-            array(&$ruta, SQLSRV_PARAM_IN),
-            array(&$rutaXML, SQLSRV_PARAM_IN),
-            array(&$autor, SQLSRV_PARAM_IN)
-        );
-        $stmt = sqlsrv_query($conn, $call, $params);
-        if ($stmt === false) {
-            die( print_r( 'Se peto en registrar el plan '.sqlsrv_errors(), true));
-        }
-        sqlsrv_free_stmt($stmt);
-
-        sqlsrv_close($conn);
-    }
-
     function ajustarFecha($fecha) {
         $hora = explode(" ", $fecha)[1];
         $fecha = explode(" ", $fecha)[0];
@@ -361,9 +340,9 @@
         sqlsrv_close($conn);
     }
 
-    $json = json_decode(json_encode($_GET['obj']), true);
+    $json = json_decode(json_encode($_POST['obj']), true);
     $autor = getAutor($json["autor"], $json["IDAcademia"]);
-    $name = "plantrabajo-".$json["doc"];
+    $name = $json["doc"];
     $path =  "planTrabajo/".$name.".pdf";
     $pdf = new PDF('P', 'cm', array(21.59, 27.94));
     $pdf->AliasNbPages();
@@ -373,7 +352,6 @@
     $archivo = "PDF.html?nombre=planTrabajo/".$name.".pdf";
     $return = array ("archivo" => $archivo);
 
-    registrarPlan($json["Semestre"], $json["IDAcademia"], $name, $json["autor"]);
     for ($i = 1; $i < 10; $i++) {
         $data = $json["Act".$i];
         if ($data["resp"] != null) {
