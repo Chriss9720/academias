@@ -1,14 +1,33 @@
 var acuerdoExtra = 0,
     acuerdoAnt = 0;
-var arr = ["Hector Francisco Castro Morales", "Christian Emmanuel Yañez Gonzalez", "Sergio Antonio Guerra Castro", "Persona 1", "Persona 2", "1", "2", "3"];
+var arr = [];
 var id;
 
-function cargar() {
+async function cargar() {
     crearLoad('rcornersProcCritico');
     window.location.search.substr(1).split("&").forEach(item => {
         id = item.split("=")[1];
     });
-    $.ajax({
+    await $.ajax({
+        url: "php/sp_AcademiasCrearActa.php",
+        type: "POST",
+        data: { obj: id },
+        dataType: "json",
+        success: (r) => {
+            let academia = document.getElementById('Academia');
+            for (let i = 0; i < r.length; i++) {
+                let op = document.createElement('option');
+                op.value = r[i].IDAcademia;
+                op.innerText = r[i].Academia;
+                academia.appendChild(op);
+            }
+        },
+        error: (er) => {
+            console.log(er);
+        }
+    });
+    cargarPresidente();
+    /*$.ajax({
         url: 'documentos/leerActa.php',
         type: 'GET',
         dataType: 'JSON',
@@ -16,9 +35,59 @@ function cargar() {
             acuerdosAnt(r['Acuerdos']);
         },
         error: function(err) {}
+    });*/
+    removerLoad();
+}
+
+async function cargarPresidente() {
+    await $.ajax({
+        url: "php/sp_getPresidenteXAca.php",
+        type: "post",
+        data: { obj: document.getElementById('Academia').value },
+        dataType: "json",
+        success: (r) => {
+            document.getElementById('Presidente').value = r[0].Presidente;
+        },
+        error: (err) => {
+            console.log(err);
+        }
+    });
+    cargarSecretario();
+    leerUsuarios();
+}
+
+async function leerUsuarios() {
+    await $.ajax({
+        url: "php/sp_getAllMiembrosDe.php",
+        type: "POST",
+        data: { obj: document.getElementById('Academia').value },
+        dataType: "Json",
+        success: (r) => {
+            arr = r;
+        },
+        error: (err) => {
+            console.log(err);
+        }
     });
     cargarUsuarios();
-    removerLoad();
+}
+
+async function cargarSecretario() {
+    await $.ajax({
+        url: "php/sp_getSecretarioXAca.php",
+        type: "post",
+        data: { obj: document.getElementById('Academia').value },
+        dataType: "json",
+        success: (r) => {
+            if (r.length > 0)
+                document.getElementById('Secretario').value = r[0].Secretario;
+            else
+                document.getElementById('Secretario').value = "NA";
+        },
+        error: (err) => {
+            console.log(err);
+        }
+    });
 }
 
 function crearPDF() {
@@ -148,27 +217,29 @@ function acuerdosAnt(data) {
         tabla.setAttribute('id', 'tablaResponsablesAnt')
         tabla.setAttribute('class', 'alin')
         var tbody = document.createElement('tbody');
-        var responsables = data[i]['Responsable'][0].split("%");
-        for (var j = 0; j < arr.length; j++) {
-            var trx = document.createElement('tr');
-            var td = document.createElement('td');
-            var label = document.createElement('label');
-            label.innerText = arr[j];
-            var name = "acuerdoAnt" + acuerdoAnt;
-            label.setAttribute("name", name + "L");
-            var inp = document.createElement('input');
-            inp.type = 'checkbox';
-            inp.name = name + "C";
-            inp.disabled = true;
-            for (var k = 0; k < responsables.length - 1 && !inp.checked; k++) {
-                if (arr[j].includes(responsables[k]))
-                    inp.checked = true;
-            }
-            if (inp.checked) {
-                td.appendChild(inp);
-                td.appendChild(label);
-                trx.appendChild(td);
-                tbody.appendChild(trx);
+        if (data[i]["Responsable"].length > 0) {
+            var responsables = data[i]['Responsable'][0].split("%");
+            for (var j = 0; j < arr.length; j++) {
+                var trx = document.createElement('tr');
+                var td = document.createElement('td');
+                var label = document.createElement('label');
+                label.innerText = arr[j];
+                var name = "acuerdoAnt" + acuerdoAnt;
+                label.setAttribute("name", name + "L");
+                var inp = document.createElement('input');
+                inp.type = 'checkbox';
+                inp.name = name + "C";
+                inp.disabled = true;
+                for (var k = 0; k < responsables.length - 1 && !inp.checked; k++) {
+                    if (arr[j].includes(responsables[k]))
+                        inp.checked = true;
+                }
+                if (inp.checked) {
+                    td.appendChild(inp);
+                    td.appendChild(label);
+                    trx.appendChild(td);
+                    tbody.appendChild(trx);
+                }
             }
         }
         tabla.appendChild(tbody);
@@ -212,12 +283,12 @@ function cargarUsuarios() {
     var bod = document.createElement('tbody');
     var boda = document.createElement('tbody');
     var profesor = document.getElementById('bodyProfesor');
-    for (var i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
         if (t != null) {
             var tr = document.createElement('tr');
             var td = document.createElement('td');
             var label = document.createElement('label');
-            label.innerText = arr[i];
+            label.innerText = arr[i].Nombre;
             label.setAttribute("name", "antRespL");
             var inp = document.createElement('input');
             inp.type = 'checkbox';
@@ -231,7 +302,7 @@ function cargarUsuarios() {
             var tr = document.createElement('tr');
             var td = document.createElement('td');
             var label = document.createElement('label');
-            label.innerText = arr[i];
+            label.innerText = arr[i].Nombre;
             label.setAttribute("name", "nueRespL");
             var inp = document.createElement('input');
             inp.type = 'checkbox';
@@ -245,7 +316,7 @@ function cargarUsuarios() {
         var td = document.createElement('td');
         td.setAttribute('class', 'tdResponsable')
         var label = document.createElement('label');
-        label.innerText = arr[i];
+        label.innerText = arr[i].Nombre;
         label.setAttribute("name", "profesorL");
         var inp = document.createElement('input');
         inp.type = 'checkbox';
@@ -334,7 +405,7 @@ function nuevos(body, name) {
         var tr = document.createElement('tr');
         var td = document.createElement('td');
         var label = document.createElement('label');
-        label.innerText = arr[i];
+        label.innerText = arr[i].Nombre;
         label.setAttribute("name", name + "L");
         var inp = document.createElement('input');
         inp.type = 'checkbox';

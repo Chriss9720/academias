@@ -32,19 +32,17 @@
                             </tr>
                             <tr>
                                 <td><label class="contenidoProc">Academia:</label></td>
-                                <td><select name="SearchCarr" class="contenidoBusqueda" id="Academia">
-                                        <option>ISC</option>
-                                    </select></td>
+                                <td><select name="SearchCarr" class="contenidoBusqueda" id="Academia" onclick="cargarPresidente()"></select></td>
                                 <td><label>Presidente:</label></td>
-                                <td><select name="SearchPres" class="contenidoBusqueda" id="Presidente">
-                                        <option>---</option>
-                                    </select></td>
+                                <td>
+                                    <input id="Presidente" class="contenidoBusqueda" disabled>
+                                </td>
                             </tr>
                             <tr>
                                 <td><label>Secretario:</label></td>
-                                <td><select name="SearchSecre" class="contenidoBusqueda" id="Secretario">
-                                        <option>---</option>
-                                    </select></td>
+                                <td>
+                                    <input id="Secretario" class="contenidoBusqueda" disabled>
+                                </td>
                             </tr>
                         </table>
                     </td>
