@@ -104,6 +104,13 @@ function regresar() {
     window.location = "OpcionesPlanTrabajo.html?id=" + data[0];
 }
 
-function actualizar() {
+function Todos(num) {
+    var c = document.getElementsByName("Act" + num + "C");
+    for (var i = 0; i < c.length; i++) {
+        c[i].checked = document.getElementById('AAct' + num).checked
+    }
+}
+
+async function actualizar() {
 
 }
