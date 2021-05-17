@@ -66,6 +66,7 @@
 
             $nodo = $xml->createElement('Cabecera');
             $raiz->appendChild($nodo);
+            nodos('name', $name, $nodo, $xml);
             nodos('Academia', utf8_decode($data['Academia']), $nodo, $xml);
             nodos('Semestre', utf8_decode($data['Semestre']), $nodo, $xml);
             nodos('Presidente', $autor[0]["Autor"], $nodo, $xml);

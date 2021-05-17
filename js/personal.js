@@ -314,7 +314,6 @@ function construir(obj) {
 }
 
 function crear(name, tipo, baja = undefined, idAcademia = undefined, puesto, academia) {
-    console.log(academia);
     var d = document.createElement("DIALOG");
     d.setAttribute("ID", "d1");
     var txt = document.createElement("label");

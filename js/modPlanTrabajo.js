@@ -1,3 +1,4 @@
+var datos;
 var data;
 
 async function cargarDatos() {
@@ -13,6 +14,7 @@ async function cargarDatos() {
         dataType: "JSON",
         success: async(r) => {
             let cabecera = r.Cabecera;
+            datos = cabecera;
             document.getElementById('academia').value = cabecera.Academia;
             document.getElementById('semestre').value = cabecera.Semestre;
             let fechas = document.getElementsByName('Reunion');
@@ -112,7 +114,7 @@ function Todos(num) {
     }
 }
 
-async function actualizar() {
+function actualizar() {
     var resp1 = [],
         resp2 = [],
         resp3 = [],
@@ -123,10 +125,10 @@ async function actualizar() {
         resp8 = [],
         resp9 = [];
     var fechas = document.getElementsByName("Reunion");
-    var act1 = document.getElementsByName("act1");
+    var act1 = document.getElementsByName("Act1");
     var act1C = document.getElementsByName("Act1C");
     var act1L = document.getElementsByName("Act1L");
-    var act2 = document.getElementsByName('act2')
+    var act2 = document.getElementsByName('Act2')
     var act2C = document.getElementsByName('Act2C');
     var act3 = document.getElementsByName('Act3')
     var act3C = document.getElementsByName('Act3C');
@@ -152,7 +154,6 @@ async function actualizar() {
         personas8 = "",
         personas9 = "";
     let max = act1C.length;
-    console.log(max);
     for (var i = 0; i < act1C.length; i++) {
         if (act1C[i].checked) {
             personas1 += act1L[i].innerText + "?";
@@ -209,20 +210,16 @@ async function actualizar() {
                 personas9 = "TODOS";
         }
     }
-    var IDAcademia = document.getElementById("academia").value;
-    var Academia = document.getElementById("academia").options;
-    var nombreAcademia = "";
-    for (let i = 0; i < Academia.length; i++) {
-        if (Academia[i].value == IDAcademia)
-            nombreAcademia = Academia[i].innerText;
-    }
     let date = new Date();
     let d = date.getFullYear() + '-' + date.getMonth() + "-" + date.getDay() + '-' + date.getTime();
     var obj = {
-        doc: d,
-        autor: id,
-        Academia: nombreAcademia,
-        IDAcademia: IDAcademia,
+        doc: datos.name,
+        presidente: datos.Presidente,
+        jefe: datos.Jefe,
+        coordinador: datos.Coordinador,
+        autor: data[0],
+        Academia: datos,
+        IDAcademia: data[2],
         Semestre: document.getElementById("semestre").value,
         f1: fechas[0].value.replace("T", " "),
         f2: fechas[1].value.replace("T", " "),
@@ -301,18 +298,51 @@ async function actualizar() {
             resp: resp9
         }
     };
-    await $.ajax({
-        url: 'documentos/crearPlanTrabajo.php',
-        type: 'GET',
-        data: { obj: obj },
-        dataType: 'JSON',
-        success: (r) => {
-            window.open(r['archivo']);
-            regresar();
-        },
-        error: (error) => {
-            console.log("erorr:");
-            console.log(error['responseText']);
-        }
-    });
+    crear(obj);
+}
+
+function crear(obj) {
+    var d = document.createElement("DIALOG");
+    d.setAttribute("ID", "d1");
+    var txt = document.createElement("label");
+    var yes = document.createElement("button");
+    var not = document.createElement("button");
+    var img = document.createElement("img");
+
+    txt.setAttribute("style", "position: absolute; top: 20%")
+    txt.innerHTML = 'Al actualizar se perderán los documentos ligados a esta acta<br>¿Seguro que desea continuar?';
+    yes.innerHTML = "Si";
+    not.innerHTML = "No";
+
+    img.src = "img/advertencia.png";
+    img.setAttribute("width", "50px")
+    img.setAttribute("height", "50px")
+    d.appendChild(img);
+
+    yes.setAttribute("id", "si");
+    yes.setAttribute("style", "top: 50%;position: absolute;left: 80%; background-color: #08c211;");
+    yes.setAttribute("class", "button");
+    yes.addEventListener("click", () => {
+        aplicarCambios(obj);
+    }, false);
+
+    not.setAttribute("id", "no");
+    not.setAttribute("style", "top: 50%;position: absolute;left: 5%; background-color: #cc1010;");
+    not.setAttribute("class", "button");
+    not.addEventListener("click", () => {
+        document.getElementById("d1").remove();
+    }, false);
+
+    d.appendChild(txt);
+    d.appendChild(yes);
+    d.appendChild(not);
+
+    d.style.height = "150px";
+    d.style.width = "350px";
+    document.body.append(d);
+    d.showModal();
+}
+
+function aplicarCambios(obj) {
+    document.getElementById("d1").remove();
 }

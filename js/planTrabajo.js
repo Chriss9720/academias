@@ -76,7 +76,6 @@ async function crearPDF() {
         personas8 = "",
         personas9 = "";
     let max = act1C.length;
-    console.log(max);
     for (var i = 0; i < act1C.length; i++) {
         if (act1C[i].checked) {
             personas1 += act1L[i].innerText + "?";
