@@ -265,7 +265,7 @@ function construir(obj) {
     AplicarPermisos.type = 'button';
     AplicarPermisos.value = 'Aplicar Permisos';
     AplicarPermisos.addEventListener('click', () => {
-        crear(obj['nom'], 0, undefined, undefined, value[3]);
+        crear(obj['nom'], 0, undefined, undefined, value[3], obj["academia"]["id"]);
     }, false)
     tdBtnPermisos.appendChild(AplicarPermisos);
     trBtnPermisos.appendChild(tdBtnPermisos);
@@ -313,7 +313,8 @@ function construir(obj) {
     t.appendChild(tbody);
 }
 
-function crear(name, tipo, baja = undefined, idAcademia = undefined, puesto) {
+function crear(name, tipo, baja = undefined, idAcademia = undefined, puesto, academia) {
+    console.log(academia);
     var d = document.createElement("DIALOG");
     d.setAttribute("ID", "d1");
     var txt = document.createElement("label");
@@ -342,7 +343,7 @@ function crear(name, tipo, baja = undefined, idAcademia = undefined, puesto) {
     yes.setAttribute("style", "top: 50%;position: absolute;left: 80%; background-color: #08c211;");
     yes.setAttribute("class", "button");
     yes.addEventListener("click", () => {
-        confirmar(d, txt, yes, not, img, name, tipo, baja, idAcademia, puesto);
+        confirmar(d, txt, yes, not, img, name, tipo, baja, idAcademia, puesto, academia);
     }, false);
 
     not.setAttribute("id", "no");
@@ -362,7 +363,7 @@ function crear(name, tipo, baja = undefined, idAcademia = undefined, puesto) {
     d.showModal();
 }
 
-async function confirmar(d, txt, yes, not, img, name, tipo, baja = undefined, idAcademia = undefined, puesto) {
+async function confirmar(d, txt, yes, not, img, name, tipo, baja = undefined, idAcademia = undefined, puesto, academia) {
     d.removeChild(yes);
     txt.innerHTML = "Ingrese su contrase&#241;a para continuar";
     var psw = document.createElement("input");
@@ -412,7 +413,7 @@ async function confirmar(d, txt, yes, not, img, name, tipo, baja = undefined, id
                                 puesto: puesto,
                                 nomina: name,
                                 permisos: permisos,
-                                academia: document.getElementById('academia' + name).value
+                                academia: academia
                             };
                             await $.ajax({
                                 url: "php/actualizarPermisos.php",
