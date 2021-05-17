@@ -8,13 +8,12 @@
     <link rel="stylesheet" href="css/compartidos.css" />
     <link rel="stylesheet" href="css/OpActas.css" />
     <link rel="stylesheet" href="css/load.css" />
-    <script type="text/javascript" src="js/menu.js"></script>
     <script type="text/javascript" src="js/load.js"></script>
-    <script type="text/javascript" src="js/buscar.js"></script>
+    <script type="text/javascript" src="js/OpcionesActas.js"></script>
     <title>Administraci&oacute;n de Academias</title>
 </head>
 
-<body>
+<body onload="cargarDatos()">
     <div class="fijadoEliminar">
         <table cellspacing="14" cellpadding="2" class="BusquedaEliminar">
             <tr>
@@ -41,9 +40,9 @@
                 <td><input id="SearchSemestre" type="text" class="contenidoBusqueda" /></td>
             </tr>
         </table>
-        <input class="button buttonLimpiar" type="button" value="Limpiar" />
-        <input class="button buttonCrear" type="button" value="Crear" />
-        <input class="button button1Eliminar" type="button" value="Regresar" onclick="cambiar('menu')" />
+        <input class="button buttonLimpiar" type="button" value="Limpiar" onclick="limpiar()" />
+        <input class="button buttonCrear" type="button" value="Crear" onclick="crear()" />
+        <input class="button button1Eliminar" type="button" value="Regresar" onclick="regresar()" />
     </div>
 
     <div class="rcornersEliminar">

@@ -1,9 +1,13 @@
 var acuerdoExtra = 0,
     acuerdoAnt = 0;
 var arr = ["Hector Francisco Castro Morales", "Christian Emmanuel Yañez Gonzalez", "Sergio Antonio Guerra Castro", "Persona 1", "Persona 2", "1", "2", "3"];
+var id;
 
 function cargar() {
     crearLoad('rcornersProcCritico');
+    window.location.search.substr(1).split("&").forEach(item => {
+        id = item.split("=")[1];
+    });
     $.ajax({
         url: 'documentos/leerActa.php',
         type: 'GET',
@@ -265,52 +269,62 @@ function cargarUsuarios() {
 }
 
 function addAcuerdo() {
-    var bod = document.getElementById('bodyAcuerdos');
-    var tr = document.createElement('tr');
+    let bod = document.getElementById('bodyAcuerdos');
+    let tr = document.createElement('tr');
+    tr.id = `EXT${acuerdoExtra}`;
     tr.setAttribute('name', "acuerdoExtra");
-    var td = document.createElement('td');
+    let td = document.createElement('td');
     td.setAttribute("class", 'tdS');
-    var text = document.createElement('textarea');
+    let text = document.createElement('textarea');
     text.setAttribute('class', 'txtArea txtArea2');
     text.setAttribute('name', 'textReunion');
     td.appendChild(text);
     tr.appendChild(td);
-    var td2 = document.createElement('td');
+    let td2 = document.createElement('td');
     td2.setAttribute('class', 'tdResponsable');
-    var lab = document.createElement('label');
+    let lab = document.createElement('label');
     lab.innerText = "Buscar:";
     td2.appendChild(lab);
-    var inp = document.createElement('input');
+    let inp = document.createElement('input');
     inp.type = "text";
     inp.setAttribute('onkeyup', "buscar('nueResp" + acuerdoExtra + "', this.value)");
     td2.appendChild(inp);
-    var c = document.createElement('input');
+    let c = document.createElement('input');
     c.type = 'checkbox';
     c.setAttribute('onChange', "todos('nueResp" + acuerdoExtra + "')");
     td2.appendChild(c);
-    var lab = document.createElement('label');
+    lab = document.createElement('label');
     lab.innerText = "Todos";
     td2.appendChild(lab);
-    var sc = document.createElement('scroll-container');
-    var sp = document.createElement('scroll-page');
-    var tabla = document.createElement('table');
+    let sc = document.createElement('scroll-container');
+    let sp = document.createElement('scroll-page');
+    let tabla = document.createElement('table');
     tabla.setAttribute('id', 'tablaNuevos' + acuerdoExtra);
     tabla.setAttribute('class', 'alin');
-    var tbo = document.createElement('tbody');
+    let tbo = document.createElement('tbody');
     nuevos(tbo, 'nueResp' + acuerdoExtra);
     tabla.appendChild(tbo);
     sp.appendChild(tabla);
     sc.appendChild(sp);
     td2.appendChild(sc);
     tr.appendChild(td2);
-    var td3 = document.createElement('td');
+    let td3 = document.createElement('td');
     td3.setAttribute("class", "tdS");
-    var inp = document.createElement('input');
+    inp = document.createElement('input');
     inp.setAttribute('name', 'fechaCump');
     inp.setAttribute('type', 'datetime-local');
     inp.setAttribute('class', 'contenidoReunion');
     td3.appendChild(inp);
     tr.appendChild(td3);
+    let td4 = document.createElement('td');
+    td4.setAttribute("class", "tdS");
+    inp = document.createElement('input');
+    inp.setAttribute('class', 'button2 buttonAgregar remover');
+    inp.type = "button";
+    inp.value = "Remover";
+    inp.addEventListener('click', () => { remov(tr); }, false);
+    td4.appendChild(inp);
+    tr.appendChild(td4);
     bod.appendChild(tr);
     ++acuerdoExtra;
 }
@@ -332,8 +346,10 @@ function nuevos(body, name) {
     }
 }
 
-function remov() {
-    var ext = document.getElementsByName('acuerdoExtra');
-    if (ext.length > 0)
-        ext[ext.length - 1].remove();
+function remov(e) {
+    e.remove();
+}
+
+function regresar() {
+    window.location = "OpcionesActas.html?id=" + id;
 }

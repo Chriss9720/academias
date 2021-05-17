@@ -5,12 +5,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/load.js"></script>
-    <script type="text/javascript" src="js/generarActa.js"></script>
-    <script type="text/javascript" src="js/menu.js"></script>
     <link rel="stylesheet" href="css/compartidos.css" />
     <link rel="stylesheet" href="css/load.css" />
     <link rel="stylesheet" href="css/agrActa.css" />
+    <script type="text/javascript" src="js/load.js"></script>
+    <script type="text/javascript" src="js/generarActa.js"></script>
     <title>Agregar Acta</title>
 </head>
 
@@ -20,7 +19,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <input class="button buttonRegresar1" type="button" value="Regresar" onclick="cambiar('menu')" />
+                        <input class="button buttonRegresar1" type="button" value="Regresar" onclick="regresar()" />
                         <label class="labelAct">Acta No.</label>
                         <input class="button crear" type="button" value="Crear Acta" onclick="crearPDF()" />
                         <input name="act" type="text" class="inputAct" id="No">
@@ -92,12 +91,12 @@
                                 <tr>
                                     <label class="labelAcuerdos ">ACUERDOS DE REUNIÓN</label>
                                     <input class="button2 buttonAgregar" type="button" value="Agregar Acuerdo" onclick="addAcuerdo()" />
-                                    <input class="button2 buttonAgregar remover" type="button" value="Remover Acuerdo" onclick="remov()" />
                                 </tr>
                                 <tr class="trCabecera">
                                     <td class="tdAcuerdos"><label>ACUERDO</label></td>
                                     <td class="tdResp"><label>RESPONSABLE</label></td>
                                     <td class="tdFechas"><label>FECHA DE CUMPLIMIENTO</label></td>
+                                    <td class="tdFechas"><label>Eliminar</label></td>
                                 </tr>
                             </tbody>
                         </table>
