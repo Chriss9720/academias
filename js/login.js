@@ -35,7 +35,7 @@ function logeo(mat, psw, cont, err) {
                 }
             },
             error: function(error) {
-                console.log(error);
+                console.log(error["responseText"]);
             }
         });
     }

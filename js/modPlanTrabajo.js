@@ -48,10 +48,9 @@ function revisarResp(resp, act) {
     let check = document.getElementsByName(`Act${act}C`);
     let label = document.getElementsByName(`Act${act}L`);
     if (resp == "TODOS") {
-        document.getElementById('AAct1').checked = true;
+        document.getElementById(`AAct${act}`).checked = true;
         for (let i = 0; i < check.length; i++) {
             check[i].checked = true;
-            console.log();
         }
     } else if (resp.length > 0) {
         resp = resp.split("?");

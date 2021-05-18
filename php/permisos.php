@@ -11,7 +11,8 @@
     );
     $stmt = sqlsrv_query($conn, $call, $params);
     if ($stmt === false) {
-        die( print_r( 'Se peto '.sqlsrv_errors(), true));
+        print_r(sqlsrv_errors());
+        die( print_r( 'Se peto ', true));
     }
 
     $res = [];
