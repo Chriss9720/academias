@@ -6,13 +6,13 @@
 
     if($json["TI"] == "Acuerdo") {
         $call = "{call dbo.sp_subirAcuerdo(?,?)}";
-        $params = array (
-            array(&$json["path"], SQLSRV_PARAM_IN),
-            array(&$json["ID"], SQLSRV_PARAM_IN)  
-        );
     } else {
-        print_r(2);
+        $call = "{call dbo.sp_subirResponsable(?,?)}";
     }
+    $params = array (
+        array(&$json["path"], SQLSRV_PARAM_IN),
+        array(&$json["ID"], SQLSRV_PARAM_IN)  
+    );
     
     $stmt = sqlsrv_query($conn, $call, $params);
 

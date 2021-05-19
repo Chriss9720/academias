@@ -17,7 +17,8 @@ async function cargarDatos() {
             document.getElementById('nombre').innerText = r[0]["Nombre"];
         },
         error: (r) => {
-            console.log(r);
+            console.log("in sp_getMisDatos");
+            console.log(r["responseText"]);
         }
     });
     //MISACADEMIAS
@@ -43,7 +44,8 @@ async function cargarDatos() {
             }
         },
         error: (er) => {
-            console.log(er);
+            console.log("in getMisAcademias");
+            console.log(er["responseText"]);
         }
     });
     //MIS RECIENTES
@@ -84,7 +86,8 @@ async function cargarDatos() {
             }
         },
         error: (r) => {
-            console.log(r);
+            console.log("in sp_misRecientes");
+            console.log(r["responseText"]);
         }
     });
     //MIS PENDIENTES

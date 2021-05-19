@@ -103,7 +103,7 @@ async function subir(obj, p) {
     if (files != null) {
         let date = new Date();
         let d = "Evidendia - " + date.getFullYear() + '-' + date.getMonth() + "-" + date.getDay() + '-' + date.getTime() + ".pdf";
-        obj.path = `documentos/Extras/${d}`;
+        obj.path = `Extras/${d}`;
         let file = new File([], d);
         let formData = new FormData();
         formData.append('file', files);
@@ -122,8 +122,7 @@ async function subir(obj, p) {
                             type: "post",
                             data: { obj: obj },
                             success: (r) => {
-                                console.log(r);
-                                //window.location.reload();
+                                window.location.reload();
                             },
                             error: (er) => {
                                 console.log(er);

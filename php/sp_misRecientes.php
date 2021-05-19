@@ -12,7 +12,7 @@
     $stmt = sqlsrv_query($conn, $call, $params);
 
     if ($stmt === false) {
-        die( print_r( 'Se peto '.sqlsrv_errors(), true));
+        die( print_r( sqlsrv_errors(), true));
     }
 
     $res = [];
