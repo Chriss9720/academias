@@ -12,9 +12,9 @@ TERMINADAS:
     *- ACTAS:
         *- CREAR    
         *- INSERTARLOS
+    *- DOCUMENTOS PENDIENTES    80
     
 PENDIENTES:                     Prioridad sobre 100
-    *- DOCUMENTOS PENDIENTES    80
     *- VER EVALUACION           60
     *- VER PLAN DE TRABAJO      90
     *- VER ACTAS                85
@@ -26,5 +26,3 @@ PENDIENTES:                     Prioridad sobre 100
         *- CREAR    
         *- MODIFICAR
         *- INSERTARLOS
-    *- ACTAS:                   100
-        *- MODIFICAR
