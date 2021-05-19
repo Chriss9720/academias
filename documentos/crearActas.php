@@ -1,7 +1,7 @@
 <?php
     require('fpdf.php');
-    class PDF extends FPDF
-    {
+
+    class PDF extends FPDF {
         // Page header
         function Header()
         {
@@ -23,7 +23,7 @@
             $this->Ln(2);
         }
 
-        function Cuerpo($data) {
+        function Cuerpo($data, $name) {
 
             $xml = new DomDocument('1.0', 'UTF-8');
             $raiz = $xml->createElement('Acta');
@@ -44,7 +44,7 @@
             nodos('orden', $data['orden'], $nodo, $xml);
             nodos('jefe', $data['jefe'], $nodo, $xml);
             nodos('obs', $data['Obs'], $nodo, $xml);
-//$data['']
+
             $this->SetFont('Arial','B',11);
             $this->Cell(0, 1, 'Acta No.'.$data["no"], 0, 0, 'R');
             $this->Ln(1.5);
@@ -316,7 +316,7 @@
 
             $xml->formatOutput = true;
             $xml->saveXML();
-            $xml->save('actas/acta.xml');
+            $xml->save('actas/'.$name.'.xml');
         }
     }
 
@@ -373,11 +373,13 @@
 
     $json = json_decode(json_encode($_GET['obj']), true);
 
+    $name = "acta-".$json['doc'];
     $pdf = new PDF('P', 'cm', array(21.59, 27.94));
+
     $pdf->AliasNbPages();
     $pdf->AddPage();
-    $pdf->Cuerpo($json);
-    $pdf->Output("F", "actas/acta.pdf", true);
-    $return = array ("archivo" => "PDF.html?nombre=actas/acta.pdf");
+    $pdf->Cuerpo($json, $name);
+    $pdf->Output("F", "actas/".$name.".pdf", true);
+    $return = array ("archivo" => "PDF.html?nombre=actas/".$name.".pdf");
     echo json_encode($return);
 ?>

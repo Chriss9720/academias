@@ -100,7 +100,7 @@ async function cargarSecretario() {
     });
 }
 
-function crearPDF() {
+async function crearPDF() {
     var horaInicio = document.getElementById('inicio').value.replace("T", " ").split(" ");
     var fecha = horaInicio[0].split("-");
     var anteriores = document.getElementsByName('ant');
@@ -157,7 +157,10 @@ function crearPDF() {
             profesores.push(obj);
         }
     }
+    let date = new Date();
+    let d = date.getFullYear() + '-' + date.getMonth() + "-" + date.getDay() + '-' + date.getTime();
     var obj = {
+        doc: d,
         no: document.getElementById('No').value,
         dia: fecha[2],
         mes: fecha[1],
@@ -175,15 +178,28 @@ function crearPDF() {
         docentes: profesores,
         jefe: "de la base de datos"
     };
-    $.ajax({
+    await $.ajax({
+        url: "php/sp_getJefeDeDiv.php",
+        type: "POST",
+        data: { obj: id },
+        dataType: "json",
+        success: (r) => {
+            obj.jefe = r[0].jefe;
+        },
+        error: (err) => {
+            console.log(err);
+        }
+    });
+    await $.ajax({
         url: 'documentos/crearActas.php',
         type: 'GET',
         data: { obj: obj },
-        dataType: 'JSON',
-        success: function(r) {
-            window.open(r['archivo']);
+        //dataType: 'JSON',
+        success: (r) => {
+            console.log(r);
+            //window.open(r['archivo']);
         },
-        error: function(error) {
+        error: (error) => {
             console.log("erorr:");
             console.log(error['responseText']);
         }
