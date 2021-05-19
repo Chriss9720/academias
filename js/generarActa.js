@@ -148,13 +148,13 @@ async function crearPDF() {
     var personasAnt = [];
     for (let i = 0; i < anteriores.length; i++) {
         var inputs = document.getElementsByName('acuerdoAnt' + i + 'C');
-        console.log(inputs.length);
+        personasAnt[i] = "";
         for (let j = 0; j < inputs.length; j++) {
             if (inputs[j].checked) {
                 personasAnt[i] += document.getElementsByName('acuerdoAnt' + i + 'L')[j].innerText + "%";
-            }
-            if ((personasAnt[i].split("%").length - 1) == arr.length) {
-                personasAnt[i] = "Todos los integrantes de la academia";
+                if ((personasAnt[i].split("%").length - 1) == arr.length) {
+                    personasAnt[i] = "Todos los integrantes de la academia";
+                }
             }
         }
     }
@@ -320,6 +320,7 @@ function acuerdosAnt(data, av) {
                 inp.type = 'checkbox';
                 inp.name = name + "C";
                 inp.disabled = true;
+                console.log(responsables[0]);
                 if (responsables[0].includes("Todos los integrantes de la academia")) {
                     inp.checked = true;
                 } else {

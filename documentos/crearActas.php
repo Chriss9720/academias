@@ -99,7 +99,7 @@
                     $comp[0][0] = $aux["Acuerdo"];
                     $comp[0][1] = 35;
                     $comp[1][0] = $aux["personasAnt"];
-                    $comp[1][1] = 30;
+                    $comp[1][1] = 20;
                     $comp[2][0] = $aux["Fecha"];
                     $comp[2][1] = 10;
                     $comp[3][0] = $aux["Avance"];
@@ -160,7 +160,7 @@
                     $comp[0][0] = $aux['Acuerdo'];
                     $comp[0][1] = 35;
                     $comp[1][0] = str_replace("%", ", ", $aux['Responsables']);
-                    $comp[1][1] = 30;
+                    $comp[1][1] = 20;
                     $comp[2][0] = $aux['Fecha'];
                     $comp[2][1] = 10;
                     $h = getH($comp);

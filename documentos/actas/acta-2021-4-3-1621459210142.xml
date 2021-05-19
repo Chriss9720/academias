@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Acta>
   <Cabecera>
-    <No>1</No>
+    <No>2</No>
     <HoraInicio/>
     <dia/>
     <mes/>
@@ -17,7 +17,13 @@
   </Cabecera>
   <Acuerdos>
     <Acuerdo/>
-    <Responsable>Todos los integrantes de la academia</Responsable>
+    <Responsable>Yañez Gonzalez Brenda%</Responsable>
+    <Fecha/>
+    <Avance>0%</Avance>
+  </Acuerdos>
+  <Acuerdos>
+    <Acuerdo/>
+    <Responsable>Guerra Castro Sergio Antonio%</Responsable>
     <Fecha/>
     <Avance>0%</Avance>
   </Acuerdos>

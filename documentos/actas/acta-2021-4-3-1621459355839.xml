@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Acta>
   <Cabecera>
-    <No>2</No>
+    <No>7</No>
     <HoraInicio/>
     <dia/>
     <mes/>
@@ -11,19 +11,31 @@
     <presidente>Yañez Gonzalez Brenda</presidente>
     <Secretario>Castro Morales Hector Francisco</Secretario>
     <horaFinal/>
-    <orden/>
+    <orden>Prueba F</orden>
     <jefe>No especificado</jefe>
     <obs/>
   </Cabecera>
   <Acuerdos>
     <Acuerdo/>
-    <Responsable>Todos los integrantes de la academia</Responsable>
+    <Responsable>Yañez Gonzalez Brenda%</Responsable>
     <Fecha/>
     <Avance>0%</Avance>
   </Acuerdos>
   <Acuerdos>
     <Acuerdo/>
-    <Responsable>Yañez Gonzalez Brenda%</Responsable>
+    <Responsable>Guerra Castro Sergio Antonio%</Responsable>
+    <Fecha/>
+    <Avance>0%</Avance>
+  </Acuerdos>
+  <Acuerdos>
+    <Acuerdo/>
+    <Responsable>Castro Morales Hector Francisco%</Responsable>
+    <Fecha/>
+    <Avance>0%</Avance>
+  </Acuerdos>
+  <Acuerdos>
+    <Acuerdo/>
+    <Responsable>Todos los integrantes de la academia</Responsable>
     <Fecha/>
     <Avance>0%</Avance>
   </Acuerdos>

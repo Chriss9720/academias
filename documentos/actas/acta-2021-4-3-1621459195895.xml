@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Acta>
+  <Cabecera>
+    <No>1</No>
+    <HoraInicio/>
+    <dia/>
+    <mes/>
+    <year/>
+    <lugar/>
+    <academia>Ambiental</academia>
+    <presidente>Yañez Gonzalez Brenda</presidente>
+    <Secretario>Castro Morales Hector Francisco</Secretario>
+    <horaFinal/>
+    <orden/>
+    <jefe>No especificado</jefe>
+    <obs/>
+  </Cabecera>
+  <Acuerdos>
+    <Acuerdo/>
+    <Responsable>Yañez Gonzalez Brenda%</Responsable>
+    <Fecha/>
+    <Avance>0%</Avance>
+  </Acuerdos>
+</Acta>
