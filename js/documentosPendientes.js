@@ -104,6 +104,7 @@ async function subir(obj, p) {
         let date = new Date();
         let d = "Evidendia - " + date.getFullYear() + '-' + date.getMonth() + "-" + date.getDay() + '-' + date.getTime() + ".pdf";
         obj.path = `Extras/${d}`;
+        obj.g = obj.T.split(" ")[2];
         let file = new File([], d);
         let formData = new FormData();
         formData.append('file', files);

@@ -4,16 +4,21 @@
 
     $conn = conectar();
 
+    print_r($json);
     if($json["TI"] == "Acuerdo") {
-        $call = "{call dbo.sp_subirAcuerdo(?,?)}";
+        $call = "{call dbo.sp_subirAcuerdo(?,?,?)}";
+        $params = array (
+            array(&$json["path"], SQLSRV_PARAM_IN),
+            array(&$json["ID"], SQLSRV_PARAM_IN),
+            array(&$json["g"], SQLSRV_PARAM_IN)  
+        );
     } else {
         $call = "{call dbo.sp_subirResponsable(?,?)}";
+        $params = array (
+            array(&$json["path"], SQLSRV_PARAM_IN),
+            array(&$json["ID"], SQLSRV_PARAM_IN)  
+        );
     }
-    $params = array (
-        array(&$json["path"], SQLSRV_PARAM_IN),
-        array(&$json["ID"], SQLSRV_PARAM_IN)  
-    );
-    
     $stmt = sqlsrv_query($conn, $call, $params);
 
     if ($stmt === false) {

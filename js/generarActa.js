@@ -320,7 +320,6 @@ function acuerdosAnt(data, av) {
                 inp.type = 'checkbox';
                 inp.name = name + "C";
                 inp.disabled = true;
-                console.log(responsables[0]);
                 if (responsables[0].includes("Todos los integrantes de la academia")) {
                     inp.checked = true;
                 } else {
