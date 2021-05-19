@@ -2,25 +2,35 @@ var acuerdoExtra = 0,
     acuerdoAnt = 0;
 var arr = [];
 var id;
+var nG;
+var eG;
+var aca;
 
 async function cargar() {
     crearLoad('rcornersProcCritico');
-    window.location.search.substr(1).split("&").forEach(item => {
-        id = item.split("=")[1];
+    await window.location.search.substr(1).split("&").forEach(item => {
+        item = item.split("=");
+        switch (item[0]) {
+            case "id":
+                id = item[1];
+                break;
+            case "nG":
+                nG = item[1];
+                break;
+            case "eG":
+                eG = item[1];
+                break;
+            case "aca":
+                aca = item[1];
+        }
     });
     await $.ajax({
         url: "php/sp_AcademiasCrearActa.php",
         type: "POST",
-        data: { obj: id },
+        data: { obj: aca },
         dataType: "json",
         success: (r) => {
-            let academia = document.getElementById('Academia');
-            for (let i = 0; i < r.length; i++) {
-                let op = document.createElement('option');
-                op.value = r[i].IDAcademia;
-                op.innerText = r[i].Academia;
-                academia.appendChild(op);
-            }
+            document.getElementById('Academia').value = r[0].A;
         },
         error: (er) => {
             console.log(er);
@@ -43,7 +53,7 @@ async function cargarPresidente() {
     await $.ajax({
         url: "php/sp_getPresidenteXAca.php",
         type: "post",
-        data: { obj: document.getElementById('Academia').value },
+        data: { obj: aca },
         dataType: "json",
         success: (r) => {
             document.getElementById('Presidente').value = r[0].Presidente;
@@ -60,7 +70,7 @@ async function leerUsuarios() {
     await $.ajax({
         url: "php/sp_getAllMiembrosDe.php",
         type: "POST",
-        data: { obj: document.getElementById('Academia').value },
+        data: { obj: aca },
         dataType: "Json",
         success: (r) => {
             arr = r;
@@ -76,7 +86,7 @@ async function cargarSecretario() {
     await $.ajax({
         url: "php/sp_getSecretarioXAca.php",
         type: "post",
-        data: { obj: document.getElementById('Academia').value },
+        data: { obj: aca },
         dataType: "json",
         success: (r) => {
             if (r.length > 0)

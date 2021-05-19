@@ -16,6 +16,17 @@
 <body onload="cargarDatos()">
     <div class="fijadoEliminar">
         <input class="button buttonCrear" type="button" value="Crear nuevo grupo" onclick="crear()" />
+        <table cellspacing="14" cellpadding="2" class="BusquedaEliminar">
+            <tr>
+                <td><label class="contenidoBusqueda">Academia:</label></td>
+            </tr>
+            <tr>
+                <td>
+                    <select id="academia" name="SearchAca" class="contenidoBusqueda">
+                    </select>
+                </td>
+            </tr>
+        </table>
         <input class="button button1Eliminar" type="button" value="Regresar" onclick="regresar()" />
     </div>
 
@@ -26,9 +37,6 @@
                     <tbody id="bodytabla">
                     </tbody>
                 </table>
-
-
-
             </scroll-page>
         </scroll-container>
     </div>

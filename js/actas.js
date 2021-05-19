@@ -5,6 +5,24 @@ async function cargarDatos() {
         id = item.split("=")[1];
     });
     await $.ajax({
+        url: "php/sp_getAcademiasParaActas.php",
+        type: "POST",
+        data: { obj: id },
+        dataType: "json",
+        success: (r) => {
+            let academia = document.getElementById('academia');
+            for (let i = 0; i < r.length; i++) {
+                let op = document.createElement('option');
+                op.value = r[i].IDAcademia;
+                op.innerText = r[i].Academia;
+                academia.appendChild(op);
+            }
+        },
+        error: (er) => {
+            console.log(er);
+        }
+    });
+    await $.ajax({
         url: "php/sp_getGruposDeActas.php",
         type: "POST",
         dataType: "json",
@@ -56,6 +74,9 @@ function construir(obj) {
             inp.setAttribute('class', 'button buttonContinuar');
             inp.type = "button";
             inp.value = "Continuar";
+            inp.addEventListener('click', () => {
+                window.location = `OpcionesActas.html?id=${id}&eG=${obj.grupo}&aca=${document.getElementById('academia').value}`;
+            }, false)
             td1.appendChild(inp);
             tr1.appendChild(td1);
             td1 = document.createElement('td');
@@ -92,5 +113,5 @@ async function crear() {
             console.log(err["responseText"]);
         }
     });
-    window.location = `OpcionesActas.html?id=${id}&nG=${nG}`;
+    window.location = `OpcionesActas.html?id=${id}&nG=${nG}&aca=${document.getElementById('academia').value}`;
 }

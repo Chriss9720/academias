@@ -1,8 +1,22 @@
 var id;
+var ext;
 
 function cargarDatos() {
     window.location.search.substr(1).split("&").forEach(item => {
-        id = item.split("=")[1];
+        item = item.split("=");
+        switch (item[0]) {
+            case "id":
+                id = item[1];
+                break;
+            case "nG":
+                ext = `nG=${item[1]}`;
+                break;
+            case "eG":
+                ext = `eG=${item[1]}`;
+                break;
+            case "aca":
+                ext += `&aca=${item[1]}`;
+        }
     });
 }
 
@@ -11,9 +25,9 @@ function regresar() {
 }
 
 function limpiar() {
-    window.location = "OpcionesActas.html?id=" + id;
+    window.location = `OpcionesActas.html?id=${id}&${ext}`
 }
 
 function crear() {
-    window.location = "agregarActa.html?id=" + id;
+    window.location = `agregarActa.html?id=${id}&${ext}`
 }
