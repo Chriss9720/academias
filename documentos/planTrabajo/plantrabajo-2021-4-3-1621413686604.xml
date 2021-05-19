@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PlanTrabajo>
   <Cabecera>
-    <name>plantrabajo-2021-4-1-1621253743037</name>
+    <name>plantrabajo-2021-4-3-1621413686604</name>
     <Academia>Academia 1</Academia>
     <Semestre>Ene-Jun 2021</Semestre>
-    <Presidente>User Dos User Dos User Dos</Presidente>
+    <Presidente>Yañez Gonzalez Brenda</Presidente>
     <Primera/>
-    <Segunda>2021-05-04 05:16</Segunda>
-    <Tercera>2021-04-30 05:16</Tercera>
+    <Segunda/>
+    <Tercera/>
     <Cuarta/>
-    <Jefe>User P uno User P uno User P uno</Jefe>
-    <Coordinador>Gonzalez Christian Yañez</Coordinador>
+    <Jefe/>
+    <Coordinador>Gutierrez Espinoza Anabel</Coordinador>
   </Cabecera>
   <Act1>
-    <Acciones>prueba num 1</Acciones>
+    <Acciones/>
     <Asignarutas/>
-    <Responsable/>
+    <Responsable>Todos los integrantes de la academia</Responsable>
     <Fecha/>
     <Evidencia/>
   </Act1>
   <Act2>
-    <Acciones>prueva 1233</Acciones>
-    <Asignarutas>Prueba en campo 2</Asignarutas>
-    <Responsable>TODOS</Responsable>
-    <Fecha>2021-06-03 05:29</Fecha>
-    <Evidencia>Pruevba 3n</Evidencia>
+    <Acciones/>
+    <Asignarutas/>
+    <Responsable/>
+    <Fecha/>
+    <Evidencia/>
   </Act2>
   <Act3>
     <Acciones/>
@@ -35,9 +35,9 @@
   </Act3>
   <Act4>
     <Acciones/>
-    <Asignarutas>Prueba en 4</Asignarutas>
+    <Asignarutas/>
     <Responsable/>
-    <Fecha>2021-05-19 05:22</Fecha>
+    <Fecha/>
     <Evidencia/>
   </Act4>
   <Act5>

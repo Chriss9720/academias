@@ -1,5 +1,7 @@
 <?php
     require('fpdf.php');
+    require("conexcion.php");
+
 
     class PDF extends FPDF {
         // Page header
@@ -316,7 +318,7 @@
 
             $xml->formatOutput = true;
             $xml->saveXML();
-            $xml->save('actas/'.$name.'.xml');
+            $xml->save($name.'.xml');
         }
     }
 
@@ -371,15 +373,72 @@
         $nodo->appendChild($subnodo);
     }
 
+    function registrarActa($json, $name) {
+        $ruta = $name;
+        $conn = conectar();
+        $call = "{call dbo.sp_AddActa(?,?,?,?,?)}";
+        $params = array (
+            array(&$json["no"], SQLSRV_PARAM_IN),
+            array(&$name, SQLSRV_PARAM_IN),
+            array(&$json["g"], SQLSRV_PARAM_IN),
+            array(&$json["autor"], SQLSRV_PARAM_IN),
+            array(&$json["aca"], SQLSRV_PARAM_IN)
+        );
+        $stmt = sqlsrv_query($conn, $call, $params);
+        if ($stmt === false) {
+            die( print_r( 'Se peto en registrar el plan '.sqlsrv_errors(), true));
+        }
+        sqlsrv_free_stmt($stmt);
+
+        sqlsrv_close($conn);
+    }
+
+    function ajustarFecha($fecha) {
+        $hora = explode(" ", $fecha)[1];
+        $fecha = explode(" ", $fecha)[0];
+        $fecha = explode("-", $fecha);
+        $fecha = $fecha[0]."-".$fecha[2]."-".$fecha[1]." ".$hora;
+        return $fecha;
+    }
+
+    function addResponsable($ruta, $fecha, $nom, $no) {
+        if ($fecha != null)
+            $fecha = ajustarFecha($fecha);
+        $conn = conectar();
+        $call = "{call dbo.sp_addResponsablesDeActas(?,?,?,?)}";
+        $params = array (
+            array(&$ruta, SQLSRV_PARAM_IN),
+            array(&$fecha, SQLSRV_PARAM_IN),
+            array(&$nom, SQLSRV_PARAM_IN),
+            array(&$no, SQLSRV_PARAM_IN)
+        );
+        $stmt = sqlsrv_query($conn, $call, $params);
+        if ($stmt === false) {
+            die( print_r( 'Se peto en addResponsale '.sqlsrv_errors(), true));
+        }
+        sqlsrv_free_stmt($stmt);
+
+        sqlsrv_close($conn);
+    }
+
     $json = json_decode(json_encode($_GET['obj']), true);
-
-    $name = "acta-".$json['doc'];
+    $name =  "actas/acta-".$json['doc'];
     $pdf = new PDF('P', 'cm', array(21.59, 27.94));
-
     $pdf->AliasNbPages();
     $pdf->AddPage();
     $pdf->Cuerpo($json, $name);
-    $pdf->Output("F", "actas/".$name.".pdf", true);
-    $return = array ("archivo" => "PDF.html?nombre=actas/".$name.".pdf");
+    $pdf->Output("F",$name.".pdf", true);
+    $return = array ("archivo" => "PDF.html?nombre=".$name.".pdf");
+    registrarActa($json, $name);
+    $nom = $json["nominasExtras"];
+    if ($nom != null) {
+        $fechas = $json["extras"];
+        for ($i = 0; $i < count($nom); $i++) {
+            for ($j = 0; $j < count($nom[$i]); $j++) {
+                addResponsable($name, $fechas[$i]["Fecha"], $nom[$i][$j]["n"], $nom[$i][$j]["a"]);
+            }
+        }
+    }
+
     echo json_encode($return);
 ?>

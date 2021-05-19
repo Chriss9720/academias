@@ -15,6 +15,7 @@ async function cargar() {
                 id = item[1];
                 break;
             case "nG":
+                document.getElementById('No').value = 1;
                 nG = item[1];
                 break;
             case "eG":
@@ -109,15 +110,15 @@ async function crearPDF() {
     var fechasAnt = document.getElementsByName('fechaCumpAnt');
     var avance = document.getElementsByName('Avance');
     var personasAnt = [];
-    for (var i = 0; i < anteriores.length; i++) {
+    for (let i = 0; i < anteriores.length; i++) {
         var inputs = document.getElementsByName('acuerdoAnt' + i + 'C');
         personasAnt[i] = "";
-        for (var j = 0; j < inputs.length; j++) {
+        for (let j = 0; j < inputs.length; j++) {
             if (inputs[j].checked)
                 personasAnt[i] = document.getElementsByName('acuerdoAnt' + i + 'L')[j].innerText + "%";
         }
     }
-    for (var i = 0; i < anteriores.length; i++) {
+    for (let i = 0; i < anteriores.length; i++) {
         var obj = {
             Acuerdo: textosAnt[i].value,
             Avance: avance[i].value,
@@ -130,15 +131,26 @@ async function crearPDF() {
     var text = document.getElementsByName('textReunion');
     var acuerdosExtras = [];
     var personasExtras = [];
-    for (var i = 0; i < extras.length; i++) {
-        var inputs = document.getElementsByName('nueResp' + i + 'C');
+    let nominasExtras = [];
+    let lim = document.getElementsByName('acuerdoExtra');
+    for (let i = 0; i < lim.length; i++) {
+        var inputs = document.getElementsByName('nueResp' + lim[i].id.substr(3) + 'C');
         personasExtras[i] = "";
-        for (var j = 0; j < inputs.length; j++) {
-            if (inputs[j].checked)
-                personasExtras[i] += document.getElementsByName('nueResp' + i + 'L')[j].innerText + "%";
+        let aux = [];
+        for (let j = 0; j < inputs.length; j++) {
+            if (inputs[j].checked) {
+                personasExtras[i] += document.getElementsByName('nueResp' + lim[i].id.substr(3) + 'L')[j].innerText + "%";
+                aux.push({
+                    n: document.getElementsByName(`nueResp${lim[i].id.substr(3)}C`)[j].value,
+                    a: (i + 1)
+                });
+                if ((personasExtras[i].split("%").length - 1) == arr.length)
+                    personasExtras[i] = "Todos los integrantes de la academia";
+            }
         }
+        nominasExtras.push(aux);
     }
-    for (var i = 0; i < extras.length; i++) {
+    for (let i = 0; i < extras.length; i++) {
         var obj = {
             Acuerdo: text[i].value,
             Responsables: personasExtras[i],
@@ -148,18 +160,27 @@ async function crearPDF() {
     }
     var profesoresTotal = document.getElementsByName('profesorC');
     var profesores = [];
-    for (var i = 0; i < profesoresTotal.length; i++) {
+    for (let i = 0; i < profesoresTotal.length; i++) {
         if (profesoresTotal[i].checked) {
             var obj = {
                 name: document.getElementsByName('profesorL')[i].innerText,
-                mat: document.getElementsByName('materias')[i].value
+                mat: document.getElementsByName('materias')[i].value,
+                nom: document.getElementsByName('profesorC')[i].value
             };
             profesores.push(obj);
         }
     }
     let date = new Date();
     let d = date.getFullYear() + '-' + date.getMonth() + "-" + date.getDay() + '-' + date.getTime();
+    let g;
+    if (nG)
+        g = nG;
+    else
+        g = eG;
     var obj = {
+        aca: aca,
+        autor: id,
+        g: g,
         doc: d,
         no: document.getElementById('No').value,
         dia: fecha[2],
@@ -173,6 +194,7 @@ async function crearPDF() {
         orden: document.getElementById('Orden').value,
         anterioes: acuerdos,
         extras: acuerdosExtras,
+        nominasExtras: nominasExtras,
         horaFinal: document.getElementById('Final').value,
         Obs: document.getElementById('obs').value,
         docentes: profesores,
@@ -194,10 +216,10 @@ async function crearPDF() {
         url: 'documentos/crearActas.php',
         type: 'GET',
         data: { obj: obj },
-        //dataType: 'JSON',
+        dataType: 'JSON',
         success: (r) => {
-            console.log(r);
-            //window.open(r['archivo']);
+            window.open(r['archivo']);
+            window.location = `Actas.html?id=${id}`
         },
         error: (error) => {
             console.log("erorr:");
@@ -208,7 +230,7 @@ async function crearPDF() {
 
 function buscar(name, valor) {
     var ckec = document.getElementsByName(name + "C");
-    for (var i = 0; i < ckec.length; i++) {
+    for (let i = 0; i < ckec.length; i++) {
         var la = document.getElementsByName(name + "L")[i];
         la.hidden = !(la.innerText.includes(valor));
         ckec[i].hidden = la.hidden;
@@ -217,7 +239,7 @@ function buscar(name, valor) {
 
 function acuerdosAnt(data) {
     var body = document.getElementById('bodyAnt');
-    for (var i = 0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
         var tr = document.createElement('tr');
         tr.setAttribute("name", "ant")
         var td1 = document.createElement('td');
@@ -245,7 +267,7 @@ function acuerdosAnt(data) {
         var tbody = document.createElement('tbody');
         if (data[i]["Responsable"].length > 0) {
             var responsables = data[i]['Responsable'][0].split("%");
-            for (var j = 0; j < arr.length; j++) {
+            for (let j = 0; j < arr.length; j++) {
                 var trx = document.createElement('tr');
                 var td = document.createElement('td');
                 var label = document.createElement('label');
@@ -298,7 +320,7 @@ function acuerdosAnt(data) {
 
 function todos(name) {
     var ckec = document.getElementsByName(name + "C");
-    for (var i = 0; i < ckec.length; i++) {
+    for (let i = 0; i < ckec.length; i++) {
         ckec[i].checked = !ckec[i].checked;
     }
 }
@@ -319,6 +341,7 @@ function cargarUsuarios() {
             var inp = document.createElement('input');
             inp.type = 'checkbox';
             inp.name = "antRespC";
+            inp.value = arr[i].N;
             td.appendChild(inp);
             td.appendChild(label);
             tr.appendChild(td);
@@ -333,6 +356,7 @@ function cargarUsuarios() {
             var inp = document.createElement('input');
             inp.type = 'checkbox';
             inp.name = "nueRespC";
+            inp.value = arr[i].N;
             td.appendChild(inp);
             td.appendChild(label);
             tr.appendChild(td);
@@ -347,6 +371,7 @@ function cargarUsuarios() {
         var inp = document.createElement('input');
         inp.type = 'checkbox';
         inp.name = "profesorC";
+        inp.value = arr[i].N;
         td.appendChild(inp);
         td.appendChild(label);
         tr.appendChild(td);
@@ -427,7 +452,7 @@ function addAcuerdo() {
 }
 
 function nuevos(body, name) {
-    for (var i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
         var tr = document.createElement('tr');
         var td = document.createElement('td');
         var label = document.createElement('label');
@@ -436,6 +461,7 @@ function nuevos(body, name) {
         var inp = document.createElement('input');
         inp.type = 'checkbox';
         inp.name = name + "C";
+        inp.value = arr[i].N;
         td.appendChild(inp);
         td.appendChild(label);
         tr.appendChild(td);

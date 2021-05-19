@@ -9,6 +9,9 @@ TERMINADAS:
         *- INSERTARLOS
         *- CREAR
         *- MODIFICAR
+    *- ACTAS:
+        *- CREAR    
+        *- INSERTARLOS
     
 PENDIENTES:                     Prioridad sobre 100
     *- DOCUMENTOS PENDIENTES    80
@@ -24,6 +27,4 @@ PENDIENTES:                     Prioridad sobre 100
         *- MODIFICAR
         *- INSERTARLOS
     *- ACTAS:                   100
-        *- CREAR    
         *- MODIFICAR
-        *- INSERTARLOS

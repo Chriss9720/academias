@@ -1,5 +1,5 @@
 var id;
-//poner: Todos los integrantes de la academia
+
 function cargarDatos() {
     window.location.search.substr(1).split("&").forEach(item => {
         id = item.split("=")[1];
@@ -81,55 +81,55 @@ async function crearPDF() {
             personas1 += act1L[i].innerText + "?";
             resp1.push(act1C[i].value);
             if (resp1.length == max)
-                personas1 = "TODOS";
+                personas1 = "Todos los integrantes de la academia";
         }
         if (act2C[i].checked) {
             personas2 += act1L[i].innerText + "?";
             resp2.push(act2C[i].value);
             if (resp2.length == max)
-                personas2 = "TODOS";
+                personas2 = "Todos los integrantes de la academia";
         }
         if (act3C[i].checked) {
             personas3 += act1L[i].innerText + "?";
             resp3.push(act3C[i].value);
             if (resp3.length == max)
-                personas3 = "TODOS";
+                personas3 = "Todos los integrantes de la academia";
         }
         if (act4C[i].checked) {
             personas4 += act1L[i].innerText + "?";
             resp4.push(act4C[i].value);
             if (resp4.length == max)
-                personas4 = "TODOS";
+                personas4 = "Todos los integrantes de la academia";
         }
         if (act5C[i].checked) {
             personas5 += act1L[i].innerText + "?";
             resp5.push(act5C[i].value);
             if (resp5.length == max)
-                personas5 = "TODOS";
+                personas5 = "Todos los integrantes de la academia";
         }
         if (act6C[i].checked) {
             personas6 += act1L[i].innerText + "?";
             resp6.push(act6C[i].value);
             if (resp6.length == max)
-                personas6 = "TODOS";
+                personas6 = "Todos los integrantes de la academia";
         }
         if (act7C[i].checked) {
             personas7 += act1L[i].innerText + "?";
             resp7.push(act7C[i].value);
             if (resp7.length == max)
-                personas7 = "TODOS";
+                personas7 = "Todos los integrantes de la academia";
         }
         if (act8C[i].checked) {
             personas8 += act1L[i].innerText + "?";
             resp8.push(act8C[i].value);
             if (resp8.length == max)
-                personas8 = "TODOS";
+                personas8 = "Todos los integrantes de la academia";
         }
         if (act9C[i].checked) {
             personas9 += act1L[i].innerText + "?";
             resp9.push(act9C[i].value);
             if (resp9.length == max)
-                personas9 = "TODOS";
+                personas9 = "Todos los integrantes de la academia";
         }
     }
     var IDAcademia = document.getElementById("academia").value;
@@ -301,4 +301,15 @@ function Todos(num) {
 
 function regresar() {
     window.location = "OpcionesPlanTrabajo.html?id=" + id;
+}
+
+function recargarUser() {
+    for (var i = 1; i < 10; i++) {
+        document.getElementById('TBAct' + i + 'L').remove();
+        var page = document.getElementById(i);
+        var tabla = document.createElement('table');
+        tabla.setAttribute('id', 'TBAct' + i + 'L');
+        page.appendChild(tabla);
+    }
+    cargarUsuarios();
 }
