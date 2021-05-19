@@ -1,5 +1,8 @@
 <?php
-    $xml = simplexml_load_file('actas/acta.xml');
+
+    $json = json_decode(json_encode($_POST['obj']), true);
+
+    $xml = simplexml_load_file($json.'.xml');
  
     $acuerdos = [];
 

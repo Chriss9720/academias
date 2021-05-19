@@ -5,6 +5,7 @@ var id;
 var nG;
 var eG;
 var aca;
+var AvP = 0;
 
 async function cargar() {
     crearLoad('rcornersProcCritico');
@@ -25,6 +26,9 @@ async function cargar() {
                 aca = item[1];
         }
     });
+    leerUsuarios();
+    if (eG)
+        precargar();
     await $.ajax({
         url: "php/sp_AcademiasCrearActa.php",
         type: "POST",
@@ -38,16 +42,49 @@ async function cargar() {
         }
     });
     cargarPresidente();
-    /*$.ajax({
-        url: 'documentos/leerActa.php',
-        type: 'GET',
-        dataType: 'JSON',
-        success: function(r) {
-            acuerdosAnt(r['Acuerdos']);
-        },
-        error: function(err) {}
-    });*/
     removerLoad();
+}
+
+async function precargar() {
+    await $.ajax({
+        url: "php/sp_getRutaXMLActa.php",
+        type: "post",
+        data: { obj: eG },
+        dataType: "json",
+        success: async(r) => {
+            r = r[0];
+            document.getElementById('No').value = r.C;
+            await $.ajax({
+                url: 'documentos/leerActa.php',
+                type: 'POST',
+                data: { obj: r.R },
+                dataType: 'JSON',
+                success: async(r) => {
+                    await $.ajax({
+                        url: "php/sp_getAvances.php",
+                        type: "post",
+                        data: { obj: eG },
+                        dataType: "json",
+                        success: (r2) => {
+                            acuerdosAnt(r['Acuerdos'], r2);
+                        },
+                        error: (err) => {
+                            console.log('sp_getAvances')
+                            console.log(err);
+                        }
+                    })
+                },
+                error: (err) => {
+                    console.log("leerActa");
+                    console.log(err);
+                }
+            });
+        },
+        error: (err) => {
+            console.log("sp_getRutaXMLActa");
+            console.log(err);
+        }
+    })
 }
 
 async function cargarPresidente() {
@@ -64,7 +101,6 @@ async function cargarPresidente() {
         }
     });
     cargarSecretario();
-    leerUsuarios();
 }
 
 async function leerUsuarios() {
@@ -112,10 +148,14 @@ async function crearPDF() {
     var personasAnt = [];
     for (let i = 0; i < anteriores.length; i++) {
         var inputs = document.getElementsByName('acuerdoAnt' + i + 'C');
-        personasAnt[i] = "";
+        console.log(inputs.length);
         for (let j = 0; j < inputs.length; j++) {
-            if (inputs[j].checked)
-                personasAnt[i] = document.getElementsByName('acuerdoAnt' + i + 'L')[j].innerText + "%";
+            if (inputs[j].checked) {
+                personasAnt[i] += document.getElementsByName('acuerdoAnt' + i + 'L')[j].innerText + "%";
+            }
+            if ((personasAnt[i].split("%").length - 1) == arr.length) {
+                personasAnt[i] = "Todos los integrantes de la academia";
+            }
         }
     }
     for (let i = 0; i < anteriores.length; i++) {
@@ -142,7 +182,7 @@ async function crearPDF() {
                 personasExtras[i] += document.getElementsByName('nueResp' + lim[i].id.substr(3) + 'L')[j].innerText + "%";
                 aux.push({
                     n: document.getElementsByName(`nueResp${lim[i].id.substr(3)}C`)[j].value,
-                    a: (i + 1)
+                    a: (i + 1 + AvP)
                 });
                 if ((personasExtras[i].split("%").length - 1) == arr.length)
                     personasExtras[i] = "Todos los integrantes de la academia";
@@ -237,8 +277,9 @@ function buscar(name, valor) {
     }
 }
 
-function acuerdosAnt(data) {
+function acuerdosAnt(data, av) {
     var body = document.getElementById('bodyAnt');
+    AvP = data.length;
     for (let i = 0; i < data.length; i++) {
         var tr = document.createElement('tr');
         tr.setAttribute("name", "ant")
@@ -248,7 +289,8 @@ function acuerdosAnt(data) {
         text.setAttribute('class', 'txtArea txtArea2');
         text.setAttribute('name', 'txtAnt');
         text.disabled = true;
-        text.innerText = data[i]['Acuerdo'][0];
+        if (data[i]["Acuerdo"][0])
+            text.innerText = data[i]['Acuerdo'][0];
         td1.appendChild(text)
         var td2 = document.createElement('td');
         td2.setAttribute('class', 'tdResponsable');
@@ -265,22 +307,26 @@ function acuerdosAnt(data) {
         tabla.setAttribute('id', 'tablaResponsablesAnt')
         tabla.setAttribute('class', 'alin')
         var tbody = document.createElement('tbody');
-        if (data[i]["Responsable"].length > 0) {
+        if (data[i]["Responsable"]) {
             var responsables = data[i]['Responsable'][0].split("%");
             for (let j = 0; j < arr.length; j++) {
                 var trx = document.createElement('tr');
                 var td = document.createElement('td');
                 var label = document.createElement('label');
-                label.innerText = arr[j];
+                label.innerText = arr[j].Nombre;
                 var name = "acuerdoAnt" + acuerdoAnt;
                 label.setAttribute("name", name + "L");
                 var inp = document.createElement('input');
                 inp.type = 'checkbox';
                 inp.name = name + "C";
                 inp.disabled = true;
-                for (var k = 0; k < responsables.length - 1 && !inp.checked; k++) {
-                    if (arr[j].includes(responsables[k]))
-                        inp.checked = true;
+                if (responsables[0].includes("Todos los integrantes de la academia")) {
+                    inp.checked = true;
+                } else {
+                    for (var k = 0; k < responsables.length - 1 && !inp.checked; k++) {
+                        if (arr[j].Nombre.includes(responsables[k]))
+                            inp.checked = true;
+                    }
                 }
                 if (inp.checked) {
                     td.appendChild(inp);
@@ -300,14 +346,15 @@ function acuerdosAnt(data) {
         inp.setAttribute('name', 'fechaCumpAnt');
         inp.setAttribute('class', 'contenidoReunion');
         inp.disabled = true;
-        inp.value = data[i]['Fecha'][0];
+        if (data[i]["Fecha"][0])
+            inp.value = data[i]['Fecha'][0];
         td3.appendChild(inp);
         var td4 = document.createElement('td');
         td4.setAttribute('class', 'tdS');
         var text = document.createElement('textarea');
         text.setAttribute('class', 'txtArea txtArea2');
         text.setAttribute('name', 'Avance');
-        text.innerText = data[i]['Avance'][0];
+        text.innerText = `${av[i].AV}%`;
         td4.appendChild(text);
         tr.appendChild(td1);
         tr.appendChild(td2);
@@ -474,5 +521,8 @@ function remov(e) {
 }
 
 function regresar() {
-    window.location = "OpcionesActas.html?id=" + id;
+    if (eG)
+        window.location = `OpcionesActas.html?id=${id}&eG=${eG}&aca=${aca}`;
+    else
+        window.location = `OpcionesActas.html?id=${id}&eG=${nG}&aca=${aca}`;
 }

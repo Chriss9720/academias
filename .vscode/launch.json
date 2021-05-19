@@ -8,7 +8,7 @@
             "type": "pwa-chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "http://localhost/academias/documentosPendientes.html?id=111111",
+            "url": "http://localhost/academias/OpcionesActas.html?id=111111&eG=1&aca=21",
             "webRoot": "${workspaceFolder}"
         }
     ]
