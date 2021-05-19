@@ -1,7 +1,7 @@
 var datos = [];
 var id;
 
-async function cargarDatos() {
+async function cargarDatos(op) {
     crearLoad('rcornersEliminarAcademia');
     window.location.search.substr(1).split("&").forEach(item => {
         id = item.split("=")[1];
@@ -25,12 +25,14 @@ async function cargarDatos() {
         type: "POST",
         dataType: "json",
         success: function(r) {
-            var c = document.getElementById("nuevaCarrera");
-            for (var i = 0; i < r.length; i++) {
-                var option = document.createElement("option");
-                option.value = r[i]["ID"];
-                option.innerText = r[i]["carrera"];
-                c.appendChild(option);
+            if (op == 0) {
+                var c = document.getElementById("nuevaCarrera");
+                for (var i = 0; i < r.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = r[i]["ID"];
+                    option.innerText = r[i]["carrera"];
+                    c.appendChild(option);
+                }
             }
         },
         error: function(err) {
@@ -399,9 +401,9 @@ async function accionDelBoton() {
             type: "GET",
             data: { obj: obj },
             dataType: "JSON",
-            success: function(r) {
+            success: async(r) => {
                 if (r["res"].length > 0) {
-                    $.ajax({
+                    await $.ajax({
                         url: "php/bajaAcademia.php",
                         data: { obj: name },
                         success: function(r) {
@@ -543,7 +545,7 @@ function recrear(op) {
     t.appendChild(tbody);
     page.appendChild(t);
     if (op == 1)
-        cargarDatos();
+        cargarDatos(1);
 }
 
 function buscarEncargado(value) {

@@ -1,5 +1,5 @@
 var id;
-
+//poner: Todos los integrantes de la academia
 function cargarDatos() {
     window.location.search.substr(1).split("&").forEach(item => {
         id = item.split("=")[1];

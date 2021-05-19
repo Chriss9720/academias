@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PlanTrabajo>
+  <Cabecera>
+    <name>plantrabajo-2021-4-2-1621362144632</name>
+    <Academia>Academia 1</Academia>
+    <Semestre>Ene-Jun 2021</Semestre>
+    <Presidente>User Dos User Dos User Dos</Presidente>
+    <Primera>2021-05-19 11:21</Primera>
+    <Segunda>2021-05-10 02:21</Segunda>
+    <Tercera>2021-05-06 02:21</Tercera>
+    <Cuarta>2021-04-28 03:21</Cuarta>
+    <Jefe>User P uno User P uno User P uno</Jefe>
+    <Coordinador>Gonzalez Christian Yañez</Coordinador>
+  </Cabecera>
+  <Act1>
+    <Acciones>Prueba 1</Acciones>
+    <Asignarutas/>
+    <Responsable>TODOS</Responsable>
+    <Fecha>2021-05-03 16:21</Fecha>
+    <Evidencia>Prueba 1.2</Evidencia>
+  </Act1>
+  <Act2>
+    <Acciones/>
+    <Asignarutas>Prueba 2</Asignarutas>
+    <Responsable>Gonzalez Christian Yañez?</Responsable>
+    <Fecha/>
+    <Evidencia/>
+  </Act2>
+  <Act3>
+    <Acciones/>
+    <Asignarutas/>
+    <Responsable/>
+    <Fecha/>
+    <Evidencia>Prueba 3</Evidencia>
+  </Act3>
+  <Act4>
+    <Acciones/>
+    <Asignarutas>Prueba 4</Asignarutas>
+    <Responsable/>
+    <Fecha/>
+    <Evidencia/>
+  </Act4>
+  <Act5>
+    <Acciones>Prueba 5</Acciones>
+    <Asignarutas/>
+    <Responsable/>
+    <Fecha/>
+    <Evidencia/>
+  </Act5>
+  <Act6>
+    <Acciones/>
+    <Asignarutas>Prueba 6</Asignarutas>
+    <Responsable/>
+    <Fecha/>
+    <Evidencia/>
+  </Act6>
+  <Act7>
+    <Acciones/>
+    <Asignarutas/>
+    <Responsable/>
+    <Fecha/>
+    <Evidencia>Prueba 7</Evidencia>
+  </Act7>
+  <Act8>
+    <Acciones/>
+    <Asignarutas>Prueba 8</Asignarutas>
+    <Responsable/>
+    <Fecha/>
+    <Evidencia/>
+  </Act8>
+  <Act9>
+    <Acciones>Prueba 9</Acciones>
+    <Asignarutas/>
+    <Responsable/>
+    <Fecha/>
+    <Evidencia/>
+  </Act9>
+</PlanTrabajo>

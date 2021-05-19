@@ -7,12 +7,24 @@
     <mes/>
     <year/>
     <lugar/>
-    <academia/>
-    <presidente/>
-    <Secretario/>
+    <academia>21</academia>
+    <presidente>Yañez Gonzalez Brenda</presidente>
+    <Secretario>Castro Morales Hector Francisco</Secretario>
     <horaFinal/>
     <orden/>
     <jefe>de la base de datos</jefe>
     <obs/>
   </Cabecera>
+  <Acuerdos>
+    <Acuerdo>1</Acuerdo>
+    <Responsable/>
+    <Fecha>undefined</Fecha>
+    <Avance>0%</Avance>
+  </Acuerdos>
+  <Acuerdos>
+    <Acuerdo>2</Acuerdo>
+    <Responsable>Castro Morales Hector Francisco%</Responsable>
+    <Fecha>2021-05-18 16:20</Fecha>
+    <Avance>0%</Avance>
+  </Acuerdos>
 </Acta>

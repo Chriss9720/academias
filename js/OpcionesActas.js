@@ -7,13 +7,13 @@ function cargarDatos() {
 }
 
 function regresar() {
-    window.location = "menu.html?id=" + id;
+    window.location = "Actas.html?id=" + id;
 }
 
 function limpiar() {
-    window.location.href = "OpcionesActas.html?id=" + id;
+    window.location = "OpcionesActas.html?id=" + id;
 }
 
 function crear() {
-    window.location.href = "agregarActa.html?id=" + id;
+    window.location = "agregarActa.html?id=" + id;
 }
